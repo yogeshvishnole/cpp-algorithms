@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1585377450 source:c:\users\dell\desktop\current\learninfg ds\programs\implementation of  tree datastructure using linkr=ed list\main.cpp
+	<iostream>
+	"Queue.h"
+	"Stack.h"
+
+1585308878 c:\users\dell\desktop\current\learninfg ds\programs\implementation of  tree datastructure using linkr=ed list\queue.h
+	<iostream>
+
+1585367592 c:\users\dell\desktop\current\learninfg ds\programs\implementation of  tree datastructure using linkr=ed list\stack.h
+	<iostream>
+	"Queue.h"
+
