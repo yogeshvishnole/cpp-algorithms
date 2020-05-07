@@ -1,0 +1,231 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Trees - Expression Tree Class</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Trees - Expression Tree Class</h1>
+
+
+<p>Here is a simple representation of expression trees that handles
+integer constants and binary (two-operand) operators.
+It doesn't take advantage of inheritance.  
+Whenever a case statement appears in a function (as in <code>eval</code>), 
+the question of whether this should be implemented with inheritance
+and virtual functions (which don't need the case statement).
+</p>
+<p>
+The <code>eval</code> function evaluates trees recursively.  It would
+be somewhat harder to do it iteratively.
+</p>
+
+<h3>The header file</h3>
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+ 22 
+</pre></td><td valign='top'>
+<div class="file"><pre>
+// exprnode/exprnode.h - Example expression tree
+// 2004-02-25 Fred Swartz
+#ifndef EXPRNODE_H
+#define EXPRNODE_H
+
+#include &lt;cstdlib&gt;  // for NULL
+using namespace std;
+
+//====================================== class ExprNode
+class ExprNode {
+ public:
+    ExprNode(char oper, ExprNode* left, ExprNode* right);
+    ExprNode(int val);
+    int eval() const; // Evaluate expr tree. Return result.
+    
+ private:
+    char      _op;    // one of +, -, *, /, #
+    int       _value; // integer value used for constants.
+    ExprNode* _left;  // left subtree
+    ExprNode* _right; // right subtree
+};
+#endif
+</pre></div>
+</td></tr></table>
+
+<h3>The implementation file</h3>
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+ 22 
+ 23 
+ 24 
+ 25 
+ 26 
+ 27 
+ 28 
+ 29 
+ 30 
+ 31 
+ 32 
+ 33 
+ 34 
+ 35 
+ 36 
+ 37 
+ 38 
+ 39 
+ 40 
+ 41 
+ 42 
+</pre></td><td valign='top'>
+<div class="file"><pre>
+// exprnode/exprnode.cpp - Example expression tree
+// 2004-02-25 Fred Swartz
+
+#include &lt;cstdlib&gt;  // for NULL
+using namespace std;
+
+#include "exprnode.h"
+   
+//============================================= ExprNode constructor
+    // Constructs node for a binary operator.
+ExprNode::ExprNode(char oper, ExprNode* left, ExprNode* right) {
+    _op    = oper;
+    _left  = left;
+    _right = right;
+}
+   
+//============================================== ExprNode constructor
+    // Constructs a node for an integer constant
+ExprNode::ExprNode(int v) {
+    _op    = '#';
+    _value = v;
+    _left  = NULL;
+    _right = NULL;
+}
+
+//===================================================== ExprNode::eval
+int ExprNode::eval() const {
+    // Recursively evaluate expression tree and return result.
+    int result;
+    switch (_op) {
+        case '+': 
+                result = _left-&gt;eval() + _right-&gt;eval();
+                break;
+        case '-': 
+                result = _left-&gt;eval() - _right-&gt;eval();
+                break;
+        case '#': 
+                result = _value;  // an integer constant
+                break;
+     }
+     return result;
+}
+</pre></div>
+</td></tr></table>
+
+<h3>The test file</h3>
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+</pre></td><td valign='top'>
+<div class="file"><pre>
+// exprnode/exprnode-test.cpp
+// 2004-02-25 Fred Swartz
+
+#include &lt;iostream&gt;
+using namespace std;
+
+#include "exprnode.h"
+
+//============================================================== main
+int main() {
+    // Example expression and evaluation.
+    ExprNode* add = new ExprNode('+', new ExprNode(5), new ExprNode(6));
+    ExprNode* sub = new ExprNode('-', add, new ExprNode(2));
+    cout &lt;&lt; sub-&gt;eval() &lt;&lt; endl;
+    
+    system("PAUSE");
+    return 0;
+}
+</pre></div>
+</td></tr></table>
+
+<h2>Programming extensions</h2>
+<ol>
+<li>Add muliplication and division.  Check that division by zero isn't attempted.</li>
+<li>Write one of the following functions, which will produce a string
+    from the expression tree.  Model it after the <code>eval</code> function.
+    <ul>
+    <li><code>string toPrefix();</code></li>
+    <li><code>string toInfix();</code></li>
+    <li><code>string toPostfix();</code></li>
+    </ul>
+    To simplify this problem, you can assume that a function exists which
+    converts an int to a string with this prototype.
+    <code>string intToString(int i);</code>
+    </li>
+</ol>
+
+<script type="text/JavaScript">footer("2000-4");</script>
+</body>
+
+</html>

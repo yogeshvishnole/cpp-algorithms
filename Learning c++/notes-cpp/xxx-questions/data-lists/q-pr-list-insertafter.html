@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet"           type="text/css" title="noanswers" href="../../notes.css"/>
+    <link rel="alternate stylesheet" type="text/css" title="answers"   href="../../notesanswer.css"/> 
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++: List Exercise - insertAfter</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++</a>: List Exercise - insertAfter</h1>
+<p>Name _____________________</p>
+
+<p>Assume the following declarations.</p>
+<pre class="example">
+struct Node {
+    Node* prev;
+    Node* next;
+    int   data;
+};</pre>
+
+<p>
+Write a function (not a complete program) that does the following.</p>
+<ol>
+<li>It inserts a new node <i>after</i> the node pointed to by the parameter <code>precedingNode</code>.</li>
+<li>The new node's <code>data</code> field is set to the parameter <code>value</code>.</li>
+<li>The function returns the address of the newly created node.</li>
+</ol>
+<p>The prototype is.</p>
+<pre class="example">
+Node* insertAfter(Node* precedingNode, int value);
+</pre>
+
+<h3>Hints</h3>
+<ul>
+<li>Use <code>new</code> to create a new node.</li>
+<li>Update the <code>next</code> pointer in <code>precedingNode</code>, 
+    the <code>prev</code> pointer in the node that follows <code>precedingNode</code>, 
+    and both pointers in the new node you create.
+    </li>
+<li>There is one special case when <code>precedingNode</code>
+    is the last node in a list (ie, <code>precedingNode-&gt;next==NULL</code>).  Test for this case
+    and do the appropriate thing.
+    </li>
+</ul>
+
+<div class="answer">
+<p>Answer</p>
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+</pre></td><td valign='top'>
+<div class="example"><pre>
+Node* insertAfter(Node* precedingNode, int value) {
+    //-- For convenience save a pointer to the next node.
+    //   This may be NULL if there were no more nodes.
+    Node* followingNode = precedingNode-&gt;next;
+    
+    //-- Allocate a node and initialize its fields.
+    Node* newNode = new Node;
+    newNode-&gt;prev = precedingNode;
+    newNode-&gt;next = followingNode;
+    newNode-&gt;data = value;
+    
+    //-- Link preceding node to this
+    precedingNode-&gt;next = newNode;
+    
+    //-- If there is a following node, link back to new node.
+    if (followingNode != NULL) {
+       followingNode-&gt;prev = newNode;
+    }
+    
+    return newNode;
+}
+</pre></div>
+</td></tr></table>
+
+</div>
+
+<p>
+<a href="#" onclick="setActiveStyleSheet('answers'  ); return false;">Show Answers</a> -
+<a href="#" onclick="setActiveStyleSheet('noanswers'); return false;">Hide Answers</a>
+</p>
+
+
+<script type="text/JavaScript">footer("2004");</script>
+
+</body>
+</html>
+

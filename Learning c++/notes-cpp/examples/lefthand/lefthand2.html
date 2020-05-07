@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com/fred/)"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../notes.css" />
+  <title>C++ Notes: Examples: Lefthand words 2</title>
+</head>
+
+<body>
+<h1><a href="../../index.html">C++ Notes</a>: Examples: Lefthand words 2</h1>
+
+
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+ 22 
+ 23 
+ 24 
+ 25 
+ 26 
+ 27 
+ 28 
+ 29 
+ 30 
+ 31 
+ 32 
+ 33 
+ 34 
+ 35 
+ 36 
+ 37 
+ 38 
+ 39 
+ 40 
+ 41 
+ 42 
+ 43 
+ 44 
+ 45 
+ 46 
+ 47 
+ 48 
+ 49 
+ 50 
+ 51 
+ 52 
+ 53 
+ 54 
+</pre></td><td valign='top'>
+<pre class="example">
+// -- lefthand2.cpp - Find longest word typed with left hand.
+//    Fred Swartz - 2002-09-16
+
+// Use a vector to save all words of longest length.
+// Note: should use a set because only want one copy.
+
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+//--- prototypes
+bool isOnlyLeftHand(string w);
+
+//======================================================= main
+int main() {
+    string word;     // holds each word as read
+    vector&lt;string&gt; maxWords;  // longest words
+    int maxlen = 0;  // length of longest word
+
+    while (cin &gt;&gt; word) {
+        if (word.length() &gt;= maxlen &amp;&amp; isOnlyLeftHand(word)) {
+            if (word.length() &gt; maxlen) {
+                maxlen = word.length(); // new max
+                maxWords.clear();       // clear shorter words
+            }
+            //--- Add word only if not already there
+            //--- Could use find function, but ...
+            bool add = true;
+            for (int i=0; i&lt;maxWords.size(); i++) {
+                if (maxWords[i] == word) {
+                    add = false;
+                    break;
+                }
+            }
+            if (add) {
+                maxWords.push_back(word);  // remember this word
+            }
+        }
+    }
+
+    cout &lt;&lt; "Words of length " &lt;&lt; maxlen &lt;&lt; endl;
+    for (int i=0; i&lt;maxWords.size(); i++) {
+        cout &lt;&lt; maxWords[i] &lt;&lt; endl;
+    }
+
+    return 0;
+}//end main
+
+
+//=============================================== isOnlyLeftHand
+bool isOnlyLeftHand(string w) {
+    return w.find_first_not_of("qwertasdfgzxcvb") == string::npos;
+}//end isOnlyLeftHand</pre></td></tr></table>
+
+<script type="text/JavaScript">footer("2002");</script>
+</body>
+</html>
+

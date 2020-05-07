@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Pointers and Subscripts</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Pointers and Subscripts</h1>
+
+<h2>Character strings</h2>
+The string "Hello" is a char
+array, and therefore a pointer to the first char of that
+array, and therefore can be assigned to a char pointer.
+Char operations often use pointers.
+
+<pre class="example">
+char* message;      // message is a pointer to a char
+message = "Hello";  // assigns the address of the first char
+</pre>
+
+<h2>strcpy written with subscripts in simple style</h2>
+This is at straight-forward solution with subscripts (altho better with do-while).
+We'll make this a void function, altho the library function returns the
+address of the first parameter.
+<pre class="example">
+void strcpy(char a[], const char b[]) {
+    int i = 0;
+    while (b[i] != 0) {
+        a[i] = b[i];
+        i++;
+    }
+    a[i] = 0;  // put terminating 0 at end.
+}</pre>
+
+
+
+<h2>strcpy written with pointers in simple style</h2>
+<pre class="example">
+void strcpy(char* a, char* b) {
+    while (*b != 0) {
+        *a = *b;
+        a++;
+        b++;
+    }
+    *a = 0;  // put terminating 0 at end.
+}</pre>
+
+
+<h2>strcpy written with subscripts, optimized slightly</h2>
+Shorten by embedding assignment in if, and using fact that zero value is false.
+<pre class="example">
+void strcpy(char a[], const char b[]) {
+    int i = 0;
+    while (a[i] = b[i]) { // assignment, not comparison!
+        i++;
+    }
+}</pre>
+   
+   
+
+<h2>strcpy written with pointers in a cryptic style.</h2>
+To make this really compact (but not more efficient) use postincrement operators.
+C++ programmers often seem to like this insanely cryptic code,
+but it isn't good style.
+<br /><br />
+<pre class="example">
+void strcpy(char* a, char* b) {while (*a++ = *b++);}</pre>
+   
+
+
+<script type="text/JavaScript">footer("2000-4");</script>
+</body>
+
+</html>

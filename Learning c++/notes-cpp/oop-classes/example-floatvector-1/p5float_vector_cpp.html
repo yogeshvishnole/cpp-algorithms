@@ -1,0 +1,375 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www/leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <title>C++ Notes: Classes: Example: floatVector.cpp - Solution Pr 5</title>
+</head>
+
+<body>
+
+<h1><a href="../../index.html">C++ Notes</a>: Classes: Example: floatVector.cpp - Solution Pr. 5</h1>
+
+<p>Here is a sample implementation of floatVector, including everything
+   in problem 5.  See
+<a href="examplefloatvector.html">Example: floatVector - Version 1</a>.
+</p>
+
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+ 22 
+ 23 
+ 24 
+ 25 
+ 26 
+ 27 
+ 28 
+ 29 
+ 30 
+ 31 
+ 32 
+ 33 
+ 34 
+ 35 
+ 36 
+ 37 
+ 38 
+ 39 
+ 40 
+ 41 
+ 42 
+ 43 
+ 44 
+ 45 
+ 46 
+ 47 
+ 48 
+ 49 
+ 50 
+ 51 
+ 52 
+ 53 
+ 54 
+ 55 
+ 56 
+ 57 
+ 58 
+ 59 
+ 60 
+ 61 
+ 62 
+ 63 
+ 64 
+ 65 
+ 66 
+ 67 
+ 68 
+ 69 
+ 70 
+ 71 
+ 72 
+ 73 
+ 74 
+ 75 
+ 76 
+ 77 
+ 78 
+ 79 
+ 80 
+ 81 
+ 82 
+ 83 
+ 84 
+ 85 
+ 86 
+ 87 
+ 88 
+ 89 
+ 90 
+ 91 
+ 92 
+ 93 
+ 94 
+ 95 
+ 96 
+ 97 
+ 98 
+ 99 
+100 
+101 
+102 
+103 
+104 
+105 
+106 
+107 
+108 
+109 
+110 
+111 
+112 
+113 
+114 
+115 
+116 
+117 
+118 
+119 
+120 
+121 
+122 
+123 
+124 
+125 
+126 
+127 
+128 
+129 
+130 
+131 
+132 
+133 
+134 
+135 
+136 
+137 
+138 
+139 
+140 
+141 
+142 
+143 
+144 
+145 
+146 
+147 
+148 
+149 
+150 
+151 
+152 
+153 
+154 
+155 
+156 
+157 
+158 
+159 
+160 
+161 
+162 
+163 
+164 
+165 
+166 
+167 
+168 
+169 
+170 
+171 
+172 
+</pre></td><td valign='top'>
+<div class="file"><pre>
+// fv3/floatVector.cpp  implements some of the floatVector methods
+//  Fred Swartz 2001-11-14, 2002-09-11
+
+#include &lt;iostream&gt;
+#include &lt;stdexcept&gt;
+using namespace std;
+
+#include "floatVector.h"
+
+//====================================================== constructor
+floatVector::floatVector() {
+    _capacity = 0;    // Initally no capacity.
+    _size = 0;        // Initially no data in the vector.
+    _data = NULL;     // Initially no memory allocated.
+}//end constructor
+
+
+//================================================= copy constructor
+floatVector::floatVector(const floatVector&amp; fv) {
+    _size = fv._size;         // copy size
+    _data = new float[_size]; // get new space
+    _capacity = _size;     // we only allocated needed space
+    //--- copy fv's data to this
+    for (int i=0; i&lt;_size; i++) {
+        _data[i] = fv._data[i];
+    }
+}//end constructor
+
+
+//======================================================= destructor
+    // free space allocated for the array
+floatVector::~floatVector() {
+    delete [] _data;
+}//end destructor
+
+
+//=============================================================== at
+float&amp; floatVector::at(int position) const {
+    if (position &lt; 0) {
+        throw out_of_range("floatVector subscript less than zero");
+    } else if (position &gt;= _size) {
+        throw out_of_range("floatVector subscript too large");
+    }
+    return _data[position];
+}//end capacity
+
+
+//============================================================= front
+float&amp; floatVector::front() const {
+    if (_size &lt;= 0) {
+        throw out_of_range("floatVector::front() called with no elements.");
+    }    
+    return _data[0];
+}//end front
+
+
+//============================================================== back
+float&amp; floatVector::back() const {
+    if (_size &lt;= 0) {
+        throw out_of_range("floatVector::back() called with no elements.");
+    }    
+    return _data[_size-1];
+}//end back
+
+
+//=============================================================== []
+float&amp; floatVector::operator[](int position) const {
+    if (position &lt; 0) {
+        throw out_of_range("floatVector subscript less than zero");
+    } else if (position &gt;= _size) {
+        throw out_of_range("floatVector subscript too large");
+    }
+    return _data[position];
+}//end []
+
+
+//========================================================= capacity
+int floatVector::capacity() const {
+    return _capacity;
+}//end capacity
+
+
+//======================================================== push_back
+    // Add item to end of the vector
+void floatVector::push_back(float item) {
+    if (_capacity &lt;= _size) {
+        reserve(_capacity&gt;0 ? 2*_capacity : 10);
+    }
+    _data[_size] = item;
+    _size++;
+}//end push_back 
+
+
+//============================================================= size
+int floatVector::size() const {
+    return _size;
+}//end size
+
+
+//============================================================ empty
+// True of the vector contains no elements (size()==0)
+bool floatVector::empty() const {
+    return _size==0;
+}//end empty
+
+
+//============================================================ clear
+// Delete all items.
+void floatVector::clear() {
+    _size = 0;
+}    
+
+
+//========================================================== reserve
+    // Start at 10, then double capacity each time.
+void floatVector::reserve(int cap) {
+    if (cap &gt; _capacity) {
+        // This requires an expansion.
+        float *new_data = new float[cap]; // allo new array.
+        if (_capacity &gt; 0) {
+            // There is a previous allocation to copy and delete.
+            for (int i=0; i&lt;_size; i++) {
+                 new_data[i] = _data[i];
+            }
+            delete [] _data;   // Deallocate old array.
+        }
+        _capacity = cap;       // Set new capacity.
+        _data = new_data;      // Point to new array.
+    }
+}//end reserve
+
+
+//======================================================== operator=
+floatVector&amp; floatVector::operator=(const floatVector&amp; fv) {
+    if (this != &amp;fv) {            // Make sure not same object.
+        delete [] _data;          // Free old memory.
+        _size = fv._size;         // Copy size.
+        _data = new float[_size]; // Allocate new space.
+        _capacity = _size;        // Make exact fit.
+        //--- copy fv's data to this
+        for (int i=0; i&lt;_size; i++) {
+            _data[i] = fv._data[i];
+        }
+    }
+    return *this;            // return ref for multiple assignment
+}//end operator=
+
+
+//======================================================= operator==
+bool floatVector::operator==(const floatVector&amp; v2) const {
+    if (_size != v2._size) return false;  // Sizes must be equal.
+    for (int i=0; i&lt;_size; i++) {
+        if (_data[i] != v2._data[i]) {
+            return false;  // Done if we find one mismatch.
+        }
+    }
+    return true;  // All must have been equal if loop didn't fail.
+}//end operator==
+
+
+//======================================================= operator&lt;&lt;
+ostream&amp; operator&lt;&lt;(ostream&amp; os, const floatVector&amp; fv) {
+    os &lt;&lt; "{";
+    for (int i=0; i&lt;fv.size(); i++) {
+        if (i&gt;0) {
+            os &lt;&lt; ", ";
+        }
+        os &lt;&lt; fv.at(i);
+    }
+    os &lt;&lt; "}";
+    return os;
+}//end operator&lt;&lt;
+</pre></div>
+</td></tr></table>
+
+
+<div class="footer">Copyleft 2004 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+</html>
+

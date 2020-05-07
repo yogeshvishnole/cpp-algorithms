@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>C++: OOP: Friend Functions</title>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: <a href="../index.html#OOP">OOP</a>: Friend Functions</h1>
+
+<i>Friend functions</i> are functions defined outside a class (ie, not member functions), but which the
+class declares to be <i>friends</i> so that they can use
+the class's private members.  This is commonly used in operator overloading.
+
+<h2>Overloading input/output operators</h2>
+Perhaps the most common use of friend functions is
+<b>overloading  &lt;&lt; and &gt;&gt;</b> for I/O. 
+See <a href="../oop-friends/overload-io.html">Overloading &lt;&lt; and &gt;&gt;</a>.
+
+<h2>Commutative operators</h2>
+Another use of friend functions is to permit operators to be
+<b>commutative</b>.  An operator is commutative if the result is the same
+regardless of the order of its operands. Some typical examples are 
+addition and multiplication.  Subtraction and division are not commutative.
+
+<br /><br />Assuming <code>x</code> is an object of a class you've written
+and <code>i</code> is an integer,
+<code>x+i</code> should have the same meaning as <code>i+x</code>.  
+The + in <code>x+i</code> is ok if the + operator between an object and an <code>int</code>
+is defined as a member function in <code>x</code>'s class.
+However the + in the second case (<code>i+x</code>) can only be written
+as a friend function.  That's because overloading (redefining) operators can
+only be done for classes, not the primitive types, and the operator
+definition that is used is based on the class of the left operand.
+
+
+<h2>Declare friends before public and private</h2>
+A class doesn't control the scope of friend functions so
+friend function declarations are usually written at the
+beginning of a .h file.  Public and private don't apply to them.
+
+
+
+<h2>Efficiency</h2>
+Another possible use of friend functions is <b>efficiency</b> since 
+they can access the private members directly they can avoid 
+the cost of using <i>getter</i> functions.  However, never do this
+unless you really need to because it makes code harder to read
+and introduces more possible sources of errors thru increased dependencies.
+
+
+<h2>Cosmetic use</h2>
+Another use is to make some
+function calls <b>more attractive</b>.  For example,
+<pre>
+   Time t1, t2;
+   . . .
+   if (t1.compareTo(t2) == 0) . . .
+</pre>
+Might be more attractively written as 
+<pre>
+   if (compareTo(t1, t2) == 0) . . .
+</pre>
+Because compareTo needs to examine the private values in t1 and t2,
+this second form is only possible if the class declares that 
+compareTo is a <i>friend</i>.
+
+   
+<script type="text/JavaScript">footer("2001");</script>
+</body>
+
+</html>

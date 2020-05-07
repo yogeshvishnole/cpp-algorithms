@@ -1,0 +1,327 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <meta name="author" content="Fred Swartz (www.leepoint.net/fred)">
+  <link rel="stylesheet" type="text/css" href="../../notes.css">
+  <script type="text/JavaScript" src="../../notes.js"></script>
+  <title>C++: STL: list class</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++ Notes</a>: STL: list class</h1>
+
+<p>The <code>list</code> template class is based on a doubly-linked list,
+and has all the functions of <code>vector</code> except <code>capacity</code>,
+<code>reserve</code>, <code>at</code>, and <code>operator[]</code>.
+</p>
+<p>
+Assume that <code>T</code> is some type (eg, int).
+Assume the following declarations:
+</p>
+<pre>   T e;<br>   list&lt;T&gt; v, lst2;<br>   list&lt;T&gt;::iterator iter, iter2, beg, end;<br>   int i, , n, size;</pre>
+<h2>Common constructors, functions, operators, etc</h2>
+<table style="width: 800px;" cellspacing="0"
+ cellpadding="0" border="0" summary="string functions">
+  <tbody>
+    <tr>
+      <th>Result</th>
+      <th>Method</th>
+      <td style="vertical-align: top; width: 20px; text-align: left;"><br>
+      </td>
+      <th>Description</th>
+    </tr>
+    <tr valign="top">
+      <td colspan="4" class="rowheader"><i>Constructors and destructors</i></td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code>list&lt;T&gt; lst;</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;"><br>
+      </td>
+      <td>Creates an empty list for elements of type T.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td nowrap="nowrap"><code>list&lt;T&gt; lst(n, e);</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;"><br>
+      </td>
+      <td>Creates list of n copies of e.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td nowrap="nowrap"><code>list&lt;T&gt; lst(beg, end);</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;"><br>
+      </td>
+      <td>Creates list with copies from range beg..end.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code>lst.~list&lt;T&gt;();</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;"><br>
+      </td>
+      <td>Destroys all elems and frees memory.</td>
+    </tr>
+    <tr valign="top">
+      <td colspan="4" class="rowheader"><i>Entire list</i></td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>i =&nbsp;</code></td>
+      <td><code>lst.<b>size</b>(); </code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;">V<br>
+      </td>
+      <td>Number of elements.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>b =&nbsp;</code></td>
+      <td><code>lst.<b>empty</b>(); </code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;">V<br>
+      </td>
+      <td>True if empty. Same as <code>lst.size()==0</code></td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>lst =&nbsp;</code></td>
+      <td><code>lst2;</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;">V<br>
+      </td>
+      <td>Assigns <i>lst2</i> to <i>lst</i>.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code>lst.<b>clear</b>();</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;">V<br>
+      </td>
+      <td>Removes all elements.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code>lst.<b>assign</b>(n, e);</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;">V<br>
+      </td>
+      <td>Replaces existing elements with n copies of e.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code>lst.<b>sort</b>();</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;">a<br>
+      </td>
+      <td>Sorts list (stable) with &lt;.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code>lst.<b>unique</b>();</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;">a<br>
+      </td>
+      <td>Assumes <code>lst</code> is sorted. Removes subsequent
+consecutive equal values.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code>lst.<b>reverse</b>();</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;">a<br>
+      </td>
+      <td>Reverses <code>lst</code>.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code>lst.<b>merge</b>(<span style="font-style: italic;">lst2</span>);</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;"><br>
+      </td>
+      <td>Assumes <code style="font-style: italic;">lst</code><span
+ style="font-style: italic;"> </span>and <code
+ style="font-style: italic;">lst2</code><span
+ style="font-style: italic;"> </span>are sorted. Merges <code
+ style="font-style: italic;">lst2</code><span
+ style="font-style: italic;"> </span>into <code
+ style="font-style: italic;">lst</code><span style="font-style: italic;">
+      </span>to remain sorted.</td>
+    </tr>
+    <tr valign="top">
+      <td colspan="4" class="rowheader"><i>Front and back - no random
+access</i></td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>e =&nbsp;</code></td>
+      <td><code>lst.<b>front</b>();</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;">V<br>
+      </td>
+      <td>First element.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>e =&nbsp;</code></td>
+      <td><code>lst.<b>back</b>();</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;">V<br>
+      </td>
+      <td>Last element.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code>lst.<b>push_front</b>(e);</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;"><br>
+      </td>
+      <td>Adds <code>e</code> to front of lst.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code>lst.<b>pop_front</b>();</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;"><br>
+      </td>
+      <td>Removes first element of <code>lst</code>.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code>lst.<b>push_back</b>(e);</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;">V<br>
+      </td>
+      <td>Adds <code>e</code> to end of <code>lst</code>.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code>lst.<b>pop_back</b>();</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;">V<br>
+      </td>
+      <td>Removes last element of <code>lst</code>.</td>
+    </tr>
+    <tr valign="top">
+      <td colspan="4" class="rowheader"><i>Iteration based</i></td>
+    </tr>
+    <tr valign="top">
+      <td align="right" nowrap="nowrap"><code>iter2 =&nbsp;</code></td>
+      <td><code>lst.<b>assign</b>(<span style="font-style: italic;">beg</span>,
+      <span style="font-style: italic;">end</span>);</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;">V<br>
+      </td>
+      <td>Sets list to copies from range <span
+ style="font-style: italic;">beg</span>..<span
+ style="font-style: italic;">end</span>.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>iter2 =&nbsp;</code></td>
+      <td><code>lst.<b>insert</b>(<span style="font-style: italic;">iter</span>,
+      <span style="font-style: italic;">e</span>);</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;">V<br>
+      </td>
+      <td>Inserts copy of <span style="font-style: italic;">e</span>
+at <span style="font-style: italic;">iter </span>position, returns
+its position.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code>lst.<b>insert</b>(<span style="font-style: italic;">iter</span>,
+      <span style="font-style: italic;">n</span>, <span
+ style="font-style: italic;">e</span>);</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;">V<br>
+      </td>
+      <td>Inserts <span style="font-style: italic;">n</span> copies of
+      <span style="font-style: italic;">e</span> starting at <span
+ style="font-style: italic;">iter </span>position.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code>lst.<b>insert</b>(<span style="font-style: italic;">iter</span>,
+      <span style="font-style: italic;">beg</span>, <span
+ style="font-style: italic;">end</span>);</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;">V<br>
+      </td>
+      <td>Inserts copies in range <span style="font-style: italic;">beg</span>..<span
+ style="font-style: italic;">end</span>, starting at <span
+ style="font-style: italic;">iter</span>.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>iter2 =&nbsp;</code></td>
+      <td><code>lst.<b>erase</b>(<span style="font-style: italic;">iter</span>);</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;">V<br>
+      </td>
+      <td>Removes element at <span style="font-style: italic;">iter</span>,
+returns position of next.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>iter2 =&nbsp;</code></td>
+      <td><code>lst.<b>erase</b>(<span style="font-style: italic;">beg</span>,
+      <span style="font-style: italic;">end</span>);</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;">V<br>
+      </td>
+      <td>Removes <span style="font-style: italic;">beg</span>...<span
+ style="font-style: italic;">end</span>, returns position of next.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code>lst.<b>splice</b>(<span style="font-style: italic;">iter</span>,
+      <span style="font-style: italic;">lst2</span>);</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;"><br>
+      </td>
+      <td>Inserts copies of <span style="font-style: italic;">lst2 </span>elements
+before <span style="font-style: italic;">iter</span>.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code>lst.<b>splice</b>(<span style="font-style: italic;">iter</span>,
+      <span style="font-style: italic;">lst2</span>, <span
+ style="font-style: italic;">beg</span>);</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;"><br>
+      </td>
+      <td>Inserts before <span style="font-style: italic;">iter </span>copies
+from <span style="font-style: italic;">lst2</span>, beginning at <span
+ style="font-style: italic;">beg</span>.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code>lst.<b>splice</b>(<span style="font-style: italic;">iter</span>,
+      <span style="font-style: italic;">lst2</span>, <span
+ style="font-style: italic;">beg</span>, <span
+ style="font-style: italic;">end</span>);</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;"><br>
+      </td>
+      <td>Inserts before <span style="font-style: italic;">iter </span>copies
+from <span style="font-style: italic;">beg</span>...<span
+ style="font-style: italic;">end </span>of lst2.</td>
+    </tr>
+    <tr valign="top">
+      <td colspan="4" class="rowheader"><i>Iterators</i></td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>beg =&nbsp;</code></td>
+      <td><code>lst.<b>begin</b>();</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;">V<br>
+      </td>
+      <td>Returns iterator to first element.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>end =&nbsp;</code></td>
+      <td><code>lst.<b>end</b>();</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;">V<br>
+      </td>
+      <td>Returns iterator to <i>after</i> last element.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>beg =&nbsp;</code></td>
+      <td><code>lst.<b>rbegin</b>();</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;">V<br>
+      </td>
+      <td>Returns iterator to first (in reverse order) element.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>end =&nbsp;</code></td>
+      <td><code>lst.<b>rend</b>();</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;">V<br>
+      </td>
+      <td>Returns iterator to <i>after</i> last (in reverse order)
+element.</td>
+    </tr>
+    <tr valign="top">
+      <td colspan="4" class="rowheader"><i>Value based</i></td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code>lst.<b>remove</b>(<span style="font-style: italic;">e</span>);</code></td>
+      <td style="vertical-align: top; width: 20px; text-align: left;"><br>
+      </td>
+      <td>Removes all elements from <code>lst</code> with value <code
+ style="font-style: italic;">e</code>.</td>
+    </tr>
+  </tbody>
+</table>
+<h2>Iterators</h2>
+Lists support bidirectional iterators, but not random-access iterators
+as vectors do.
+<script type="text/JavaScript">footer("2002");</script>
+</body>
+</html>

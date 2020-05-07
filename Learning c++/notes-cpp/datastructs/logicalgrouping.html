@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>C++: Data Structures:  Logical Structures - Collections</title>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)" />
+    <link rel="stylesheet" type="text/css" href="../notes.css" />
+    <script type="text/JavaScript" src="../notes.js"></script>
+<meta name="generator" content="Namo WebEditor v5.0(Trial)">
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: Data Structures: Logical Structures - Containers</h1>
+
+<h2>Logical Grouping - Containers</h2>
+Everything is built upon the basic hardware-oriented types and groupings.
+These features are generally the only ones supported by
+directly by basic mainstream programming language features.
+However, <i>libraries</i> in C++ and Java provide more abstract ways to group data
+implemented as classes.  These more logical structures are often called
+<i>containers</i> or <i>collections</i>, and include vectors, lists, sets, maps, ....
+
+<br /><br />To generalize these classes to all types, they are implemented
+by means of <i>templates</i>, hence the common name for this library
+is the <i>Standard Template Library</i> (STL).
+
+<h2>Example - vector</h2>
+An example of changing from a physical, hardware-oriented structure to
+a <i>logical</i> structure is moving from an array to a <i>vector</i>. 
+This logical <i>container</i> to group data together is not implemented
+directly in the C++ language, but with a predefined class library, 
+accessed with
+<pre>   #include &lt;vector&gt;</pre>
+
+<br />The <code>vector</code> template class allows an array-like
+structure that expands automatically as necessary when the user stores more data in it.
+The vector is a very nice solution to the problems of fixed array sizes:
+<ul>
+<li>The programmer can ignore the size because the
+    underlying array will be expanded as needed.</li>
+</ul>
+    
+
+   
+<script type="text/JavaScript">footer("2001");</script>
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Object-Oriented Programming</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Object-Oriented Programming</h1>
+
+
+<h2>History: The Rise and Decline of Structured Programming</h2>
+<p>For many years (roughly 1970 to 1990), <i>structured programming</i> was the
+most common way to organize a program.  This is characterized by a functional-decomposition
+style - breaking the algorithms in to every smaller functions.
+This technique was a great improvement over the ad hoc programming which 
+preceded it.  However, as programs became larger,
+structured programming was not able control the exponential increase in complexity.
+</p>
+
+<h3>The Problem - Complexity</h3>
+<p>Complexity measurements grow exponentially as the size
+of programs grow.  One measurement is <i>coupling</i>, or much different elements
+(modules, data structures) interact with each other.  The fewer the connections, the less
+complex a program is.  Low coupling is highly desirable.  
+</p>
+
+<p>
+There have been several post-structured programming attempts to control complexity.
+One of these is to use software <i>components</i> - preconstructed software "parts"
+to avoid programming.  And when you have to program, use  
+<i>object-oriented programming</i> (OOP).
+</p>
+
+<h2>Object-Oriented Programming (OOP)</h2>
+<p>
+Object-Oriented Programming groups related data and functions together
+in a <i>class</i>, generally making data private and 
+only some functions public.  
+Restricting access decreases coupling and increases cohesion.
+While it is not a panacea, it has proven to be very effective in 
+reducing the complexity increase with large programs. 
+For small programs may be difficult to see the advantage of OOP
+over, eg, structured programming
+because there is little complexity regardless of how it's written.
+Many of the mechanics of OPP are easy to demonstrate; it is 
+somewhat harder to create small, convincing examples.
+</p>
+
+<p>
+OOP is often said to incorporate three techniques: inheritance, encapsulation, and polymorphism.
+Of these, you should first devote yourself to choosing the right classes
+(possibly difficult) and getting the encapsulation right (fairly easy).
+Inheritance and polymorphism are not even present in many programs, so you
+can ignore them at that start.
+</p>
+
+
+<h3>Encapsulation</h3>
+<p><i>Encapsulation</i> is grouping data and functions together and keeping their
+implementation details private.
+Greatly restricting access to functions and
+data reduces <i>coupling</i>, which increases the ability
+to create large programs.  
+</p>
+
+<p>Classes also encourage
+<i>coherence</i>, which means that a given class does one thing.  By increasing
+coherence, a program becomes easier to understand, more simply organized, and this
+better organization is reflected in a further reduction in coupling.
+</p>
+
+<h3>Inheritance</h3>
+<p><i>Inheritance</i> means that a new class can be defined in terms of 
+an existing class.  There are three common terminologies for the new
+class: the <i>derived</i> class, the <i>child</i> class, or the <i>subclass</i>.
+The original class is the <i>base</i> class, the <i>parent</i> class, or the <i>superclass</i>.
+The new child class inherits all capabilities of the parent
+class and adds its own fields and methods.  
+Altho inheritance is very important, especially in many libraries, 
+is often not used in an application.
+</p>
+
+
+<h3>Polymorphism</h3>
+<p><i>Polymorphism</i> is the ability of different functions to be invoked with 
+the same name.  There are two forms.
+</p>
+
+<p><i>Static polymorphism</i> is the common case of <i>overriding</i> a function
+by providing additional definitions with different numbers or types of parameters.
+The compiler matches the parameter list to the appropriate function.
+</p>
+
+<p><i>Dynamic polymorphism</i> is much different and relies on parent classes 
+to define <i>virtual functions</i> which child classes may redefine.  
+When this virtual member function is called for an object of the parent class,
+the execution dynamically chooses the appropriate function to call -
+the parent function if the object really is the parent type, or the child
+function if the object really is the child type.  This explanation is too
+brief to be usesful without an example, but that will have to be written 
+latter.
+</p>
+   
+<script type="text/JavaScript">footer("2003");</script>
+</body>
+
+</html>

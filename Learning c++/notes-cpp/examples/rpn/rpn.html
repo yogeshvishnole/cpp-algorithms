@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com/fred/)"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../notes.css" />
+  <title>C++ Notes: Examples: RPN</title>
+</head>
+
+<body>
+<h1><a href="../../index.html">C++ Notes</a>: Example - RPN Calculator</h1>
+A RPN (Reverse Polish Notation) Calculator. 
+
+<pre class="example">
+// stl/rpn.cpp -- RPN (Reverse Polish Notation) Calculator
+// Fred Swartz 2001-12-05, 2002-09-27
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;stdexcept&gt;
+using namespace std;
+
+int pop(vector&lt;int&gt;&amp; stk);  //--- prototype to pop stack
+
+//============================================================= main
+int main() {
+    vector&lt;int&gt; opndStack; // vector used as operand stack
+    string token;          // to read number or operator
+
+    while (cin &gt;&gt; token) {
+        if (isdigit(token[0])) { // if first is digit, it's number.
+            opndStack.push_back(atoi(token.c_str())); // convert, push
+            
+        } else { // If it's not a number, assume it's an operator
+            int left, right;  //  used by some operators as temps
+
+            switch (token[0]) {  // assume operators are one char
+              case '+': opndStack.push_back(pop(opndStack) + pop(opndStack));
+                        break;
+              case '-': right = pop(opndStack); // get right operand
+                        left  = pop(opndStack); // get left operand
+                        opndStack.push_back(left - right);
+                        break;
+              case '*': opndStack.push_back(pop(opndStack) * pop(opndStack));
+                        break;
+              case '/': right = pop(opndStack); // get right operand
+                        left  = pop(opndStack); // get left operand
+                        opndStack.push_back(left / right);
+                        break;
+              default:  throw domain_error("Undefined operator");
+            }
+            cout &lt;&lt; "Result: " &lt;&lt; opndStack.back() &lt;&lt; endl;
+        }
+    }
+    return 0;
+}//end main
+
+//============================================================== pop
+   // This utility function checks stack for underflow
+   // and pops (removes and returns) last element.
+int pop(vector&lt;int&gt;&amp; stk) {
+    if (stk.empty()) {
+        throw underflow_error("Stack underflow.");
+    }
+    int result = stk.back();
+    stk.pop_back();
+    return result;
+}//end pop</pre>
+
+<h2>Notes</h2>
+This uses a &lt;vector&gt; rather than the &lt;stack&gt; class.  
+Why?  The stack class doesn't check for stack underflow, and
+has an awkward pop function (two calls necessary to pop), and,
+while not a great disadvantage, is based by default on deque, 
+which is slightly less efficient than vector.  
+It's not a pleasant class to use.  The "right" way to do this
+is to define one's own template stack class to correct these problems.
+Hmmm, sounds like a good student problem.
+
+<script type="text/JavaScript">footer("2002");</script>
+</body>
+</html>
+

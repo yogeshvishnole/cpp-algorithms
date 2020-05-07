@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Algorithms: STL sort for arrays</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++ Notes</a>: Algorithms: STL sort for arrays</h1>
+
+Never write your own sort!  Use the the sort in the Standard Template Library (STL).
+The STL has sorts that are efficient and well tested.  
+
+<h2>Basic syntax for calling <code>sort</code></h2>
+When calling the STL sort, you need to pass two parameters:
+the address of the first element to sort, and the 
+address of <i>one past</i> the last element to sort.
+The address is used for iterating across array elements.
+For other data structures (eg, a <code>vector</code>) you will
+have to do something a little different, but for arrays we
+can simply express the beginning and ending points with the 
+array name and the addition of an integer.  For example,<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+</pre></td><td valign='top'>
+<div class="example"><pre>
+// sorting/stl-sort-array.cpp - Demo STL sort of array.
+// Fred Swartz - 2003-09-26
+
+#include &lt;iostream&gt;
+<span class="hilite">#include &lt;algorithm&gt;</span>
+using namespace std;
+
+int main() {
+    int a[7] = {23, 1, 33, -20, 6, 6, 9};
+    
+    <span class="hilite">sort(a, a+7);</span>
+    
+    for (int i=0; i&lt;7; i++) {
+        cout &lt;&lt; a[i] &lt;&lt; " ";
+    }
+    
+    return 0;
+}
+</pre></div>
+</td></tr></table>
+This prints the sorted values.
+<pre>
+   -20 1 6 6 9 23 33</pre>
+   
+<dl>
+<dt>Include header</dt>
+    <dd>The <code>&lt;algorithm&gt;</code> header must be included.</dd>
+<dt>Using plus to compute the address of an array element</dt>
+    <dd>An array variable is the address of the first element 
+    (eg, <code>a</code> is the address of <code>a[0]</code>), 
+    and the address of any element may be computed by adding an integer
+    to the address of the first element.  In this example, <code>a</code>
+    is the address of the first element, and <code>a+7</code> is the
+    address of the eighth element (ie, the address of <code>a[7]</code>).
+    How can we use <code>a+7</code> if last element of the array is <code>a[6]</code>?
+    See below.
+    </dd>
+<dt>The element past the end</dt>
+    <dd>
+    The <code>sort()</code> function requires the end to be indicated with
+    the address of the element <code>beyond</code> the last element that
+    is to be sorted.  Even if there is no element in the array, the address
+    of this hypothetical element can be computed.  Don't worry, <code>sort()</code>
+    never tries to reference data at that position, it just uses that address
+    as a upper limit.
+    </dd>
+</dl>
+
+
+<h2>Sorting predefined types</h2>
+There is no problem sorting any of the predefined types (eg, <code>int</code>,
+<code>float</code>, <code>char</code>, ...).
+
+<h2>Sorting class (struct) types</h2>
+If you define a new type using <code>struct</code> or <code>class</code>,
+<code>sort()</code> has no idea how to compare two values.  For example,
+if a new <code>Student</code> class is defined, what would it mean to compare
+two elements?
+<table border="1" cellspacing="0" cellpadding="4">
+<tr><th>Defined as class</th><th>Equivalent struct declaration</th></tr>
+<tr><td>
+<pre>
+class Student {
+  <span class="hilite">public:</span>
+    int    id;
+    string first_name;
+    string last_name;
+    float  gpa;
+};</pre>
+</td>
+<td valign="top">
+<pre>
+struct Student {
+    int    id;
+    string first_name;
+    string last_name;
+    float  gpa;
+};</pre>
+</td></tr></table>
+For the following discussion, <code>class</code> will be used instead of
+<code>struct</code>, but they are completely equivalent except that all
+members of a <code>struct</code> default to <code>public</code>.
+
+<h2>Comparison is not defined by default for class objects</h2>
+There are very few operators which are defined by default for
+user-defined classes.  Assignment is defined, but none of the
+comparison operaters are defined.
+
+<p>For example, if we defined two students, what would it mean to compare
+them?
+</p>
+<pre class="fragment">
+Student betty;
+Student bob;
+. . .   // assign some values.
+if (betty > bob) {  // ILLEGAL, ILLEGAL, ILLEGAL</pre>
+
+<h2><code>sort()</code> needs comparison and assignment</h2>
+The STL <code>sort()</code> method needs to compare elements
+and assign them.
+It uses the less-than (<code>&lt;</code>) operator to compare,
+but less-than isn't defined for user types.
+<p>
+C++ will perform assignment between classes/structs, so 
+for simple structs that don't do dynamic allocation that
+generally isn't a problem.
+</p>
+
+<h2>You must define less-than for <code>sort()</code></h2>
+Overloading less-than is fairly simple.  For the <code>Student</code>
+class let's define the comparison to be for the <code>gpa</code> 
+field.  We could also define it to be for the <code>id</code> or
+the <code>name</code> or whatever just as easily.
+
+<div class="example"><pre>
+bool operator&lt;(const Student&amp; a, const Student&amp; b) {
+    return a.score &lt; b.score;
+}
+</pre></div>
+The keyword <code>operator</code> is prefixed to the operator and
+the two parameters are passed as <code>const</code> (they won't be 
+changed) reference parameters.  A <code>bool</code> value is returned.
+After this function is defined, the STL <code>sort()</code> function
+may be used.
+
+<p>This is a very brief summary of how to define operators.
+   See <a href="../../oop-overloading/operoverloading.html">Operator Overloading</a>
+</p>
+<script type="text/JavaScript">footer("2003");</script>
+
+</body>
+</html>
+

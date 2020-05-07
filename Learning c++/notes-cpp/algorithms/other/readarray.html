@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Example - readArray</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++ Notes</a>: Example - readArray</h1>
+Here is a function to read from <i>cin</i> into an array, written
+in three different styles.
+
+<h2>1. Using reference parameter and array</h2>
+This simple solution uses the array size to
+avoid a buffer overflow, but silently ignoring the error of too
+much input is not good.  Throwing an exception would be a more robust
+solution.
+<pre class="example">
+void readArray(int a[], int&amp; n, int maxsize) {
+    // function:
+    //    Reads from cin until array full or to an EOF.
+    // parameters:
+    //    a       out  array destination of values.
+    //    n       out  number of values in a, a[0]..a[n-1]
+    //    maxsize in   maximum number of elements that can fit in a
+    // returns: 
+    //   nothing
+   
+    n = 0;  // start with an empty array.
+    while (n &lt; maxsize  &amp;&amp;  cin &gt;&gt; a[n]) {
+        n++;
+    }
+    return;
+}</pre>
+   
+<h2>2. Using pointer for array and reference parameter for size</h2>
+Rewriting the above using the equivalent <code>int*</code> instead of the array type.
+<pre class="example">
+void readArray(<b class="hilite">int* a</b>, int&amp; n, int maxsize) {
+    n = 0;  // start with an empty array.
+    <b class="hilite">int* limit = a + maxsize;  // address after last element</b>
+    while (<b class="hilite">a &lt; limit</b>  &amp;&amp;  cin &gt;&gt; <b class="hilite">*a</b>) {
+        <b class="hilite">a++</b>;
+        n++;
+    }
+    return;
+}</pre>
+As before, a call would look like
+<pre>
+   readArray(temps, size, 1000);
+</pre>
+   
+<h2>3. Using all pointers</h2>
+Changing the reference parameter to a pointer looks like this:
+<pre class="example">
+void readArray(int* a, <b class="hilite">int*</b> n, int maxsize) {
+    <b class="hilite">*n</b> = 0;  // start with an empty array.
+    int* limit = a + maxsize;  // address after last element
+    while (a &lt; limit  &amp;&amp;  cin &gt;&gt; *a) {
+        a++;
+        <b class="hilite">*n = *n + 1;</b>
+    }
+    return;
+}</pre>
+<p>Because the size parameter is a pointer, the call must be written as</p>
+<pre class="fragment">
+readArray(temps, &amp;size, 1000);
+</pre>
+
+
+<script type="text/JavaScript">footer("1999");</script>
+
+</body>
+</html>
+

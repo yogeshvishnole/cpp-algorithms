@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com/fred)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++: swap struct Programming Problem</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++</a>: swap struct Programming Problem</h1>
+<p>Name __________________________________
+</p>
+(10 points) Write a function, swap, that exchanges the values of the
+two reference parameters.  Assume the following type has been defined.
+<pre class="example">
+struct Student {
+    int    student_id;
+    string student_name;
+};</pre>
+Use the following prototype.
+<pre>
+
+   void swap(Student&amp; a, Student&amp; b);
+   
+</pre>
+
+Here is an example call.
+<pre class="example">
+Student bob;
+Student betty;
+
+bob.student_id = 12345;
+bob.student_name = "Bob Smith";
+
+betty.student_id = 98765;
+betty.student_name = "Betty Boop";
+
+cout &lt;&lt; bob.student_name;  // prints Bob Smith
+
+swap(bob, betty);
+
+cout &lt;&lt; bob.student_name;  // prints Betty Boop</pre>
+
+<script type="text/JavaScript">footer("2003");</script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Anti-idiom - Using <code>cin</code> in three places, instead of one</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Anti-idiom - Using <code>cin</code> in three places, instead of one</h1>
+
+   
+<h2>Anti-idiom: Checking for EOF without reading</h2>
+The following bad style reads data from an input stream,
+but awkwardly puts the code for input into <i>three</i>
+statements instead of one.  This creates unnecessary potential for bugs
+and maintenance problems.  This style was used in the Pascal programming language, which 
+didn't allow the combination of reading with testing, which C++ does.
+   <div class="fragment">
+   <pre>
+   // Technically correct, BUT NOT GOOD style.
+   int sum = 0;
+   int x;
+   
+   <span class="hylyt">cin &gt;&gt; x</span>;       // BAD idiom for input.  Taken from
+   while (<span class="hylyt">cin</span>) {   // (poor) Pascal I/O.  Do not use in C++.
+       sum = sum + x;
+       <span class="hylyt">cin &gt;&gt; x</span>;
+   }
+   
+   cout &lt;&lt; sum;</pre>
+   </div>
+   
+<h2>What's wrong with this?</h2>
+This is code with a higher complexity, and therefore a higher cost.
+<ul>
+<li>Initial coding bugs more likely. Three statements instead of one.</li>
+<li>Maintenance more difficult.  Maintainer may have to change code in three places.</li>
+<li>More difficult to read.  Not only is the I/O in three places, but if the loop
+    is large, they may not even be close.
+    </li>
+</ul>
+
+<h2>Correct, simpler, idiom</h2>
+See <a href="cinloop.html">Idiom - <code>cin</code> loop</a> for more discussion of this.
+   <div class="fragment">
+   <pre>
+   // This is a better idiom.  It groups all I/O in
+   //    one statement, not three as above.
+   //    It's more readable, and therefore more
+   //    more maintainable and less likely to have bugs.
+   int sum = 0;
+   int x;
+   
+   while (<span class="hylyt">cin &gt;&gt; x</span>) {
+       sum = sum + x;
+   }
+   
+   cout &lt;&lt; sum;</pre>
+   </div>
+
+   
+<script type="text/JavaScript">footer("2003");</script>
+</body>
+
+</html>

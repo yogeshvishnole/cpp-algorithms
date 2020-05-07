@@ -1,0 +1,533 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www/leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <title>C++: Programming: xstring version 2</title>
+</head>
+
+<body>
+
+<h1><a href="../../index.html">C++</a>: <a href="../../index.html#OOP">OOP</a>: Programming: xstring version 2</h1>
+
+
+<h3>Programming Problem - xstring version 2</h3>
+
+<p>This program builds on version 1 of xstring.  See the possible solution to 
+the first version below.  
+</p>
+
+<h3>Due</h3>
+<p><b>Due</b>: January 31.  The deliverables: <code>xstring.cpp</code>.  
+The header file and test file are below.
+   </p>
+   
+
+<h3>Changes for version 2 of xstring</h3>
+
+<dl>
+<dt>Replace <code>initialize()</code> with a parameterless constructor: <code>xstring()</code></dt>
+    <dd>The purpose of a constructor is to initialize an object to have
+    consistent, legal, data member values.  It should create an intial xstring
+    object that has no allocated storage.
+    </dd>
+<!--
+<dt>Add another constructor that takes a <i>char*</i> parameter (eg, a quoted string): 
+    <code>xstring(const char* cstring)</code></dt>
+    <dd>This constructor initializes the xstring to contain the characters in the
+    zero-terminated char string.
+    </dd>
+-->    
+<dt>Replace <code>cleanup()</code> with a destructor: <code>~xstring()</code></dt>
+    <dd>This is called when an xstring object is "destroyed", eg, when returning 
+    from a function that had an xstring local variable.  Usually the
+    destructor calls will be automatically made, so you must simply define it.
+    The destructor must deallocate any dynamically allocated memory.
+    </dd>
+    
+<dt>Retain the following methods from xstring version 1</dt>
+   <dd>
+   <pre>
+    void append(char c); // Add one character to end.
+    void append(const char* cs); // Add c-string to end.</pre>
+    </dd>
+    
+<dt>Add a <code>void append(const xstring&amp; xs2)</code> function</dt>
+    <dd>This function appends the contents of xstring xs2 to the end
+    of the current string.  There are two important things to note
+    about the parameter.  It is declared <i>const</i> because it
+    isn't changed by this function.  Also, it is passed by reference,
+    so that a copy of it doesn't have to be made.
+    </dd>
+    
+<dt>Modify the following functions</dt>
+    <dd>
+    <ul>
+    <li><code>char&amp; at(int index) const;</code>
+        <br/>First, this should be modified to return a <i>reference</i> to a char
+        (note the ampersand after the return type).
+        This is done so that it can be used on the left-hand-side of an
+        assignment.  The function return value will be written exactly as before,
+        but the compiler will now return a reference (pointer) to the character
+        instead of the value.
+        <p>
+        Second, this should be declared <i>const</i>, which for member functions
+        means that they don't change the object.  A function like <i>append()</i>
+        could not be <i>const</i> because it changes the xstring object.
+        You can find a discussion of <i>const</i> member functions on p 360.
+        </p>
+        </li>
+    
+    <li><code>int  size() const;</code>
+        <br/>This should also be declared const.
+        </li>
+   </ul>
+   </dd>
+    
+<dt><code>int capacity() const;</code></dt>
+    <dd>Returns the size of the allocated memory -- ie, how many characters
+    could be held before the memory must be expanded.
+    </dd>
+    
+<dt>static const</dt>
+    <dd>Note that I moved the default expansion constant <i>inside</i> the
+    class now using <i>static const</i> in the header file.
+    </dd>
+    
+<dt>Bounds checking</dt>
+    <dd>Perform bounds checking, both for below and above the legal range
+    using <i>assert</i>.  Do not print anything, and do not return any
+    special values (eg, 0).
+    </dd>
+</dl>
+   
+   
+
+<h3>xstring.h</h3>
+<p>Here is the header file.</p>
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+ 22 
+ 23 
+ 24 
+</pre></td><td valign='top'>
+<div class="file"><pre>
+// File: xstring2/xstring.h
+// Purpose: Header file for version 2 of xstring
+// Author:  Fred Swartz
+// Date:    2005-01-17
+
+class xstring {
+  public:
+    xstring();              // Constructor
+    ~xstring();             // Destructor
+    int   capacity() const; // Returns size of allocated buffer.
+    void  append(char c);   // Add one character to end.
+    void  append(const char* cs);     // Add c-string to end.
+    void  append(const xstring&amp; xs2); // Add xstring to end.
+    char&amp; at(int index) const; // Return character at position index.
+    int   size() const;        // Return size of xstring data.
+    
+  private:
+    int   _next;     // Next empty space = how many chars are there.
+    int   _quantity; // Capacity of allocated storage.
+    char* _storage;  // Dynamically allocated array of chars
+    void  inflate(int increase);  // Increase memory capacity.
+
+    static const int INCREMENT = 10;  // Increment when expanding
+};
+</pre></div>
+</td></tr></table>
+
+
+<h3>A sample test program</h3>
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+ 22 
+ 23 
+ 24 
+ 25 
+ 26 
+ 27 
+ 28 
+ 29 
+ 30 
+ 31 
+ 32 
+ 33 
+ 34 
+ 35 
+ 36 
+ 37 
+ 38 
+ 39 
+ 40 
+ 41 
+ 42 
+ 43 
+ 44 
+ 45 
+ 46 
+ 47 
+ 48 
+ 49 
+ 50 
+ 51 
+ 52 
+ 53 
+ 54 
+ 55 
+ 56 
+ 57 
+ 58 
+ 59 
+ 60 
+ 61 
+ 62 
+ 63 
+ 64 
+ 65 
+ 66 
+ 67 
+ 68 
+ 69 
+ 70 
+ 71 
+ 72 
+ 73 
+ 74 
+ 75 
+ 76 
+ 77 
+ 78 
+ 79 
+ 80 
+ 81 
+ 82 
+ 83 
+ 84 
+ 85 
+ 86 
+ 87 
+ 88 
+ 89 
+ 90 
+ 91 
+ 92 
+ 93 
+ 94 
+ 95 
+</pre></td><td valign='top'>
+<div class="file"><pre>
+// File: xstring2/xstringTest.cpp
+// Description: xstring version 2 test program.
+// Author: Fred Swartz
+// Date:   2004-12-08
+
+#include &lt;cassert&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+#include "xstring.h"
+
+//=================================================== prototypes
+void test(bool cond, string message);
+void summarizeTestResults();
+
+//=================================================== global vars
+static int testsPassed;
+static int testsFailed;
+
+//======================================================== main
+int main() {
+    xstring xs;   // Calls the no-parameter constructor
+  
+    //... Test initialization.
+    test(xs.size() == 0, "size() of initial xstring should be 0");
+    
+    //... Test appending one character.
+    xs.append('a');
+    test(xs.size() == 1, "size() should be 1");
+    char x = xs.at(0);
+    test(x == 'a', "character should be 'a'");
+    xs.append("bc");
+    test(xs.size() == 3, "size is 3");
+    xs.at(1) = 'x';
+    test(xs.at(1) == 'x', "x is second char");
+    
+    //... Test adding enough chars to cause expansion.
+    for(int i = 0; i&lt;10000; i++) {
+        xs.append('z');
+    } 
+    test(xs.size() == 10003, "size() should be 10003");
+    x = xs.at(10000);
+    test(x == 'z', "character should be 'z'");
+    test(xs.size() &lt;= xs.capacity(), "size() &lt;= capacity()");
+    
+    //... Test appending a c-string.
+    xstring xs2;
+    xs2.append("xyz");
+    test(xs2.size()==3, "size() should be 3");
+    test(xs2.at(0)=='x' &amp;&amp; xs2.at(1)=='y' &amp;&amp; xs2.at(2)=='z', "=xyz");
+    xs2.append("");
+    test(xs2.size()==3, "size after appending nothing");
+    xs2.append('x');
+    test(xs2.size()==4, "appending single character");
+    xs2.append("abc");
+    test(xs2.size()==7, "appending three more characters");
+    test(xs2.at(6)=='c', "last char is 'c'");
+    
+    //... Test appending an xstring.
+    xstring xs3;
+    xs3.append("abc");
+    xstring xs4;
+    xs4.append("xyz");
+    xs3.append(xs4);
+    test(xs3.size() == 6, "append(xstring)");
+    
+    summarizeTestResults();
+    system("PAUSE");  // Keep Dev-C++ window open.
+}
+
+
+//============================================================== test
+void test(bool cond, string message) {
+    if (cond) {
+        cout &lt;&lt; "   Passed: ";
+        testsPassed++;
+    } else {
+        cout &lt;&lt; "FAILED: ";
+        testsFailed++;
+    }
+    cout &lt;&lt; message &lt;&lt; endl;
+}              
+
+//================================================ summarizeTestResults
+void summarizeTestResults() {
+    //... Print test result summary. ....................................
+    cout &lt;&lt; endl &lt;&lt; "============================= Test Results" &lt;&lt; endl;
+    cout &lt;&lt; "= Passed: " &lt;&lt; testsPassed &lt;&lt; endl;
+    if (testsFailed &gt; 0) {
+        cout &lt;&lt; "= &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;FAILED: " &lt;&lt; testsFailed &lt;&lt; endl;
+    } else {
+        cout &lt;&lt; "= No failures" &lt;&lt; endl;
+    }
+    cout &lt;&lt; "=============================" &lt;&lt; endl;
+}
+</pre></div>
+</td></tr></table>
+
+
+
+   
+<h3>Solution to version 1</h3>
+<p>Here is a sample solution to PR2, the first xstring problem.
+</p>
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+ 22 
+ 23 
+ 24 
+ 25 
+ 26 
+ 27 
+ 28 
+ 29 
+ 30 
+ 31 
+ 32 
+ 33 
+ 34 
+ 35 
+ 36 
+ 37 
+ 38 
+ 39 
+ 40 
+ 41 
+ 42 
+ 43 
+ 44 
+ 45 
+ 46 
+ 47 
+ 48 
+ 49 
+ 50 
+ 51 
+ 52 
+ 53 
+ 54 
+ 55 
+ 56 
+ 57 
+ 58 
+ 59 
+ 60 
+ 61 
+ 62 
+ 63 
+ 64 
+ 65 
+ 66 
+ 67 
+ 68 
+ 69 
+ 70 
+ 71 
+ 72 
+ 73 
+ 74 
+ 75 
+ 76 
+ 77 
+</pre></td><td valign='top'>
+<div class="file"><pre>
+// File: xstring1/xstring.cpp
+// Purpose: Implement string-like class.
+// Author: Fred Swartz adapted from C04:CppLib.h From Thinking in C++
+// Date:   2005-01-14
+
+#include &lt;cstring&gt;
+#include &lt;cassert&gt;
+using namespace std;
+
+#include "xstring.h"
+
+const int INCREMENT = 10;  // storage increment when expanding
+
+//============================================= initialize
+void xstring::initialize() {
+    _quantity = 0;
+    _storage  = 0;
+    _next     = 0;
+}
+
+//================================================= append
+void xstring::append(char c) {
+    //... Check for sufficient storage.
+    if(_next &gt;= _quantity) {
+        inflate(INCREMENT);
+    }    
+  
+    //... Add character to end, update end index.
+    _storage[_next] = c;
+    _next++;
+} 
+
+//================================================ append
+void xstring::append(const char* cs) {
+    //... Check for sufficient storage (strlen(cs)).
+    int csSize = strlen(cs);
+    if(_next+csSize &gt;= _quantity) {
+        inflate(csSize+INCREMENT);
+    }    
+  
+    //... Copy characters to end.
+    for (int i=0; cs[i] != 0; i++) {
+        _storage[_next+i] = cs[i];
+    }    
+    _next += csSize;
+} 
+
+//===================================================== at
+char xstring::at(int index) {
+    //... Check index boundaries:
+    assert(0 &lt;= index &amp;&amp; index &lt; _next);
+    
+    // Produce pointer to desired element:
+    return _storage[index];
+}
+
+//==================================================== size
+int xstring::size() {
+    return _next; // Number of elements in Cxstring
+}
+
+//================================================= inflate
+void xstring::inflate(int increase) {
+    assert(increase &gt; 0);
+    int newQuantity = _quantity + increase;
+    char* b = new char[newQuantity];
+    for(int i = 0; i &lt; _quantity; i++)
+        b[i] = _storage[i]; // Copy old to new
+    delete [] _storage;     // Delete old storage
+    _storage = b;           // Point to new memory
+    _quantity = newQuantity;
+}
+
+//================================================ cleanup
+void xstring::cleanup() {
+    delete [] _storage;
+}
+</pre></div>
+</td></tr></table>
+
+
+<div class="footer">Copyleft 2005 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+</html>
+

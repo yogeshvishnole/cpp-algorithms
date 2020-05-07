@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: OOP: Overloading Assignment</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: <a href="../index.html#OOP">OOP</a>:Overloading Assignment</h1>
+
+<h2>When to define assignment (and a copy constructor and destructor) </h2>
+<p>If your object has a pointer to <b>dynamically allocated memory</b>, eg allocated in the constructor, you
+will want to make a <i>deep copy</i> of the object.
+Deep copies require overloading 
+assignment, as well as defining a copy constructor and a destructor).
+</p>
+
+<h2>Pattern</h2>
+<p>The following steps are a typical for the assignment operator.</p>
+<ol>
+<li><b>No self-assignment</b>. Test to make sure you aren't assigning an object to itself, eg <code>x = x</code>.
+    Of course no one would write that statement, but in can happen
+    when one side of the assignment is not so obviously the same object.
+    Self assignment fails because the memory associated with the current value 
+    of the left-hand-side is deallocated before the assignment, which would
+    invalidate using it from the right-hand-side.  
+    </li>
+<li><b>Delete</b> the associated memory.  Same as copy constructor.</li>
+<li><b>Copy</b> all the members. Same as copy constructor.</li>
+<li><b>Return</b> <code>*this</code>.  This is necessary to allow multiple
+    assignment, eg <code>x = y = z;</code></li>
+</ol>
+
+<h2>Example</h2>
+<pre class="example">
+//--- file Person.h
+. . .
+class Person {
+    private:
+        char* _name;
+        int   _id;
+    public:
+        Person&amp; Person::operator=(const Person&amp; p);
+    . . .
+}</pre>
+<pre class="example">
+//--- file Person.cpp
+. . .
+//=================================================== operator=
+Person&amp; Person::operator=(const Person&amp; p) {
+    <b>if (this != &amp;p) {</b>  // make sure not same object
+        delete [] _name;                     // Delete old name's memory.
+        _name = new char[strlen(p._name)+1]; // Get new space
+        strcpy(_name, p._name);              // Copy new name
+        _id = p._id;                         // Copy id
+    }
+    <b>return *this;</b>    // Return ref for multiple assignment
+}//end operator=</pre>
+
+
+<h2>More</h2>
+<p>See <a href="overloadassign2.html">Overloading Derived Class Assignment</a>
+for the secret to getting a parent's members assigned.
+</p>
+
+
+<script type="text/JavaScript">footer("2001-4");</script>
+</body>
+</html>

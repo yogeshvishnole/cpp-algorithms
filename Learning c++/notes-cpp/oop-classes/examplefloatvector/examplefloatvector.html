@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www/leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../../notes.js"></script>
+    <title>C++: Classes: Example: floatVector</title>
+</head>
+
+<body>
+
+<h1><a href="../../index.html">C++</a>: <a href="../../index.html#OOP">OOP</a>: Classes: Example: floatVector</h1>
+
+<h2>Fixed array sizes and Vectors</h2>
+The fixed size of arrays is often a problem and 
+frequently the source of bugs.  The STL (Standard Template Library) 
+<i><code>vector</code></i> class is a dynamically expandable array.
+The <code>floatVector</code> example here
+shows how <code>vector</code> is implemented, but without the extra
+distraction of templates and iterators that are in the STL <code>vector</code> class.
+The code is divided into three files, one for testing, one containing the header
+file, and one which has the implementation of some of the methods.
+<ul>
+<li class="compact"><a href="main.html">floatVectorTest.cpp</a> - test program</li>
+<li class="compact"><a href="float_vector_h.html">floatVector.h</a> - header</li>
+<li class="compact"><a href="float_vector_cpp.html">floatVector.cpp</a> - implementation</li>
+</ul>
+
+<h2>Enhancements</h2>
+Many improvements can be made to this class.
+<ol>
+<li>Write the functions that are declared in the header 
+    (<a href="float_vector_h.html"><code>floatVector.h</code></a>), 
+    but not defined in <a href="float_vector_cpp.html"><code>floatVector.cpp</code></a>.
+    These are <code>back</code>, <code>clear</code>, <code>empty</code>,
+    <code>front</code>, and <code>pop_back</code>,
+    which should all do the same thing as the standard <code>vector</code>
+    functions.
+    Modify the test program to test all functions.
+    </li>
+     
+<li>The <code>at</code> function in the <code>vector</code> class throws   
+    the <code>out_of_range</code> exception if the subscript is 
+    out of range.  Change <code>at</code> to do that, but also
+    do the same for subscription and throw an exception in the 
+    constructor if the size isn't greater than zero.
+    See <a href="../../exceptions/exceptions.html">Exceptions</a>.
+    </li>
+     
+<li>Because this class dynamically allocates memory, it's necessary to
+    define assignment (operator=), a copy constructor, and a destructor.
+    See <a href="../../oop-overloading/overloadassign.html">Overloading assignment</a>,
+    <a href="../../oop-condestructors/copyconstructors.html">Copy constructor</a>, and
+    <a href="../../oop-condestructors/destructors.html">Destructors</a>.
+    </li>
+    
+<li>Define the output operator &lt;&lt; by overloading operator&lt;&lt; as a friend
+    function.  You will have to decide what vector output should look like.
+    One suggestion is that it should produce a comma-separated list enclosed in
+    braces, like the notation for array initialization.
+    See <a href="../../oop-friends/overload-io.html">Overloading &lt;&lt; and &gt;&gt;</a>.
+    </li>
+    
+<li>Make this into a general template class that will work with any type.
+    Call it <code>myVector</code> to distinguish it from the standard <code>vector</code> class.
+    </li>
+</ol>
+
+
+
+<script type="text/JavaScript">footer(2001);</script>
+</body>
+</html>
+

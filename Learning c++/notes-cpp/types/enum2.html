@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Enum issues</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Enum Values and I/O</h1>
+
+<h2>Setting enum values</h2>
+It's possible to control the values that are assigned to 
+each enum constant.  If a value is assingned to a constant,
+each successive constant without a value is assigned a value
+one greater than the previous.
+<pre class="fragment">
+enum Day {MON=1, TUE, WED, THU, FRI, SAT, SUN};</pre>
+The value of MON is one, TUE is two, etc instead of starting at zero.
+
+<p>Another use of specific values is to create <i>sets</i>.  
+Explicitly setting the values to powers of two represents each as separate bit.
+These values can then manipulated using the bit operations (&amp;, |, ^ and ~).
+</p>
+<pre class="fragment">
+enum Day {MON=1, TUE=2, WED=4, THU=8, FRI=16, SAT=32, SUN=64};
+const int WEEKDAY = MON+TUE+WED+THU+FRI;
+. . .
+Day today;  // This will have one of the values in it.
+. . .
+if ((today &amp; WEEKDAY) != 0) . . .</pre>
+
+
+
+<h2>Enum I/O</h2>
+I/O of enums uses their integer values, not their names. 
+    This is not what is desired normally, so extra
+    programming is required on input and output to 
+    use the names instead of integer values.
+    The extra work for enum I/O means that they
+    are often not used for simple programs.
+    
+    
+
+<h2>Other languages</h2>
+<b>Java</b> will have type-safe enums in version 1.5.
+Currently it requires programmers to
+explicitly declare each name as a constant ints.
+
+<p><b>C#</b> provides enums with additional facilities, eg to get names and check values.</p>
+
+<h2>Related pages</h2>
+<a href="enum.html">Enum</a>.
+
+   
+<script type="text/JavaScript">footer("2001-3");</script>
+</body>
+
+</html>

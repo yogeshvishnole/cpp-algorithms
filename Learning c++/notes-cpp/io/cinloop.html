@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <style type="text/css">
+        li {margin-top: 1em;}
+    </style>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Idiom - cin loop</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Idiom - <code>cin</code> loop</h1>
+
+<h2>Idiom: Read from <code>cin</code> in a <code>while</code> loop</h2>
+   The standard C/C++ style for reading is to put the read operation
+   in a while loop condition.  If the read proceeds correctly, then
+   the value is true.  If there is an end-of-file (EOF) meaning that the
+   end of the data has been reached, or if there is an error in reading,
+   then the value returned is false and execution continues at the end 
+   of the loop.
+   
+   
+<h2>Example -- Adding numbers in the input</h2>
+<div class="fragment">
+<pre>
+int sum = 0;
+int x;
+
+<span class="hilite">while (cin &gt;&gt; x)</span> {
+   sum = sum + x;
+}
+
+cout &lt;&lt; sum;</pre>
+</div>
+
+<h2>Testing the value from an input operation</h2>
+Using <code>cin</code> in a while loop is a very common 
+style of programming. 
+    <ul>
+    <li><b>Produces a value</b>.  The input operation with <code>cin</code> 
+        not only reads values into
+        variables, but it also produces a value.  That's because
+        &gt;&gt; is an operator that produces a value.  
+        This value can be tested in loops and ifs.
+        </li>
+    <li><b>true</b>.  The value of <code>cin &gt;&gt; x</code> is true if
+        a value was read into <code>x</code>.
+        </li>
+    <li><b>false</b>. The value of <code>cin &gt;&gt; x</code> is false if it was unable to read.
+        There are several possible causes for a reading failure.
+        <ul>
+        <li><b>EOF</b>.  When there is no more data, the EOF (End-Of-File) condition
+            occurs.  Every stream of input has an end so this is a normal
+            event.  It happens when reading a disk file and the end is reached.
+            It's also possible to signal an EOF from the console by
+            entering a special key combination, which depends on which 
+            operating system and C++ library you are using.  Generally,
+            you can use Control-Z followed by Enter to send an EOF from
+            the keyboard.  See <a href="eof.html">End-Of-File (EOF)</a>.
+            </li>
+        <li><b>Bad data</b>. The read may fail if the data isn't formatted
+            correctly.  For example, when trying to read a floating-point
+            temperature and the user types "zero", the read will fail.
+            </li>
+        </ul>
+        </li>
+    </ul>
+    
+<p>Use this pattern when reading. Another style, which is not generally
+used is <a href="anti-idiom-cin.html">Anti-idiom - Using <code>cin</code> in three places, instead of one</a>.
+
+   
+<script type="text/JavaScript">footer("2000-3");</script>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Bit Ops - Convert to hex</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Bit Ops - Convert to hex</h1>
+<p>This program reads integers and prints them in hexadecimal,
+using the shift and "and" operators to extract the relevant digits.
+Note: This requires knowledge of character arrays.  The problems
+require use of functions.
+</p>
+
+<pre class="example">
+// Read ints and print their hex representations
+// Note sizeof(int) returns number of bytes in an int.
+
+#include &lt;iostream&gt;
+using namespace std;
+
+void main() {
+    int n;
+    while (cin &gt;&gt; n) {
+        cout &lt;&lt; &quot;decimal: &quot; &lt;&lt; n &lt;&lt; endl;
+      
+        //--- Print hex with leading zeros
+        cout &lt;&lt; &quot;hex    : &quot;;
+        for (int i=2*sizeof(int) - 1; i&gt;=0; i--) {
+            cout &lt;&lt; &quot;0123456789ABCDEF&quot;[((n &gt;&gt; i*4) &amp; 0xF)];
+        }
+        cout &lt;&lt; endl &lt;&lt; endl;
+    }
+}</pre>
+
+<!-- 
+t would make it a lot more understandable to break it down into several parts.
+
+char hexDigits[] = "0123456789ABCDEF";
+
+int numberOfBitsToShift = i*4;  // shift by groups of four (ie, number of bits in hex digit)
+
+int nWithNextHexDigitAtRight = n >> numberOfBitsToShift;  // shift it.
+
+int rightmostFourBits = n & 0xF;  // 0xF is hex for 15, or in binary 1111.  And it.
+
+char hexDigit = hexDigit[rightmostFourBits];
+
+cout << hexDigit
+-->
+
+<h2>Exercises</h2>
+<p>Here are some modifications that could be made to this code.</p>
+
+<ol>
+<li>This program writes the digits to <code>cout</code>.
+    A more general solution is to write the conversions
+    as <i>functions</i> which put their output into a character array as
+    <i>c-strings</i>.  Write these conversions as functions with the following
+    prototypes:
+    <pre>
+    void intToBinary(char result[], int n);
+    void intToHex(char result[], int n);
+    
+    // A call might look like this:
+    char binary[50]; // big enough to hold an int with spaces.
+    . . .
+    while (cin &gt;&gt; n) {
+       intToBinary(binary, n);  // produce binary character string.
+       cout &lt;&lt; binary &lt;&lt; " has " &lt; strlen(binary) 
+            &lt;&lt; " digits." &lt;&lt; endl;
+    }</pre>
+    There is a big difference between the hex conversion and the binary 
+    conversion.  The hex conversion writes a char to cout while the 
+    binary conversion writes an int.  It's necessary to put a char in the
+    output array of the function of course.
+    </li>
+</ol>
+
+   
+   
+<script type="text/JavaScript">footer("2000");</script>
+</body>
+
+</html>

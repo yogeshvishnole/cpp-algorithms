@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Algorithms: Big-Oh Notation</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++ Notes</a>: Algorithms: Big-Oh Notation</h1>
+
+<h2>How resource use grows as the problem becomes larger</h2>
+It's useful to estimate the <i>cpu or memory resources</i> an algorithm 
+requires.  "Complexity analysis" attempts to determine 
+the relationship between the number of data elements and resource
+usage (time or space) with a simple formula.  This can be useful if you are testing a program
+with a small amount of data, but later production runs will use
+large data sets.
+
+<h2>Dominant Term</h2>
+Big-oh (the "O" stands for "order of")  notation is concerned with what happens for very
+large values of N, therefore only the largest term in the formula is needed.
+For example, the number of operations in some sorts is N<sup>2</sup> - N.
+For large values, N is insignificant compared to N<sup>2</sup>, 
+therefore this is described as an O(N<sup>2</sup>) algorithm, and the N term is ignored.
+
+
+
+<h2>Why it Matters</h2>
+    Here is a table of typical cases.  Logarithms to base 2 (as used here) 
+    are proportional to logarithms in other base, so this doesn't affect the big-oh formula.
+<table border="1" cellspacing="0" cellpadding="4" summary="example O(N) values">
+<tr><th>&nbsp;</th><th><i>constant</i></th><th><i>logarithmic</i></th><th><i>linear</i></th><th>&nbsp;</th><th><i>quadratic</i></th><th><i>cubic</i></th></tr>
+<tr valign="bottom"><th>n</th><th>O(1)</th>
+    <th>O(log N)</th>
+    <th>O(N)</th>
+    <th>O(N log N)</th>
+    <th>O(N<sup>2</sup>)
+    </th><th>O(N<sup>3</sup>)</th></tr> 
+<tr align="right"><td>   1</td><td>1</td><td> 1</td><td>    1</td><td>     1</td><td>        1</td><td>            1</td></tr>
+<tr align="right"><td>   2</td><td>1</td><td> 1</td><td>    2</td><td>     2</td><td>        4</td><td>            8</td></tr>
+<tr align="right"><td>   4</td><td>1</td><td> 2</td><td>    4</td><td>     8</td><td>       16</td><td>           64</td></tr>
+<tr align="right"><td>   8</td><td>1</td><td> 3</td><td>    8</td><td>    24</td><td>       64</td><td>          512</td></tr>
+<tr align="right"><td>  16</td><td>1</td><td> 4</td><td>   16</td><td>    64</td><td>      256</td><td>        4,096</td></tr>
+<tr align="right"><td>1024</td><td>1</td><td>10</td><td>1,024</td><td>10,240</td><td>1,048,576</td><td>1,073,741,824</td></tr>
+</table>
+
+
+<h2>Best, worst, and average cases</h2>
+You should always be clear about which cases big-oh notation describes.
+The characteristics for best, worst, and average cases can be
+very different.  
+
+
+<h2>Why big-oh notation isn't always useful</h2>
+Complexity analysis can be very useful, but there are problems with it too.
+<ul>
+<li><b>Too hard to analyze</b>.  Many algorithms are simply too hard to analyze
+    mathematically.</li>
+<li><b>Average case unknown</b>.  There may not be sufficient information to know what the
+    most important "average" case really is, therefore analysis is impossible.</li>
+<li><b>Unknown constant</b>.  Both walking and traveling at the speed of light
+    have a time-as-function-of-distance big-oh complexity of O(N).
+    Altho they have the same big-oh characteristics, one is rather faster than the
+    other.  Big-oh analysis only tells you how it grows with the size of the
+    problem, not how efficient it is.</li>
+<li><b>Small data sets</b>.  If there are no large
+    amounts of data, algorithm efficiency may not be important.</li>
+</ul>
+
+
+<h2>Benchmarks are better</h2>
+Big-oh notation can give some very good ideas about performance for 
+large amounts of data, but the only real way to know for sure is
+to actually try it with large data sets.  There may be performance
+issues that are not taken into account by big-oh notation, eg, 
+the effect on paging as virtual memory usage grows.
+
+<script type="text/JavaScript">footer("2003");</script>
+
+</body>
+</html>
+

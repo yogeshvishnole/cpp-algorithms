@@ -1,0 +1,390 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++: Class for 3-valued logic - Solution</title>
+</head>
+<body>
+<h1>C++: Class for 3-valued logic - Solution</h1>
+<p>Here is a paritial solution to the 3-valued logic class.</p>
+
+<h2>L3 test program</h2>
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+ 22 
+ 23 
+ 24 
+ 25 
+ 26 
+ 27 
+ 28 
+ 29 
+ 30 
+ 31 
+ 32 
+ 33 
+ 34 
+ 35 
+ 36 
+ 37 
+ 38 
+ 39 
+ 40 
+ 41 
+ 42 
+ 43 
+ 44 
+ 45 
+ 46 
+ 47 
+ 48 
+ 49 
+ 50 
+ 51 
+ 52 
+ 53 
+ 54 
+ 55 
+ 56 
+ 57 
+ 58 
+ 59 
+</pre></td><td valign='top'>
+<div class="file"><pre>
+// three-valued-logic/main.cpp - L3 Test program
+// Fred Swartz - 2004-03-03 - Rodenbach
+
+#include &lt;iostream&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cassert&gt;
+using namespace std;
+
+#include "L3.h"
+
+int main(int argc, char *argv[]) {
+
+  L3 t, f, u;
+  t = true;
+  f = false;
+  u = L3::UNKNOWN3;
+  
+  cout &lt;&lt; t &lt;&lt; " " &lt;&lt; f &lt;&lt; " " &lt;&lt; u &lt;&lt; endl;
+  
+  assert(L3::TRUE3.isTrue());
+  assert(L3::FALSE3.isFalse());
+  assert(L3::UNKNOWN3.isUnknown());
+  
+  assert(t.isTrue() &amp;&amp; !t.isFalse() &amp;&amp; !t.isUnknown());
+  assert(!f.isTrue() &amp;&amp; f.isFalse() &amp;&amp; !f.isUnknown());
+  assert(!u.isTrue() &amp;&amp; !u.isFalse() &amp;&amp; u.isUnknown());
+  
+  //-- Test L3 &amp;&amp; bool
+  assert((t &amp;&amp; true).isTrue());
+  assert((t &amp;&amp; false).isFalse());
+  assert((f &amp;&amp; true).isFalse());
+  assert((f &amp;&amp; false).isFalse());
+  assert((u &amp;&amp; true).isUnknown());
+  assert((u &amp;&amp; false).isFalse());
+  
+  //-- Test bool &amp;&amp; L3
+  assert((true &amp;&amp; t).isTrue());
+  assert((true &amp;&amp; f).isFalse());
+  assert((true &amp;&amp; u).isUnknown());
+  assert((false &amp;&amp; t).isFalse());
+  assert((false &amp;&amp; f).isFalse());
+  assert((false &amp;&amp; u).isFalse());
+  
+  //-- Test L3 &amp;&amp; L3
+  assert((t &amp;&amp; t).isTrue());
+  assert((t &amp;&amp; f).isFalse());
+  assert((t &amp;&amp; u).isUnknown());
+  
+  assert((f &amp;&amp; t).isFalse());
+  assert((f &amp;&amp; f).isFalse());
+  assert((f &amp;&amp; u).isFalse());
+  
+  assert((u &amp;&amp; t).isUnknown());
+  assert((u &amp;&amp; f).isFalse());
+  assert((u &amp;&amp; u).isUnknown());
+  
+  system("PAUSE");	
+  return 0;
+}
+</pre></div>
+</td></tr></table>
+
+<h2>L3 header file</h2>
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+ 22 
+ 23 
+ 24 
+ 25 
+ 26 
+ 27 
+ 28 
+ 29 
+ 30 
+ 31 
+ 32 
+ 33 
+ 34 
+ 35 
+ 36 
+ 37 
+ 38 
+</pre></td><td valign='top'>
+<div class="file"><pre>
+#ifndef L3_H
+#define L3_H
+// three-valued-logic/L3.h - L3 Header file
+// 2004-03-03 - Fred Swartz - Rodenbach
+#include &lt;iostream&gt;
+using namespace std;
+
+class L3 {
+    friend ostream&amp; operator&lt;&lt;(ostream&amp; out, L3 v);
+    friend L3 operator&amp;&amp;(bool b, const L3&amp; v);
+    friend bool operator==(bool b, const L3&amp; v);
+public:
+    //-- Constructors
+    L3();
+    L3(bool tf);
+    
+    //-- Member functions
+    bool isTrue() const;
+    bool isFalse() const;
+    bool isUnknown() const;
+    
+    //-- Operators
+    L3&amp; operator=(bool b);
+    L3 operator&amp;&amp;(bool b) const;
+    L3 operator&amp;&amp;(const L3&amp; v) const;
+    
+    //-- Constants
+    static const L3 UNKNOWN3;
+    static const L3 TRUE3;
+    static const L3 FALSE3;
+
+private:
+    static const int _VUNKNOWN=0;
+    static const int _VTRUE   =1;
+    static const int _VFALSE  =2;
+    int _value;
+};
+#endif
+</pre></div>
+</td></tr></table>
+
+
+<h2>L3 implementation file</h2>
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+ 22 
+ 23 
+ 24 
+ 25 
+ 26 
+ 27 
+ 28 
+ 29 
+ 30 
+ 31 
+ 32 
+ 33 
+ 34 
+ 35 
+ 36 
+ 37 
+ 38 
+ 39 
+ 40 
+ 41 
+ 42 
+ 43 
+ 44 
+ 45 
+ 46 
+ 47 
+ 48 
+ 49 
+ 50 
+ 51 
+ 52 
+ 53 
+ 54 
+ 55 
+ 56 
+ 57 
+ 58 
+ 59 
+ 60 
+ 61 
+ 62 
+ 63 
+ 64 
+ 65 
+ 66 
+ 67 
+ 68 
+ 69 
+ 70 
+ 71 
+ 72 
+ 73 
+ 74 
+ 75 
+ 76 
+ 77 
+ 78 
+</pre></td><td valign='top'>
+<div class="file"><pre>
+// oop/three-valued-logic/L3.cpp - Three valued logic implemenation
+// Fred Swartz - 2004-03-02 - Rodenbach
+
+#include "L3.h"
+
+//=========================================== default constructor
+L3::L3() : _value(_VUNKNOWN) {
+}
+
+//================================================== constructor
+L3::L3(bool tf) {
+    if (tf) {
+        _value = _VTRUE;
+   } else {
+       _value = _VFALSE;
+   }
+}
+
+//======================================================== isTrue
+bool L3::isTrue() const {
+    return (_value==_VTRUE);
+}
+
+//======================================================= isFalse
+bool L3::isFalse() const {
+    return (_value==_VFALSE);
+}
+
+//===================================================== isUnknown
+bool L3::isUnknown() const {
+    return (_value==_VUNKNOWN);
+}
+
+//=================================================== assignment =
+L3&amp; L3::operator=(bool b) {
+   if (b) {
+       _value = _VTRUE;
+   } else {
+       _value = _VFALSE;
+   }
+   return *this;
+}
+
+//============================================================== &lt;&lt;
+ostream&amp; operator&lt;&lt;(ostream&amp; out, L3 v) {
+    switch (v._value) {
+        case L3::_VTRUE   : out &lt;&lt; "TRUE";    break;
+        case L3::_VFALSE  : out &lt;&lt; "FALSE";   break;
+        case L3::_VUNKNOWN: out &lt;&lt; "UNKNOWN"; break;
+    }
+    return out;
+}
+
+//====================================================== L3 &amp;&amp; bool
+L3 L3::operator&amp;&amp;(bool b) const {
+    if (!b || _value==_VFALSE) return FALSE3;
+    if (_value == _VTRUE) return TRUE3;
+    return UNKNOWN3;
+}
+
+//======================================================== L3 &amp;&amp; L3
+L3 L3::operator&amp;&amp;(const L3&amp; v) const {
+    if (_value==_VFALSE || v.isFalse()) return L3::FALSE3;
+    if (_value==_VTRUE  &amp;&amp; v.isTrue())  return L3::TRUE3;
+    return L3::UNKNOWN3;
+}
+
+//=============================================== friend bool &amp;&amp; L3
+L3 operator&amp;&amp;(bool b, const L3&amp; v) {
+    if (!b || v.isFalse()) return L3::FALSE3;
+    if (v.isTrue()) return L3::TRUE3;
+    return L3::UNKNOWN3;
+}
+
+//======================================================== constants
+const L3 L3::UNKNOWN3;
+const L3 L3::TRUE3(true);
+const L3 L3::FALSE3(false);
+</pre></div>
+</td></tr></table>
+
+<script type="text/JavaScript">footer("2004");</script>
+</body>
+
+</html>

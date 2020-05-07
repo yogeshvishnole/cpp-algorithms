@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com/fred/)"/>
+    <style type="text/css">
+body   {font-family: Verdana,Sans-serif; font-size: 90%; width: 800px;}
+td, th {font-family: Verdana,Sans-serif;}
+/* dt     {font-family: Verdana,Sans-serif; font-size: 90%; padding-top: 0.5em;} */
+dt     {font-weight: bold;}
+
+h1   {
+	font-size : 150%;
+	font-weight: normal;
+	font-family: 'Trebuchet MS' , 'Lucida Grande' , Verdana, Lucida, Geneva, Helvetica, Arial, sans-serif;
+	margin-left: 1px;
+	border-bottom: thin solid;
+}
+h2 {
+	font-size: 110%;
+    font-weight: bold;
+	color: #600;
+    border-style: solid;
+    border-color: #660000;
+    border-width: 0px 0px 1px 0px;
+    padding: 0.2em;
+    padding-left: 0;
+	margin-top: 2em;
+    margin-left: 1px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+}
+h3 {
+    font-size: 100%;
+	font-weight: bold;
+	margin-bottom: 0;
+	margin-top   : 0.75em;
+	padding-top  : 0.0;
+	padding-bottom: 0.0;
+	color: #055;
+}
+p   {margin-top:0.5em; margin-bottom: 0.5em}
+li  {margin-top:0.5em;}
+h4,h5,h6 {font-family: sans-serif; padding-top: 1em; }
+pre  {font-family: monospace; margin-top: 0; margin-bottom: 0;}
+.code {font-family: monospace;}
+
+strong.color {color: blue}  /* is this still used??? */
+.hylyt    {font-weight: bold; background-color: yellow;}
+.hilite   {font-weight: bold; background-color: yellow;}
+.hilite-g {font-weight: bold; background-color: #afa;}
+.hilite-b {font-weight: bold; background-color: #aaf;}
+
+em   {font-style: italic; font-weight: bold }
+ul   {margin-top: 0; margin-bottom: 0;}
+ol   {margin-top: 0; margin-bottom: 0;}
+dl   {margin-top: 0; margin-bottom: 0;}
+li.sec   {margin-top: 0.5em;}
+.answerspace {}
+.answer {display: none;}
+.compact {margin-top: 0;}
+.file {padding      : 4px;
+             margin-left  : 1em; 
+             border-left  : solid thin;
+             border-top   : solid thin;
+             border-right : solid;
+             border-bottom: solid;
+             margin-top   : 0.5em;
+             margin-bottom: 0.5em;
+             background-color: #FFD;}
+.example {padding      : 4px;
+             margin-left  : 1em; 
+             border-left  : solid thin;
+             margin-top   : 0.5em;
+             margin-bottom: 0.5em;
+             background-color: #FFD;}
+.fragment {padding      : 4px;
+             margin-left  : 1em;
+             border-left  : solid thin;
+             margin-top   : 0.5em;
+             margin-bottom: 0.5em;
+             background-color: #FFD;}
+.example2 {padding      : 4px;
+             margin-left  : 0;
+             margin-top   : 0.5em;
+             margin-bottom: 0.5em;}
+.footer  {
+	font-size: 70%;
+	font-style:italic;
+	border-top : thin solid;
+	margin-top : .8em ;
+}
+
+.solidbox {border : thin solid;}
+
+.rowheader {background-color: #C0C0C0; font-style: italic;}
+.question  {margin-top: 1.0em; page-break-inside: avoid}
+.mc        {list-style-type: lower-alpha;}
+    </style>
+    <title>CMIS 345 Midterm - intArrayCopy Function</title>
+</head>
+
+<body>
+<h1>CMIS 345 Midterm - intArrayCopy() Function</h1>
+<p>Name ____________________________________</p>
+
+<p>Write a function which copies the elements of an array into a possibly-larger
+space.  It has the following prototype:</p>
+<pre>
+   int* intArrayCopy(int a[], int size, int capacity);</pre>
+   
+<ul>
+<li><i>a</i> is an array of <i>size</i> ints.</li>
+<li><i>capacity</i> is the number of elements to allocate in the new array.</li>
+<li><i>size</i> is the number of int values in <i>a</i>.</li>
+</ul>
+
+<p>The function allocates memory sufficient to hold <i>capacity</i> ints.
+Then it copies <i>size</i> ints from <i>a</i> to this newly allocated memory.
+It then returns the address of this new memory.
+</p>
+
+<p>Write the answer below here.</p>
+   
+<p><b>Answer</b>:</p>
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+</pre></td><td valign='top'>
+<div class="fragment"><pre>
+int* intArrayCopy(int a[], int size, int capacity) {
+     assert (capacity &gt; 0);
+     
+     //... Allocate a new array.
+     int* newArray = new int[capacity];
+     
+     //... Copy existing array elements into new.
+     int n = min(size, capacity);
+     for (int i=0; i&lt;n; i++) {
+         newArray[i] = a[i];
+     }
+     
+     return newArray;
+}
+</pre></div>
+</td></tr></table>
+
+<p>This solution has a couple of things that I didn't expect in an answer.
+   It has an assert to be sure that capacity has a reasonable size.
+   It also uses the smaller value in size and capacity as the number
+   of elements to copy.  It was my intention that capacity should be 
+   at least as large as size, but that was not clearly stated in the 
+   problem.  If you assmed that capacity was larger, that's ok.</p>
+   
+<p><b>Issues</b>:</p>
+   <ul>
+   <li>Several people declared the new array as
+       <pre>
+       int newArray[capacity];</pre>
+       This doesn't work because (1) It isn't legal in C/C++ because the 
+       size of the stack frame for local variables must be 
+       known at compile time. (2) Even if a local variable was allocated with this
+       declaration, returning from the function would deallocate it.
+       Dynamic allocation with "new"  is required.</li>
+       
+   <li>Don't deallocate the array, a, that was passed to it.  This function didn't
+       allocate it, so unless explicitly stated to do so, it shouldn't
+       deallocate soneone else's storage.  For example, "a" might have been allocated
+       on the stack -- deallocating storage on the stack is a serious error.
+       </li>
+       
+   <li>There were several variations on returning the address of the new array.<pre>
+       return *newArray;  // Would return an int.
+       return &amp;newArray;  // Would return an int**.
+       and others!</pre>
+       </li>
+   </ul>
+       
+   
+   
+</body>
+
+</html>

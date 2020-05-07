@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+  <meta name="level" content="1"/>
+  <link rel="stylesheet" type="text/css" href="../../../notes.css"/>
+
+    <title>C++ Notes:  Programming Guidelines</title>
+</head>
+<body>
+
+<h1><a href="../index.html">C++ Notes</a>: Programming Guidelines</h1>
+
+
+<p>This is a list of a few things that I think are important.  There 
+   are a lot more, but this is a start.
+   </p>
+
+
+<h2>Readability vs Efficiency</h2>
+<p>Assuming a program executes correctly, the single most important thing is
+   <i>readability</i>.  Efficiency is secondary to readability, but it's 
+   important to avoid <i>gross inefficiency</i>.  Some of the factors
+   that will be used in evaluating a program follow.
+   </p>
+
+
+<h2>Naming</h2>
+<p>Names are extremely important in making a program readable.</p>
+<ul>
+<li>Choose meaningful names when possible.  Certain common names are 
+    ok (<i>i</i> as in iteration variable), but generally they should describe their contents.</li>
+<li>Avoid confusing names.  Eg, formal parameter named the same as actual parameters is misleading,
+    don't shadow outer names, names shouldn't differ only by case, etc.</li>
+</ul>
+
+<h2>Indentation, comments, spacing, ...</h2>
+<ul>
+<li>Indentation is important.  Use 3, 4, or 5 spaces; 4 is recommended.</li>
+<li>Comments at the beginning of every file should identify the program,
+    the author, and give the date.</li>
+<li>Program sections should be separated (like paragraphs).</li>
+<li>Don't comment obvious things.  If something is not obvious it 
+    should be commented.  Every function should have at least a one-line
+    comments.  Declare variables one per line so that the remainder of
+    the line can be used for comments.
+    </li>
+</ul>
+
+
+<h2>General coding</h2>
+<ul>
+<li><i>DRY principle</i> (Don't Repeat Yoursefl).
+    If you need to reuse a section of code, don't cut-and-paste it.  Instead
+    generalize it with a function or loop.  If it's in both the
+    true and false clauses of an <i>if</i>, factor it out. </li>
+    
+<li>Choose the most appropriate statement for the job.  Yes, you can use 
+    <i>switch</i> instead of <i>if</i>, or write all loops with <i>for</i>, 
+    but don't do this.</li>
+    
+<li>Don't reuse the same variable for more than one purpose.  The cost in
+    confusion is certainly more than the minor saving of a few bytes.
+    </li>
+    
+<li>Use standard C++ because I'll be using Dev-C++ to compile and test your programs.  
+    If you want to use non-standard libraries, clear it with me first.
+</li>
+</ul>
+
+
+
+<h2>Functions</h2>
+<ul>
+<li>In parameter passing pay attention to whether you should use reference and/or  <i>const</i>.</li>
+<li>Functions should be <i>coherent</i> - do one thing.  Don't combine
+    multiple tasks in one function.   The function they perform should be reflected
+    in the name, which is typically a verb.</li>
+</ul>
+
+
+<h3>C++ Standard</h3>
+<p>Avoid non-standard C++ constructions, even tho your compiler may allow non-standard usages.</p>
+<ul>
+<li><code>main</code> should be <i>int</i>, not <i>void</i>.</li>
+<li>Don't use <code>#pragma</code>, it's not portable.</li>
+<li>It's really minor (and even stupid), but the standard requires a newline character at the
+    end of source files.  If you don't put one there, I see a warning
+    message when I compile your program.
+    </li>
+</ul>
+ 
+
+<div class="footer">Copyleft 2004 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+</html>

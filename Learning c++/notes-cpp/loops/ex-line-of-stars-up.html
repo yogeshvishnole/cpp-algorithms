@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes:  Example - Loop - Line of stars - count up</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Example - Loop - Line of stars - count up</h1>
+This program reads an integer and prints a line with that number of stars (asterisks).
+A new variable, <code>i</code>, is used to count from 1 up to <code>n</code>.  
+The outer loop reads these integers until
+an EOF or bad input.
+
+<h2>Implemented as a <code>while</code> loop</h2>
+
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+</pre></td><td valign='top'>
+<div class="example"><pre>
+// loops/line-of-stars-up.cpp - Read int and print that many stars on a line.
+// Fred Swartz = 1003-08-23
+
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n;
+    while (cin &gt;&gt; n) {
+        //--- Loop counting i up from 1 to n.
+        <span class="hylyt">int i = 1</span>;          // Initialize counter.
+        while (<span class="hylyt">i &lt;= n</span>) {    // Test counter.
+            cout &lt;&lt; "*";
+            <span class="hylyt">i++</span>;            // Increment counter.
+        }
+        cout &lt;&lt; endl;
+    }
+    return 0;
+}
+</pre></div>
+The text from the above example can be selected, copied, and pasted into an editor.
+</td></tr></table>
+
+
+
+<h2>Implemented as a <code>for</code> loop</h2>
+The most common way to write a loop that counts is the <code>for</code> loop 
+because it combines the intitialization, testing, and increment 
+in one statement.  This makes the program easier to read and maintain.
+Here is the inner <code>while</code> loop rewritten as a <code>for</code> loop.
+
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3
+</pre></td><td valign='top'>
+<div class="fragment"><pre>
+for (<span class="hylyt">int i=1</span>; <span class="hylyt">i&lt;=n</span>; <span class="hylyt">i++</span>) {
+    cout &lt;&lt; "*";
+}
+</pre></div>
+</td></tr></table>
+
+
+
+
+<script type="text/JavaScript">footer("2003");</script>
+</body>
+
+</html>

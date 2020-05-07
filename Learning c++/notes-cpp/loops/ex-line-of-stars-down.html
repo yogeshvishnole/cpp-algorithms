@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes:  Loop Example - Line of stars - count down</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Loop Example - Line of stars - count down</h1>
+This program reads an integer and prints a line with that number of stars (asterisks).
+It counts down from the number it reads in.  The outer loop reads these integers until
+an EOF or bad input.
+
+<h2>Implemented with a <code>while</code> loop</h2>
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+</pre></td><td valign='top'>
+<div class="example"><pre>
+// loops/line-of-stars-down.cpp - Read int and print that many stars on a line.
+// Fred Swartz = 1003-08-23
+
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n;
+    while (cin &gt;&gt; n) {
+        //--- Loop counting n down to 0.
+        while (<span class="hylyt">n &gt; 0</span>) {
+            cout &lt;&lt; "*";
+            <span class="hylyt">n--</span>;
+        }
+        cout &lt;&lt; endl;
+    }
+    return 0;
+}
+</pre></div>
+The text from the above example can be selected, copied, and pasted into an editor.
+</td></tr></table>
+
+<h2>Implemented as a <code>for</code> loop</h2>
+Because the variable <code>n</code> already has a value when we start the 
+inner loop, there is no need for an initialization clause.  
+The <code>for</code> statement requires three clauses separated by semicolons;
+just leave any unneeded clause blank.
+
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+</pre></td><td valign='top'>
+<div class="fragment"><pre>
+    while (cin &gt;&gt; n) {
+        for (<span class="hylyt"> </span>; <span class="hylyt">n &gt; 0</span>; <span class="hylyt">n--</span>) {
+            cout &lt;&lt; "*";
+        }
+        cout &lt;&lt; endl;
+    }
+</pre></div>
+The text from the above example can be selected, copied, and pasted into an editor.
+</td></tr></table>
+
+
+<script type="text/JavaScript">footer("2003");</script>
+</body>
+
+</html>

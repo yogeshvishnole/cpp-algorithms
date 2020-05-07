@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: What values do the I/O operators (&lt;&lt; and &gt;&gt;) return?</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: What values do the I/O operators (&lt;&lt; and &gt;&gt;) return?</h1>
+
+<h2>What values do the I/O operators (&lt;&lt; and &gt;&gt;) return?</h2>
+C++ allows you to define functions to associate with existing operators.
+The &lt;&lt; and &gt;&gt; operators, whose orginal meanings were bitwise left and right shift,
+have additional meanings for C++ iostreams.
+<!-- For input it's officially called the <i>extraction</i> operator, 
+but many programmers won't know what you're talking about if
+you use this term.  There's no good, commonly used, name as
+far as I know.  I call it the <i>input</i> operator, but I don't
+have any reason to believe this is widely used.  -->
+So how do they work?
+
+<p>The &gt;&gt; and &lt;&lt; operators are evaluated left-to-right, so the following are
+   equivalent statements, altho writing the parentheses would be 
+   rather weird.
+</p>
+
+<pre class="fragment">
+cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+(((cin &gt;&gt; a) &gt;&gt; b) &gt;&gt; c);  // Same as above.</pre>
+
+What value is produced, for example, by
+<code>(cin &gt;&gt; a)</code>?  And I mean what value is produced in the
+expression, not what value is read into the variable.
+It calls an overloaded templated function (<code>operator&gt;&gt;</code>) in an 
+<code>istream</code> class which reads input
+and stores it into the variable on the right.  It then <b>returns the left operand</b> 
+(ie, <code>cin</code>) so the result can be used if there is another &gt;&gt; operator.
+This <i>chaining</i> of the I/O operators is a rather clever solution.
+Here's an example program that shows this.
+<pre class="fragment">
+    if ((cin &gt;&gt; a) == cin) {
+        cout &lt;&lt; "Equal" &lt;&lt; endl;   // Yes, it is true
+    } else {
+        cout &lt;&lt; "Not Equal" &lt;&lt; endl;
+    }</pre>
+
+   
+<h2>Why <code>cin</code> can be used as a truth value</h2>
+It's possible to make tests like
+<pre>
+   if (cin)</pre>
+which will be true if cin is ok and false if at an end-of-file or has encountered an error.  
+It's type is <code>istream&amp;</code> (input stream reference), so how can that be 
+used as a truth value.
+The trick is that when it's evaluated in the context of a condition, eg, in an <code>if</code>
+or <code>while</code> statement, a special function is called in
+the <code>istream</code> class.  This function returns a value that can
+be interpreted as true or false.
+
+<h2>Reading in the while condition</h2>
+<p>Because the &gt;&gt; operator returns the iostream (eg, <code>cin</code>), which can
+be tested for EOF or errors, the <code>cin loop</code> idiom can be used.
+<pre>   while (cin &gt;&gt; x) { . . . }</pre>
+which effectively tests for EOF, and also that the input is a valid value.
+
+   
+<h2>See also</h2>
+<a href="eof.html">End-Of-File (EOF)</a>
+   
+<script type="text/JavaScript">footer("2000-3");</script>
+</body>
+
+</html>

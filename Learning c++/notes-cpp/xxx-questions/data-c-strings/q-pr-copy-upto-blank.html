@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+<title>C++: Programming - copyUptoBlank Function</title>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: Programming - <code>copyUptoBlank</code> Function</h1>
+<p>Name _______________________________</p>
+<p>Write a function which takes two C-string parameters. It copies characters from
+the second parameter into the first parameter up to a blank or the end of the
+string.  It also returns the length that was assigned to the the first parameter.
+The prototype looks like this.</p>
+<pre>
+   int copyUptoBlank(char dest[], char source[]);</pre>
+   
+<p>You may not use the standard C-string functions.
+Write only the <code>copyUptoBlank</code> function (no main program).  Do not do any I/O in the function.</p>
+
+<h2>Examples</h2>
+<pre>
+    char someString[100];
+    char anotherString[200];
+    int n;
+    n = copyUptoBlank(someString, "This is a test");
+         // someString will contain "This" and n will be 4.
+    n = copyUptoBlank(anotherString, "Hello");
+         // anotherString will contain "Hello" and n will be 5.
+    strcpy(someString, "x");
+    cout &lt;&lt; copyUptoBlank(anotherString, someString);
+         // will print 1 and anotherString will contain "x".
+    </pre>
+       
+</body>
+</html>
+

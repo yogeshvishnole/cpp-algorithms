@@ -1,0 +1,645 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred)"/>
+    <link rel="stylesheet" type="text/css" href="notes.css"/>
+    <style type="text/css">
+       li {margin-top: 0;}
+    </style>
+    <title>C++ Notes: Table of Contents</title>
+</head>
+
+<body>
+
+<h1><a href="../fred/index.html">Fred</a>: C++ Notes: Table of Contents</h1>
+<p>Some of these supplemental notes are good, others only rough drafts or half-completed.  
+Because they are designed only to provide additional
+examples, summaries, or explanations where
+the textbook is weak, they do not cover many obviously important topics.
+You can download a zipped version: <a href="http://www.fredosaurus.com/notes-cpp-2004-12-19.zip">notes-cpp-2004-12-19.zip</a> 
+[less than 400 KB].
+-- Fred
+</p>
+
+
+<table border="0" summary="table of contents">
+<tr><td colspan="2"><h2>Getting Started</h2></td></tr>
+<tr valign="top"><td>  <!-- start first column -->
+<ul>
+    <li>Development Systems
+         <ul>
+         <li><a href="ide/devcpp.html">IDEs - Dev-C++</a></li>
+         </ul>
+    </li>
+    <li>Model programs
+        <ul>
+        <li><a href="basics/c2f.html">Example - Celsius to Fahrenheit.</a></li>
+        <li><a href="basics/c2f-loop.html">Example - Celsius to Fahrenheit loop.</a></li>
+        <li><a href="basics/main.html">Example - Template for main.</a></li>
+        </ul>
+    </li>
+    <li>Misc
+        <ul>
+        <li><a href="basics/braces.html">Braces</a></li>
+        <li><a href="basics/devtechniques.html">Development Techniques</a></li>
+        </ul>
+        </li>
+</ul>
+
+</td><td>  <!-- start next column -->
+
+<h3>Summaries</h3>
+    <ul>
+    <li><a href="90summaries/10basicsum.html">Summary - Basic Elements</a> - types, ...</li>
+    <li><a href="expressions/exprsum.html">Summary - Expressions</a></li>
+    <li><a href="90summaries/25statementsum.html">Summary - Control Flow Statements</a></li>
+    <li><a href="90summaries/30funcsum.html">Summary - Functions</a></li>
+    <li><a href="90summaries/50progstruct.html">Summary - Program Structure</a></li>
+    <li><a href="90summaries/summary-headers.html">Summary - Header Files</a></li>
+    <!-- <li><a href="90summaries/60iosum.html">Summary: Input / Output</a></li> -->
+    </ul>
+</td>
+</tr>
+
+
+
+<tr><td colspan="2"><h2>Types and Expressions</h2></td></tr>
+<tr valign="top"><td>  <!-- start first column -->
+
+<h3>Types</h3>
+    <ul>
+    <li>Integers (<code>int</code>, <code>short</code>, <code>long</code>, <code>char</code>)
+        <ul>
+        <li></li>
+        </ul>
+        </li>
+        
+    <li>Floating Point (<code>float</code>, <code>double</code>, <code>long double</code>)
+        <ul>
+        <li></li>
+        </ul>
+        </li>
+        
+    <li>Characters (<code>char</code>)
+        <ul>
+        <li><a href="io/reading-chars.html">Reading characters</a></li>
+        <li><a href="strings/header-cctype.html">Character functions - &lt;cctype&gt;</a></li>
+        </ul>
+        </li>
+        
+    <li><code>bool</code>
+        </li>
+        
+    <li>Enums
+        <ul>
+        <li><a href="types/enum.html">Enums</a></li>
+        <li><a href="types/enum2.html">Enum Values and I/O</a></li>
+        </ul>
+        </li>
+    </ul>
+</td><td>  <!-- start next column -->
+
+<h3>Expressions</h3>
+        <ul>
+        <li><a href="expressions/exprsum.html">Summary: Expressions</a></li>
+        <li><a href="expressions/2binbydiv.html">Example: Converting to binary by division</a></li>
+        <li><a href="expressions/sizeof.html">Operator: sizeof</a></li>
+        <li>Bitwise Operators
+          <ul>
+          <li><a href="expressions/bitops.html">Operators: Bitwise</a></li>
+          <li><a href="expressions/2binbybitops.html">Example: convert to binary using bitwise ops</a></li>
+          <li><a href="expressions/bitopsex.html">Example: Convert to hex using bitwise ops</a></li>
+          </ul>
+          </li>
+        <li><a href="expressions/incassignex.html">Exercises: ++, =, ?: Expressions</a></li>
+        
+        </ul>
+</td></tr>
+
+
+<tr><td colspan="2"><h2>Control Flow</h2></td></tr>
+<tr valign="top"><td>  <!-- start first column -->
+<h3>Loops</h3>
+        <ul>
+        <li>Examples
+            <ul>
+            <li><a href="loops/ex-line-of-stars-up.html">Ex: Line of stars - count up</a></li>
+            <li><a href="loops/ex-line-of-stars-down.html">Ex: Line of stars - count down</a></li>
+            <li><a href="loops/ex-cin-max.html">Ex: Finding max of input values</a></li>
+            </ul>
+            </li>
+        <li>Programming Problems - Reading from <code>cin</code>
+            <ul>
+            <li><a href="loops/exercises/q-pr-cin-count-input-values.html">Programming Problem - cin Count Input Values</a></li>
+            <li><a href="loops/exercises/q-pr-cin-count-equal.html">Programming Problem - cin Count Equal</a></li>
+            <li><a href="loops/exercises/q-pr-cin-max-min.html">Programming Problem - cin Max and Min</a></li>
+            <li><a href="loops/exercises/q-pr-cin-avg.html">Programming Problem - cin Average</a></li>
+            <li><a href="loops/exercises/q-pr-cinloop-avg-pos-neg.html">Programming Exercise - Average Positive Negative</a></li>
+            </ul>
+            </li>
+        <li>Programming Problems - Writing from a loop
+            <ul>
+            <li><a href="loops/exercises/q-pr-loop-print-numbers.html">Programming Problem - Print Numbers</a></li>
+            <li><a href="loops/exercises/q-pr-loop-99-bottles.html">Programming Problem - 99 Bottles of Beer</a></li>
+            <li><a href="loops/exercises/q-pr-loop-ulam.html">Programming Problem - Ulam Sequence</a></li>
+            </ul>
+            </li>
+        <li>Programming Problems - Nested loops
+            <ul>
+            <li><a href="loops/exercises/q-pr-print-paralleogram.html">Programming Problem - Print Parallelogram</a></li>
+            <li><a href="loops/exercises/q-pr-figures.html">Programming Problem - Figures</a></li>
+            <li><a href="loops/exercises/q-pr-loop-multiplication-table.html">Programming Problem - Multiplication Table</a></li>
+            </ul>
+            </li>
+        </ul>
+
+</td><td>  <!-- start next column -->
+
+<h3>Switch Statement</h3>
+        <ul>
+        <li><a href="statements/switch.html">Switch</a></li>
+        <li><a href="statements/switch-usage.html">Switch usage</a></li>
+        <li><a href="statements/simple-calc.html">Simple Calculator</a></li>
+        </ul>
+<h3>Functions</h3>
+        <ul>
+        <li><a href="functions/funcconcept.html">Function Concepts</a></li>
+        <li><a href="functions/funcstruct.html">Function Structure</a></li>
+        <li><a href="functions/return.html">Function <code>return</code> Statement</a></li>
+        <li><a href="functions/params.html">Function Parameters</a></li>
+        <li><a href="functions/func-call-order.html">Function Call Order</a></li>
+        <li><a href="functions/refparams.html">Function Reference Parameters</a></li>
+        <li>Programming Problems
+            <ul>
+            <li><a href="functions/exercises/q-pr-func-to-seconds.html">Programming Problem - Convert to Seconds</a></li>
+            <li><a href="functions/exercises/q-pr-func-temp-opinion.html">Programming Problem - Temperature Opinion</a></li>
+            <li><a href="functions/exercises/q-pr-func-to-meters.html">Programming Problem - Convert to Meters</a></li>
+            <li><a href="functions/exercises/q-pr-func-average3.html">Programming Problem - Average 3 Numbers</a></li>
+            <li><a href="functions/exercises/q-pr-func-promptyn.html">Programming Problem - Prompt Y/N</a></li>
+            </ul>
+            </li>
+        </ul>
+<h3>Exceptions</h3>
+        <ul>
+        <li>try - catch</li>
+        <li><a href="exceptions/exceptions.html">Standard exceptions</a></li>
+        <li><a href="exceptions/exception-test.html">Exception test</a></li>
+        </ul>
+
+</td></tr>
+
+
+<tr><td colspan="2"><h2>Input / Output</h2></td></tr>
+<tr valign="top"><td>  <!-- start first column -->
+        <ul>
+        <li><a href="io/io-overview.html">I/O streams - overview</a></li>
+        <li><a href="io/cinloop.html">Idiom: cin loop</a></li>
+        <li><a href="io/anti-idiom-cin.html">Anti-idiom - Using <code>cin</code> in three places, instead of one</a></li>
+        <li><a href="io/eof.html">End-Of-File (EOF)</a></li>
+        <li><a href="io/reading-numbers.html">Reading numbers</a></li>
+        <li><a href="io/reading-chars.html">Reading characters</a></li>
+        <li><a href="io/reading-lines.html">Reading lines</a></li>
+        <li><a href="io/readtextfile.html">Reading text files</a></li>
+        </ul>
+</td><td>  <!-- start next column -->
+        <ul>
+        <li><a href="io/open.html">Example: File open dialog</a></li>
+        <li><a href="io/io-operators.html">I/O operators - &lt;&lt; and &gt;&gt;</a></li>
+        <li><a href="io/omanipulators.html">I/O manipulators</a></li>
+        <li><a href="strings/stringstream.html">String streams</a></li>
+        <li><a href="strings/stringstream-example.html">String stream example</a></li>
+        <li><a href="io/idiom-io-separation.html">Idiom - Separate User Interface from Logic</a></li>
+        <!-- <li><a href="strings/buffer-overflow.html">Buffer overflow</a></li> -->
+        <!-- <li><a href="90summaries/60iosum.html">Input/Output Summary</a></li> -->
+        </ul>
+        
+        <h3>GUI</h3>
+        <ul>
+        <li><a href="gui/gui.html">Graphical User Interfaces</a></li>
+        <!-- <li><a href="gui/fltk-bmi.html">FLTK Example - Body Mass Index</a></li> -->
+        </ul>
+</td></tr>
+
+
+
+<tr><td colspan="2"><h2>Arrays</h2></td></tr>
+<tr valign="top"><td>  <!-- start first column -->
+<h3>One-dimensional Arrays</h3>
+        <ul>
+        <li><a href="arrayptr/10arrays.html">Arrays</a></li>
+        <li><a href="arrayptr/array-examples.html">Array Examples</a></li>
+        <li><a href="arrayptr/array-diagrams.html">Array Memory Diagrams</a></li>
+        <li><a href="arrayptr/array-initialization.html">Array Initialization</a></li>
+        <li><a href="arrayptr/17array-parameters.html">Passing Array Parameters</a></li>
+        <!-- <li><a href="arrayptr/20arrayproblems.html">Arrays - Programmer Difficulties</a></li> -->
+        <li><a href="arrayptr/21inherent-problems.html">Arrays - Problems and Solutions</a></li>
+        <li><a href="arrayptr/buffer-overflow.html">Arrays - Buffer overflow</a></li>
+        </ul>
+<h3>C-Strings - arrays of char</h3>
+        <ul>
+        <li><a href="strings/cstrings.html">C-Strings (arrays of chars)</a></li>
+        <li><a href="strings/header-cstring.html">Common &lt;cstring&gt; functions</a></li>
+        <li><a href="strings/string-exercises1.html">C-string Prog exercises 1</a></li>
+        <li><a href="strings/string-exercises2.html">C-string Prog exercises 2</a>
+            <br />Here are solutions to a few problems, using separate source files.
+            <ul>
+            <li><a href="strings/string-exercises2-ans-main.html">C-Strings - Programming Exercise Solutions - main</a></li>
+            <li><a href="strings/string-exercises2-ans-fcns.html">C-Strings - Programming Exercise Solutions - functions</a></li>
+            <li><a href="strings/string-exercises2-ans-header.html">C-Strings - Programming Exercise Solutions - header</a></li>
+            </ul>
+            </li>
+        </ul>
+<h3>2-dimensional arrays</h3>
+        <ul>
+        <li><a href="arrayptr/22twodim.html">2-Dimensional arrays</a></li>
+        <li><a href="arrayptr/23two-dim-array-memory-layout.html">2-D Array Memory Layout</a></li>
+        <li><a href="arrayptr/24arraysofarrays.html">Arrays of arrays</a></li>
+        </ul>
+<h3>Battleship Example</h3>
+        <ul>
+        <li><a href="arrayptr/battleship1.html">Example - Battleship ver 1 - First version does nothing</a></li>
+        <li><a href="arrayptr/battleship2.html">Example - Battleship ver 2 - One ship in linear grid</a></li>
+        <li><a href="arrayptr/battleship3a.html">Example - Battleship ver 3a - Multiple ships in Suez Canal</a></li>
+        </ul>
+
+</td><td>  <!-- start next column -->
+
+<h3>Sorting Arrays</h3>
+    <ul>
+    <li><a href="algorithms/sorting/sorting.html">Sorting</a></li>
+    <li><a href="algorithms/sorting/sort-efficiency.html">Sort efficiency</a></li>
+    <li><a href="algorithms/sorting/bubblesort-fixed.html">Bubble Sort - Fixed passes</a></li>
+    <li><a href="algorithms/sorting/bubblesort2.html">More Bubble Sorts</a></li>
+    <li><a href="algorithms/sorting/selectionsort.html">Selection Sort</a></li>
+    <li><a href="algorithms/sorting/issorted.html">isSorted</a></li>
+    <li><a href="algorithms/sorting/stl-sort-arrays.html">STL sort for arrays</a></li>
+    </ul>
+<h3>Searching Arrays</h3>
+    <ul>
+    <li><a href="algorithms/searching/linearsearch.html">Linear Search</a></li>
+    <li><a href="algorithms/searching/binarysearch.html">Binary Search</a></li>
+    <li><a href="algorithms/searching/rbinarysearch.html">Recursive Binary Search</a></li>
+    </ul>
+<h3>Misc Array Function Examples</h3>
+    <ul>
+    <li><a href="algorithms/other/readarray.html">Example - readArray</a></li>
+    <li><a href="algorithms/other/insert.html">Example - insert</a></li>
+    <li><a href="algorithms/other/erase.html">Example - erase</a></li>
+    <li><a href="algorithms/other/reverse.html">Example - reverse</a></li>
+    <li><a href="algorithms/other/push.html">Example - push</a></li>
+    <li><a href="algorithms/other/pop.html">Example - pop</a></li>
+    <li><a href="algorithms/other/array-max.html">Example - maximum</a></li>
+    <li><a href="algorithms/other/array-avg.html">Example - average</a></li>
+    </ul>
+
+</td></tr>
+
+
+
+<tr><td colspan="2"><h2>Misc practical issues.</h2></td></tr>
+<tr valign="top"><td>  <!-- start first column -->
+
+<h3>Multiple source files</h3>
+        <ul>
+        <li><a href="basics/multiple-files.html">Multiple Source Files</a></li>
+        </ul>
+        </td>
+        </tr>
+        
+
+
+
+<tr><td colspan="2"><h2>Pointers, References, and Dynamic Allocation</h2></td></tr>
+<tr valign="top"><td>  <!-- start first column -->
+
+<h3>Pointers and References</h3>
+        <ul>
+        <li><a href="pointer-ref/05addr-ptr-ref.html">Addresses, pointers, references</a></li>
+        <li><a href="pointer-ref/10pointers.html">Pointers</a></li>
+        <li><a href="pointer-ref/50nullpointer.html">The NULL pointer</a></li>
+        <li><a href="pointer-ref/pointerquote.html">Pointer quote</a></li>
+        <li><a href="arrayptr/60song.html">The Name of the Song is ...</a></li>
+        <li><a href="arrayptr/swap-ref-ptr-stl-tpl.html">swap - references, pointers, STL, templates</a></li>
+</ul>
+        
+<h3>Pointers, arrays, and subscripts</h3>
+    <ul>
+    <li><a href="arrayptr/26arraysaspointers.html">Arrays as pointers</a></li>
+    <li><a href="arrayptr/arraysaspointers2.html">Arrays as Pointers - Weird but true</a></li>
+    <li><a href="arrayptr/28strcpy.html">Pointers and Subscripts - strcpy</a></li>
+    <li>Programming Problems
+        <ul>
+        <li><a href="arrayptr/q-pr-words-reverse-order.html">Words in Reverse Order</a></li>
+        <!-- <li><a href="arrayptr/q-pr-words-reverse-order-expandable.html">Words in Reverse Order - Expandable Array</a></li> -->
+        <li><a href="arrayptr/ex-words-reverse-order-vector.html">Example - Words in Reverse Order - vector</a></li>
+        </ul>
+        </li>
+    </ul>
+    
+
+</td><td>  <!-- start next column ========================= -->
+
+<h3>Dynamic allocation (new, delete)</h3>
+  <ul>
+  <li><a href="newdelete/50dynamalloc.html">Dynamic Allocation of Arrays</a></li>
+  <li><a href="newdelete/alloc-cstring.html">Dynamic Allocation of C-Strings</a></li>
+  <li><a href="newdelete/55dynexample.html">Example: Expanding an Array</a></li>
+  <li><a href="newdelete/dynissues.html">Dynamic allocation issues</a></li>
+  <li><a href="newdelete/wordsreverseorder.html">Example - Dynamic C-String Allocation</a></li>
+  </ul>
+  
+</td></tr>
+  
+
+<tr><td colspan="2"><h2>Structs</h2></td></tr>
+<tr valign="top"><td>  <!-- start first column ================ -->
+    <ul>
+    <li><a href="structs/structs.html">Structs</a></li>
+    <li><a href="structs/struct-ops.html">Struct operations</a></li>
+    <li><a href="structs/struct-time-example.html">Struct Example: Time</a></li>
+    <li><a href="structs/struct-ops.html">Struct operators</a></li>
+    <li><a href="structs/structex.html">Struct example 1</a></li>
+    <li><a href="structs/structex2.html">Struct example 2</a></li>
+    <li><a href="structs/arrow.html">-&gt; operator</a></li>
+    </ul>
+
+</td><td>  <!-- start next column ========================= -->
+
+    <h3>Examples</h3>
+    <ul>
+    <li>Classical (non-OOP) Linked Lists
+        <ul>
+        <li><a href="ds-lists/list-ex1a.html">Linked Lists - Example Using Nodes</a></li>
+        <!-- <li><a href="ds-lists/list-ex1b.html">Example 1b - Singly linked list. Some OOP.</a></li> -->
+        <!-- <li><a href="ds-lists/list-ex2.html">Example 2 - Singly linked list.</a></li> -->
+        <li><a href="ds-lists/sngl-dbl-clss.html">Singly linked, doubly linked, class lists</a></li>
+        <li><a href="ds-lists/q-pr-splice.html">Combining two circular, doubly linked lists</a></li>
+        </ul>
+        </li>
+    <li>Binary Search Trees
+        <ul>
+        <li><a href="ds-trees/binarysearchtrees.html">Binary Search Trees</a></li>
+        <li><a href="ds-trees/binarytreetraversal.html">Binary Tree Traversal</a></li>
+        </ul>
+        </li>
+    <li>Expression Trees
+        <ul>
+        <li><a href="ds-trees/10exptrees.html">Expression Trees</a></li>
+        <li><a href="ds-trees/20exptreestruct.html">Expression Tree Struct</a></li>
+        <li><a href="ds-trees/30exptreeclass.html">Expression Tree Class (like struct)</a></li>
+        <li><a href="ds-trees/exp-tree-subclass/expr-tree-subclass.html">Expression tree using inheritance</a></li>
+        </ul>
+        </li>
+    </ul>
+    
+
+</td></tr>
+
+
+
+
+
+<tr><td colspan="2"><h2><a name="OOP">Object-Oriented Programming with Classes</a></h2></td></tr>
+<tr><td valign="top"> <!-- first colum -->
+  <ul>
+    <li>OOP
+        <ul>
+        <li><a href="oop-classes/oop.html">Object-Oriented Programming (OOP)</a></li>
+        <li><a href="oop-classes/oopterms.html">OOP Terminology</a></li>
+        </ul>
+        </li>
+    <li>Classes
+        <ul>
+        <li><a href="oop-classes/classes.html">Classes</a></li>
+        <li><a href="oop-classes/this.html">this</a></li>
+        <li><a href="oop-classes/example-floatvector-1/examplefloatvector.html">Example: floatVector v1</a></li>
+        <li><a href="oop-classes/classviz.html">Visibility - public and private</a></li>
+        </ul>
+        </li>
+    <li>Data members
+        <ul>
+        <li><a href="oop-memberfuncs/datamemberinit.html">Member initializers</a></li>
+        </ul>
+        </li>
+    <li>Constructors and Destructors
+        <ul>
+        <li><a href="oop-condestructors/constructors.html">Constructors</a></li>
+        <li><a href="oop-condestructors/shallowdeepcopy.html">Shallow vs Deep Copies</a></li>
+        <li><a href="oop-condestructors/copyconstructors.html">Copy Constructors</a></li>
+        <li><a href="oop-condestructors/destructors.html">Destructors</a></li>
+        <li><a href="oop-condestructors/constructors-key-points.html">Key Points - Constructors</a></li>
+        </ul>
+        </li>
+    </ul>
+</td><td valign="top"> <!-- second colum -->
+    <ul>
+    <li>Operator Overloading
+        <ul>
+        <li><a href="oop-overloading/operoverloading.html">Operator Overloading</a></li>
+        <li><a href="oop-overloading/overloadassign.html">Overloading Assignment</a></li>
+        <li><a href="oop-overloading/overloadassign2.html">Overloading Derived Class Assignment</a></li>
+        </ul>
+        </li>
+    <li>Member functions
+        <ul>
+        <li><a href="oop-memberfuncs/constmemberfuncs.html"><code>const</code> member functions</a></li>
+        </ul>
+        </li>
+    <li>Friend functions
+        <ul>
+        <li><a href="oop-condestructors/friendfunctions.html">Friend Functions</a></li>
+        <li><a href="oop-friends/overload-io.html">Overloading &lt;&lt; and &gt;&gt;</a></li>
+        </ul>
+        </li>
+    <li>Inheritance
+        <ul>
+        <li>Nothing yet</li>
+        </ul>
+        </li>
+  </ul>
+</td></tr>
+
+
+<tr><td colspan="2"><h2><a name="STL">Generic Programming</a></h2></td></tr>
+<tr><td valign="top"> <!-- first colum -->
+  <ul>
+    <li>Templates
+        <ul>
+        <li><a href="generic/templates.html">Templates</a></li>
+        </ul>
+        </li>
+    <li>Template functions
+        <ul>
+        <li>Nothing yet</li>
+        </ul>
+        </li>
+    </ul>
+</td><td valign="top"> <!-- second colum -->
+    <ul>
+    <li>Template Classes
+        <ul>
+        <li><a href="generic/template-ex1.html">Example - CheckedArray Template Class</a></li>
+        <li><a href="generic/q-pr-generic-checkedarray.html">Programming Exercises - Extend CheckedArray</a></li>
+        <li><a href="generic/template-ex2.html">Example - CheckedArray Alternate Style</a></li>
+        </ul>
+        </li>
+  </ul>
+</td></tr>
+
+
+
+<tr><td colspan="2"><h2><a name="STL">STL (Standard Template Library) containers, iterators, algorithms</a></h2></td></tr>
+<tr><td valign="top"> <!-- first colum -->
+<h3>General</h3>
+        <ul>
+        <li><a href="stl/stl-overview.html">STL Overview</a></li>
+        <!--
+        <li><a href="datastructs/physical.html">Physical Structures - Arrays</a></li>
+        <li><a href="datastructs/logicalgrouping.html">Logical Structures - Collections</a></li>
+        <li>Application Types (Classes)</li>  -->
+        </ul>
+<h3>Containers</h3>
+    <ul>
+    <li>General information
+        <ul>
+        <li><a href="stl-containers/containers.html">Introduction to Containers</a></li>
+        </ul>
+        </li>
+    <li>Sequence containers
+        <ul>
+        <!-- <li><a href="stl-containers/container-functions.html">Common Container Functions</a></li>  -->
+        <li><a href="stl-containers/sequence-functions.html">Common Sequence Container Operations</a></li>
+        <li>Strings
+            <ul>
+            <li><a href="strings/header-string.html">&lt;string&gt; header</a></li>
+            </ul>
+            </li>
+        <li><a href="stl-containers/vector/vector.html">Vectors</a>
+            <ul>
+            <li><a href="stl-containers/vector/header-vector.html">&lt;vector&gt;</a> header</li>
+            <li><a href="stl-containers/vector/vector-read-reverse.html">Example - Vector reverse input</a></li>
+            <li><a href="examples/rpn/rpn.html">Example - RPN (Reverse Polish Notation) calculator</a></li> 
+            <li><a href="stl-containers/vector/vector-parameters.html">Passing Vector Parameters</a></li>
+            <li><a href="stl-containers/vector/iter-vector.html">Iterators for vector</a></li>
+            <li><a href="examples/crosswordhelper/crosswordhelper.html">Crossword Helper</a> - uses <code>vector</code>,
+                         <code>string</code>, <code>ifstream</code>.</li>
+            </ul>
+            </li>
+        <li>Lists
+            <ul>
+            <li><a href="stl-containers/list/list-header.html">&lt;list&gt;</a> header</li>
+            </ul>
+            </li>
+        <li>Deques
+            </li>
+        </ul>
+        </li>
+    <li>Associative containers
+        <ul>
+        <li>Maps, Multimaps
+            <ul>
+            <li><a href="stl-containers/map/pair.html"><code>pair</code> utility struct</a></li>
+            <li><a href="stl-containers/map/map-ex-wordfreq.html">Example - Word frequency using <code>map</code></a></li>
+            </ul>
+            </li>
+        <li>Sets, Multisets</li>
+        </ul>
+        </li>
+    <li>Adapter containers (based on other containers)
+        <ul>
+        <li>Stacks</li>
+        <li>Queues</li>
+        <li>Priority Queues</li>
+        </ul>
+        </li>
+    </ul>
+        
+</td><td valign="top"> <!-- second colum -->
+<h3>Iterators</h3>
+            <ul>
+            <li><a href="stl-iterators/iter-intro.html">Introduction to Iterators</a></li>
+            <li><a href="stl-iterators/iter-ops.html">Iterator Operators</a></li>
+            <li><a href="stl-containers/vector/iter-vector.html">Iterators for vector</a></li>
+            </ul>
+
+<h3>Examples</h3>
+            <ul>
+            <li>Lefthand
+                <ul>
+                <li><a href="examples/lefthand/lefthand1.html">Lefthand 1</a> - uses <code>string</code>.</li>
+                <li><a href="examples/lefthand/lefthand2.html">Lefthand 2</a> - uses <code>string</code> and <code>vector</code>.</li>
+                <li><a href="examples/lefthand/lefthand3.html">Lefthand 3</a> - uses <code>string</code> and <code>set</code>.</li>
+                </ul>
+                </li>
+            <li><a href="examples/compress/compress.html">Compress</a> - Uses vector, string, sort.</li>
+            <li>Printing input words in reverse order
+                <ul>
+                <li><a href="datastructs/ex1/usingarray.html">Using array</a> - for comparison.</li>
+                <li><a href="datastructs/ex1/usingvector.html">Using <code>vector</code> and <code>string</code></a></li>
+                <li><a href="datastructs/ex1/usingstack.html">Using <code>stack</code> and <code>string</code></a></li>
+                </ul>
+                </li>
+            </ul>
+</td></tr>
+
+
+<tr><td colspan="2"><h2><a name="examples">Misc Examples</a></h2></td></tr>
+<tr><td valign="top"> <!-- first colum -->
+    <ul>
+    <li><a href="algorithms/string2int.html">string2int function</a></li>   
+    <li><a href="examples/wordlenfreq/word-len-freq.html">Word length frequency (arrays, c-strings)</a></li> 
+    </ul>
+    
+</td><td valign="top"> <!-- second colum -->
+</td></tr>
+
+<tr><td colspan="2"><h2>Misc</h2></td></tr>
+<tr valign="top"><td>  <!-- start first column -->
+<h3>Random numbers</h3>
+        <ul>
+        <li><a href="misc/random.html">Random Numbers</a></li>
+        <li><a href="misc/random-shuffle.html">Example - Shuffle Array</a></li>
+        <li><a href="misc/ex-deal-cards.html">Example - Deal Cards</a></li>
+        <li><a href="misc/random-names.html">Example - Random Names</a></li>
+        </ul>
+
+<h3>Preprocessor</h3>
+        <ul>
+        <li><a href="preprocessor/ifdef.html">#ifdef and #ifndef</a></li>
+        </ul>
+
+</td><td>  <!-- start next column -->
+
+<h3>Big-Oh Notation</h3>
+    <ul>
+    <li><a href="algorithms/big-oh/bigoh.html">Big-Oh Introduction</a></li>
+    <li><a href="algorithms/big-oh/bigoh-examples.html">Big-Oh Examples</a></li>
+    </ul>
+
+</td>
+</tr>
+</table>
+<h3>Other online sources</h3>
+<ul>
+<li><a href="http://www.cppreference.com">www.cppreference.com</a> - Function references.</li>
+<li><a href="http://www.codeproject.com">www.codeproject.com</a> - Many articles from beginner to advanced.  Very interesting.</li>
+<li><a href="http://www.bruceeckel.com/">www.bruceeckel.com/</a> has both volumes of Bruce Eckel's
+    excellent Thinking in C++ books.  Yes, the entire books are there!
+    These aren't for real beginners, but after you've had a little bit of C++
+    programming, these will be very useful.</li>
+<li><a href="http://www.cplusplus.com/doc/tutorial/">www.cplusplus.com/doc/tutorial</a></li>
+</ul>
+
+<p><a href="misc/acknowledgements.html">Acknowledgements</a>.
+</p>
+
+<div class="footer">
+Copyleft 2004 <a href="http://www.leepoint.net/fred/">Fred Swartz</a>
+<a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>
+</div>
+ 
+
+</body>
+</html>

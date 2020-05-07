@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++: Battleship Questions</title>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: Battleship Questions</h1>
+<p>Name _______________________________</p>
+<p>(15 points) Fill in each blank with a single missing element (operator, keyword,
+variable, literal, ...).</p>
+
+<pre class="file">
+//  battleship3a/main.cpp -- Version 3a of Battleship game.
+//  Fred Swartz, 2003-11-25
+
+// This second version adds the following to version 2.
+//  * Places multiple ships randomly on grid.
+// 
+// FUNCTIONALITY TO BE ADDED
+//  * Make it two-dimensional.
+//  * Should be a developer command to display where ships are.
+//  
+// USER INTERFACE
+//  * Not robust - crashes if bombing coordinate missing.
+
+//==================================================== includes
+#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+#include &lt;string&gt;
+#include &lt;ctime&gt;    // For time()
+#include &lt;cstdlib&gt;  // For srand() and rand()
+using namespace std;
+
+//========================================= global declarations
+// Damage enum defines possible values at each grid point.
+enum Damage {WATER_UNBOMBED, WATER_BOMBED, 
+             SHIP_UNBOMBED , SHIP_BOMBED};
+
+// The display array defines what to display for
+//     each of the Damage enum values.  Changes to the
+//     Damage enum require this to be changed also.
+const char display[] = {'-', 'O', '-', 'X'};
+
+const  int SHIP_SIZE = 3;
+const  int NUMBER_OF_SHIPS = 4;
+const  int CANAL_LENGTH = 24;   // Width of the grid.
+Damage grid[_____________];     // Records status of every grid cell.
+
+//================================================== prototypes
+void dropBomb(int coord);
+void executeCommand(char cmd);
+void findOpenWater(int positions[], int&amp; number);
+void initGrid();
+bool isGameOver();
+void printGrid();
+
+//======================================================== main
+int main() {
+
+    srand(time(0));  // Initialize random number generator
+    
+    cout &lt;&lt; "You are to find and bomb ships in the Suez Canal." &lt;&lt; endl;
+    cout &lt;&lt; "Each ship is " &lt;&lt; SHIP_SIZE &lt;&lt; " units long." &lt;&lt; endl;
+    cout &lt;&lt; "Use the b command and follow it with a coordinate to drop a bomb." &lt;&lt; endl;
+    
+    char ans;
+    do {
+        initGrid();  // Randomly place ships on the grid.
+        printGrid();
+        
+        char _____________;
+        while (cin &gt;&gt; commandCode) {
+        
+            executeCommand(commandCode);
+            
+            if (isGameOver()) {
+                cout &lt;&lt; "I surrender." &lt;&lt; endl;
+                break;
+            }
+        }
+        cout &lt;&lt; "Do you want to play again? (y/n) ";
+        cin &gt;&gt; ans;
+    } while (ans == 'y');
+    
+    return 0;
+}//end main
+
+//======================================================= executeCommand
+void executeCommand(char cmd) {
+    switch (_____________) {
+        
+        case 'q':           // quit
+            exit(0);
+            break;
+            
+        case 'b':           // bomb
+            _____________ loc;
+            cin &gt;&gt; loc;
+            if (loc&gt;=0 &amp;&amp; loc&lt;CANAL_LENGTH) {
+                dropBomb(loc);
+            } else {
+                cout &lt;&lt; "Bombing coordinate must be between 0 and " &lt;&lt; CANAL_LENGTH-1 &lt;&lt; endl;
+            }
+            printGrid();
+            _____________;
+            
+        default:            // error
+            cerr &lt;&lt; "Bad input " &lt;&lt; cmd &lt;&lt; endl;
+            break;
+    }
+}
+
+//======================================================= dropBomb
+void dropBomb(int _____________) {
+    switch (grid[coord]) {
+    
+    _____________ WATER_UNBOMBED: 
+          grid[coord] = WATER_BOMBED;
+          break;
+          
+    case SHIP_UNBOMBED: 
+          grid[coord] = _____________;
+          break;
+    }
+    return;
+}
+
+//======================================================= initGrid
+// initGrid() places random ships on the grid.
+void initGrid() {
+    //-- Initialize the grid to empty water
+    for (int i=0; i&lt;CANAL_LENGTH; i++) {
+        grid[_____________] = WATER_UNBOMBED;
+    }
+    
+    //-- Make a list of where ships could be placed.
+    int openWaterPositions[CANAL_LENGTH];
+    int howManyPositions;  // number of elements in openWaterPositions
+
+    for (int shipNum=0; shipNum &lt; NUMBER_OF_SHIPS; shipNum++) {
+        findOpenWater(openWaterPositions, howManyPositions);  // sets both parameters
+        if (howManyPositions == 0) {
+            break;  // we're done even if we didn't put all ships in water.
+        }
+        //-- Choose one of the open water positions randomly.
+        int onePosition = rand() % howManyPositions;
+        int start = openWaterPositions[onePosition];
+        
+        //-- Put a ship starting from there to the right.
+        _____________ (int pos=start; pos&lt;start+SHIP_SIZE; pos++) {
+            grid[pos] = SHIP_UNBOMBED;
+        }
+    }
+}
+
+
+//====================================================== findOpenWater
+void findOpenWater(int positions[], int&amp; number) {
+    number = 0;  // Start assuming no open water found.
+    int consecutiveWater = 0;
+    for (int i=CANAL_LENGTH-1; i&gt;=0; i--) {
+        if (grid[i]==WATER_UNBOMBED) {
+            consecutiveWater++;
+            if (consecutiveWater &gt; SHIP_SIZE) {
+                //-- record this as a possible position.
+                positions[number] = i;
+                number++;
+            }
+        } else {
+            consecutiveWater = 0;
+        }
+    }
+}
+
+
+//====================================================== 
+void _____________() {
+    cout &lt;&lt; endl;
+    for (int i=0; i&lt;CANAL_LENGTH; i++) {
+        cout &lt;&lt; " " &lt;&lt; _____________[grid[i]];
+    }
+    cout &lt;&lt; endl;
+    
+    //-- Print coordinates.
+    for (int coord=0; coord&lt;CANAL_LENGTH; coord++) {
+        cout &lt;&lt; setw(2) &lt;&lt; coord;
+    }
+    cout &lt;&lt; endl &lt;&lt; endl;
+}
+
+//====================================================== isGameOver
+bool isGameOver() {
+    for (int coord=_____________; coord&lt;CANAL_LENGTH; coord_____________) {
+        if (grid[coord] == SHIP_UNBOMBED) {
+            return _____________;
+        }
+    }
+    return true;
+}
+</pre>
+
+<script type="text/JavaScript">footer("2003");</script>
+</body>
+
+</html>

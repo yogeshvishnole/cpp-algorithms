@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet"           type="text/css" title="noanswers" href="../../../notes.css"/>
+    <link rel="alternate stylesheet" type="text/css" title="answers"   href="../../../notesanswer.css"/> 
+    <script type="text/JavaScript" src="../../../notes.js"></script>
+    <title>C++: Algorithms: Big-Oh 3</title>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: Algorithms: Big-Oh 3 <span class="answer">- Answers</span></h1>
+<p>Name _____________________</p>
+<p>Check the most appropriate box for Big-Oh values.  Write a value for the "Other" category,
+which is used for values
+that aren't in the previous choices.
+Assume <i>average</i> performance unless otherwise specified, 
+and that values are uniformly distributed.
+Assume for deletions and insertions that we already know the position
+(index or pointer or iterator).
+</p>
+    
+<table border="1" cellspacing="0" cellpadding="4" summary="">
+<tr><th>Algorithm</th><th>O(1)<br />constant</th><th>O(log N)<br />logarithmic</th><th>O(N)<br />linear</th><th>O(N log N)</th><th>O(N<sup>2</sup>)<br />quadratic</th><th>&nbsp;Other&nbsp;</th></tr> 
+
+<tr><td colspan="7"><i><b>Arrays and Vectors</b></i></td></tr>
+<tr><td>Access nth element given index.</td><td><span class="answerspace">&nbsp;</span><span class="answer">Y</span></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>Printing all elements.</td><td>&nbsp;</td><td>&nbsp;</td><td><span class="answerspace">&nbsp;</span><span class="answer">Y</span></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>Deleting an element given index - best case.   </td><td><span class="answerspace">&nbsp;</span><span class="answer">Y</span></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>Deleting an element given index - average case.</td><td>&nbsp;</td><td>&nbsp;</td><td><span class="answerspace">&nbsp;</span><span class="answer">Y</span></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>Deleting an element given index - worst case.  </td><td>&nbsp;</td><td>&nbsp;</td><td><span class="answerspace">&nbsp;</span><span class="answer">Y</span></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>Finding value in unsorted array/vector.        </td><td>&nbsp;</td><td>&nbsp;</td><td><span class="answerspace">&nbsp;</span><span class="answer">Y</span></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>Finding value in sorted array/vector.          </td><td>&nbsp;</td><td><span class="answerspace">&nbsp;</span><span class="answer">Y</span></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>Slow sorts: Bubble, selection, insertion.      </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td><span class="answerspace">&nbsp;</span><span class="answer">Y</span></td><td>&nbsp;</td></tr>
+<tr><td>Fast sorts: Quicksort, heapsort, mergesort     </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td><span class="answerspace">&nbsp;</span><span class="answer">Y</span></td><td>&nbsp;</td><td>&nbsp;</td></tr>
+
+<tr><td colspan="7"><i><b>Doubly Linked Lists</b>, eg, STL &lt;list&gt;</i></td></tr>
+<tr><td>Access nth element given front of list.       </td><td>&nbsp;</td><td>&nbsp;</td><td><span class="answerspace">&nbsp;</span><span class="answer">Y</span></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>Printing all elements.                        </td><td>&nbsp;</td><td>&nbsp;</td><td><span class="answerspace">&nbsp;</span><span class="answer">Y</span></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>Deleting an element given iterator - best case.</td><td><span class="answerspace">&nbsp;</span><span class="answer">Y</span></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>Deleting an element given iterator - average case.</td><td><span class="answerspace">&nbsp;</span><span class="answer">Y</span></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>Deleting an element given iterator - worst case.</td><td><span class="answerspace">&nbsp;</span><span class="answer">Y</span></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>Finding value in unsorted list.</td><td>&nbsp;</td><td>&nbsp;</td><td><span class="answerspace">&nbsp;</span><span class="answer">Y</span></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>Finding value in sorted list. </td><td>&nbsp;</td><td>&nbsp;</td><td><span class="answerspace">&nbsp;</span><span class="answer">Y</span></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+
+<tr><td colspan="7"><i><b>Balanced Binary Trees</b>, eg, STL &lt;set&gt;, &lt;map&gt;</i></td></tr>
+<tr><td>Finding value, average case.</td><td>&nbsp;</td><td><span class="answerspace">&nbsp;</span><span class="answer">Y</span></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>Finding value, worst case.  </td><td>&nbsp;</td><td><span class="answerspace">&nbsp;</span><span class="answer">Y</span></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+
+</table>
+
+
+<p>
+<a href="#" onclick="setActiveStyleSheet('answers'  ); return false;">Show Answers</a> -
+<a href="#" onclick="setActiveStyleSheet('noanswers'); return false;">Hide Answers</a>
+</p>
+<script type="text/JavaScript">footer("2002-4");</script>
+
+</body>
+</html>
+

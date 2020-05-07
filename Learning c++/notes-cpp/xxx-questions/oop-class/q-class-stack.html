@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>Problem: Defining a Stack class</title>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+</head>
+<body>
+<h1>Problem: Defining a Stack class</h1>
+The STL <code>stack</code> class has two problems: the functions are not as
+convenient to use as they are in most stack implementations, and it doesn't 
+check for stack underflow.  Write an implementation
+for the class given below.
+
+<br /><br />This is open book.  Use a computer and any compiler.  Get the main program given
+below to run.  
+You may write everything in one file
+instead of using a separate header, implementation, and test files.
+Use whatever implementation (private data members) you wish, including STL classes.
+<pre class="example">
+class IntStack {
+  friend ostream&amp; operator&lt;&lt;(ostream&amp; out, IntStack stk);
+                       // Prints all elements separated
+                       // by commas, top element at right.
+  public:
+    IntStack();        // Creates stack with no upper bound.
+    IntStack(int max); // Creates stack with upper bound max.
+    void push(int n);  // Push n onto stack.  Throws
+                       // overflow_error if max is exceeded.
+    int  pop();        // Returns top, and removes top.
+                       // Throws underflow_error if no elements.
+    int  peek() const; // Returns top, but doesn't pop.
+    void clear();      // Clears all elements from stack.
+    int  size() const; // Returns number of elements in stack.
+    bool operator==(const IntStack&amp; stk) const;
+                       // true if all elements are equal.
+    bool operator!=(const IntStack&amp; stk) const;
+                       // false if all elements are equal.
+
+  private:
+    // Choose your own data members.
+};</pre>
+
+<h2>Test program</h2>
+Here is a main program for testing the class.
+One strategy for implementing the class is to comment out all
+tests (using a /* ... */ comment), and uncomment the tests
+as you implement functions.
+<pre class="example">
+int main() {
+    int i, j;
+    IntStack s1;      // no max limit
+    IntStack s2(10);  // with max limit
+    
+    cout &lt;&lt; "Test 1: push, size" &lt;&lt; endl;
+    s1.push(10);
+    assert(s1.size() == 1);
+    
+    cout &lt;&lt; "Test 2: pop" &lt;&lt; endl;
+    i = s1.pop();
+    assert(i==10);
+    
+    cout &lt;&lt; "Test 3: size" &lt;&lt; endl;
+    assert(s1.size() == 0);
+    
+    cout &lt;&lt; "Test 4: underflow" &lt;&lt; endl;
+    try {
+        i = s1.pop();
+        assert(false);
+    } catch (underflow_error ue) {
+        ; // good work
+    }
+    
+    cout &lt;&lt; "Test 5: push, peek, pop, size" &lt;&lt; endl;
+    for (j=0; j&lt;1000; j++) {
+        s1.push(j);
+    }
+    assert(s1.peek() == 999);
+    assert(s1.size() == 1000);
+    for (j=0; j&lt;1000; j++) {
+        i = s1.pop();
+    }
+    assert(s1.size() == 0);
+    
+    
+    
+    cout &lt;&lt; "Test 6: overflow" &lt;&lt; endl;
+    try {
+        for (j=0; j&lt;1000; j++) {
+            s2.push(j);
+        }
+        assert(false);
+    } catch (overflow_error oe) {
+        ;  // ok
+    }
+    
+    
+    cout &lt;&lt; "Test 7: ==" &lt;&lt; endl;
+    s1.clear();
+    s1.push(1);
+    s1.push(2);
+    s1.push(4);
+    s1.pop();
+    s1.push(3);
+    
+    s2.clear();
+    s2.push(1);
+    s2.push(2);
+    s2.push(3);
+    assert(s1 == s2);
+    
+    
+    cout &lt;&lt; "Test 8: !=" &lt;&lt; endl;
+    s2.pop();
+    s2.push(4);
+    assert(s1 != s2);
+    
+    
+    cout &lt;&lt; "Test 9: &lt;&lt;" &lt;&lt; endl;
+    assert(s1.size()==3);
+    cout &lt;&lt; "stack = (" &lt;&lt; s1 &lt;&lt; ")" &lt;&lt; endl; 
+    assert(s1.size()==3);
+    
+    
+    cout &lt;&lt; "Congratulations!" &lt;&lt; endl;
+    return 0;
+}</pre>
+
+
+
+  
+<script type="text/JavaScript">footer("2002");</script>
+</body>
+
+</html>

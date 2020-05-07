@@ -1,0 +1,478 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>CMIS 140 Final Exam Superset</title>
+</head>
+<body>
+<h1>CMIS 140 Final Exam Superset</h1>
+
+
+Name: _________________________________
+
+
+<h2>Part I.A - Reading Programs (34 points)</h2>
+
+<ol>
+
+<li class="question">(10 points) What is printed by each of these statements. (One "free" miss
+    since there are 11 questions).
+
+<br /><br />__________ cout &lt;&lt; 7 / 2;
+<br /><br />__________ cout &lt;&lt; 7 % 2;
+<br /><br />__________ cout &lt;&lt; 2 % 3;
+<br /><br />__________ cout &lt;&lt; 5.0 / 2;
+<br /><br />__________ cout &lt;&lt; 1 + 2 * 3 / 4;
+<br /><br />__________ int x = 1; cout &lt;&lt; x++;
+<br /><br />__________ int x = 1; cout &lt;&lt; ++x;
+<br /><br />__________ int y = 2; y*= 3; cout &lt;&lt; y;
+<br /><br />__________ cout &lt;&lt; 4+3 * 4-3;
+<br /><br />__________ cout &lt;&lt; (1 > 2) ? 'a' : 'b';
+<br /><br />__________ int x=1, y=2; cout &lt;&lt; ((x>y)?5:0 > (x!=y)?6:-1) ? (x&lt;=y)?'a':'b') : (x==y)?'c':'d';
+</li>
+
+<li class="question">(1 point) What is printed by these statements?
+<pre>
+   int x=1, y=2;
+   if (x != y) {
+      cout &lt;&lt; "www";
+   }else{
+      cout &lt;&lt; "ppp";
+   }</pre>
+Output = ____________________________
+</li>
+
+<li class="question">(1 point) What is printed by these statements?
+<pre>
+   int x=1, y=2;
+   if (x &lt; y || x &gt; y) {
+      cout &lt;&lt; "www";
+   }else{
+      cout &lt;&lt; "ppp";
+   }</pre>
+Output = ____________________________
+</li>
+
+<li class="question">(1 point) What is printed by these statements?
+<pre>
+   int x=1, y=2;
+   if (x &lt; y &amp;&amp; x &gt; y) {
+      cout &lt;&lt; "www";
+   }else{
+      cout &lt;&lt; "ppp";
+   }</pre>
+Output = ____________________________
+</li>
+
+<li class="question">(1 point) What is printed by these statements?
+<pre>
+   int x=1, y=2;
+   if (x == 1) {
+      cout &lt;&lt; "www";
+   }else if (x &lt; y) {
+      cout &lt;&lt; "ppp";
+   }else{
+      cout &lt;&lt; "bbb";
+   }</pre>
+Output = ____________________________
+</li>
+
+<li class="question">(2 points) What is printed by these statements?  Write "infinite" if it never stops.
+    Write "nothing" if it doesn't print anything.
+<pre>
+   for (int j=0; j&lt;4; j++) {
+      cout &lt;&lt; j &lt;&lt; " ";
+   }</pre>
+Output = ____________________________
+</li>
+
+<li class="question">(2 points) What is printed by these statements?  Write "infinite" if it never stops.
+    Write "nothing" if it doesn't print anything.
+<pre>
+   for (int j=5; j&lt;0; j--) {
+      cout &lt;&lt; j &lt;&lt; " ";
+   }</pre>
+Output = ____________________________
+</li>
+
+<li class="question">(2 points) What is printed by these statements?  Write "infinite" if it never stops.
+    Write "nothing" if it doesn't print anything.
+<pre>
+   for (int j=5; j&gt;=5; j--) {
+      cout &lt;&lt; j &lt;&lt; " ";
+   }</pre>
+Output = ____________________________
+</li>
+
+<li class="question">(2 points) What is printed by these statements?  Write "infinite" if it never stops.
+    Write "nothing" if it doesn't print anything.
+<pre>
+   for (int j=1; j&lt;10; j*=2) {
+      cout &lt;&lt; j &lt;&lt; " ";
+   }</pre>
+Output = ____________________________
+</li>
+
+<li class="question">(3 points) What is printed by these statements?  Write "infinite" if it never stops.
+    Write "nothing" if it doesn't print anything.
+<pre>
+   int n = 0;
+   for (int j=0; j&lt;4; j++) {
+      cout &lt;&lt; "/";
+      if (j % 3 >= 2) {
+         break;
+      }else{
+         cout &lt;&lt; j &lt;&lt; " ";
+      }
+      cout &lt;&lt; "$";
+   }</pre>
+Output = ____________________________
+</li>
+
+<li class="question">(4 points) What is printed by these statements?  Write "infinite" if it never stops.
+    Write "nothing" if it doesn't print anything.
+<!-- XXXXXXXXXXX intended to exchange the limits so it looked like sort -->
+<pre>
+   for (int j=0; j&lt;4; j++) {
+      cout &lt;&lt; " j = " &lt;&lt; j &lt;&lt; " k = ";
+      for (int k=j+1; k&lt;4-1; k++) {
+         cout &lt;&lt; k &lt;&lt; " ";
+      }
+   }</pre>
+Output = ____________________________
+</li>
+
+<li class="question">(5 points) Given this program:
+<pre>
+#include &lt;iostream>
+using namespace std;
+
+int main() {
+    int x;
+    while (cin >> x) {
+        for (int i=x; i&gt;0; i--) {
+            cout &lt;&lt; '*';
+        }
+        cout &lt;&lt; endl;
+    }
+    return 0;
+}
+</pre>
+What would this program print with input 1 3 5 1 3 5?
+</li><li>(10 points) For the following questions assume the following declarations:
+   <pre>
+   float s; int n;
+   int   qqsv[] = {3, 1, 0, 2};
+   float nums[] = {3.5, 1.0, 1.5};
+   float wips[] = {2000., 300., -555, 0.0, 1.9999};
+   </pre>
+   
+   What is printed by these statements?
+<table border="1" cellspacing="0" cellpadding="4">
+<tr><th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Output&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th><th>Code</th></tr>
+
+<tr valign="top"><td>&nbsp;</td>
+<td>cout &lt;&lt; qqsv[2];</td></tr>
+
+<tr valign="top"><td>&nbsp;</td>
+<td>cout &lt;&lt; nums[qqsv[2]];</td></tr>
+
+<tr valign="top"><td>&nbsp;</td>
+<td>
+<pre>
+s = 0;
+for (int i=0; i&lt;3; i++) {
+   s = s + qqsv[i];
+}
+cout &lt;&lt; s;</pre></td></tr>
+
+
+<tr valign="top"><td>&nbsp;</td>
+<td>
+<pre>
+n = n-n;
+for (int i=0; i&lt;4; i++) {
+   if (wips[i] &gt; wips[i+1]) {
+      n++;
+   }
+}
+cout &lt;&lt; n;</pre></td></tr>
+
+
+<tr valign="top"><td>&nbsp;</td>
+<td>
+<pre>
+n = 0;
+for (int i=0; i&lt;3; i++) {
+   n += qqsv[(int)(nums[i]-1.0)];
+}
+cout &lt;&lt; n;</pre></td></tr>
+</table>
+</li>
+
+
+<li>(5 points) For the next group of questions assume these function definitions.
+<pre>
+   int f(int n){
+      for (int i=0; i&lt;n; i++) {
+         cout &lt;&lt; "f";
+      }
+      return n-1;
+   }
+   
+   void h(int m){
+      cout &lt;&lt; "h";
+      f(m-1);
+      cout &lt;&lt; "h";
+      return;
+   }
+</pre>
+
+What is printed by the following statements
+
+<br />__________ f(3);
+<br />__________ f(f(3));
+<br />__________ f(3) + f(3);
+<br />__________ h(3);
+<br />__________ h(f(3));
+
+</li>
+
+
+</ol>
+
+
+
+<h2>Part I.B - Writing Programs (36 points)</h2>
+<ol><li>(15 points) Fill in the blanks in the following program.
+    You may notice that the names aren't the same as those we
+    used in the similar example in class, and there are some
+    other small variations.  The comments explain what the program
+    does.
+<pre>
+
+// Program that reads numbers greater than zero, sorts them
+// from low to high, and prints them 10 per line.
+#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+using namespace std;
+
+int main() {
+   const int ASIZE = 10000;
+   int __________[ASIZE];
+   int size __________ 0;  // number of elements in array
+   
+   //--- read only numbers &gt; 0 into the array
+   while ((size &lt; __________) &amp;&amp; (cin &gt;&gt; bb[size])) {
+       if (bb[size] &gt; __________) {
+           size++;
+       }
+   __________
+   
+   //--- sort the array from low (bb[0]) to high
+   for (int f=0; f&lt;__________-1; f++) {
+       for (int d=f+1; d&lt;size; d++) {
+           if (bb[__________] __________ bb[f]) {
+               int __________ = bb[d];
+               bb[d] __________ bb[f];
+               bb[__________] = n;
+           }
+       }
+   }
+   
+   //--- print the array, 10 numbers per line.
+   for (int g=0; g&lt;size; g =  g + __________) {
+       if (g % 10 __________ 0) {
+           cout &lt;&lt; endl;
+       }
+       cout &lt;&lt; setw(6) __________ bb[__________];
+   }
+   
+   __________ 0;
+}</pre>
+</li>
+
+
+<li class="question">(3 points) Translate this <b>for</b> loop into an equivalent <b>while</b> loop.
+<pre>
+   . . . 
+   int power2 = 1;
+   for (int i=0; i&lt;n; i++) {
+       power2 *= power2;
+   }
+   cout &lt;&lt; power2;
+   . . .
+</pre>
+</li>
+
+<li>(3 points) Translate this <b>for</b> loop into an equivalent <b>while</b> loop.
+<pre>
+   . . . 
+   int sum = 0;
+   for (int i=n; i&gt;0; i--) {
+       sum += i;
+   }
+   cout &lt;&lt; sum;
+   . . .
+</pre>
+</li>
+
+
+<li>(5 points) Write a program that reads two floating point numbers from the 
+    input and prints their <b>average</b>.  You don't need a loop for this.
+    Assume there are always two numbers in the input stream.
+</li>
+
+
+<li>(10 points) Write a program which reads a sequence of integers
+    and counts how many times the number 55 occurs.  Print the count.
+    For example, with input 55 25 1004 4 -6 55 0 55, the output
+    should be <b>3</b> because there were 3 55's in the input stream.
+    Your program should work for any input, not just this example.
+</li>
+
+<li>(15 points) Write a program which reads numbers, then prints
+a parallelogram with edges that are that size.  For example,
+when it reads the number 5, the output would be
+<pre>
+  *****
+   *****
+     *****
+      *****
+       *****
+</pre>
+Hint: If n is the number that is read in, there will be n rows of 
+n stars.  Each successive row will have one more blank 
+at the beginning.
+</li>
+
+<li class="question">(3 points) Translate this <b>switch</b> statement into equivalent <b>if</b> statements.
+<pre>
+   . . . 
+   switch (xx) {
+      case 1: cout &lt;&lt; "Hello";
+              break;
+      case 3: cout &lt;&lt; "Goodbye";
+              break;
+      default: cout &lt;&lt; "Never mind.";
+   }
+   . . .
+</pre>
+</li>
+
+<li class="question">(5 points) Write a <b>program</b> that reads two numbers from the 
+    input and prints their sum.  You don't need a loop for this.
+    Assume there are always two numbers.
+</li>
+
+
+<li class="question">(10 points) Write a <b>program</b> to read a sequence of integers,
+    ignoring all numbers that are less than 1.
+    Count how many even and odd numbers there are, and print these
+    counts.  For example, with input 7 25 100 2 -6 1 0 3, the output
+    should be
+    <pre>
+    Even = 2, odd = 4</pre>
+    There were two even numbers (100 and 2), four odd numbers (7, 25, 1, and 3),
+    and two numbers were ignored (-6 and 0).  Your program should work for
+    any input, not just this example.
+</li>
+
+<li class="question">(15 points) An expressway toll booth needs a program that tells how much
+    to charge drivers.  The charge is based on how many people are
+    in the vehicle.  To encourage car-pooling, the cost is lower
+    for more people.  The cost is $6.00 for one person, 1/2 of that ($3.00)
+    for two people, 1/3 ($2.00) for three people, and in general 1/n for n people.
+    <br /><br />
+    Write a program that reads the number of people in the vehicle and 
+    prints the cost.  Print "ERROR" if a number less than 1 is entered.
+    It continues reading input in a loop.
+</li>
+<li>(5 points) Read in a sequence of numbers and print them out in reverse.
+    Do not use any functions for this problem.  Do use an array.
+</li>
+
+<li>(10 points) Write a function, countGreater, to count the number of values 
+in an array that are larger than a specified floating=point value. The prototype is<pre>
+   int countGreater(float val, float b[], int n);</pre>
+where b is an array of n floating-point numbers b[0]..b[n-1], and val is the 
+value you will compare against each of the array values.
+Example call in the main program:<pre>
+   float nums[] = {3.5, 1.0, 1.5};
+   float wips[] = {2000., 300., -555, 0.0, 1.9999};
+   int count = countGreater(1.0, nums, 3);
+   cout &lt;&lt; count;  // would print 1
+   count = countGreater(-33.3, wips, 5);
+   cout &lt;&lt; count;  // would print 4
+</pre>
+</li>
+   
+
+<li>(10 points) Write a function to compute the average 
+(sum of all values divided by the number of values)
+of all the floating-point values in an array.
+The function prototype is:<pre>
+   float computeAvg(float b[], int n);</pre>
+where b is an array of n floating-point values b[0]..b[n-1].  
+The function should compute the average value in the b 
+array and return that value.  Remember how you found
+the maximum value when reading values from cin with a while loop.  Use the
+same idea but go thru the array with a for loop.  If there are no values
+in the array, return 0.0 .  Remember, this function will not do any I/O.
+Example call in the main program:<pre>
+   float nums[] = {3.5, 1.0, 1.5};
+   float wips[] = {2000., 300., -555, 0.0, 1.9999};
+   float av = computeAverage(nums, 3);
+   cout &lt;&lt; av;  // would print 2.0
+   av = computeAverage(wips, 5);
+   cout &lt;&lt; av;  // would print 349.4
+</pre>
+</li>
+
+<li>(10 points) Write a program to read a sequence of floating-point numbers and 
+    print how many are greater than the average (mean) value.  
+    Use the functions from the above two questions -- you can assume they're 
+    written even if you didn't write them.
+    To read the numbers, assume there is a readFloatArray function which reads
+    input numbers into an array and returns the number of elements it read.
+    <br />Prototypes of functions you can assume are already defined:
+    <pre>
+int readFloatArray(float a[]); // reads into a, returns num of elems
+float computeAvg(float b[], int n); // average of b array
+int countGreater(float val, float b[], int n); // counts elems > val
+    </pre>
+</li>
+
+<li>(4 cancellation points) Extra credit.  You shouldn't try this program until you've done
+    the others because it's harder, but worth fewer points!
+    Any points on this question won't add to your
+    total, but will be used to cancel out up to 4 points off on one of the 
+    other program writing questions.
+    <br />This is another variation on the bar graph program.  We had programs
+    to print bar graphs with the base at the left.  Now try it so the base is at the bottom.
+    
+    <br /><br />You're going to have to save all the values in an array
+    and figure out how many rows you'll have to
+    print (the maximum value).  When you print each row, you'll have to make
+    a decision at each column position to print either a blank (the bar in that 
+    column has a lower
+    value) or a star('*') if the bar for this column is greater or equal to 
+    this row's "value".  Note that the subscripts in the array will correspond
+    to a column in the output.
+</li>
+
+
+
+
+    
+</ol>
+
+
+<script type="text/JavaScript">footer("2003");</script>
+</body>
+</html>
+

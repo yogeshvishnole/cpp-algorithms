@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="author" content="Fred Swartz (www.fredosaurus.com)" />
+  <link rel="stylesheet" type="text/css" href="../notes.css" />
+  <script type="text/JavaScript" src="../notes.js"></script>
+  <title>C++ Notes: I/O Manipulators</title>
+</head>
+
+<body>
+<h1><a href="../index.html">C++ Notes</a>: I/O Manipulators</h1>
+
+<i>Manipulators</i> are the most common way to control output
+formating.
+
+<h2>#include &lt;iomanip&gt;</h2>
+I/O <i>manipulators</i> that take parameters
+are in the <code>&lt;iomanip&gt;</code> include file.
+
+
+<h2>Default Floating-point Format</h2>
+Unless you use I/O manipulators (or their equivalent), the default
+format for each floating-point number depends on its value.
+<ul>
+<li class="compact">No decimal point: 1.0000 prints as 1</li>
+<li class="compact">No trailing zeros: 1.5000 prints as 1.5</li>
+<li class="compact">Scientific notation for large/small numbers: 1234567890.0 prints as 1.23457e+09</li>
+</ul>
+
+
+
+
+<h2>I/O Manipulators</h2>
+<p>The following output manipulators control the format of the output stream.
+Include <code>&lt;iomanip&gt;</code>
+if you use any manipulators that have parameters; the others are already included with <code>&lt;iostream&gt;</code>.
+The Range column 
+tells how long the manipulator will take effect: 
+<i>now</i> inserts something at that point,
+<i>next</i> affects only the next data element, and 
+<i>all</i> affects all subsequent data elements for the output stream.
+
+<table border="1" cellspacing="0" cellpadding="4" summary="I/O manipulators">
+<tr><th>Manip.</th><th>Rng</th><th>Description</th></tr>
+
+<tr><td colspan="3"><i>General output</i></td></tr>
+<tr><td><b><code>endl</code></b></td><td>now</td>
+    <td>Write a newline ('\n') and flush buffer.</td>
+</tr>
+<tr><td><b><code>setw(<i>n</i>)</code></b></td><td>next</td>
+    <td>Sets minimum field width on output. This sets the minimum
+    size of the field - a larger number will use more columns.
+    Applies only to the next element inserted in the output.
+    Use <code>left</code> and <code>right</code> to justify
+    the data appropriately in the field.
+    Output is right justified by default.
+    Equivalent to cout.width(<i>n</i>);
+    To print a column of right justified numbers in 
+    a seven column field:
+    <pre>
+    cout &lt;&lt; setw(7) &lt;&lt; n &lt;&lt; endl;</pre>
+    </td>
+</tr>
+<tr><td><b><code>width(n)</code></b></td><td>next</td>
+    <td>Same as <code>setw(n)</code>.</td>
+</tr>
+<tr><td><b><code>left</code></b></td><td>next</td>
+    <td>Left justifies output in field width.  Only useful after <code>setw(n)</code>.</td>
+</tr>
+<tr><td><b><code>right</code></b></td><td>next</td>
+    <td>Right justifies output in field width. Since this is the default, it is
+    only used to override the effects of <code>left</code>.  
+    Only useful after <code>setw(n)</code>.</td>
+</tr>
+
+<tr><td><b><code>setfill(<i>ch</i>)</code></b></td><td>all</td>
+    <td>Only useful after <code>setw</code>.  If a value does not entirely
+    fill a field, the character <i>ch</i> will be used to fill in the
+    other characters.  Default value is blank.  Same effects as <code>cout.fill(ch)</code>
+    For example, to print a number in a 4 character field with leading zeros (eg, 0007):
+    <pre>
+    cout &lt;&lt; setw(4) &lt;&lt; setfill('0') &lt;&lt; n &lt;&lt; endl;</pre></td>
+</tr>
+
+<tr><td colspan="3"><i>Floating point output</i></td></tr>
+<tr><td><b><code>setprecision(<i>n</i>)</code></b></td><td>all</td>
+    <td>Sets the number of digits printed to the right of the decimal point.
+        This applies to all subsequent floating point numbers written to 
+        that output stream.  However, this won't make floating-point &quot;integers&quot;
+        print with a decimal point.  It's necessary to use <code>fixed</code> for that effect. 
+        Equivalent to cout.precision(<i>n</i>);</td>
+</tr>
+<tr><td><b><code>fixed</code></b></td><td>all</td>
+    <td>Used fixed point notation for floating-point numbers. 
+    Opposite of <code>scientific</code>. If no precision has already been specified,
+    it will set the precision to 6.</td>
+</tr>
+<tr><td><b><code>scientific</code></b></td><td>all</td>
+    <td>Formats floating-point numbers in scientific notation.
+    Opposite of <code>fixed</code>.</td>
+</tr>
+
+<tr><td colspan="3"><i><code>bool</code> output</i></td></tr>
+<tr><td><b><code>boolalpha<br/>noboolalpha</code></b></td><td>all</td>
+    <td>Uses alphabetic representation (<code>true</code> and <code>false</code>)
+    for <code>bool</code> values. Turned off with <code>noboolalpha</code>.</td>
+</tr>
+
+<tr><td colspan="3"><i>Input</i></td></tr>
+<tr><td><b><code>skipws</code></b><br /><b><code>noskipws</code></b></td><td>all</td>
+    <td>For most input values (eg, integers and floating-point numbers), 
+        skipping initial whitespace (eg, blanks) is very useful.
+        However, when reading characters, it is often desired to read the
+        whitespace characters as well as the non-spacing characters.
+        The these I/O manipulators can be used to turn whitespace skipping
+        off and on.  Eg,
+        <br /><code>cin &gt;&gt; noskipws;</code>
+        <br />turns whitespace skipping off for all subseqent <code>cin</code> input.</td>
+</tr>
+<tr><td><b><code>ws</code></b></td><td>now</td>
+    <td>Reads and ignores whitespace at the current position.</td>
+</tr>
+<tr><td colspan="3"><i>Other</i></td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td>
+    <td>showpoint, noshowpoint, uppercase, nouppercase, 
+    dec, oct, hex, setbase(<i>8|10|16</i>), showbase, noshowbase,
+    ends, showpos, noshowpos,
+    internal, flush, unitbuf, nounitbuf, setiosflags(<i>f</i>), resetiosflags(f)</td>
+</tr>
+
+</table>
+
+
+<h2>Example</h2>
+<pre class="example">
+#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+using namespace std;
+int main() {
+    const float tenth = 0.1;
+    const float one   = 1.0;
+    const float big   = 1234567890.0;
+                            
+    cout &lt;&lt; &quot;A. &quot;                    &lt;&lt; tenth &lt;&lt; &quot;, &quot; &lt;&lt; one &lt;&lt; &quot;, &quot; &lt;&lt; big &lt;&lt; endl;
+    cout &lt;&lt; &quot;B. &quot; &lt;&lt; fixed           &lt;&lt; tenth &lt;&lt; &quot;, &quot; &lt;&lt; one &lt;&lt; &quot;, &quot; &lt;&lt; big &lt;&lt; endl;
+    cout &lt;&lt; &quot;C. &quot; &lt;&lt; scientific      &lt;&lt; tenth &lt;&lt; &quot;, &quot; &lt;&lt; one &lt;&lt; &quot;, &quot; &lt;&lt; big &lt;&lt; endl;
+    cout &lt;&lt; &quot;D. &quot; &lt;&lt; fixed &lt;&lt; setprecision(3) &lt;&lt; tenth &lt;&lt; &quot;, &quot; &lt;&lt; one &lt;&lt; &quot;, &quot; &lt;&lt; big &lt;&lt; endl;
+    cout &lt;&lt; &quot;E. &quot; &lt;&lt; setprecision(20) &lt;&lt; tenth &lt;&lt; endl;
+    cout &lt;&lt; &quot;F. &quot; &lt;&lt; setw(8) &lt;&lt; setfill('*') &lt;&lt; 34 &lt;&lt; 45 &lt;&lt; endl;
+    cout &lt;&lt; &quot;G. &quot; &lt;&lt; setw(8) &lt;&lt; 34 &lt;&lt; setw(8) &lt;&lt; 45 &lt;&lt; endl;
+    
+    return 0;
+}
+</pre>
+produces this output (using DevC++ 4.9.8.0):
+<pre class="example">
+A. 0.1, 1, 1.23457e+009
+B. 0.100000, 1.000000, 1234567936.000000
+C. 1.000000e-001, 1.000000e+000, 1.234568e+009
+D. 0.100, 1.000, 1234567936.000
+E. 0.1000000014901161
+F. ******3445
+G. ******34******45
+</pre>
+Lines F and G show the scope of <code>setw()</code> and <code>setfill()</code>.
+
+
+<script type="text/JavaScript">footer("2000-2003");</script>
+</body>
+</html>

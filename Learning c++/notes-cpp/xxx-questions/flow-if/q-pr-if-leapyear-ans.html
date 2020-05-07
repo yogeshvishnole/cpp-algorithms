@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com/fred)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++: Leap year problem - Answer</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++</a>: Leap year problem - Answer</h1>
+<p>Name __________________________________
+</p>
+<p>OPEN BOOK</p>
+<p>(5 points) Write a program to read in a year (int) and print
+whether it is a leap year or not.  Read using a <code>cin</code> loop.
+</p>
+
+<p>The Earth refuses to revolve
+around the Sun in an integer number of days.  To adjust the 
+number of days in our calendar to approximate the year, 
+extra days are inserted from time to time.  The rules for
+when to add February 29 are the following.
+</p>
+<ol>
+<li>The year is divisible by four (eg, 1980, 1984, 2004).
+    This does a good job, but the calendar years are now a little too long on the average, 
+    so the following adjustment is made to omit some leap years.</li>
+<li>It's not a leap year if it's divisible by 100.  Altho 1800 is divisible by
+    four, it divisible by 100, so it isn't a leap year.  
+    Much better approximation, but now the the average year is just
+    a little bit too short.  so another adjustment has to be made.</li>
+<li>It is a leap year, even if it is divisible by 100,
+    if it's divisible by 400.  So 1800 and 1900 (divisible by 100) 
+    were not leap years, 
+    but 2000 (divisible by 400) was a leap year.
+    This is now so close that it will be 60,000 years before the
+    calendar is off by one day.</li>
+</ol>
+
+<h2>Solution</h2>
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+</pre></td><td valign='top'>
+<div class="example"><pre>
+/ questions/leapyear.cpp - Determine whether year is leap year or not.
+// 2003-11-03 -- Fred Swartz
+
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int year;
+    
+    cout &lt;&lt; "Enter a year." &lt;&lt; endl;
+    
+    while (cin &gt;&gt; year) {
+        if ((year%4==0 &amp;&amp; year%100!=0) || year%400==0) {
+            cout &lt;&lt; year &lt;&lt; " is a leap year." &lt;&lt; endl;
+        } else {
+            cout &lt;&lt; year &lt;&lt; " is not a leap year." &lt;&lt; endl;
+        }    
+    }
+    return 0;
+}
+</pre></div>
+</td></tr></table>
+
+
+<script type="text/JavaScript">footer("2003");</script>
+</body>
+
+</html>

@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Array Parameters</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Passing Array Parameters</h1>
+
+   
+<h2>Array variables as parameters</h2>
+   When an array is passed as a parameter, only the memory <i>address</i>
+   of the array is passed (not all the values).
+   An array as a parameter is declared similarly to an array
+   as a variable, but <i>no bounds are specified</i>. 
+   The function doesn't know how much space is allocated
+   for an array.
+   See the example below.
+   
+<h2>Example -- Function to add numbers in an array</h2>
+This main program calls a function to add all the elements
+in an array and uses the returned value to compute the
+average.
+
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+ 22 
+ 23 
+ 24 
+ 25 
+ 26 
+ 27 
+ 28 
+ 29 
+ 30 
+ 31 
+ 32 
+</pre></td><td valign='top'>
+<div class="example"><pre>
+// arrays/average.cpp - Averages numbers
+// Fred Swartz - 2003-11-20
+
+#include &lt;iostream&gt;
+using namespace std;
+
+float sum(const float x[], const int size); // prototype
+
+//====================================================== main
+int main() {
+    float a[1000];     // Declare an array of 1000 floats
+    int n = 0;         // number of values in a.
+
+    while (cin &gt;&gt; a[n]) {
+        n++;
+    }
+    
+    cout &lt;&lt; "Average = " &lt;&lt; <span class="hilite">sum(a, n)</span>/n &lt;&lt; endl;
+    
+    return 0;
+}
+
+
+//======================================================= sum
+// sum adds the values of the array it is passed.
+float sum(const float x[], const int size) {
+    float total = 0.0;  // the sum is accumulated here
+    for (int i=0; i&lt;size; i++) {
+        total = total + x[i];  
+    }
+    return total;
+}
+</pre></div>
+</td></tr></table>
+
+<p>
+Because this application reads an unbounded number of values,
+it is subject to <i>buffer overflow</i>, trying to read more
+values into an array than will fit.   A more appropriate
+data structure to use is a vector, which will expand as 
+necessary to accomodate data.  
+See <a href="../stl-containers/vector/vector-parameters.html">Passing Vectors as Parameters</a>.
+    
+<script type="text/JavaScript">footer("2003");</script>
+</body>
+
+</html>

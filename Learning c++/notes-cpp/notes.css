@@ -1,0 +1,89 @@
+body   {font-family: Verdana,Sans-serif; font-size: 90%; width: 800px;}
+td, th {font-family: Verdana,Sans-serif;}
+/* dt     {font-family: Verdana,Sans-serif; font-size: 90%; padding-top: 0.5em;} */
+dt     {font-weight: bold;}
+
+h1   {
+	font-size : 150%;
+	font-weight: normal;
+	font-family: 'Trebuchet MS' , 'Lucida Grande' , Verdana, Lucida, Geneva, Helvetica, Arial, sans-serif;
+	margin-left: 1px;
+	border-bottom: thin solid;
+}
+h2 {
+	font-size: 110%;
+    font-weight: bold;
+	color: #600;
+    border-style: solid;
+    border-color: #660000;
+    border-width: 0px 0px 1px 0px;
+    padding: 0.2em;
+    padding-left: 0;
+	margin-top: 2em;
+    margin-left: 1px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+}
+h3 {
+    font-size: 100%;
+	font-weight: bold;
+	margin-bottom: 0;
+	margin-top   : 0.75em;
+	padding-top  : 0.0;
+	padding-bottom: 0.0;
+	color: #055;
+}
+p   {margin-top:0.5em; margin-bottom: 0.5em}
+li  {margin-top:0.5em;}
+h4,h5,h6 {font-family: sans-serif; padding-top: 1em; }
+pre  {font-family: monospace; margin-top: 0; margin-bottom: 0;}
+.code {font-family: monospace;}
+
+strong.color {color: blue}  /* is this still used??? */
+.hylyt    {font-weight: bold; background-color: yellow;}
+.hilite   {font-weight: bold; background-color: yellow;}
+.hilite-g {font-weight: bold; background-color: #afa;}
+.hilite-b {font-weight: bold; background-color: #aaf;}
+
+em   {font-style: italic; font-weight: bold }
+ul   {margin-top: 0; margin-bottom: 0;}
+ol   {margin-top: 0; margin-bottom: 0;}
+dl   {margin-top: 0; margin-bottom: 0;}
+li.sec   {margin-top: 0.5em;}
+.answerspace {}
+.answer {display: none;}
+.compact {margin-top: 0;}
+.file {padding : 4px;
+             margin-left  : 1em; 
+             border-left  : solid thin;
+             border-top   : solid thin;
+             border-right : solid;
+             border-bottom: solid;
+             margin-top   : 0.5em;
+             margin-bottom: 0.5em;
+             background-color: #FFD;}
+.example {padding      : 4px;
+             margin-left  : 1em; 
+             border-left  : solid thin;
+             margin-top   : 0.5em;
+             margin-bottom: 0.5em;
+             background-color: #FFD;}
+.fragment {padding      : 4px;
+             margin-left  : 1em;
+             border-left  : solid thin;
+             margin-top   : 0.5em;
+             margin-bottom: 0.5em;
+             background-color: #FFD;}
+.example2 {padding: 4px; margin-left: 0; margin-top: 0.5em; margin-bottom: 0.5em;}
+.footer  {
+	font-size: 70%;
+	font-style:italic;
+	border-top : thin solid;
+	margin-top : .8em ;
+}
+
+.solidbox {border : thin solid;}
+
+.rowheader {background-color: #C0C0C0; font-style: italic;}
+.question  {margin-top: 1.0em; page-break-inside: avoid}
+.mc        {list-style-type: lower-alpha;}

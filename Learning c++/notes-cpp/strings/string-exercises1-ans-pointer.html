@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com/fred)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+<title>C++: C-Strings: Exercises 1: Answers Pointers</title>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: C-Strings: Exercises 1: Answers Pointers</h1>
+
+Here are the exercises with the answers.  All functions use a typical pointer solution.
+The prototypes for the actual library functions are slightly different, 
+especially because some of the library functions return the address
+of the first argument instead of void.
+<ol>
+
+<li>Write a <code>myStrlen</code> function which is the same as the library <code>strlen</code> function.  
+Assume the prototype is
+<pre>
+    int myStrlen(char* a);</pre>
+<pre class="example">
+//======================================================= myStrlen_p
+    //=== return length of c-string (same as strlen)
+int  myStrlen_p(char* a) {
+    char* cp = a;
+    while (*cp++)
+        ;
+    return cp-a-1;
+}//end myStrlen_p</pre>
+</li>
+
+<li>Write the <code>myStrcpy</code> function which is the same as the library <code>strlen</code> function.  
+Assume the prototype is
+<pre>
+    void myStrcpy(char* a, char* b);</pre>
+Solution using pointers:
+<pre class="example">
+//======================================================= myStrcpy_p
+    //=== Like strcpy - typical cryptic coding.
+void myStrcpy_p(char* a, char* b) {
+    while (*a++ = *b++)  // assignment, not comparison
+        ;
+}//end myStrcpy_p </pre>
+</li>
+
+
+</body>
+</html>
+

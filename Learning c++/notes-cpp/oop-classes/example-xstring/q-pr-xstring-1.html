@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www/leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <title>C++: Programming: xstring 1</title>
+</head>
+
+<body>
+
+<h1><a href="../../index.html">C++</a>: <a href="../../index.html#OOP">OOP</a>: Programming: xstring 1</h1>
+
+
+<h3>Programming Problem - xstring</h3>
+
+<p>Develop a string-like struct, <code>xstring</code>, which we will later turn into a class.
+The struct should be modeled on the Stash struct in <i>Thinking in C++</i> (see p 230...).
+It will be used to store character strings, not arbitrary data.
+</p>
+
+<p>This program is the basis for future problems, as we extend xstring
+to become more like the STL string class.  As we cover topics in the
+text, we will be using this knowledge to enhance the xstring struct/class.
+</p>
+
+<p>Because we are aiming at string-like functionality, some Stash functions
+   should have their names changed so that
+   they match those in the STL string class.
+</p>
+
+<h3>Name changes from Stash to xstring</h3>
+<dl>
+<dt><code>void append(const char* cstring);</code></dt>
+    <dd>This adds the characters 
+    in the cstring to the end of the existing characters.  This replaces the
+    <i>add</i> function of Stash.
+    </dd>
+<dt><code>int size();</code></dt>
+    <dd>This returns the number of characters that are
+    stored in the current xstring.  This replaces the <i>count</i> function of Stash.
+    </dd>
+    
+<dt><code>char at(int index);</code></dt>
+    <dd>This returns the character at position <i>index</i>.
+    It is a replacement for the Stash <i>Fetch</i> function.
+    </dd>
+    
+<dt>Other functions</dt>
+    <dd>Functions such as <i>initialize</i>, <i>cleanup</i>, and <i>inflate</i>
+    may remain with the same names, altho they will change in the future to adapt
+    to the evolution toward string.
+    </dd>
+</dl>
+
+
+<h3>Due</h3>
+<p><b>Due</b>: Sunday, Dec 5.  The deliverables include <code>xstring.h</code>,
+   <code>xstring.cpp</code>,
+   <code>xstringtest.cpp</code> (a test program).
+   </p>
+
+<div class="footer">Copyleft 2004 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+</html>
+

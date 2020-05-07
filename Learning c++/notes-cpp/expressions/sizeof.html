@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++: sizeof operator</title>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: sizeof operator</h1>
+
+It's sometimes necessary to know how much memory is used for variables.
+Because the C standard was written after there were C compilers,
+the size of types was already different in different compilers and
+on different machine architectures.  Therefore there is no single
+definition of how big an int is, for example.
+
+<p>If it's necessary to find out how much memory a type uses,
+you can use the <code>sizeof</code> operator, which returns the 
+amount of memory need in <b>bytes</b>. (8 bits per byte)   Altho it is
+technically an operator, everyone writes it as if it was a
+function.  For example,
+<pre class="example">
+  cout &lt;&lt; sizeof(int);
+</pre>
+would print 4 on many current compilers because that is the 
+most common (Dev C++, MS Visual Studio, Borland C++Builder, gcc, ...).
+In fact, many programs simply make some assumptions about the size
+of variables.  It is common to assume they are 32, but if you want
+to write for maximum portability, it is better to use sizeof.
+</p>
+
+<p>The single operand (argument) to sizeof is either a <i>type</i> or
+a variable.  
+</p>
+   
+<script type="text/JavaScript">footer("2001");</script>
+</body>
+
+</html>

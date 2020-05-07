@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Pointers</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Pointers</h1>
+
+
+<h2>Pointers in C/C++</h2>
+Pointers are variables that contain memory addresses
+(see <a href="05addr-ptr-ref.html">Addresses, Pointers, and References</a>).
+They are an essential
+data type in C and C++, and are used for the following:
+<ul>
+   <li>Array variables are pointers and pointers can be used as alternative to subscripts.</li>
+   <li>Dynamic memory allocation/deallocation returns a pointer to the allocated memory.</li>
+   <li>For efficiency by passing the address of an object instead of copying the
+       object to a function.  Reference parameters typically used.</li>
+   <li>For function parameters that will be changed by the function
+       (<i>out</i> or <i>inout</i> parameters).  Reference parameters typically used.</li>
+</ul>
+
+
+<h2>Declaring a pointer</h2>
+Pointers are declared to point to a particular datatype.  
+A "*" is written after the type to indicate that this is a pointer to that
+type. For example, a pointer to an int would be declared like this.
+<pre class="example">
+int* ip;  // declares ip to be a pointer to an int.
+</pre>
+You will also see variations in the spacing such as
+<pre class="example">
+int *ip;
+int * ip;
+</pre>
+
+<h2>NULL</h2>
+<p>NULL is the pointer to nothing, and should be used as the initial value for
+pointers because using NULL will cause an error in most systems.
+</p>
+
+
+<h2>Pointer operators: * (dereference), &amp; (address of), and arithmetic</h2>
+Two operators are used when dealing with memory addresses:
+<ul>
+<li class="compact">Unary &amp; gives the <i>address of</i> (pointer to) something.</li>
+<li class="compact">Unary * takes the contents of a pointer (<i>dereferences</i> a pointer).</li>
+<li class="compact">Integers can be added to pointers, in which case they are first
+     multiplied by the element size</li>
+<li class="compact">Two pointers may be subtracted to yield an integer.</li>
+</ul>
+
+
+<h2>Example</h2>
+<pre class="example">
+char* cp;     // declare pointer to char
+char  c, d;   // declare char variables
+
+cp  = &amp;c;     // puts address of c into cp
+c   = 'x';    // assigns 'x' to c
+*cp = 'x';    // also assigns 'x' to c
+d   = *cp;    // copies c's value to d
+cp  = &amp;d;     // puts address of d into cp
+*cp = c;      // puts value of c into d
+</pre>
+
+
+<script type="text/JavaScript">footer("2000-4");</script>
+</body>
+
+</html>

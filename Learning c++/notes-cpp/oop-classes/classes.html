@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www/leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Classes</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Classes</h1>
+
+<h2>History of C++</h2>
+Bjarne Stroustrup of Bell Labs extended the C language to be capable
+of Object-Oriented Programming (OOP), and it became popular in the
+1990's as C++.  There were several enhancements, but the central change was
+extending <code>struct</code> to allow it to contain functions
+and use inheritance.  These extended structs were later renamed <i>classes</i>.  
+A C++ standard was established in 1999, so 
+there are variations in the exact dialect that is accepted by pre-standard
+compilers.
+
+
+<h2>Public and Private parts</h2>
+All member fields in a class are <i>private</i> by default 
+(no code outside the class can reference them), whereas
+fields of a struct are <i>public</i>, meaning that anyone
+can use them. For example,
+
+<pre class="example">
+struct Product {
+   char mfg_id[4];    // 4 char code for the manufacturer.
+   char prod_id[8];   // 8-char code for the product
+   int  price;        // price of the product in dollars.
+   int  qty_on_hand;  // quantity on hand in inventory
+};
+</pre>
+could be rewritten as a class like this
+<pre class="example">
+class Product {
+<b>public:</b>
+    char mfg_id[4];    // 4 char code for the manufacturer.
+    char prod_id[8];   // 8-char code for the product
+    int  price;        // price of the product in dollars.
+    int  qty_on_hand;  // quantity on hand in inventory
+};
+</pre>
+
+
+
+
+
+   
+<script type="text/JavaScript">footer("2000");</script>
+</body>
+
+</html>

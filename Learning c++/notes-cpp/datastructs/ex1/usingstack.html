@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>C++: Containers: Example 1 Using a stack</title>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../../notes.js"></script>
+</head>
+<body>
+<h1><a href="../../index.html">C++</a>: Containers: Example 1 Using a Stack</h1>
+One of three contrasting examples of solving the problem with increasingly
+powerful tools: 
+<a href="usingarray.html">using arrays</a>, then 
+<a href="usingvector.html">vectors</a>, then 
+<a href="usingstack.html">stacks</a>.
+<pre class="example">
+// Read words and print them in reverse order.
+//   Variation using stack and string.
+// Fred Swartz 2001-11-08, 2001-12-04
+
+#include &lt;iostream&gt;
+#include &lt;stack&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main() {
+
+    stack&lt;string&gt; allwords; // stack of all words
+    string word;            // input buffer for words.
+
+    // read words/tokens from input stream
+    while (cin &gt;&gt; word) {
+        allwords.push(word);
+    }
+    
+    cout &lt;&lt; "Number of words = " &lt;&lt; allwords.size() &lt;&lt; endl;
+
+    // write out all the words in reverse order.
+    while (!allwords.empty()) {
+       cout &lt;&lt; allwords.top() &lt;&lt; endl;
+       allwords.pop();            // remove top element
+    }
+    return 0;
+}//end main</pre>
+
+   
+<script type="text/JavaScript">footer("2001");</script>
+</body>
+
+</html>

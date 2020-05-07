@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++: Class for 3-valued logic</title>
+</head>
+<body>
+<h1>C++: Class for 3-valued logic</h1>
+Some languages, most notably SQL, use three-valued logic: true, false, and unknown.
+
+<h2>Truth table for and</h2>
+
+<br />
+<table border="1" summary="">
+<tr><td width="25%">&amp;&amp;</td><td width="25%"><i>true</i>   </td><td width="25%"><i>false</i>  </td><td width="25%"><i>unknown</i></td></tr>
+<tr><td><i>true</i>      </td><td><b>true</b>   </td><td><b>false</b>  </td><td><b>unknown</b></td></tr>
+<tr><td><i>false</i>     </td><td><b>false</b>  </td><td><b>false</b>  </td><td><b>false</b></td></tr>
+<tr><td><i>unknown</i>   </td><td><b>unknown</b></td><td><b>false</b></td><td><b>unknown</b></td></tr>
+
+</table>
+
+<h2>Truth table for or</h2>
+<table border="1" summary="">
+<tr><td width="25%">||        </td><td width="25%"><i>true</i>   </td><td width="25%"><i>false</i>  </td><td width="25%"><i>unknown</i></td></tr>
+<tr><td><i>true</i>      </td><td><b>true</b>   </td><td><b>true</b>   </td><td><b>true</b></td></tr>
+<tr><td><i>false</i>     </td><td><b>true</b>   </td><td><b>false</b>  </td><td><b>unknown</b></td></tr>
+<tr><td><i>unknown</i>   </td><td><b>true</b>   </td><td><b>unknown</b></td><td><b>unknown</b></td></tr>
+
+</table>
+  
+  
+<h2>Write a class, L3,  for 3-valued logic</h2>
+It should have some of the following characteristics.
+<ul>
+<li>Override assignment so that bools can be assigned to an L3 object.</li>
+<li>Override <code>&amp;&amp;</code> to work with L3s and bools.
+    The operators <code>||</code> and <code>!</code> should also be overridden, but
+    writing <code>&amp;&amp;</code> is sufficient.</li>
+<li>Define three new constants: <code>L3::TRUE3</code>, <code>L3::FALSE3</code>,
+    and <code>L3::UNKNOWN3</code>.
+    </li>
+<li>Define three member functions:
+<pre>
+   bool isTrue();
+   bool isFalse();
+   bool isUnknown();</pre>
+   </li>
+</ul>
+<script type="text/JavaScript">footer("2004");</script>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <title>C++: Exercises - Extending my_vector</title>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: Exercises - Extending <code>my_vector</code></h1>
+
+<p>Name __________________________________</p>
+
+
+<pre class="fragment">
+template&lt;class T&gt;
+class my_vector {
+  public:
+    my_vector&lt;T&gt;();        // default constructor
+    my_vector&lt;T&gt;(int cap); // constructor specifying capacity
+    my_vector&lt;T&gt;(const my_vector&amp; fv); // copy constructor
+    ~my_vector&lt;T&gt;();       // destructor
+
+    T&amp;    at(int position) const;      // return element at position
+    int   capacity() const;        // current max possible
+    void  clear();                 // delete all items
+    bool  empty() const;           // true if no elements in vector
+    void  erase(int position);     // delete item at position
+    void  insert(int position , T item);  // insert item at position
+    T&amp;    operator[](int subscript) const;// same as at.
+    bool  operator==(my_vector&amp; v) const; // true if contain equal vals
+    void  pop_back();              // return last element and remove
+    void  push_back(T item);       // add item to end
+    void  replace(int position, T item); // replace item at position
+    void  resize(int new_capacity);// reallocate memory
+    int   size() const;            // number of elements in vector
+
+  private:
+    int  _capacity; // current allocation for _info array.
+    int  _size;     // current "size"
+    T *  _info;     // pointer to array of Ts
+};</pre>
+    
+
+<ol>
+  <li>Overload the += operator so that
+    <pre>
+    my_vector&lt;double&gt; v1, v2;
+    . . .
+    v1 += v2;</pre>
+    adds all of the elements in v2 to the end of v1.
+    </li>
+    
+  <li>Write the copy constructor.</li>
+    
+
+  <li>Write
+    <pre>
+    bool  operator==(my_vector&amp; v) const;</pre>
+    </li>
+    
+  <li>Write
+    <pre>
+    void  resize(int new_capacity);</pre>
+    </li>
+</ol>
+
+
+
+  
+<script type="text/JavaScript">footer("2004");</script>
+</body>
+
+</html>

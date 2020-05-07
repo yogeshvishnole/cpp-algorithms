@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++: Programming Problem - Prompt Y/N</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++</a>: Programming Problem - Prompt Y/N</h1>
+
+
+<p>Name: _________________________________ </p>
+
+
+<p>Write a function named <b>promptYN</b> which takes one string parameter.
+    It prints the string (which is a question the caller supplies) on cout, then
+    prompts the user to enter Y or N.
+    It then reads one character from cin.  If the character
+    is a 'Y', the function returns true, if the character is a 'N', it returns false,
+    if the characer is neither of the above, your function should prompt the user again for a 'Y' or 'N'
+    and read another character, continuing with this until a Y or N is entered.
+    The prototype should be the following.
+</p>
+<pre>
+   bool promptYN(string question);</pre>
+
+<h3>Sample Usage</h3>
+<p>For example,
+</p>
+    <pre>
+    while (promptYN("Do you want to continue")) . . .
+    </pre>
+    would continue executing the loop as long as the user answered Y.
+</body>
+</html>
+

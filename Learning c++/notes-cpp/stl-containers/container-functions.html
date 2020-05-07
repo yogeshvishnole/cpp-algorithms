@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: STL: Common Container Functions</title>
+</head>
+
+<body>
+<h1><a href="../index.html">C++ Notes</a>: STL:  CommonContainer Functions</h1>
+
+<p>This brief overview shows that many containers can be accessed by the
+   same functions.  There are some differences in details (eg, the 
+   associative containers (map and multimap) use keys).
+   </p>
+   
+<table border="1" cellspacing="0" cellpadding="4">
+<tr><th>                     </th><th colspan="3">Sequence</th><th colspan="4">Associative</th><th colspan="3">Adapter</th></tr>
+<tr><th>Function             </th><th>Ve</th><th>DQ</th><th>Li</th><th>Ma</th><th>MM</th><th>Se</th><th>MS</th><th>ST</th><th>Qu</th><th>PQ</th></tr>
+<tr><td colspan="11"><i>Constructors and Destructor</i></td></tr>
+<tr><td><code><i>Container c</i>     </code></td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>?</td><td>?</td><td>?</td></tr>
+<tr><td><code><i>Container c1(c2)</i></code></td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>?</td><td>?</td><td>?</td></tr>
+<tr><td><code><i>Container</i> c(<i>beg</i>, <i>end</i>)</code></td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+<tr><td><code>c.~<i>Container</i>()  </code></td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+<tr><td colspan="11"><i>Creating Iterators</i></td></tr>
+<tr><td><code>c.begin() </code></td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><code>c.end()   </code></td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><code>c.rbegin()</code></td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><code>c.rend()  </code></td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td colspan="11"><i>Operators</i></td></tr>
+<tr><td>        </td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+<tr><td>        </td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+<tr><td>        </td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+<tr><td colspan="11"><i>Accessing elements</i></td></tr>
+<tr><td><code>c.back() </code></td><td>Y</td><td>Y</td><td>Y</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>Y</td><td>-</td></tr>
+<tr><td><code>c.front()</code></td><td>Y</td><td>Y</td><td>Y</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>Y</td><td>-</td></tr>
+<tr><td><code>c[x]     </code></td><td>Y</td><td>Y</td><td>-</td><td>Y</td><td>Y</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><code>c.at(x)  </code></td><td>Y</td><td>Y</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><code>c.top()  </code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>Y</td><td>-</td><td>Y</td></tr>
+<tr><td colspan="11"><i>Inserting and removing elements</i></td></tr>
+<tr><td><code>c.clear()          </code></td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><code>c.insert(pos, elem)</code></td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+<tr><td><code>c.erase(beg, end)  </code></td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+<tr><td>        </td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+<tr><td>        </td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+<tr><td colspan="11"><i>Other</i></td></tr>
+<tr><td><code>c.size() </code></td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>?</td><td>?</td></tr>
+<tr><td><code>c.empty()</code></td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>?</td><td>?</td></tr>
+</table>
+
+
+<script type="text/JavaScript">footer("2003");</script>
+</body>
+</html>
+

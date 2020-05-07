@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www/leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <title>C++ Notes: From linear singly linked lists to list class</title>
+</head>
+
+<body>
+<h1><a href="../index.html">C++ Notes</a>: From linear singly linked lists to <i>list</i> class</h1>
+
+<h2>Background</h2>
+
+<p>The history of linked lists is long, with many implementation variations.
+Early lists often concentrated on economical use of memory (eg, single links).
+Bidirectional lists became the standard as memory prices dropped, and as 
+OOP because the standard, the C++ STD <i>list</i> and Java <i>LinkedList</i> classes
+have replaced hand-made lists and replaced the link implementation details 
+with iterators.
+</p>
+<p>Linked lists are favorite topics of textbooks, and really wonderful exercises
+for learning to work with pointers, but don't even think about using your own
+lists.  Use the library lists instead.
+</p>
+
+<h2>Singly linked lists</h2>
+<p>When memory was scarce, small data structures were 
+critically important.  It's still important, but if using a little extra 
+memory can be used to make algorithms easier, it's worth it.
+Some problems with singly-linked lists:
+</p>
+<ul>
+<li>Unable to delete a node giving a pointer to it.</li>
+<li>Unable in insert in front of pointer to a node.</li>
+<li>Unable to move backwards easily.</li>
+<li>It may require moving down the entire list to get to the end.</li>
+</ul>
+
+<h2>Circular singly linked lists</h2>
+<p>If the last element is linked to the first, the entire list
+forms a ring, there are no longer any special end cases.  The "end" of the list
+is when you get back to the starting point.  This eliminates
+the concept of front and back of the list, which may or may not be an advantage.</p>
+
+<h2>Doubly linked lists</h2>
+<p>A solution to the above problems is to add an extra link in to the previous
+element in each node.  The memory cost is generally considered worth the 
+convenience it buys.  A node might be declared as follows (non-OOP):
+</p>
+
+<pre class="fragment">
+// Node for doubly linked list of floats.
+struct Node {
+    Node* next;  // Pointer to next element
+    Node* prev;  // Pointer to previous element
+    float data;
+};</pre>
+
+<p>The common operations of inserting and deleting become easy.
+There are still some problems that remain.  
+</p>
+<ul>
+<li>The ends present special cases in insertion and deletion.</li>
+</ul>
+
+<h2>Circular doubly linked lists</h2>
+<p>Doubly linked lists still have end point problems that can be solved
+but making them circular.
+Problems still remain.
+</p>
+<ul>
+<li>The empty list can be an annoying special case.</li>
+<li>Updating the front (head) or back (tail) of a list pose serious problems
+    if the code is executed several call invocations away.</li>
+</ul>
+
+
+<h2>Circular doubly linked lists with dummy node</h2>
+<p>The advantage of a dummy node is that there is a reference point to identify 
+the front and back.
+</p>
+<p>Secondly, there is something in the list even when the list
+is empty.  The advantage of this may not be immediately obvious,
+but having a pointer to this dummy element represent the list 
+allows list manipulations to take place without having to store back
+into this pointer.
+</p>
+
+<h2>OOP - list class and iterators</h2>
+<p>Lists are represented by an object that contains little more than
+a pointer to the list elements.  You might think of it as a pointer
+to a dummy node in a circular doubly linked list.  
+The beauty of OOP is that the implementation can be completely hidden
+Movement around the list uses an <i>iterator</i>, which hides
+the implementation details of the node and pointers.
+</p>
+    
+
+
+
+<div class="footer">Copyleft 2004 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+</html>
+

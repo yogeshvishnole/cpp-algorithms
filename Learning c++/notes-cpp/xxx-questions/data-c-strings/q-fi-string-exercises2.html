@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+<title>C++: Questions - C-string Functions</title>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: Questions - C-string Functions</h1>
+<p>Name _______________________________</p>
+<p>Fill in each blank with a single missing element (operator, keyword,
+variable, literal, ...).</p>
+
+<pre class="example">
+#include &lt;cstring&gt;
+#include &lt;cctype&gt;
+using namespace std;
+
+//=========================================== count
+// Returns the number of times the second parameter
+// can be found in the first parameter c-string.
+__________ count(char a[], char __________) {
+    int result = __________;
+    
+    for (int i=0; a[i] != __________; i++) {
+        if (a[i]==c) {
+            __________++;
+        }
+    }
+    return result;
+}
+
+//=========================================== isAlpha
+// Returns true if all characers in the c-string
+// parameter are alphabetic, otherwise returns false.
+bool isAlpha(char a[]) {
+    for (int i=0; a[i] __________ '\0'; __________++) {
+        __________ (!isalpha(a[i])) {
+            return __________;
+        }
+    }
+    return __________;
+}
+
+//=========================================== padRight
+// Adds blanks to the right end of the c-string
+// parameter to make it length n.  It the c-string
+// is already longer, it does nothing.
+void padRight(char a[], int n) {
+    int __________ = strlen(a);
+    if (len &lt; n) {
+        __________ (len &lt; n) {
+            a[__________] = ' ';
+            len++;
+        }
+        a[__________] = '\0';
+    }
+}        
+
+//============================================ trimRight
+// Removes all blanks from the right end of the
+// c-string parameter.
+void trimRight(char a[]) {
+    __________ last = strlen(__________) - 1;
+    while (last&gt;=0 &amp;&amp; a[last]__________' ') {
+        last__________;
+    }
+    a[last+1] = '\0';
+}
+
+//============================================ truncate
+// Makes the c-string no longer than n characters.
+// If it's already shorter, it doesn't change it.
+void truncate(char a[], int n) {
+    __________[__________] = '\0';
+}</pre>
+
+</body>
+</html>
+

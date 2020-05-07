@@ -1,0 +1,264 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www/leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <title>C++: Programming: xstring version 4</title>
+</head>
+
+<body>
+
+<h1><a href="../../index.html">C++</a>: <a href="../../index.html#OOP">OOP</a>: Programming: xstring version 4</h1>
+
+
+<h3>Programming Problem - xstring version 4</h3>
+
+<p>This program builds on version 3 of xstring, and continues the process of 
+creating a class that resembles the predefined <i>string</i> class.
+</p>
+
+<p>It adds only two more operators, both because they are commonly 
+used, and because they are going to be on the final exam.  There is not 
+a lot of coding for this problem, but you will have to think about some 
+of the issues.
+</p>
+
+<p>You will also have figure out how to make the necessary additions to the
+header file.</p>
+
+<p><b>Due</b>: March 3.  The deliverables: <code>xstring.cpp</code> AND
+the header file, <code>xstring.h</code>.
+   </p>
+   
+
+<h3>Additions for version 4 of xstring</h3>
+
+<dl>
+<dt><b>The + operator as concatenation</b></dt>
+    <dd>The + operator should be defined to return an xstring.  It should
+    work with the following examples.
+<pre class="fragment">
+  xstring xs1 = "abc";
+  xstring xs2 = "123";
+  xstring xs3;
+  xs3 = xs1 + xs2;    // Two xstrings.
+  xs3 = xs1 + "def";  // An xstring concatenated with a c-string.
+  xs3 = "def" + xs1;  // A c-string concatenated with an xstring.</pre>
+  
+  <p>What's interesting about this problem is that it shows the difference
+  between defining operators as member functions and simply as 
+  functions outside the class.  The first two cases can either be member 
+  functions or independent functions, but the last one can only be an
+  independent function.
+  </p>
+  <p>This problem is surprisingly easy if you use some of the functions / constructors
+  from the previous problem (eg, <code>append()</code>).
+  </p>
+    </dd>
+    
+<dt><b>&lt;&lt; for output</b></dt>
+    <dd>The &lt;&lt; operator is not special to output in any way.
+    When I first saw C++ I couldn't understand what the left shift 
+    operator had to do with output.  Well, it's simply defined for
+    output.  One aspect is that it returns the output stream that
+    is the left operator so these operations can be chained.
+<pre class="fragment">
+  zstring xs1 = "Hello";
+  cout &lt;&lt; xs1 &lt;&lt; endl;</pre>
+    </dd>
+    
+</dl>
+
+
+
+<h3>A test program</h3>
+
+<p>Here is a sample test program.</p>
+<div class="file"><pre>
+// File: xstring2/xstringTest.cpp
+// Description: xstring version 4 test program.
+//         This has all the previous tests, and at
+//         the end adds tests for more enhancements.
+// Author: Fred Swartz
+// Date:   2005-02-21
+
+#include &lt;cassert&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+#include "xstring.h"
+
+//=================================================== prototypes
+void test(bool cond, string message);
+void summarizeTestResults();
+
+xstring passReturnByValue(xstring xs, int sz, int cap);
+
+//=================================================== global vars
+static int testsPassed;
+static int testsFailed;
+
+//======================================================== main
+int main() {
+    xstring xs;   // Calls the no-parameter constructor
+  
+    //... Test initialization.
+    test(xs.size() == 0, "size() of initial xstring should be 0");
+    
+    //... Test appending one character.
+    xs.append('a');
+    test(xs.size() == 1, "size() should be 1");
+    char x = xs.at(0);
+    test(x == 'a', "character should be 'a'");
+    xs.append("bc");
+    test(xs.size() == 3, "size is 3");
+    xs.at(1) = 'x';
+    test(xs.at(1) == 'x', "x is second char");
+    
+    //... Test adding enough chars to cause expansion.
+    for(int i = 0; i&lt;10000; i++) {
+        xs.append('z');
+    } 
+    test(xs.size() == 10003, "size() should be 10003");
+    x = xs.at(10000);
+    test(x == 'z', "character should be 'z'");
+    test(xs.size() &lt;= xs.capacity(), "size() &lt;= capacity()");
+    
+    //... Test appending a c-string.
+    xstring xs2;
+    xs2.append("xyz");
+    test(xs2.size()==3, "size() should be 3");
+    test(xs2.at(0)=='x' &amp;&amp; xs2.at(1)=='y' &amp;&amp; xs2.at(2)=='z', "=xyz");
+    xs2.append("");
+    test(xs2.size()==3, "size after appending nothing");
+    xs2.append('x');
+    test(xs2.size()==4, "appending single character");
+    xs2.append("abc");
+    test(xs2.size()==7, "appending three more characters");
+    test(xs2.at(6)=='c', "last char is 'c'");
+    
+    //... Test appending an xstring.
+    xstring xs3;
+    xs3.append("abc");
+    xstring xs4;
+    xs4.append("xyz");
+    xs3.append(xs4);
+    test(xs3.size() == 6, "append(xstring)");
+    
+    //==== tests added for version 3
+    
+    //... Constructor taking char*
+    xstring xs3a("hello");
+    test(xs3a == "hello", "char* constructor");
+    
+    //... Assign char*
+    xs3a = "Just Testing";
+    test(xs3a == "Just Testing", "assign char*");
+    
+    //... Assign xstring = xstring
+    xs4 = xs3a;
+    test(xs4 == "Just Testing", "assign xstring");
+    
+    //... Self assignment
+    xs4 = "Test";
+    xs4 = xs4;
+    test(xs4.size()==4 &amp;&amp; xs4=="Test", "self assignment");
+    
+    //... Chained assignment
+    xs4 = xs3a = "Chain";
+    test (xs4=="Chain" &amp;&amp; xs3a=="Chain", "assignment chaining");
+    
+    //... Make sure == can return false.
+    xs3a = "Hello";
+    test(!(xs3a == "He")    , "== 1");
+    test(!(xs3a == "Hellox"), "== 2");
+    test(!(xs3a == "")      , "== 3");
+    
+    //... clear()
+    xs3a = "abc";
+    test(xs3a.size()==3, "= char*");
+    xs3a.clear();
+    test(xs3a.size()==0, "clear() 1");
+    test(xs3a=="", "clear() 2");
+    
+    //... Copy constructor to initialize declarations
+    xs3a = "Hello";
+    xstring xs3b(xs3a);    // Declare and initialize from other xstring.
+    test(xs3b == "Hello", "Declare and initialize from another xstring");
+    
+    //... Copy constructor used in Pass and return by value.
+    xs3a = "Hello";
+    xs4.clear();
+    xs4 = passReturnByValue(xs3a, xs3a.size(), xs3a.capacity());
+    test(xs3a == "Hello", "Pass by value 3");
+    test(xs4 == "HelloGoodbye", "Return by value.");
+    
+    //... (4) Test concatenation.
+    xs4 = "abc";
+    xs3a = "def";
+    test(xs4+xs3a == "abcdef", "concatenation 1");
+    xs3a.clear();
+    test(xs4+xs3a == "abc", "concatenation 2");
+    xs4 = "";
+    xs3a = "doubt";
+    test(xs4+xs3a == "doubt", "concatenation 3");
+    xs4 = "123";
+    test(xs4+"abc" == "123abc", "concatenation 4");
+    test("abc"+xs4 == "abc123", "concatenation 5");
+    
+    //... (4) Output &lt;&lt; operator
+    ostringstream stringout;  // Test by writing to a output string stream.
+    xs4 = "xyz";
+    stringout &lt;&lt; xs4 &lt;&lt; 1 &lt;&lt; "abc";
+    test(stringout.str()=="xyz1abc", "output &lt;&lt;");
+    
+    
+    //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+    
+    summarizeTestResults();
+    system("PAUSE");  // Keep Dev-C++ window open.
+}
+
+//===================================================== passReturnByValue
+xstring passReturnByValue(xstring xs, int paramSize, int paramCapacity) {
+     test(xs == "Hello", "Pass by value 1");
+     test(xs.size() &lt;= xs.capacity(), "Pass by value 2");
+     xs.append("Goodbye");
+     return xs;
+}
+
+
+//============================================================== test
+void test(bool cond, string message) {
+    if (cond) {
+        cout &lt;&lt; "   Passed: ";
+        testsPassed++;
+    } else {
+        cout &lt;&lt; "FAILED: ";
+        testsFailed++;
+    }
+    cout &lt;&lt; message &lt;&lt; endl;
+}              
+
+//================================================ summarizeTestResults
+void summarizeTestResults() {
+    //... Print test result summary. ....................................
+    cout &lt;&lt; endl &lt;&lt; "============================= Test Results" &lt;&lt; endl;
+    cout &lt;&lt; "= Passed: " &lt;&lt; testsPassed &lt;&lt; endl;
+    if (testsFailed &gt; 0) {
+        cout &lt;&lt; "= &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;FAILED: " &lt;&lt; testsFailed &lt;&lt; endl;
+    } else {
+        cout &lt;&lt; "= No failures" &lt;&lt; endl;
+    }
+    cout &lt;&lt; "=============================" &lt;&lt; endl;
+}
+</pre></div>
+
+
+<div class="footer">Copyleft 2005 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+</html>
+

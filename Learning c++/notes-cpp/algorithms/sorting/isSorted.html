@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Algorithms: isSorted</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++ Notes</a>: Algorithms: isSorted</h1>
+Returns <b>true</b> if the array is sorted (ascending), otherwise
+returns <b>false</b>.
+<br /><br />
+
+<pre class="example">
+bool isSorted(int a[], int first, int last) {
+   // parameters:
+   //    a       in  array of values.
+   //    first   in  first index in a to test
+   //    last    in  last index in a to test
+   // returns: true if array is sorted, else false.
+   
+   // Look at all adjacent pairs.  If any pair is out of order, it's unsorted
+   for (int i=first; i&lt;last; i++) {
+       if (a[i] &gt; a[i+1]) {
+           return false;   // not sorted, return immediately
+       }
+   }
+   return true;  // it is sorted if loop finished
+}</pre>
+
+   
+<script type="text/JavaScript">footer("1999");</script>
+
+</body>
+</html>
+

@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet"           type="text/css" title="noanswers" href="../../notes.css"/>
+    <link rel="alternate stylesheet" type="text/css" title="answers"   href="../../notesanswer.css"/> 
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++: Exercise - Print main Parameters</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++</a>: Exercise - Print <code>main</code> Parameters</h1>
+
+<p>Name __________________________________</p>
+
+
+
+<p>There are two legal prototypes for <code>main</code>.
+The parameterless version is the most common.   The system
+may still pass parameters to this <code>main</code>, but they will
+be ignored.</p>
+<pre class="fragment">
+int main()</pre>
+<p>The second form is used if a programmer wants to use the parameters on the command line.</p>
+<pre class="fragment">
+int main(int argc, char* argv[])  // Using array notation.
+int main(int argc, char** argv)   // Same as above using pointers.</pre>
+
+<p>For example, assume a program, <code>myProg</code>, is run with this command line.</p>
+<pre class="fragment">
+myProg this is a test</pre>
+<p>When the <code>main</code> function in <code>myProg</code> is called, two parameters
+are passed to it.
+</p>
+<ol>
+<li><code>argc</code> (argument count) is the integer count of the number of parameters including the
+    filename that is being run.  In the example above the value of <code>argc</code>
+    would be 5.
+    </li>
+<li><code>argv</code> (argument values) is an array of pointers to c-strings.
+    In the previous example, the array would be <code>{"myProg", "this", "is", "a", "test"}</code>.
+    </li>
+</ol>
+
+<h3>Programming - Print <code>main</code> Parameters</h3>
+<p>Write a <code>main</code> function that prints its parameters, one per line.  
+For this function, you must write the program <i>without using subscripts</i>, ie, 
+you must use the <code>char**</code> form of the second parameter.
+</p>
+<!--
+<p>
+<a href="#" onclick="setActiveStyleSheet('answers'  ); return false;">Show Answers</a> -
+<a href="#" onclick="setActiveStyleSheet('noanswers'); return false;">Hide Answers</a>
+</p>
+
+  
+<script type="text/JavaScript">footer("2004");</script> 
+-->
+</body>
+
+</html>

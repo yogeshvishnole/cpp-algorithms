@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www/leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <title>C++:  Combining two circular, doubly linked lists - Answer</title>
+</head>
+
+<body>
+<h1><a href="../index.html">C++</a>: Combining two circular, doubly linked lists - Answer</h1>
+
+<p>See <a href="q-pr-splice.html">Problem</a></p>
+
+<p>Given two circular, doubly linked lists, write a function that combines them.
+</p>
+
+<pre class="fragment">
+//--- Node for doubly linked list of floats.
+struct Node {
+    Node* next;  // Pointer to next element
+    Node* prev;  // Pointer to previous element
+    float data;
+};
+
+//--- Function
+Node* splice(Node* p, Node* q) {
+    //... If either is NULL, return other.
+    if (p == NULL) return q;
+    if (q == NULL) return p;
+    
+    //... Link q's Nodes after p. Same order is important.
+    p-&gt;next-&gt;prev = q-&gt;prev;
+    q-&gt;prev-&gt;next = p-&gt;next;
+    p-&gt;next = q;
+    q-&gt;prev = p;
+}</pre>
+
+<div class="footer">Copyleft 2004 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+</html>
+

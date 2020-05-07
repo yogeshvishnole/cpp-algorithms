@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <style type="text/css">
+    	li {margin-top: 1em;}
+    </style>
+    <title>CMIS 140 Midterm - Part I Reading</title>
+</head>
+<body>
+<h1>CMIS 140 Midterm - Part I Reading</h1>
+
+Name: _________________________________
+
+
+<ol>
+<li>(6 points) In the following table fill in the blanks with the appropriate
+    missing numbers.
+    <table cellspacing="0" border="1">
+    <tr><th>&nbsp;&nbsp;&nbsp;&nbsp;Binary&nbsp;&nbsp;&nbsp;&nbsp;</th><th>Decimal</th><th>Hexadecimal</th></tr>
+    <tr><td>10110&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td>&nbsp;</td><td>33&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td>&nbsp;</td><td>&nbsp;</td><td>33&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+    </table>
+</li>
+
+
+<li>(15 points) What is printed by each of these statements. 
+Write floating point numbers with a decimal point (5.0 is 
+floating point; 5 is integer).
+
+<br /><br />__________ cout &lt;&lt; 7 / 4;
+<br /><br />__________ cout &lt;&lt; 7 % 4;
+<br /><br />__________ cout &lt;&lt; 7 % 14;
+<br /><br />__________ cout &lt;&lt; 7.0 / 2;
+
+<br /><br />__________ cout &lt;&lt; 12 | 6;
+<br /><br />__________ cout &lt;&lt; 12 &amp; 6;
+<br /><br />__________ cout &lt;&lt; 12 ^ 6;
+<br /><br />__________ int n = 12 &gt;&gt; 2; cout &lt;&lt; n;
+<br /><br />__________ int n = 12 &lt;&lt; 1; cout &lt;&lt; n;
+
+<br /><br />__________ int x = 3; cout &lt;&lt; x++;
+<br /><br />__________ int x = 3; cout &lt;&lt; ++x;
+<br /><br />__________ int y = 3; y *= 3; cout &lt;&lt; y;
+
+<br /><br />__________ cout &lt;&lt; 4+3 * 4-3;
+<br /><br />__________ cout &lt;&lt; (13 > 23) ? 1 : 2;
+<br /><br />__________ int x=1, y=2; cout &lt;&lt; ((x&gt;y)?((x!=y)?1:2):((y&gt;x)?3:4));
+</li>
+
+<li>(1 point) What is printed by these statements?
+<pre>
+   int x=1, y=2;
+   if (x != y) {
+      cout &lt;&lt; "www";
+   }else{
+      cout &lt;&lt; "ppp";
+   }</pre>
+Output = ____________________________
+</li>
+
+<li>(1 point) What is printed by these statements?
+<pre>
+   int x=1, y=2;
+   if (x &lt; y || x &gt; y) {
+      cout &lt;&lt; "www";
+   }else{
+      cout &lt;&lt; "ppp";
+   }</pre>
+Output = ____________________________
+</li>
+
+<li>(1 point) What is printed by these statements?
+<pre>
+   int x=1, y=2;
+   if (x &lt; y &amp;&amp; x &gt; y) {
+      cout &lt;&lt; "www";
+   }else{
+      cout &lt;&lt; "ppp";
+   }</pre>
+Output = ____________________________
+</li>
+
+<li>(1 point) What is printed by these statements?
+<pre>
+   int x=1, y=7;
+   if (x == 1) {
+      cout &lt;&lt; "www";
+   }else if (x &lt; y) {
+      cout &lt;&lt; "ppp";
+   }else{
+      cout &lt;&lt; "bbb";
+   }</pre>
+Output = ____________________________
+</li>
+
+<li>(2 points) What is printed by these statements?  Write "infinite" if it never stops.
+    Write "nothing" if it doesn't print anything.
+<pre>
+   for (int j=0; j&lt;3; j++) {
+      cout &lt;&lt; j &lt;&lt; " ";
+   }</pre>
+Output = ____________________________
+</li>
+
+<li>(2 points) What is printed by these statements?  Write "infinite" if it never stops.
+    Write "nothing" if it doesn't print anything.
+<pre>
+   for (int j=4; j&lt;0; j--) {
+      cout &lt;&lt; j &lt;&lt; " ";
+   }</pre>
+Output = ____________________________
+</li>
+
+<li>(2 points) What is printed by these statements?  Write "infinite" if it never stops.
+    Write "nothing" if it doesn't print anything.
+<pre>
+   for (int j=5; j&gt;=5; j--) {
+      cout &lt;&lt; j &lt;&lt; " ";
+   }</pre>
+Output = ____________________________
+</li>
+
+<li>(2 points) What is printed by these statements?  Write "infinite" if it never stops.
+    Write "nothing" if it doesn't print anything.
+<pre>
+   for (int j=1; j&lt;10; j*=2) {
+      cout &lt;&lt; j &lt;&lt; " ";
+   }</pre>
+Output = ____________________________
+</li>
+
+
+<li>(4 points) What is printed by these statements?  Write "infinite" if it never stops.
+    Write "nothing" if it doesn't print anything.
+<pre>
+   for (int j=0; j&lt;4; j++) {
+      for (int k=3; k&gt;0; k--) {
+         cout &lt;&lt; "j=" &lt;&lt; j &lt;&lt; ", k=" &lt;&lt; k &lt;&lt; endl;
+      }
+   }</pre>
+Output = ____________________________
+</li>
+
+<li>(5 points) Given this program:
+<pre>
+#include &lt;iostream>
+using namespace std;
+
+int main() {
+    int x;
+    while (cin &gt;&gt; x) {
+        for (int i=x; i&gt;0; i--) {
+            cout &lt;&lt; '*';
+        }
+        cout &lt;&lt; endl;
+    }
+    return 0;
+}
+</pre>
+What would this program print with input 5 1 4 2 3 3 ?
+</li>
+
+
+</ol>
+
+
+<script type="text/JavaScript">footer("2001");</script>
+</body>
+</html>
+

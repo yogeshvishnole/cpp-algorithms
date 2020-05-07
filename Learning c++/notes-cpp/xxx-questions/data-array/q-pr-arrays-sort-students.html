@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com/fred/)"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../notes.css" />
+    <title>C++: Arrays: Programming Problem: Sort Students</title>
+</head>
+
+<body>
+<h1><a href="../../index.html">C++</a>: Arrays: Programming Problem: Sort Students</h1>
+Name __________________________________
+
+<p>(5 points) Read lines of information about students and their scores on
+   on a test.  Sort this information <i>by score</i>, and print a new list
+   of scores and students with this information.
+   </p>
+Specifications and Implementation.
+<ul>
+<li style="margin-top:1em"><b>Input data</b>.
+A few sample lines of the input data might look like the following, with
+a test score followed by a first name followed by a last name.
+
+   <pre>
+   74 JOHN SMITH
+   95 JILL SMITH
+   87 BILLY JONES</pre>
+   </li>
+<li style="margin-top:1em">The <b>maximum number</b> of students that will be read, until an EOF,
+    is 1000 (ie, the maximum array size).
+    </li>
+<li style="margin-top:1em"><b>Types</b>.  The score is an <code>int</code>,
+    and each of the names should be a <code>string</code>. 
+    Do not use C-strings (char arrays) for the names because they are difficult
+    to use in arrays.
+    </li>
+<li style="margin-top:1em"><b>Parallel arrays</b> or <b>structs</b>.
+    This data will have to be read into arrays and sorted.
+    There are two general approaches.
+    <ul>
+    <li>Three arrays can be used, one for scores, one for first names,
+        and one for last names.  If this approach is used, any exchanges
+        in the sorting process must exchange the corresponding elements
+        the all three arrays.
+        </li>
+    <li>A struct can be defined that holds all three values.  For example,
+        <pre class="fragment">
+struct Student {
+          string first_name;
+          string last_name;
+          int    score;
+       };</pre>
+       Then a single array of Student structs can be used.
+       This is a better approach, but use parallel arrays if you don't feel comfortable
+       with structs yet.
+        </li>
+    </ul>
+    </li>
+    
+<li style="margin-top:1em"><b>Sort algorithm</b>.
+    Use either a bubble sort of a selection sort.
+    The selection sort is a little more efficient because
+    the number of exchanges is smaller.
+    </li>
+    
+<li style="margin-top:1em"><b>Implementation strategy</b>.
+    Try using good <i>iterative development</i> techniques.
+    Implement the program in stages.  
+    Compile and test each stage before continuing.
+    For example, 
+    <ol>
+    <li>Write a main that does nothing except return.</li>
+    <li>Add some arrays and read into them.</li>
+    <li>Write out the arrays.</li>
+    <li>Once you can read and write the arrays correctly,
+        write a sort function.
+        </li>
+    </ol>
+    </li>
+    
+<li style="margin-top:1em"><b>Sample output</b> for the sample input.
+   <pre>
+   74 JOHN SMITH
+   87 BILLY JONES
+   95 JILL SMITH</pre>
+   Of course, you should test it with much more data.
+   </li>
+</ul>
+    
+<!-- <script type="text/JavaScript">footer("2000");</script>   -->
+</body>
+
+</html>

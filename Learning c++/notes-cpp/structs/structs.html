@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Structs</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Structs</h1>
+
+<h2>Overview</h2>
+In addition to the simple data types (int, char, double, ...) there 
+are <i>composite</i> data types which combine more than one data element.
+Arrays store elements of <i>the same type</i>, which are accessed by subscript, eg, <code>a[i]</code>.
+<i>Structs</i> (also called <i>records</i>, or classes) group elements which don't
+    need to all be the same type, and are accessed by field (member) name,
+    eg, <code>r.name</code>. 
+
+
+<h2>Struct Declaration defines a new Type</h2>
+The most common struct declaration in C++ is to define a new <i>type</i>.
+This example represents information about products.
+<pre class="example">
+struct Product {
+    char mfg_id[4];    // 4 char code for the manufacturer.
+    char prod_id[8];   // 8-char code for the product
+    int  price;        // price of the product in dollars.
+    int  qty_on_hand;  // quantity on hand in inventory
+};</pre>
+This defines a new <i>type</i>, Product.
+The order of the fields is generally not important.  Don't forget the 
+semicolon after the right brace.
+The convention is to capitalize the first letter in any new type name.
+
+<h2>Declaring struct variables</h2>
+The new struct type can now be used to declare variables.  For example,
+<pre class="example">
+Product widget;
+</pre>
+
+<h2>Accessing the fields of a struct</h2>
+Access the fields of a struct by using the "." operator
+followed by the name of the field.
+<pre class="example">
+widget.price = 200;
+widget.qty_on_hand = 17;
+strcpy(widget.mfg_id, "IBM");
+strcpy(widget.prod_id, "Thingee");
+</pre>
+
+
+<h2>Like database records</h2>
+Structs are like database records - a row in a table, where the field names
+are like the column names.
+
+<h2>Related Pages</h2>
+<ul>
+<li><a href="structex.html">Struct example 1</a></li>
+<li><a href="structex2.html">Struct example 2</a></li>
+<li><a href="struct-ops.html">Operations on structs</a></li>
+<li><a href="arrow.html">-&gt; operator</a></li>
+<li><a href="../oop-classes/classes.html">Classes</a></li>
+</ul>
+
+
+
+
+   
+<script type="text/JavaScript">footer("2000");</script>
+</body>
+
+</html>

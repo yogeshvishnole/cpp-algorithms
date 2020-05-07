@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++: Bubblesort Fill-in Questions</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++</a>: Bubblesort Fill-in Questions</h1>
+<p>Name _______________________________</p>
+<p>(5 points) Fill in each blank with a single missing element (operator, keyword,
+variable, literal, ...).</p>
+  
+<h2>Bubble Sort -- stop when no exchanges, shorter range each time</h2>
+
+   This version of bubble sort 
+   stops when there are no more exchanges, and it also sorts a smaller
+   range each time.
+   <pre class="example">
+void bubbleSort3(int x[], int n) {
+  bool _____________;
+  do {
+    n--;               // make loop smaller each time.
+    exchanges = false; // assume this is last pass over array
+    for (int i=0; i&lt;n; i++) {
+      if (x[i] &gt; x[i+1]) {
+        int temp = x[_____________];  x[i] = x[i+1];  x[i+1] = _____________;
+        exchanges = _____________;  // after an exchange, must look again 
+      }
+    }
+  } while (_____________);
+}</pre>
+   
+<script type="text/JavaScript">footer("2003");</script>
+
+</body>
+</html>
+

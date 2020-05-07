@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++: Data Structures: Expression Tree Struct</title>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: Data Structures: Expression Tree Struct</h1>
+
+This code is a typical non-OOP solution to the expression
+tree problem.
+<pre class="example">
+//======================================= ExprNode
+struct ExprNode {
+    char      op;    // one of +, -, *, /, #
+    int       value; // integer value
+    ExprNode* left;  // left subtree
+    ExprNode* right; // right subtree
+};
+
+
+
+//======================================= eval
+int eval(ExprNode* x) {
+    // Recursively evaluate expression tree.
+    int result;
+    switch (x->op) {
+       case '+': result = eval(x->left) + eval(x->right);
+               break;
+       case '-': result = eval(x->left) - eval(x->right);
+               break;
+       case '/': result = eval(x->left) * eval(x->right);
+               break;
+       case '#': result = x->value;  // an integer constant
+    }
+    return result;
+}</pre>
+   
+Solutions like this are quite common in non-OOP programs, however
+OOP programming offers several advantages:
+<ul>
+<li>Integrity of the the node can be ensured with constructors and methods
+    as in the next example:
+    <a href="30exptreeclass.html">Expression Tree Class - 1</a>.
+    </li>
+<li>Inheritance can be used to distinguish between different types
+    of nodes, where each kind overrides the <code>eval</code> function
+    to process the node as it should.  A hint that inheritance should
+    be used is when a processing function has a case statement in
+    it to determine what kind of object it is.
+    </li>
+</ul>
+
+
+<script type="text/JavaScript">footer("2000");</script>
+</body>
+
+</html>

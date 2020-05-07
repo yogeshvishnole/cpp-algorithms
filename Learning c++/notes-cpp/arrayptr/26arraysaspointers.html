@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Arrays as Pointers</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Arrays as Pointers</h1>
+
+
+<h2>Using an array name as a pointer</h2>
+An array name is really a pointer to the first element of the array.
+For example, the following is legal.
+<pre class="example">
+int b[100];    // b is an array of 100 ints.
+int* p;        // p is a pointer to an int.
+p = b;         // Assigns the address of first element of b to p.
+p = &amp;b[0];     // Exactly the same assignment as above.
+</pre>
+
+
+<h2>Array name is a const pointer</h2>
+When you declare an array, the name is a <i>pointer</i>,
+which cannot be altered.
+In the previous example, you could never make 
+this assignment.
+<pre class="fragment">
+   p = b;   // Legal -- p is not a constant.
+   b = p;   // ILLEGAL because b is a constant, altho the correct type.</pre>
+
+
+<h2>Pointer arithmetic</h2>
+"Meaningful" arithmetic operations are allowed on pointers.
+<ul>
+<li class="compact">Add or subtract integers to/from a pointer.  The result is a pointer.</li>
+<li class="compact">Subtract two pointers to the same type. The result is an int.</li>
+<li class="compact">Multiplying, adding two pointers, etc. don't make sense.</li>
+</ul>
+
+
+<h2>Pointer addition and element size</h2>
+When you add an integer to a pointer, the integer is <i>multiplied by
+the element size</i> of the type that the pointer points to.
+<pre class="example">
+// Assume sizeof(int) is 4.
+int b[100];  // b is an array of 100 ints.
+int* p;      // p is a a pointer to an int.
+p = b;       // Assigns address of first element of b. Ie, &amp;b[0]
+p = p + 1;   // Adds 4 to p (4 == 1 * sizeof(int)). Ie, &amp;b[1]
+</pre>
+
+
+<h2>Equivalence of subscription and dereference</h2>
+    Because of the way C/C++ uses pointers and arrays, you can 
+    reference an array element either by subscription or * (the unary dereference operator).
+<pre class="example">
+int b[100];  // b is an array of 100 ints.
+int* p;      // p is a a pointer to an int.
+p = b;       // Assigns address of first element of b. Ie, &amp;b[0]
+*p = 14;     // Same as b[0] = 14
+p = p + 1;   // Adds 4 to p (4 == 1 * sizeof(int)). Ie, &amp;b[1]
+*p = 22;     // Same as b[1] = 22;
+</pre>
+
+<h2>Example - Two ways to add numbers in an array</h2>
+The first uses subscripts, the second pointers.  They are equivalent. 
+<table border="0" cellspacing="0" cellpadding="0" summary="example"><tr>
+<td> 
+<pre class="example">
+int a[100];
+. . .
+int sum = 0;
+for (int i=0; i&lt;100; i++) {
+   sum += a[i];
+}
+</pre>
+</td><td>&nbsp;&nbsp;&nbsp;</td><td>
+<pre class="example">
+int a[100];
+. . .
+int sum = 0;
+for (int* p=a; p&lt;a+100; p++) {
+   sum += *p;
+}
+</pre>
+</td></tr></table>
+
+<script type="text/JavaScript">footer("2000");</script>
+</body>
+
+</html>

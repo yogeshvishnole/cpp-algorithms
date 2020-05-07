@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>CMIS 240: Final - Dec 2001</title>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+</head>
+<body>
+<h1><a href="../../index.html">CMIS 240</a>: Final Part B - Dec 2001</h1>
+
+Name __________________________________
+
+<h2>Programming</h2>
+<ol>
+<li>Given the following
+<pre class="example">
+struct tree_node {
+    tree_node *left;   // left subtree has smaller elements
+    tree_node *right;  // right subtree has larger elements
+    int data;
+};</pre>
+    Rewrite the above struct as a class with public fields.  Write a default (no parameter)
+    constructor that does something reasonable.
+    </li>
+
+<li>(15 points) Write one of the following functions.  If you write more
+    than one, you will receive the number of points of the better one.
+    <ol type="a">
+    <li>Write a program to read in words and print them in reverse order.
+        You may use any library classes or functions.
+        <br />Example input: this is a test
+        <br />Example output: test a is this
+        </li>
+    <li>Write a program to create a four function (+, -, *, /) 
+        RPN (Reverse Polish Notation) floating-point
+        calculator.  To convert a char * string to float, use the function atof.
+        The program should print the top of the stack after every operation.  No error
+        checking is necessary.
+        You may use any library classes or functions.</li>
+    </ol>
+    </li>
+    
+<li>(15 points) Given the declaration of the my_vector template class below, write one of the following:
+    <pre class="example">
+template&lt;class T&gt;
+class my_vector {
+public:
+    my_vector&lt;T&gt;();        // default constructor
+    my_vector&lt;T&gt;(int cap); // constructor specifying capacity
+    my_vector&lt;T&gt;(const my_vector&amp; fv); // copy constructor
+    ~my_vector&lt;T&gt;();       // destructor
+
+    T     at(int position) const;  // return element at position
+    int   capacity() const;        // current max possible
+    void  clear();                 // delete all items
+    bool  empty() const;           // true if no elements in vector
+    void  erase(int position);     // delete item at position
+    void  insert(int position , T item);  // insert item at position
+    T&amp;    operator[](int subscript) const;// same as at.
+    bool  operator==(my_vector&amp; v) const; // true if contain equal vals
+    void  pop_back();              // return last element and remove
+    void  push_back(T item);       // add item to end
+    void  replace(int position, T item); // replace item at position
+    void  resize(int new_capacity);// reallocate memory
+    int   size() const;            // number of elements in vector
+
+private:
+    int  _capacity; // current allocation for _info array.
+    int  _size;     // current "size"
+    T*   _info;     // pointer to array of Ts
+};
+    </pre>
+    <ol type="a">
+    <li>Overload the += operator so that
+    <pre>
+    my_vector&lt;double&gt; v1, v2;
+    . . .
+    v1 += v2;</pre>
+    adds all of the elements in v2 to the end of v1.
+    Hint: you can use push_back to do most of the work.
+    [Needs concrete example of use]
+    </li>
+    
+    <li>Write the copy constructor.</li>
+    </ol>
+    </li>
+    
+<li>(15 points) Write one of the following functions that is declared in my_vector
+    above.
+    <ol type="a">
+    <li>Write
+    <pre>
+    bool  operator==(my_vector&lt;T&gt;&amp; v) const;</pre>
+    </li>
+    
+    <li>Write
+    <pre>
+    void  resize(int new_capacity);</pre>
+    </li>
+    </ol>
+    </li>
+    
+</ol></li>
+
+
+</ol>
+
+
+  
+<script type="text/JavaScript">footer("2001");</script>
+</body>
+
+</html>

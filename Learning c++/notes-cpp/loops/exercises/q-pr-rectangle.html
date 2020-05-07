@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com/fred)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <style type="text/css">
+        .answer {display: none};
+    </style>
+    <title>C++: Programming Problem - Print Rectangle</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++</a>: Programming Problem - Print Rectangle</h1>
+
+<p>(5 points)<b>Print a rectangle</b>.  Read a height and width and
+print a rectangle with that height and width.  This example output
+has height 3 and width 7.
+</p>
+  <pre>
+          
+          *******
+          *******
+          *******</pre>
+<div class="answer">  
+  <p>Sample solution.</p>
+  <div class="fragment"><pre>
+int width, height;
+    
+while (cin &gt;&gt; width &gt;&gt; height) {
+    for (int row=0; row&lt;height; row++) {
+        for (int col=0; col&lt;width; col++) {
+            cout &lt;&lt; "*";
+        }
+        cout &lt;&lt; endl;  // end the line of stars.
+    }
+}
+</pre></div>
+</div>
+
+<!-- <script type="text/JavaScript">footer("2003");</script> -->
+</body>
+</html>
+

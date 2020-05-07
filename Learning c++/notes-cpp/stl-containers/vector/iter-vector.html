@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+  <title>C++: STL: Iterators for vector</title>
+</head>
+
+<body>
+<h1><a href="../../index.html">C++</a>: STL: Iterators for vector</h1>
+An <i>iterator</i> is used to move thru the elements an STL container 
+(vector, list, set, map, ...) in a similar way to array indexes or pointers.
+The * operator dereferences an iterator (ie, is used to access the element
+an iterator points to) , and ++ (and -- for most iterators)
+increments to the next element.
+
+<h2>Iterating over a vector with subscripts</h2>
+<p>Passing over all the elements of a vector is simple, and is usually
+done using subscripts instead of an iterator.  The main advantage 
+of an iterator is that it can be used by many of the functions
+in &lt;algorithms&gt;.  Subscripts provide an easy, familiar
+way to access vector elements in much the way that 
+array elements would be accessed.
+</p>
+<pre class="example">
+//--- Iterating over vector with subscript.
+vector&lt;int&gt; v;
+. . .
+for (int i=0; i&lt;v.size(); i++) {
+    cout &lt;&lt; v[i] &lt;&lt; endl;
+}</pre>
+
+<h2>Iterators are similar to pointers</h2>
+In fact, vectors iterators are usually implemented as pointers.
+If you feel comfortable using pointers to iterate over an array,
+you will feel comfortable using an iterator.  For review, here
+is an example of one way to use a pointer to iterate over an array.
+Note that <code>&amp;a[n]</code> is the address of the element <i>after</i>
+the last value currently in the array.
+<pre class="fragment">
+//--- Iterating over array with pointer.
+int a[100];
+int n = ...;   // current number of elements</pre>
+We could loop over this array like this.
+<pre class="example">
+for (int* p = &amp;a[0]; p != &amp;a[n]; p++) {
+    cout &lt;&lt; *p &lt;&lt; endl;
+}</pre>
+or
+<pre class="fragment">
+for (int* p = a; p != a+n; p++) {
+    cout &lt;&lt; *p &lt;&lt; endl;
+}</pre>
+
+
+
+<h2>Iterating over a vector with an iterator</h2>
+<pre class="fragment">
+//--- Iterating over vector with iterator.
+vector&lt;int&gt; v;
+. . .
+for (vector&lt;int&gt;::iterator it = v.begin(); it!=v.end(); ++it) {
+    cout &lt;&lt; *it &lt;&lt; endl;
+}</pre>
+
+<h2>Why use iterators when subscripts work so well</h2>
+There are several reasons to use iterators.
+<ul>
+<li><b>Not always possible</b>.  Subscripts can <b>not</b> be used on most of 
+    the containers (eg, <code>list</code> and <code>map</code>),
+    so you must use iterators in many cases.
+    </li>
+<li><b>Flexible</b>.  It is easily to change underlying container types.
+    For example, you might decide later that the number of insertions
+    and deletions 
+    is so high that a <code>list</code> would be more efficient
+    than a <code>vector</code>.
+    </li>
+<li><b>Member functiuons</b>.  Many of the member functions for <code>vector</code> use iterators, for example,
+    <code>assign</code>, <code>insert</code>, or <code>erase</code>.
+    </li>
+<li><b>Algorithms</b>.  The <code>&lt;algorithm&gt;</code> functions use iterators.
+    </li>
+</ul>
+
+<h2>Random Access</h2>
+Vector iterators are random-access.
+
+
+<script type="text/JavaScript">footer("2002-4");</script>
+</body>
+</html>
+

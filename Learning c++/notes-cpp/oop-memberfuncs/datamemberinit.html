@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>C++: OOP: Data member initializers</title>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: <a href="../index.html#OOP">OOP</a>: Data member initializers</h1>
+
+<h2>Initializing data members</h2>
+
+There are two ways to initialize data members.
+<ul>
+<li>Explicit assignments in a constructor.</li>
+<li>In a <i>member initializer</i> in the constructor header.</li>    
+</ul>
+
+<h2>Member initializer syntax</h2>
+The definition (not the prototype) header is followed by
+a colon, the name of the field, and a parenthesized initial value.
+Separate multiple initializations with commas.
+
+<pre class="example">
+Insert example here
+</pre>
+
+
+<h2>Member initializer required in the following cases</h2>
+<ul>
+<li>To initialize <code>const</code> data members.</li>
+<li>To initialize references.</li>
+<li>To initialize member <i>objects</i>.  If a member initializer is not
+    provided, the default constructor for that class will be called.</li>
+<li>To initialize base class members.</li>
+</ul>
+   
+<script type="text/JavaScript">footer("2002");</script>
+</body>
+
+</html>

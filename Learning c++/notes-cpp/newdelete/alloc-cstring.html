@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Dynamic Allocation of C-Strings</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Dynamic Allocation of C-Strings</h1>
+
+
+<h2>Problem: How to store an array of C-strings</h2>
+<p>A typical problem is how to store an array of C-strings.
+C-strings are arrays of chars terminated by a zero value.  
+How do we create an array of C-strings?
+<p>
+
+<h3>Possible Solution: Array of C-string Pointers</h3>
+<p>
+One common solution is to declare an array of pointers to 
+C-strings, and dynamically allocate space for each of the C-strings.</p>
+<pre class="example">
+char  aWord[100];   // Temporary place to hold input string.
+char* words[1000];  // Array of pointers to c-strings
+int   n = 0;        // Number of words
+. . .
+while (cin &gt;&gt; aWord) {
+    int len = strlen(aWord) + 1;    // How much space is needed
+    char* newSpace = <b>new</b> char[len]; // Allocate with new
+    strcpy(newSpace, aWord);        // Copy to new space
+    words[n] = newSpace;            // Save pointer in array.
+    n++;
+}
+. . .
+</pre> 
+
+<h3>Another Solution: Two-dimensional array</h3>
+<p>Because C-strings are arrays, an array of C-strings could be implemented
+as a two-dimensional array.  This approach may be attractive if the strings
+are all close in size, because the row length must accomodate the longest
+string.
+</p>
+ 
+<script type="text/JavaScript">footer("2000-4");</script>
+</body>
+
+</html>

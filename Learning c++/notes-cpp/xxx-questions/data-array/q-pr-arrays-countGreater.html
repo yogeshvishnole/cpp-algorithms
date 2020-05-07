@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css" />
+    <style type="text/css">
+        # .answer {display: none}
+    </style>
+    <title>C++: Arrays: Programming Problem - Count Greater</title>
+</head>
+
+<body>
+<h1><a href="../../index.html">C++</a>: Arrays: Programming Problem - Count Greater</h1>
+<p>Name __________________________________</p>
+
+<p>(10 points) Write a function, countGreater, to count the number of values 
+in an array that are larger than a specified floating=point value. The prototype is
+</p>
+<pre class="example">
+int countGreater(float val, float b[], int n);</pre>
+<ul>
+<li><i>val</i> is the value to compare against each of the array values in b.</li>
+<li><i>b</i> is an array of n floating-point numbers b[0]..b[n-1].</li>
+<li><i>n</i> is the number of elements to examine in the b array.</li>
+</ul>
+
+<p>This is an example main program that uses the <code>countGreater</code> function.
+</p>
+<pre class="example">
+int main() {
+   float nums[] = {3.5, 1.0, 1.5};
+   float wips[] = {2000., 300., -555, 0.0, 1.9999};
+   int count;
+   
+   count = countGreater(1.0, nums, 3);
+   cout &lt;&lt; count &lt;&lt; endl;  // prints 2
+   
+   count = countGreater(-33.3, wips, 5);
+   cout &lt;&lt; count &lt;&lt; endl;  // prints 4
+
+   return 0;
+}
+</pre>
+<p>You should write only the function.  The function, as usual,
+should do no I/O.
+</p>
+
+<div class="answer">Answer:
+<pre class="example">
+int countGreater(float val, float b[], int n) {
+    int count = 0;
+    for (int i=0; i&lt;n; i++) { // go thru each element
+        if (b[i] > val){      // compare it to val
+            count++;          // count if greater
+        }
+    }
+    return count;
+}
+</pre>
+</div>
+   
+<!-- <script type="text/JavaScript">footer("2000");</script>   -->
+</body>
+
+</html>

@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Functions: Call Order</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++ Notes</a>: Function Call Order</h1>
+Here is an example that illustrates some of the issues with function calls.
+
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+ 22 
+ 23 
+ 24 
+ 25 
+ 26 
+ 27 
+ 28 
+ 29 
+ 30 
+ 31 
+ 32 
+ 33 
+ 34 
+ 35 
+ 36 
+ 37 
+ 38 
+ 39 
+ 40 
+</pre></td><td valign='top'>
+<div class="example"><pre>
+// functions/call-order.cpp -- Illustrates order of calls.
+// Fred Swartz 2003-09-02
+
+#include &lt;iostream&gt;
+using namespace std;
+//--------------------------------- prototypes
+int even(int a);
+int odd(int b);
+int ulam(int c);
+
+//--------------------------------- main
+int main() {
+    // What does each statement print?
+    cout &lt;&lt; odd(4)              &lt;&lt; endl;
+    cout &lt;&lt; (even(2) + odd(3))  &lt;&lt; endl; // (Note 1)
+    cout &lt;&lt; ulam(ulam(ulam(5))) &lt;&lt; endl; // (Note 2)
+}
+ 
+
+//---------------------------------- even
+int even(int a) {
+    cout &lt;&lt; "even(" &lt;&lt; a &lt;&lt; ")" &lt;&lt; endl;
+    return a/2;
+}
+
+//---------------------------------- odd
+int odd(int b) {
+    cout &lt;&lt; "odd(" &lt;&lt; b &lt;&lt; ")" &lt;&lt; endl;
+    return 3*b + 1;
+}
+
+//---------------------------------- ulam
+int ulam(int c) {  
+    cout &lt;&lt; "ulam(" &lt;&lt; c &lt;&lt; ")" &lt;&lt; endl;
+    if (c%2 == 0) {
+       return even(c);
+    }else{
+       return odd(c);
+    }
+}
+</pre></div>
+The text from the above example can be selected, copied, and pasted into an editor.
+</td></tr></table>
+
+<h2>Notes</h2>
+<ol>
+
+<li><b>Order Ambiguity</b>.  
+The order of evaluation of operands is not defined in C++ (unlike Java
+where it's strictly left to right).  It's possible 
+for the rightmost call to be made before the leftmost call.
+Here are two possible orders of execution.
+<pre class="fragment">
+// Original: cout &lt;&lt; (even(2) + odd(3)) &lt;&lt; endl;
+int t1 = <span class="hylyt">even(2)</span>; // left before right operand eval.
+int t2 = <span class="hylyt">odd(3)</span>;
+cout &lt;&lt; t1+t2 &lt;&lt; endl;</pre>
+or
+<pre class="fragment">
+// Original: cout &lt;&lt; (even(2) + odd(3)) &lt;&lt; endl;
+int t2 = <span class="hylyt">odd(3)</span>; // right before left operand eval.
+int t1 = <span class="hylyt">even(2)</span>;
+cout &lt;&lt; t1+t2 &lt;&lt; endl;</pre>
+I've see it done both ways in various compilers, so this is
+a <i>real portability issue</i>.  However, the order is only important
+if both functions have interacting <i>side-effects</i> (I/O, change globals, ...).
+</li>
+
+<li class="sec"><b>Use intermediate variables for clarity</b>.  
+If it's difficult to understand an expression, compute
+it in pieces.  The compiler does this internally.
+One of the above examples can be rewritten.
+<pre class="fragment">
+//Original: cout &lt;&lt; ulam(ulam(ulam(5))) &lt;&lt; endl &lt;&lt; endl;
+int t1 = ulam(5);   // the inner call must be made first.
+int t2 = ulam(t1);  // that result is used to make the next call.
+int t3 = ulam(t2);  // only now can we make the outer function call.
+cout &lt;&lt; t3 &lt;&lt; endl &lt;&lt; endl;</pre>
+</li>
+</ol>
+   
+<script type="text/JavaScript">footer("2000-3");</script>
+</body>
+
+</html>

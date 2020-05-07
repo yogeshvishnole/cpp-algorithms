@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Arrays as Pointers - Weird But True</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Arrays as Pointers - Weird But True</h1>
+
+Read <a href="26arraysaspointers.html">Arrays as Pointers</a> first.
+
+
+<h2>Subscription is the equivalent of pointer arithmetic</h2>
+<p>When you truly understand the following <i>remarkable equivalence</i>,
+    you will understand the equivalence of arrays and pointers.
+    Assume <code>a</code> is an array and <code>i</code> is an integer.</p>
+    <pre>
+    <b>a[i] == *(a + i) == *(i + a) == i[a]</b></pre>
+    <p>Altho these are equivalent, never, ever, write <code>i[a]</code>
+    instead of <code>a[i]</code>.
+    </p>
+    
+    <p>I've never seen C's predecessor B, but have seen another
+    of B's descendants, BCPL, which used pointers and no subscription as I
+    remember. So I assume that the first versions of C had no
+    subscription - only pointer operations, which would explain
+    this amazing equivalence.
+    </p>
+    
+    <p><b>Never write</b> subscripts in the inverted form.</p>
+<pre class="example">
+sum = sum + a[i];  // good
+sum = sum + i[a];  // legal, but horrible style
+
+char hexDigit = "0123456789ABCDEF"[i];  // good
+char hexDigit = i["0123456789ABCDEF"];  // legal, but horrible style</pre>
+
+<p>Program entries in the annual C Obfuscation contest actually do
+something, but are written so as to obscure their behavior.  Reversing the subscript and array could be
+a useful technique for the contest, but not for writing good programs.
+</p>
+
+
+<h2>Differences between arrays and pointers</h2>
+<p>
+Having said that arrays and pointers are basically the same, I must admit that 
+there are some differences.  The only differences I'm aware of are the following.
+These only apply to the function that the array is declared it -- if an
+array is passed as a parameter, even if the parameter is declared as 
+an array, it's treated exactly like a pointer.
+</p>
+<ul>
+<li>The address of operator (<code>&amp;</code>) does nothing when applied to array names (see discussion below),
+    but does with pointers..</li>
+<li>Array names are essentially <code>const</code>.</li>
+<li>The <code>sizeof</code> operator returns the size of the allocated space for
+    actual arrays, but not array parameters (ie, where the size can be computed at compile-time).</li>
+</ul>
+
+
+<h2>&amp; operator applied to arrays does nothing.</h2>
+
+<p>The &amp; (address of) operator normally returns the address of
+the operand.  However, arrays are the exception.  
+When applied to an array (which is an address), it has the
+same value as the array reference without the operator.
+This isn't true of the equivalent pointers, which have an
+independent address.  The example below show this.  
+When <code>cout</code> is given an address, it prints it
+in hexadecimal (except addresses of characters, which are
+assumed to be the beginning of a c-string).
+For example,
+</p>
+<pre class="example">
+// arrayptr.cpp - Show operation of &amp; on arrays and pointers.
+//   Fred Swartz - 2002-09-25
+
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    double  a[100];  // array
+    double* p = a;  // pointer equivalent to a
+
+    cout &lt;&lt; "a=" &lt;&lt; a &lt;&lt; ", &amp;a=" &lt;&lt; &amp;a &lt;&lt; endl;
+    cout &lt;&lt; "p=" &lt;&lt; p &lt;&lt; ", &amp;p=" &lt;&lt; &amp;p &lt;&lt; endl;
+
+    return 0;
+}</pre>
+<p>This produces the following output showing the unexpected equality <code> a == &amp;a</code>.
+The value of <code>p</code> is the same as <code>a</code> as expected, and
+<code>&amp;p</code> is the address of the memory location of the p variable as
+expected.</p>
+<pre>
+   a=006AFAD8, &amp;a=006AFAD8
+   p=006AFAD8, &amp;p=006AFAD4
+</pre>
+
+
+<h3>History?</h3>
+<p>I don't know the history of this bit of C weirdness, but suspect it was added 
+    because the scanf() function, the mainstay of C input, requires the <i>address</i> of the variables to put things into.  
+    So a function call might look like.</p>
+<pre class="fragment">
+int a, b, d, f;  char c[100];
+scanf("some format here", &amp;a, &amp;b, <span class="hilite">c</span>, &amp;d, &amp;f);    // Very correct.</pre>
+
+<p>Hmmm, why does everthing except the character string c require an &amp;?
+<i>Answer</i>: it's an array and an array name <i>is</i> the address of the associated memory. 
+So it would appear more consistent to allow the &amp;, and I suppose many 
+early users wrote this (certainly many students do without knowing what it might mean).
+What would happen if they weren't equivalent and the user naively wrote the following?</p>
+
+<pre class="fragment">
+scanf("some format here", &amp;a, &amp;b, <span class="hilite">&amp;c</span>, &amp;d, &amp;f);  // Correct.</pre>
+
+<p>With the &amp; in front of c, if the compiler really took the address of c, 
+input would overwrite part of call stack with disasterous consequences.  
+So I suspect they eliminated this problem by making c and &amp;c mean the same thing. 
+Ugly, but only one of the many C warts.
+</p>
+
+<script type="text/JavaScript">footer("2004");</script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>C++: Overloading Derived Class Assignment</title>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: Overloading Derived Class Assignment</h1>
+
+
+<h2>Copying parent class members</h2>
+If there is a parent (base) class, those fields must also be copied.
+You can accomplish this with the following cryptic statement,
+<pre>    this-&gt;<i>Parent</i>::operator=(source);</pre>
+where <i>Parent</i> is the name of the base class.
+<pre class="example">
+//--- file Parent.h
+class Parent {...};   // declaration of base class
+</pre>
+
+<pre class="example">
+//--- file Child.h
+#include "Parent.h"
+class Child : public Parent { // declaration of derived class
+public:
+    Child&amp; Child::operator=(const Child&amp; source);
+};//end class Child
+</pre>
+
+<pre class="example">
+//--- file Child.cpp
+#include "Child.h"
+Child&amp; Child::operator=(const Child&amp; source) {
+    if (this != &amp;source) {
+        <b>this-&gt;<i>Parent</i>::operator=(source);</b>
+        . . . // copy all our own fields here.
+    }
+    return *this;
+}//end operator=
+</pre>
+
+<h2>See Also</h2>
+<a href="overloadassign.html">Overloading Assignment</a>
+
+
+   
+<script type="text/JavaScript">footer("2001");</script>
+</body>
+
+</html>

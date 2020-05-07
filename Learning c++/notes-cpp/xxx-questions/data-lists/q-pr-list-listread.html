@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet"           type="text/css" title="noanswers" href="../../notes.css"/>
+    <link rel="alternate stylesheet" type="text/css" title="answers"   href="../../notesanswer.css"/> 
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++: Exercise - listread</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++</a>: Exercise - listread</h1>
+
+<p>Name __________________________________</p>
+
+
+
+<p>Write a function, <code>listread</code>, which reads floats from cin and puts them in a linked list.  Return the 
+        address of the first element of the list.  If there is no input, the function
+        should return NULL.
+        Use these definitions:</p>
+<pre class="example">
+struct Node {
+    Node* next;
+    float data;
+};</pre>
+
+<p>The function prototype is.</p>
+<pre class="example">
+Node* listread();  // Returns pointer to first element of list </pre>
+
+
+<p><b>Hints</b>.  Here are some things you should be sure your code does.</p>
+<ul>
+<li>Save the pointer to the first node that is allocated so it can be
+    returned at the end.  You'll probably need to declare at least two pointers,
+    one to hold the address of the first node, and one to point to the last
+    node in the list.</li>
+<li>Be sure to set the next pointer to NULL for the last entry (or every entry then overwrite it).
+    </li>
+</ul>
+
+<p>
+<a href="#" onclick="setActiveStyleSheet('answers'  ); return false;">Show Answers</a> -
+<a href="#" onclick="setActiveStyleSheet('noanswers'); return false;">Hide Answers</a>
+</p>
+
+  
+<script type="text/JavaScript">footer("2001-4");</script>
+</body>
+
+</html>

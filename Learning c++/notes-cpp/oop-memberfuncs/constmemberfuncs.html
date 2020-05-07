@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>C++: OOP: const member functions</title>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: <a href="../index.html#OOP">OOP</a>: <code>const</code> member functions</h1>
+
+<h2><code>const</code> member functions can use <code>const</code> objects</h2>
+Member functions should be declared with the <code>const</code>
+keyword after them if they can operate on a const (this) object.
+If the function is not declared <code>const</code>, in can not
+be applied to a const object, and the compiler will give an 
+error message.  A <code>const</code> function can be applied
+to a non-<code>const</code> object
+
+<br /><br />A function can only be declared <code>const</code> if
+it doesn't modify any of its fields.
+
+<h2>More efficient code</h2>
+I remember something about compilers being able to generate more
+efficient code for <code>const</code> member functions.
+
+<h2>Syntax</h2>
+The <code>const</code> keyword is placed after the function header and
+before the left brace in <i>both</i> the prototype and the definition.
+
+<h2>Example</h2>
+In this example from a header file for a vector-like class, the <code>capacity</code> and
+<code>empty</code> functions don't change the object, and therefore
+are declared <code>const</code>.  <code>clear</code> may change
+the object and therefore can not be declared <code>const</code>.
+
+<pre class="example">
+int  capacity() const;  // max size before reallocation
+void clear();           // delete all items
+bool empty() const;     // true if contains no elements (size()==0)</pre>
+
+<h2><code>const</code> can't be used for constructors and destructors</h2>
+The purpose of a constructor is to initialize field values, so it must
+change the object.  Similarly for destructors. 
+
+<h2>Can overload with non-<code>const</code> functions</h2>
+There can be both <code>const</code> and non-<code>const</code> functions.
+The compiler will choose the appropriate one to call depending on the
+object they are being applied to.  [Note: this seems like more of a
+theoretical possibility rather than something that would ever be used.
+Is there a common use for defining more than the <code>const</code> version?]
+   
+<script type="text/JavaScript">footer("2002");</script>
+</body>
+
+</html>

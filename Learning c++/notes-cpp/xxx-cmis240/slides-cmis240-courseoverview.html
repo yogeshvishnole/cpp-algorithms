@@ -1,0 +1,248 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../slide.css"/>
+    <title>CMIS 240 - Data Structures - Main Topics</title>
+</head>
+<body>
+
+<div class="projection"> <!-- ================================================================ -->
+<h1>CMIS 240 - Data Structures - Main Topics</h1>
+<ul>
+<li>Beyond "Happy Trails" programming.</li>
+<li>C++ Review</li>
+<li>Pointers, references, etc.</li>
+<li>Dynamic memory management (new, delete, constructors, destructors)</li>
+<li>Data structures - fixed arrays, expandable arrays, linked lists, trees, ...</li>
+<li>OOP - Object-Oriented Programming</li>
+<li>STL - Standard Template Library</li>
+<li>Operator overloading</li>
+<li>Generic programming - parameterized types using templates</li>
+<li>Algorithms - Sorting, searching, shuffling</li>
+<li>Efficiency - Big Oh notation</li>
+<li>Programming principles and practices</li>
+</ul>
+</div>
+
+<div class="projection"> <!-- ================================================================ -->
+<h1>Beyond "Happy Trails" Programming</h1>
+<ul>
+<li>Too much data.
+    <ul>
+    <li>How to make data structures that can expand.</li>
+    </ul>
+    </li>
+<li>Values too large
+    <ul>
+    <li>How to make values that have unbounded precision.</li>
+    </ul>
+    </li>
+<li>Error handling
+    <ul>
+    <li>Exceptions</li>
+    <li>Try-catch</li>
+    </ul>
+    </li>
+<li>Defensive programming
+    <ul>
+    <li>assert</li>
+    </ul>
+    </li>
+</ul>
+</div>
+
+<div class="projection"> <!-- ================================================================ -->
+<h1>C++ Review</h1>
+<ol>
+<li>Program structure</li>
+<li>Types (simple, structured)</li>
+<li>Expressions</li>
+<li>Control Flow (selection, loops, call, etc)</li>
+<li>Input - Output</li>
+<li>Functions</li>
+</ol>
+</div>
+
+
+<div class="projection"> <!-- ================================================================ -->
+<h1>C++: Simple Types</h1>
+<ul>
+<li>Integers
+    <ul>
+    <li>int - This is the most commonly used integer type.</li>
+    <li>short</li>
+    <li>long</li>
+    <li>char - Characters are technically an integer type.</li>
+    <li>The <code>signed</code>/<code>unsigned</code> attributes may also be specified.</li>
+    </ul>
+    </li>
+<li>Floating-point
+    <ul>
+    <li>float - This is the standard floating-point type.</li>
+    <li>double</li>
+    <li>long double</li>
+    </ul>
+    </li>
+<li><code>bool</code> - True or false.</li>
+</ul>
+</div>
+
+
+
+<div class="projection"> <!-- ================================================================ -->
+<h1>C++: Structured Types</h1>
+    <ul>
+    <li>Character Strings - two fundamental types
+        <ul>
+        <li>C-strings - Zero-terminated array of chars.</li>
+        <li>string - type defined as a class in the STL.</li>
+        </ul>
+        </li>
+    <li>Arrays
+        <ul>
+        <li>Elements accessed by subscript starting at 0.</li>
+        <li>All elements are the same type.</li>
+        <li>Fixed size</li>
+        </ul>
+        </li>
+    <li>Structs
+        <ul>
+        <li>Each element has a separate name.</li>
+        <li>Each element may have a separate type.</li>
+        <li>Fixed size.</li>
+        </ul>
+        </li>
+    <li>Classes
+        <ul>
+        <li>Like structs, but also allow functions.</li>
+        </ul>
+        </li>
+    <li>Pointer and reference types</li>
+    <li>Other - Union (Overlapping storage) will not be covered.</li>
+    </ul>
+</div>
+
+
+<div class="projection"> <!-- ================================================================ -->
+<h1>C++: Expressions</h1>
+<ul>
+<li>Precedence - Each operator has a precedence</li>
+<li>Numeric operators
+    <ul>
+    <li>+ - * / % -- ++</li>
+    </ul>
+    </li>
+<li>Comparison operators
+    <ul>
+    <li>&lt; &lt;= == != &gt;= &gt;</li>
+    </ul>
+    </li>
+<li>Boolean operators
+    <ul>
+    <li>&amp;&amp; || !</li>
+    <li>?:</li>
+    </ul>
+    </li>
+<li>Pointer and member access operators
+    <ul>
+    <li>* &amp; [] -&gt; .</li>
+    </ul>
+    </li>
+<li>Bit operators
+    <ul>
+    <li>&lt;&lt; | &amp; ^ &gt;&gt; ~</li>
+    </ul>
+    </li>
+<li>Others
+    <ul>
+    <li>:: casts new delete sizeof etc</li>
+    </ul>
+    </li>
+</ul>
+</div>
+
+
+<div class="projection"> <!-- ================================================================ -->
+<h1>C++ Control Flow</h1>
+<ul>
+<li>Selections
+    <ul>
+    <li>if...else</li>
+    <li>switch</li>
+    </ul>
+    </li>
+<li>Loops
+    <ul>
+    <li>while</li>
+    <li>for</li>
+    <li>do...while</li>
+    <li>break and continue</li>
+    </ul>
+    </li>
+<li>Function call</li>
+<li>New in this course
+    <ul>
+    <li>assert</li>
+    <li>exceptions</li>
+    </ul>
+    </li>
+</ul>
+</div>
+
+
+<div class="projection"> <!-- ================================================================ -->
+<h1>C++: Input - Output</h1>
+<ul>
+<li>Stream IO
+    <ul>
+    <li>Read or write console or file</li>
+    <li><code>cin</code>, <code>cout</code>, <code>cerr</code></li>
+    <li>Commonly use <code>&lt;&lt;</code> and <code>&gt;&gt;</code> operators.</li>
+    </ul>
+    </li>
+<li>Graphical User Interface - GUI
+    <ul>
+    <li>Probably won't use one in this course.</li>
+    </ul>
+    </li>
+</ul>
+</div>
+
+
+
+<div class="projection"> <!-- ================================================================ -->
+<h1>C++: Standard Template Library</h1>
+<ul>
+<li>Many data structures textbooks ignore standard data structure libraries.</li>
+<li>The STL is necessary to know for <i>real</i> programming.</li>
+<li>Parts of the library we will briefly cover
+    <ul>
+    <li>Containers
+        <ul>
+        <li>string - expandable character string</li>
+        <li>vector - expandable array</li>
+        <li>list - linked list</li>
+        <li>map - associates a key with a value</li>
+        </ul>
+        </li>
+    <li>Iterators - Used to pass over elements of a container.</li>
+    <li>Algorithms
+        <ul>
+        <li>Sorting, searching, shuffling.</li>
+        </ul>
+        </li>
+    </ul>
+    </li>
+</ul>
+</div>
+
+<div class="projection"> <!-- ================================================================ -->
+<h1>End</h1>
+</div>
+
+
+</body>
+</html>

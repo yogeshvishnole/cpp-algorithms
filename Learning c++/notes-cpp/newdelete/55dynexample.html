@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Example: Expanding an Array</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Example: Expanding an Array</h1>
+A central problem in programming is the fixed size of arrays.
+This problem can be avoided by dynamically allocating arrays.
+The following shows a simple problem: read integers then print them.
+But you don't know how many integers there will be.
+
+<h2>Fixed Allocation Example</h2>
+This program fragment will break if more than 1000 integers are entered.
+<pre class="example">
+const int MAX = 1000;
+int a[MAX];            // allocated on call stack
+int n = 0;
+
+//--- Read into the array
+while (cin &gt;&gt; a[n]) {  // can overflow array
+    n++;
+}
+
+//--- Write out the array
+for (int i=0; i&lt;n; i++) {
+    cout &lt;&lt; a[i] &lt;&lt; endl;
+}</pre>   
+You can check to see if MAX has been exceeded in the input loop, but then what
+should you do?  Giving an error message and stopping doesn't solve anyone's problem.
+Continuing with only part of the data is worse because it will
+give the wrong answer.  The way to handle this is to make the array bigger!
+
+
+<h2>Dynamic Allocation Example</h2>
+This program is only limited by the amount of memory.
+It starts with a small array and expands it only if necessary.
+<pre class="example">
+int  max = 10;            // Current allocated max size.
+<span class="hilite">int* a   = new int[max]</span>;  // Allocate space in heap.
+int  n   = 0;             // Current number of elements.
+
+//--- Read into the array
+while (cin &gt;&gt; a[n]) {
+    n++;
+    if (n &gt;= max) {
+        max = max * 2;            // Double the previous size.
+        <span class="hilite">int* temp = new int[max]</span>; // Allocate new, bigger array.
+        for (int i=0; i&lt;n; i++) {
+            temp[i] = a[i];       // Copy old array to new array.
+        }
+        <span class="hilite">delete [] a</span>;              // Free old array memory.
+        a = temp;                 // Now a points to new array.
+    }         
+}
+//--- Write out the array etc.</pre>   
+
+<h3>Expansion policy</h3>
+A common policy for how much larger to make a dynamic array is to
+double the previous allocation.  Another it to add a fixed size.
+Making it only 1 element larger is usually not done because of the
+overhead of memory allocation, copying, and deallocation.
+
+<h2>Remaining problems</h2>
+This is a very nice technique, but doesn't solve all problems.  For example.
+<ul>
+<li>If the reallocation is made in a function on a parameter, how is 
+    this information transmitted back to the original pointer to the
+    array and the size information.
+    </li>
+<li>It's awkward to make the necessary test and allocation everywhere.
+    </li>
+</ul>
+<p>The solution to these, and other, problems is in the STL <a href="../stl-containers/vector/header-vector.html"><code>vector</code></a> class.
+</p>
+
+   
+<script type="text/JavaScript">footer("2000-4");</script>
+</body>
+
+</html>

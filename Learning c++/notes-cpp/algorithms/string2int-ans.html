@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Solution - Convert C-string to double</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Solution - Convert C-string to double</h1>
+
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+ 22 
+ 23 
+ 24 
+ 25 
+ 26 
+ 27 
+ 28 
+ 29 
+ 30 
+ 31 
+ 32 
+ 33 
+ 34 
+ 35 
+ 36 
+ 37 
+ 38 
+ 39 
+ 40 
+</pre></td><td valign='top'>
+<div class="file"><pre>
+// Convert C-string to double.
+// Fred Swartz 2000
+
+bool string2double(char* digit, double&amp; result) {
+   int sign = 1;
+
+   result = 0;
+
+   // check sign
+   if (*digit == '-') {
+      sign = -1;
+      digit++;
+   }
+
+   //--- get integer portion
+   while (*digit &gt;= '0' &amp;&amp; *digit &lt;='9') {
+      result = (result * 10) + *digit-'0';
+      digit++;
+   }
+
+   //--- get decimal point and fraction, if any.
+   if (*digit == '.') {
+      digit++;
+      double scale = 0.1;
+      while (*digit &gt;= '0' &amp;&amp; *digit &lt;='9') {
+         result += (*digit-'0') * scale;
+         scale *= 0.1;
+         digit++;
+      }
+   }
+
+   //--- error if we're not at the end of the number
+   if (*digit != 0) {
+      return false;
+   }
+
+   //--- set to sign given at the front
+   result = result * sign;
+   return true;
+}
+</pre></div>
+</td></tr></table>
+
+
+<script type="text/JavaScript">footer("2005");</script>
+
+</body>
+</html>
+

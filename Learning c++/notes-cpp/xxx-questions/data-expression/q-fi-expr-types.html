@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++: Expressions -- Type Exercises</title>
+</head>
+
+<body>
+<h1><a href="../index.html">C++</a>: Expressions -- Type Exercises</h1>
+
+
+<p>Name ______________________</p>
+
+<table border="0" cellspacing="8">
+<tr><th>Assume the following declarations</th><th>Questions</th></tr>
+<tr><td valign="top">
+<pre>
+    int    i, j, k, n;
+    float  f = 3.9;
+    double d = 6.2;
+    char   c;
+    char   cs[100];
+    string s;
+    bool   b = false;
+    int    a[] = {1, 2, 3, 4, 5};
+    
+    struct Point {
+        float latitude;
+        float longitude;
+    };    
+    
+    struct City {
+        char  name[25];
+        int   population;
+        Point coordinates;
+    };
+    
+    Point p;
+    City  hometown;
+    City  towns[10000];
+</pre>
+
+</td><td valign="top">   <!-- start next column -->
+Specify the <i>type</i> of each of the following expressions.
+Choose from <code>int</code>, <code>float</code>, <code>double</code>, <code>bool</code>,
+<code>char</code>, <code>char[]</code>, <code>string</code>,
+<code>float[]</code>, <code>City</code>, <code>City[]</code>, 
+<code>Point</code>, or <code>Point[]</code>.
+<ol>
+<li> __________ <code>1 + 2 - 3 * 4 / 5</code></li>
+<li> __________ <code>3 / 2</code></li>
+<li> __________ <code>3 / 2.0</code></li>
+<li> __________ <code>3.0 / 2</code></li>
+<li> __________ <code>5 % 3</code><br /><br /></li>
+
+<li> __________ <code>3 == 4</code></li>
+<li> __________ <code>(int)f</code></li>
+<li> __________ <code>(float)d</code></li>
+<li> __________ <code>float(d)</code></li>
+<li> __________ <code>j &lt; 7777</code><br /><br /></li>
+
+<li> __________ <code>k &gt; j &amp;&amp; k &gt; 3</code></li>
+<li> __________ <code>(int)(f + 0.5) == (int)d</code></li>
+<li> __________ <code>cs</code></li>
+<li> __________ <code>cs[3]</code></li>
+<li> __________ <code>s[2]</code><br /><br /></li>
+
+<li> __________ <code>strlen(cs)</code></li>
+<li> __________ <code>cs[strlen(cs) / 2]</code></li>
+<li> __________ <code>hometown.population</code></li>
+<li> __________ <code>hometown.coordinates</code></li>
+<li> __________ <code>hometown.coordinates.latitude</code><br /><br /></li>
+
+<li> __________ <code>towns[5].name[7]</code></li>
+<li> __________ <code>a[a[a[1]]]</code></li>
+<li> __________ <code>p</code></li>
+<li> __________ <code>hometown</code></li>
+<li> __________ <code>towns</code></li>
+</ol>
+</td></tr></table>
+
+<script type="text/JavaScript">footer("2003");</script>
+</body>
+</html>
+

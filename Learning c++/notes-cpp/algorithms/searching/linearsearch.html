@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Algorithms: Linear Search</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++ Notes</a>: Algorithms: Linear Search</h1>
+
+<h2>Look at every element</h2>
+This is a very straightforward loop comparing every element in the
+array with the key.  As soon as an equal value is found, it returns.
+If the loop finishes without finding a match, the search failed and
+-1 is returned. 
+
+<h2>Performance</h2>
+For small arrays, linear search is a good solution because it's
+so straightforward.
+In an array of a million elements linear search
+on average will take 500,000 comparisons to find the key.
+For a <i>much</i> faster search, take a look at 
+<a href="binarysearch.html">binary search</a>.
+
+<h2>Example</h2>
+<pre class="example">
+int linearSearch(int a[], int first, int last, int key) {
+   // function:
+   //   Searches a[first]..a[last] for key.  
+   // returns: index of the matching element if it finds key, 
+   //         otherwise  -1.
+   // parameters:
+   //   a           in  array of (possibly unsorted) values.
+   //   first, last in  lower and upper subscript bounds
+   //   key         in  value to search for.
+   // returns:
+   //   index of key, or -1 if key is not in the array.
+   
+   for (int i=first; i&lt;=last; i++) {
+       if (key == a[i]) {
+          return i;
+       }
+   }
+   return -1;    // failed to find key
+}</pre>
+
+<h2>Related Pages</h2>
+<a href="binarysearch.html">Binary Search</a>
+
+   
+<script type="text/JavaScript">footer("1999");</script>
+
+</body>
+</html>
+

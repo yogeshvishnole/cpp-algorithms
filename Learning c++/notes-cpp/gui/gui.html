@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www/leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Graphical User Interfaces</title>
+</head>
+
+<body>
+
+<h1><a href="../index.html">C++ Notes</a>: Graphical User Interfaces</h1>
+<p>There are hundreds of packages to use in creating GUIs (Graphical User Interfaces).
+Every proprietary operating system has one or more proprietary GUI library.  In these notes
+I'll just mention Microsoft Windows, but something similar applies to MacOS, OS/2, etc.
+In addition to the many proprietary GUI packages, there are a number of popular
+portable GUI libraries.
+</p>
+<ol>
+<li>Microsoft Windows.  I'm not interested in system lock-in, so I don't
+    pay much attention to these.  However, the following are available.
+    <ul>
+    <li>MFC (Microsoft Foundation Classes) has been used in Microsoft Windows
+        systems for a long time.  Ugly and difficult, but of course it runs
+        on a lot of systems.
+        </li>
+    <li>The new .NET GUI system.  I don't remember the name, but I've seen some 
+        of the things that are coming up in the Longhorn edition, and I was very
+        impressed, eg, by XAML.  But not portable, of course.
+        </li>
+    </ul>
+    </li>
+<li>Portable (at least between Windows, Linux, and MacOSX).  Here are some of the more popular systems.
+    <table>
+    <tr><td>wxWidgets</td><td><a href="http://www.wxwindows.org">www.wxwindows.org</a>
+                              is a big system with a lot of other features (aka wxWindows).</td></tr>
+    <tr><td>GTK+     </td><td><a href="http://www.gtk.org">www.gtk.org</a></td></tr>
+    <tr><td>Qt       </td><td><a href="http://www.trolltech.com/products/qt/">www.trolltech.com</a></td></tr>
+    <tr><td>FOX      </td><td><a href="http://www.fox-toolkit.org/">www.fox-toolkit.org</a></td></tr>
+    <tr><td>eFLTK    </td><td>I haven't checked out this fork of FLTK, which sadly seems to be dying.</td></tr>
+    </table>
+    </p>
+    </li>
+</ol>
+    <p><b>Overview</b>. Read <a href="http://freshmeat.net/articles/view/928/">GUI Toolkits for The X Window System</a> 
+    for an (old) overview of the these (and more).
+    I've used FLTK, but it seems to be replaced by eFLTK, which I haven't checked out.
+    I'd probably start with wxWidgets, but ...
+<!--
+<h2>Fast Light Tool Kit (FLTK)</h2>
+<p>There's lots more to be said, but here's a start.
+</p>
+<ul>
+<li>Home page - <a href="http://www.fltk.org">www.fltk.org</a></li>
+<li>Tutorial - <a href="http://www3.telus.net/public/robark/index.html">www3.telus.net/public/robark/index.html</a>
+             by Robert Arkiletian.</li>
+<li>Videos - <a href="http://seriss.com/people/erco/fltk-videos/">seriss.com/people/erco/fltk-videos/</a>
+             by Greg Ercolano.  These are wonderful demos, which you can stop and rewind anywhere.
+             They use the DOS window, VIM, and nmake for development instead of Dev-C++, but
+             the programs are the same.</li>
+<li>Examples - <a href="http://www.cs.wisc.edu/graphics/Courses/cs-638-1999/638_example_code.htm">www.cs.wisc.edu/graphics/Courses/cs-638-1999/638_example_code.htm</a></li>
+</ul>
+  -->
+<script type="text/JavaScript">footer(2004);</script>
+</body>
+</html>
+

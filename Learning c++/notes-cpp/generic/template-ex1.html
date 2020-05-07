@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Example - CheckedArray Template Class</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Example - CheckedArray Template Class</h1>
+
+
+This example defines a class which checks the array bounds.  
+This is a generic class with a parameterized type, ie, a <i>template</i>.
+The source for all functions is written inside the class definition.
+<ul>
+<li>See <a href="template-ex2.html">Example - CheckedArray Alternate Style</a>
+    for another way to organize the source code.</li>
+<li>See <a href="q-pr-generic-checkedarray.html">Programming Exercises - Extend CheckedArray</a>
+    for extensions to this class to make it work right (fix memory leak, make
+    assignment work correctly, ...</li>
+</ul>
+
+<p>Here is the include file, which contains all parts of the class definition.</p>
+<pre class="file">
+//--- file generic/CheckedArray.h
+#ifndef CHECKEDARRAY_H
+#define CHECKEDARRAY_H
+
+#include &lt;stdexcept&gt;
+/////////////////////////////////// class CheckedArray&lt;T&gt;
+<b>template&lt;class T&gt;</b>
+class CheckedArray {
+private:
+    int size;  // maximum size
+    T*  a;     // pointer to new space
+public:      
+    //================================= constructor
+    CheckedArray&lt;T&gt;(int max) {
+        size = max;
+        a = new T[size];
+    }//end constructor
+
+    //================================= operator[]
+    T&amp; CheckedArray&lt;T&gt;::operator[](int index) {
+        if (index &lt; 0 || index &gt;= size) {
+            throw out_of_range("CheckedArray");
+        }
+        return a[index];
+    }//end CheckedArray&lt;T&gt;
+};//end class CheckedArray&lt;T&gt;
+#endif
+</pre>
+
+And here is a sample test program.
+
+<pre class="file">
+//--- file test.cpp
+#include "CheckedArray.h"
+//================================= main test program
+void main() {
+    CheckedArray&lt;double&gt; test1(100);
+    test1[25] = 3.14;
+    CheckedArray&lt;int&gt; test2(200);
+    test2[0] = 55;
+}//end main
+</pre>
+   
+<script type="text/JavaScript">footer("2001-2003");</script>
+</body>
+
+</html>

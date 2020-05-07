@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>C++: Data Structures: Overview</title>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" language="JavaScript" src="../../notes.js"></script>
+</head>
+<body bgcolor="#ffffff">
+<h1><a href="../index.html">C++</a>: Data Structures and Algorithms: Overview</h1>
+
+<h2>Hierarchy of data representation</h2>
+The representation of data can be grouped in several levels, ranging from 
+hardware-oriented to application-oriented.
+
+<h2>Hardware Types</h2>
+<dl>
+<dt>Primitive types</dt>
+    <dd>These are simple hardware-oriented types: integer and
+        and floating point numbers, characters, etc. 
+        </dd>
+</dl>
+
+
+
+<h2>Physical Grouping</h2>
+
+<dl>
+<dt>Structs (Records)</dt>
+    <dd>Grouping different types of elements in fields accessed by name is important,
+        yet there is little algorithmically interesting 
+        in most programming languages about
+        accessing the fields since they are simply accessed by name.
+        This type of structure does get more interesting when it's
+        implemented in a relational database and manipulated 
+        with <i>SQL</i>.  The other extension of structs that is
+        interesting is <i>class</i>, which will be revisited below.
+        </dd>
+        
+<dt>Arrays</dt>
+    <dd>Arrays of same type elements at are accessed by number 
+        are bound very closely to the hardware in
+        that elements are stored in consecutive memory locations.
+        This is a source of both great efficiency and 
+        numerous problems.  Arrays are algorithmically interesting and 
+        much attention is devoted to such issues as sorting, searching, insertion,
+        and deletion.
+        </dd>
+</dl>
+
+<h2>The problem with physical grouping (arrays)</h2>
+
+<br /><br />Using physical grouping such as arrays has a very
+high price.  The programmer is always faced with the problem of what
+to do when the array is full and there is more data.  There are 
+several approaches, each with its own serious problems:
+<ul>
+<li>Ignore the problem - This classic "solution" is one of the leading
+    sources of bugs and opens the door to hackers.
+    </li>
+<li>Produce an error - It's better for a program to stop with an error
+    than continue apparently doing something but with a bug in the
+    computation.  But of course, it is then failing to solve some user's
+    problem.
+    </li>
+<li>Reallocate a larger array - This isn't a bad solution if all uses
+    of the array are easily controlled so that the address of the expanded
+    array is easily used by everyone.  If the array has been passed as a
+    parameter, it is unlikely that everyone will be referring to the new
+    array.
+    </li>
+</ul>
+
+
+<h2>Collections - logical grouping</h2>
+Everything is built upon the basic hardware-oriented types and groupings
+above.  These above features are generally the only ones supported by
+directly by basic mainstream programming language features.
+
+<h2>Application Objects</h2>
+    
+
+   
+<script type="text/JavaScript" language="JavaScript">footer("2001");</script>
+</body>
+
+</html>

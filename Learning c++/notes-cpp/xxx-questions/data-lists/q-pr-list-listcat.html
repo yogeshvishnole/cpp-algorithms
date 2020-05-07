@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet"           type="text/css" title="noanswers" href="../../notes.css"/>
+    <link rel="alternate stylesheet" type="text/css" title="answers"   href="../../notesanswer.css"/> 
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++: Exercise - listcat</title>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: Exercise - listcat <span class="answer">Answer</span></h1>
+
+<p>Name __________________________________</p>
+
+
+<p>Given this declaration.</p>
+<pre class="example">
+struct Node {
+    Node* next;
+    Node* prev;
+    float data;
+};</pre>
+
+<p>Write a function that uses the above definition of Node and which appends one list to the
+    end of another.  The prototype is.
+<pre class="example">
+Node* listcat(Node* list1, Node* list2);
+</pre>
+<p>the function <code>listcat</code> appends <code>list2</code> to the end of 
+<code>list1</code>.
+</p>
+
+<p><b>Return value</b>.  This returns the address of
+the first element of the resulting list (ie, <i>list1</i>).
+If <i>list1</i> is NULL, return <i>list2</i>
+</p>
+
+<p><b>Hint</b>: All this does is replace
+the NULL link at the end of <code>list1</code> with the address of the first
+element of <code>list2</code>, and the NULL link at the beginning of <i>list2</i>
+with the address of the last element of <i>list1</i>.  
+You will need a loop to find the end of <i>list1</i>.
+Do not make copies of any nodes.</p>
+
+
+<p>
+<a href="#" onclick="setActiveStyleSheet('answers'  ); return false;">Show Answers</a> -
+<a href="#" onclick="setActiveStyleSheet('noanswers'); return false;">Hide Answers</a>
+</p>
+
+<div class="answer">Answer:
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+</pre></td><td valign='top'>
+<div class="example"><pre>
+//============================================================= listcat
+Node* listcat(Node* list1, Node* list2) {
+    if (list1 == NULL) return list2;
+    if (list2 == NULL) return list1;
+    
+    Node* p = list1;  // p will point to last element of list1.
+    while (p-&gt;next != NULL) {
+        p = p-&gt;next;
+    }
+    p-&gt;next = list2;  // Point last elem of list1 to list2.
+    list2-&gt;prev = p;  // Point first elem of list2 to last elem of list1.
+}
+</pre></div>
+</td></tr></table>
+</div>
+
+  
+<script type="text/JavaScript">footer("2004");</script>
+</body>
+
+</html>

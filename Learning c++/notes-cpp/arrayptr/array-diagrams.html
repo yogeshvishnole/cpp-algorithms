@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Array Memory Diagrams</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Array Memory Diagrams</h1>
+Here is an array declaration and code to initialize it.
+<pre class="fragment">
+int a[5];  // Allocates memory for 5 ints.
+. . .
+a[0] = 1;
+for (int i=1; i&lt;5; i++) {
+    a[i] = a[i-1] * 2;
+}</pre>
+
+<p>Arrays are often represented with diagrams that represent their
+memory use.  The diagram below is one typical way to represent 
+the memory used by an array.</p>
+
+<p>Each box represents the amount of memory needed to hold one
+array element.  For ints this is usually 4 bytes.  We can 
+write the value of an element inside the box.
+Pointers hold the memory address of other data and are represented
+by a black disk with an arrow pointing to the data it references.
+</p>
+
+<p>The actual array variable, <code>a</code> in this example, is 
+a pointer to the memory for all of its
+elements.  
+A common shortcut is to omit writing the array variable,
+and write only the elements that hold the data because these are
+usually the focus of attention.  Sometimes the cells are written horizontally,
+especially when showing C-strings (arrays of chararcters).
+</p>
+<table border="0">
+<tr><td>
+<img src="arrays_v1_202x220.gif" width="202" height="220" alt="memory diagram of an array" />
+</td>
+<td> or simply </td>
+<td>
+<img src="arrays_v2_145x215.gif" width="145" height="215" alt="memory diagram of an array" />
+</td>
+</tr>
+</table>
+
+<img src="arrays_h1_381x122.gif" width="381" height="122" alt="horizontal array diagram" />
+<p>or just</p>
+<img src="arrays_h2_369x61.gif" width="369" height="61" alt="another horizontal diagram" />
+
+
+<script type="text/JavaScript">footer("2003");</script>
+</body>
+
+</html>

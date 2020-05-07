@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++: Loop Exercises 4</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++</a>: Loop Exercises 4</h1>
+
+
+Name: _________________________________
+
+<ol>
+<li class="question">What is the output given input: 5 3 -6 8 -2 1
+<pre>
+   int n;
+   while (cin &gt;&gt; n) {
+      cout &lt;&lt; n &lt;&lt; " ";
+   }
+</pre>
+</li>
+
+<li class="question">What is the output given input: 5 3 -6 8 -2 1
+<pre>
+   int n = 0;
+   while (n &lt; 9) {
+      cout &lt;&lt; n &lt;&lt; " ";
+      n++;
+   }
+</pre>
+Note: This "while" loop is a natural "for" loop, which would be more readable.
+<!-- trick: never reads the input -->
+</li>
+
+<li class="question">What is the output given input: 5 3 -6 8 -2 1
+<pre>
+   int n;
+   if (cin &gt;&gt; n) {
+      for (int i=0; i&lt;n; i++) {
+         cout &lt;&lt; i &lt;&lt; " ";
+      }
+   }
+</pre>
+</li>
+
+<li class="question">What is the output given input: 5 3 -6 8 -2 1
+<pre>
+   int n;
+   while (cin &gt;&gt; n) {
+       for (int i=0; i&lt;n; i++) {
+           cout &lt;&lt; i &lt;&lt; " ";
+       }
+       cout &lt;&lt; endl;
+   }
+</pre>
+</li>
+
+<li class="question">What is the output given input: 5 3 -6 8 -2 1
+<pre>
+   // Loop written in "Sentinal" style.
+   int number;
+   int sum = 0;
+   bool nonNegative = true;
+   bool notEOF = true;
+   while (nonNegative &amp;&amp; notEOF) {
+       if (cin &gt;&gt; number) {
+           if (number &lt; 0) {
+               nonNegative = false;
+           } else {
+               sum = sum + number;
+           }
+      }else{
+           notEOF = false;
+      }
+   }
+   cout &lt;&lt; sum &lt;&lt; endl;
+</pre>
+</li>
+
+
+<li class="question">What is the output given input: 5 3 -6 8 -2 1
+<pre>
+   int number;
+   int sum = 0;
+   while ((cin &gt;&gt; number) &amp;&amp; (number &gt;=0)) {
+       sum += number;
+   }
+   cout &lt;&lt; sum &lt;&lt; endl;
+</pre>
+Note: the above loop is like the previous problem, but makes a direct
+test instead of setting sentinals to test later.  Which is more readable?
+</li>
+
+
+</ol>
+
+
+<script type="text/JavaScript">footer("1999");</script>
+</body>
+</html>
+

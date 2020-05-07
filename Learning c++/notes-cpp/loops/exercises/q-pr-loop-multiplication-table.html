@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com/fred)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++: Programming Problem - Multiplication Table</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++</a>: Programming Problem - Multiplication Table</h1>
+
+
+Write a program to read a number from the user (in a loop of course), and 
+print a multiplication table up to that number.  
+<h3>Hints</h3>
+<ul>
+<li>This is most easily done using nested <code>for</code> loops,
+ie a for loop do go down the rows, which contains a for loop to go
+accross the columns.</li>
+</ul>
+
+<h2>Example output in increments</h2>
+As usual, the best approach is to use <i>incremental</i> development.
+Here are three stages you might want to go thru.
+<ol>
+<li>The smallest possible output.  But it's ugly with unaligned columns.
+<pre class="example">
+1 2 3 4 5
+2 4 6 8 10
+3 6 9 12 15
+4 8 12 16 20
+5 10 15 20 25
+</pre>
+</li>
+
+<li>To make the multiplication table look nice, the I/O manipulator <code>setw()</code> 
+can be used to set the minimum width of the converted form of the number.
+<pre class="fragment">
+#include &lt;iomanip&gt;
+. . .
+cout &lt;&lt; setw(4) &lt;&lt; n;
+</pre>
+This will right-align the value of <code>n</code> in a field of four spaces.
+The output would look like this.
+<pre class="example">
+   1   2   3   4   5
+   2   4   6   8  10
+   3   6   9  12  15
+   4   8  12  16  20
+   5  10  15  20  25
+</pre>
+</li>
+
+<li>Add column and row headers as well as separating lines to make it look like the following.
+Several additional loops are required to print the column header and horizontal
+separating lines.  Don't try to make all of these additions at once.
+For example, first add the row header and vertical bars.  Get that running
+then print the separating lines.  Lastly add the column header.  The order of 
+these additions isn't important in this case, but to work on small increments 
+in the program makes development to more easily.
+<pre class="example">
+         1     2     3     4     5
+     +-----+-----+-----+-----+-----+
+   1 |   1 |   2 |   3 |   4 |   5 |
+     +-----+-----+-----+-----+-----+
+   2 |   2 |   4 |   6 |   8 |  10 |
+     +-----+-----+-----+-----+-----+
+   3 |   3 |   6 |   9 |  12 |  15 |
+     +-----+-----+-----+-----+-----+
+   4 |   4 |   8 |  12 |  16 |  20 |
+     +-----+-----+-----+-----+-----+
+   5 |   5 |  10 |  15 |  20 |  25 |
+     +-----+-----+-----+-----+-----+
+</pre>
+
+</li>
+</ol>
+
+
+<script type="text/JavaScript">footer("2003");</script>
+</body>
+
+</html>

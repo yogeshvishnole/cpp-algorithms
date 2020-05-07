@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Struct Operations</title>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: Struct Operations</h1>
+
+Assume the following declaration
+<pre class="fragment">
+//--- Define a new struct type
+struct Point {
+    int x;
+    int y;
+};
+
+//--- Declare some variables of type Point.
+Point p1;
+Point p2;
+Point* paddr;  // declare pointer to a Point struct
+</pre>
+
+<h2>Member (field) selection - dot operator</h2>
+The "." (dot) operator is used to select a member of a struct.
+This operator can be applied to any expression that yields a struct
+(function call, subscription, etc).
+<pre class="fragment">
+int h = <span class="hilite">p1.x</span>;
+p2.y = p1.y;</pre>
+
+
+<h2>Member (field) selection - arrow operator</h2>
+When using a <i>pointer</i> to a struct, the "-&gt;" (arrow)
+operator is typically used as a more readable way to both
+dereference the pointer and select a member.
+See <a href="arrow.html">-&gt; operator</a>.
+<pre class="fragment">
+// The following are equivalent.
+int h = <span class="hilite">paddr-&gt;x</span>  // using arrow notation.
+int h = <span class="hilite">(*paddr).x</span>;  // using deref plus dot.</pre>
+
+      
+<h2>Assignment</h2>
+A struct variable can be assigned to/from.
+<pre class="fragment">
+p1 = p2;</pre>
+
+
+<h2>Parameter</h2>
+A struct can be passed to a function either as a value or a reference parameter. 
+Large structs are sometimes passed as reference parameters to avoid
+the cost of the copy, even tho the value is not going to be changed.
+
+
+<h2>Returned by function</h2>
+A struct may be returned by a function.
+
+
+<h2>Comparison - NO</h2>
+The comparison operators do not work on structs.  
+To compare structs, compare individual fields.
+<pre class="fragment">
+if (p1.x==p2.x &amp;&amp; p1.y==p2.y) . . .</pre>
+It is not possible to write <code>p1==p2</code>.
+
+<p>There are good reasons to forbid comparison.</p>
+   <ul>
+   <li>What would a greater than comparison even mean on a Point for example.</li>
+   <li>A bit-by-bit equal comparison is not feasible in general
+       because there may be padding or unfilled elements (eg in a C-string).</li>
+   </ul>
+   
+
+
+<h2>A subelement of array or another struct</h2>
+A struct value can be used inside of another struct or as an element type 
+in an array.
+
+<h2>Arithmetic operators - NO</h2>
+By default none of the arithmetic operators work on structs.
+
+
+<h2>I/O - NO</h2>
+The I/O operators &gt;&gt; and 
+&lt;&lt; do not work for structs; you must read/write the fields individually.
+
+<h2>Solutions</h2>
+You may redefine operators so that
+they do work with your structs.  When providing functions and overloaded operators
+for your struct, use the <code>class</code> keyword instead -- it's what 
+programmers expect.  
+See <a href="../oop-overloading/operoverloading.html">Operator Overloading</a>.
+
+   
+<script type="text/JavaScript">footer("2000");</script>
+</body>
+
+</html>

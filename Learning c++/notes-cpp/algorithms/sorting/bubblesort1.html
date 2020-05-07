@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Algorithms: Bubble Sorts</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++ Notes</a>: Algorithms: Bubble Sorts</h1>
+Bubble sort compares two values next to each other and exchanges them
+if necessary to put them in the correct order.  There are many variations on
+bubble sort, but they all examine adjacent pairs.
+
+<h2>Performance</h2>
+Bubble sorts are O(N<sup>2</sup>) on the average (and worst),
+but have O(N) best case performance.
+The one efficient aspect of bubble sorts is that they can quit early if the
+elements are almost sorted. 
+
+<br /><br />
+If you need a faster sort, use Quicksort (best O(log N), average O(log N), 
+worst O(N<sup>2</sup>)) or heap sort (best, average, and worst are all O(log N)) in the library.
+
+
+<h2>Bubble Sort -- fixed number of passes</h2>
+
+   This version of bubble sort makes a fixed number of 
+   passes (length of the array - 1).  Each inner loop is
+   one shorter than the previous one because the largest
+   elements are being moved to the end of the array.
+<pre class="example">
+void bubbleSort1(int x[], int n) {
+   for (int pass=1; pass &lt; n; pass++) {  // count how many times
+       // This next loop becomes shorter and shorter
+       for (int i=0; i &lt; n-pass; i++) {
+           if (x[i] &gt; x[i+1]) {
+               // exchange elements
+               int temp = x[i]; x[i] = x[i+1]; x[i+1] = temp;
+           }
+       }
+   }
+}</pre>
+
+Because this version of the bubble sort always makes n-1 passes 
+   over the array, it can't stop early
+   if the array is already sorted.  See <a href="bubblesort2.html">More Bubble Sorts</a>
+   for improvements.
+   
+   <br /><br />Students like bubble sorts -- could it be the name or the
+   intuitive algorithm?  Instructors also like bubble sorts, perhaps
+   for the many interesting programming variations.  However, the sad
+   truth is that they often aren't very efficient.  They should only be used
+   with small arrays or almost sorted data.
+   
+<script type="text/JavaScript">footer("1999");</script>
+
+</body>
+</html>
+

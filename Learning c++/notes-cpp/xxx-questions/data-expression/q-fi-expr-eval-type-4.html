@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++:  Exercise - Expression Types and Values - v4</title>
+</head>
+
+<body>
+<h1><a href="../../index.html">C++</a>: Exercise - Expression Types and Values - v4</h1>
+
+
+<p>Name ______________________</p>
+<p>(10 points)  For each question you must supply two answers.
+    Assume the following declarations.</p>
+<pre class="fragment">
+char cs[] = "abc";
+char* cp;
+int i;
+int* ip;
+vector&lt;int&gt; x;
+x.push_back(1);
+x.push_back(2);
+vector&lt;int&gt;::iterator it;
+struct Node {
+    Node* next;
+    Node* prev;
+    float data;
+};
+Node nd;
+Node* p;</pre>
+<ol>
+<li><b>Type</b>.  Choose from one of the following types.
+    <pre>
+    int, float, char, char[], bool, vector&lt;int&gt;, vector&lt;int&gt;::iterator, Node, Node*</pre>
+</li>
+<li><b>Value</b>.What is the value of each of these expressions.  For floating point values be 
+ sure to write a decimal point so I know that you know it isn't integer.
+</li>
+</ol>
+
+<table><tr valign="top"><td>
+<p>Fill in the missing elements below.</p>
+<table>
+<tr align="left"><th></th><th>Type</th><th>Value</th><th>Expression</th></tr>
+<tr><td>1.</td><td>__________&nbsp;</td><td>_________&nbsp;</td><td><code>7 / 5;</code></td></tr>
+<tr><td>2.</td><td>__________</td><td>_________</td><td><code>5 / 7</code></td></tr>
+<tr><td>3.</td><td>__________</td><td>_________</td><td><code>7 % 5</code></td></tr>
+<tr><td>4.</td><td>__________</td><td>_________</td><td><code>5 % 7</code></td></tr>
+<tr><td>5.</td><td>__________</td><td>_________</td><td><code>7.0 / 2</code></td></tr>
+<tr><td>&nbsp;</td><td></td></tr>
+<tr><td>6.</td><td>__________</td><td>_________</td><td><code>5 + 4 * 3 / 2</code></td></tr>
+<tr><td>7.</td><td>__________</td><td>_________</td><td><code>'x' &gt; cs[0]</code></td></tr>
+<tr><td>8.</td><td>__________</td><td>_________</td><td><code>strlen(cs)</code></td></tr>
+<tr><td>9.</td><td>__________</td><td>XXXXXXX</td><td><code>"Hello"</code></td></tr>
+<tr><td>10.</td><td>__________</td><td>_________</td><td><code>(1 &gt; 2) ? 'a' : 'c'</code></td></tr>
+<tr><td>&nbsp;</td><td></td></tr>
+<tr><td>11.</td><td>__________</td><td>XXXXXXX</td><td><code>x.begin()</code></td></tr>
+<tr><td>12.</td><td>__________</td><td>_________</td><td><code>x.empty()</code></td></tr>
+<tr><td>13.</td><td>__________</td><td>_________</td><td><code>x.at(1)</code></td></tr>
+<tr><td>14.</td><td>__________</td><td>_________</td><td><code>*(x.begin())</code></td></tr>
+<tr><td>15.</td><td>__________</td><td>_________</td><td><code>*(cs+2)</code></td></tr>
+</table>
+
+</td><td>
+<h2>Legal?</h2>
+<p>Which of these expressions are legal (will compile correctly)?</p>
+<ol>
+<li>_____(T/F) <code>cp = cs;</code></li>
+<li>_____(T/F) <code>cs = cp;</code></li>
+<li>_____(T/F) <code>cp = cs+1;</code></li>
+<li>_____(T/F) <code>cp = cs[1];</code></li>
+<li>_____(T/F) <code>cp = &amp;cs[1];</code><br/><br/></li>
+<li>_____(T/F) <code>*cp = cs+1;</code></li>
+<li>_____(T/F) <code>*cp = cs[1];</code></li>
+<li>_____(T/F) <code>p = p.next;</code></li>
+<li>_____(T/F) <code>p = nd;</code></li>
+<li>_____(T/F) <code>p = *nd;</code><br/><br /></li>
+<li>_____(T/F) <code>p = &amp;nd;</code></li>
+<li>_____(T/F) <code>p = p-&gt;next;</code></li>
+<li>_____(T/F) <code>it = x+1;</code></li>
+<li>_____(T/F) <code>++p;</code></li>
+<li>_____(T/F) <code>++it;</code><br/><br /></li>
+<li>_____(T/F) <code>++cp;</code></li>
+<li>_____(T/F) <code>i = it;</code></li>
+<li>_____(T/F) <code>i = *it;</code></li>
+<li>_____(T/F) <code>i = **it;</code></li>
+<li>_____(T/F) <code>p *= 2;</code></li>
+</ol>
+</td></tr></table>
+
+<script type="text/JavaScript">footer("2004");</script>
+</body>
+</html>
+

@@ -1,0 +1,692 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www/leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <title>C++ Notes: Classes: Example: xvector.cpp - Solution Pr. 6</title>
+</head>
+
+<body>
+
+<h1><a href="../../index.html">C++ Notes</a>: Classes: Example: xvector.cpp - Solution Pr. 6</h1>
+
+<p>Here is a sample implementation of floatVector, including everything
+   in problem 6.  See
+<a href="examplefloatvector.html">Example: floatVector - Version 1</a>.
+</p>
+
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+ 22 
+ 23 
+ 24 
+ 25 
+ 26 
+ 27 
+ 28 
+ 29 
+ 30 
+ 31 
+ 32 
+ 33 
+ 34 
+ 35 
+ 36 
+ 37 
+ 38 
+ 39 
+ 40 
+ 41 
+ 42 
+ 43 
+ 44 
+ 45 
+ 46 
+ 47 
+ 48 
+ 49 
+ 50 
+ 51 
+ 52 
+ 53 
+ 54 
+ 55 
+ 56 
+ 57 
+ 58 
+ 59 
+ 60 
+ 61 
+ 62 
+ 63 
+ 64 
+ 65 
+ 66 
+ 67 
+ 68 
+ 69 
+ 70 
+ 71 
+ 72 
+ 73 
+ 74 
+ 75 
+ 76 
+ 77 
+ 78 
+ 79 
+ 80 
+ 81 
+ 82 
+ 83 
+ 84 
+ 85 
+ 86 
+ 87 
+ 88 
+ 89 
+ 90 
+ 91 
+ 92 
+ 93 
+ 94 
+ 95 
+ 96 
+ 97 
+ 98 
+ 99 
+100 
+101 
+102 
+103 
+104 
+105 
+106 
+107 
+108 
+109 
+110 
+111 
+112 
+113 
+114 
+115 
+116 
+117 
+118 
+119 
+120 
+121 
+122 
+123 
+124 
+125 
+126 
+127 
+128 
+129 
+130 
+131 
+132 
+133 
+134 
+135 
+136 
+137 
+138 
+139 
+140 
+141 
+142 
+143 
+144 
+145 
+146 
+147 
+148 
+149 
+150 
+151 
+152 
+153 
+154 
+155 
+156 
+157 
+158 
+159 
+160 
+161 
+162 
+163 
+164 
+165 
+166 
+167 
+168 
+169 
+170 
+171 
+172 
+173 
+174 
+175 
+176 
+177 
+178 
+179 
+180 
+181 
+182 
+183 
+184 
+185 
+186 
+187 
+188 
+189 
+190 
+191 
+192 
+193 
+194 
+195 
+196 
+197 
+198 
+199 
+200 
+201 
+202 
+203 
+204 
+205 
+206 
+207 
+208 
+209 
+210 
+211 
+212 
+213 
+214 
+215 
+216 
+217 
+218 
+219 
+220 
+221 
+222 
+223 
+224 
+225 
+226 
+227 
+228 
+229 
+230 
+231 
+232 
+233 
+234 
+235 
+236 
+237 
+238 
+239 
+240 
+241 
+242 
+243 
+244 
+245 
+246 
+247 
+248 
+249 
+250 
+251 
+252 
+253 
+254 
+255 
+256 
+257 
+258 
+259 
+260 
+261 
+262 
+263 
+264 
+265 
+266 
+267 
+268 
+269 
+270 
+271 
+272 
+273 
+274 
+275 
+276 
+277 
+278 
+279 
+280 
+281 
+282 
+283 
+284 
+285 
+286 
+287 
+288 
+289 
+290 
+291 
+292 
+293 
+294 
+295 
+296 
+297 
+298 
+299 
+300 
+301 
+302 
+303 
+304 
+305 
+306 
+307 
+308 
+309 
+310 
+311 
+312 
+313 
+314 
+315 
+316 
+317 
+318 
+319 
+320 
+321 
+322 
+323 
+324 
+325 
+326 
+327 
+328 
+329 
+330 
+</pre></td><td valign='top'>
+<div class="file"><pre>
+// xvector.h - Illustrates typical vector features.
+//  Fred Swartz - 2001-11-13 ... 2004-02-17
+#ifndef xvector_H
+#define xvector_H
+
+#include &lt;iostream&gt;
+using namespace std;
+
+template&lt;class T&gt;
+class xvector {
+    template&lt;class T2&gt; friend ostream&amp; operator&lt;&lt;(ostream&amp; os, const xvector&lt;T2&gt;&amp; fv);
+    
+  public:
+    //-- Constructors.  Copy constructor needed because of dyn mem alloc.
+    xvector&lt;T&gt;();        // default constructor
+    xvector&lt;T&gt;(int cap); // constructor specifying capacity
+    xvector&lt;T&gt;(const xvector&amp; fv); // copy constructor
+    
+    //-- Destructor.  Needed because of dyn mem allocation.
+    ~xvector();       // destructor
+       
+    //-- Member functions
+    T&amp;   at(int position) const; // ref to element at position  
+    T&amp;   back() const;           // Value of last elem
+    int  capacity() const;       // Max size before reallocation.
+    void clear();                // Delete all items.
+    bool empty() const;          // True if no elements, size()==0.
+    void erase(int position);    // Delete item at position.
+    void insert(int position, T item); // Insert item at position.
+    T&amp;   front() const;          // Returns first element.
+    void pop_back();             // Remove last element.
+    void push_back(T item);      // Add item to end.
+    void reserve(int cap);       // Insure capacity at least cap.
+    int  size() const;           // Number of elements in vector.
+    
+    //-- Overloaded operators
+    T&amp;   operator[](int position) const; // Ref to element at position.
+    bool operator==(xvector&amp; v) const;  // true if vectors equal.
+    xvector&lt;T&gt;&amp; operator=(const xvector&amp; fv);
+
+    //-- Forward iterator (not quite same as regular iterator)
+    typedef T* iterator;      // The iterators are simply pointers.
+    iterator begin();         // Iterator of first element.
+    iterator end();           // Iterator PAST last element.
+
+  private:
+    int _capacity;   // Current maximum size (number of Ts).
+    int _size;       // Current "size"
+    T*  _data;       // Pointer to array of Ts.  Because of dynamically
+                        //    allocated memory, we must define copy constructor, 
+                        //    destructor, and assignment.
+    
+    //-- Private utility functions.
+    void _checkRange(int position) const; // Exception if not legal subscript.
+    void _expand();   // Allocate more memory.
+    void _ensure();   // Guarantee at least one empty slot.
+};
+
+//====================================================== constructor
+template&lt;class T&gt;
+xvector&lt;T&gt;::xvector() {
+    _capacity = 0;
+    _size = 0;
+    _data = NULL;
+}//end constructor
+
+
+//====================================================== constructor
+template&lt;class T&gt;
+xvector&lt;T&gt;::xvector(int cap) {
+    _capacity = cap;
+    _size = 0;
+    _data = new T[_capacity];
+}//end constructor
+
+//==========================================================
+// Because this class dynamically allocates memory, we must
+// define a copy constructor, assignement, and destructor.
+//==========================================================
+
+//================================================= copy constructor
+template&lt;class T&gt;
+xvector&lt;T&gt;::xvector(const xvector&amp; fv) {
+    _size = fv._size;         // copy size
+    _data = new T[_size];     // get new space
+    _capacity = _size;        // allocated only needed space
+    //--- copy fv's data to this
+    for (int i=0; i&lt;_size; i++) {
+        _data[i] = fv._data[i];
+    }
+}//end constructor
+
+
+//======================================================== operator=
+template&lt;class T&gt;
+xvector&lt;T&gt;&amp; xvector&lt;T&gt;::operator=(const xvector&amp; fv) {
+    if (this != &amp;fv) {  // make sure not same object
+        delete [] _data;          // free old memory.
+        _size = fv._size;         // copy size
+        _data = new T[_size]; // get new space
+        _capacity = _size;        // allocate only needed space
+        //--- copy fv's data to this
+        for (int i=0; i&lt;_size; i++) {
+            _data[i] = fv._data[i];
+        }
+    }
+    return *this; // return ref for multiple assignment
+}//end operator=
+
+
+//======================================================= destructor
+template&lt;class T&gt;
+xvector&lt;T&gt;::~xvector&lt;T&gt;() {
+    if (_data != NULL) {
+        delete [] _data;    // Free allocated memory.
+        _data = NULL;
+        _size = 0;
+        _capacity = 0;
+    }
+}//end destructor
+
+
+//=============================================================== at
+template&lt;class T&gt;
+T&amp; xvector&lt;T&gt;::at(int position) const {
+    _checkRange(position);
+    return _data[position];
+}//end capacity
+
+
+//=============================================================== []
+template&lt;class T&gt;
+T&amp; xvector&lt;T&gt;::operator[](int position) const {
+    _checkRange(position);  // More checking that STL vector
+    return _data[position];
+}//end capacity
+
+
+//=========================================================== back
+template&lt;class T&gt;
+T&amp; xvector&lt;T&gt;::back() const {
+    if (_size == 0) {
+        throw out_of_range("xvector&lt;T&gt;::back() - empty vector");
+    }
+    return _data[_size-1];
+}//end back
+
+
+//========================================================= capacity
+template&lt;class T&gt;
+int xvector&lt;T&gt;::capacity() const {
+    return _capacity;
+}//end capacity
+
+
+//========================================================== clear
+    // Doesn't deallocate array, just set to no elements.
+template&lt;class T&gt;
+void xvector&lt;T&gt;::clear() {
+    for (int i=0; i&lt;_size; i++) {
+        _data[i].~T();  // Call destructor
+    }
+    _size = 0;
+}//end clear
+
+
+//========================================================== erase
+    // Move all above elements down one position.
+template&lt;class T&gt;
+void xvector&lt;T&gt;::erase(int position) {
+    _checkRange(position);
+    if (_size &gt; 0) {
+        for (int i=position; i&lt;_size-1; i++) {
+            _data[i].~T();            // Must call destructor
+            _data[i] = _data[i+1];
+        }
+        _size--;
+    }
+}//end erase
+
+
+//=========================================================== front
+template&lt;class T&gt;
+T&amp; xvector&lt;T&gt;::front() const {
+    if (_size == 0) {
+        throw out_of_range("xvector&lt;T&gt;::front() - empty vector");
+    }
+    return _data[0];
+}//end front
+
+
+//========================================================== insert
+    // Move all elements above up one position.
+template&lt;class T&gt;
+void xvector&lt;T&gt;::insert(int position, T item) {
+    _ensure();
+    for (int i=_size; i&gt;position; i--) {
+        _data[i] = _data[i-1];
+    }
+    _data[position] = item;
+}//end insert 
+
+
+//======================================================== empty
+template&lt;class T&gt;
+bool xvector&lt;T&gt;::empty() const {
+    return (_size == 0);
+}//end pop_back;
+
+
+//======================================================== pop_back
+template&lt;class T&gt;
+void xvector&lt;T&gt;::pop_back() {
+    if (_size == 0) {
+        throw out_of_range("xvector&lt;T&gt;::pop_back() - empty vector");
+    }
+    _size--;
+    _data[_size].~T();   // Call destructor.
+}//end pop_back;
+
+
+//======================================================== push_back
+    // Add item to end of the vector
+template&lt;class T&gt;
+void xvector&lt;T&gt;::push_back(T item) {
+    _ensure();
+    _data[_size] = item;
+    _size++;
+}//end push_back 
+
+
+//============================================================= size
+template&lt;class T&gt;
+int xvector&lt;T&gt;::size() const {
+    return _size;
+}//end size
+
+
+//========================================================== reserve
+    // start at 10, then double capacity each time
+template&lt;class T&gt;
+void xvector&lt;T&gt;::reserve(int cap) {
+    if (cap &gt; _capacity) {
+        // This requires an expansion.
+        T *new_data = new T[cap]; // allo new array
+        if (_capacity &gt; 0) {
+            // There is a previous allocation to copy and delete
+            for (int i=0; i&lt;_size; i++) {
+                 new_data[i] = _data[i];
+                 _data[i].~T();
+            }
+            delete [] _data;   // deallocate the old array
+        }
+        _capacity = cap;   // update to new capacity
+        _data = new_data;  // point to new array
+    }
+}//end reserve
+
+
+//============================================================ begin
+template&lt;class T&gt;
+T* xvector&lt;T&gt;::begin() {
+    return _data;  // address of first element
+}//end begin
+
+
+//============================================================= end
+template&lt;class T&gt;
+T* xvector&lt;T&gt;::end() {
+    return _data+_size;  // address past last element
+}//end end
+
+
+//======================================================= operator&lt;&lt;
+template&lt;class T&gt;
+ostream&amp; operator&lt;&lt;(ostream&amp; os, const xvector&lt;T&gt;&amp; fv) {
+    os &lt;&lt; "{";
+    for (int i=0; i&lt;fv.size(); i++) {
+        if (i&gt;0) {
+            os &lt;&lt; ", ";
+        }
+        os &lt;&lt; fv.at(i);
+    }
+    os &lt;&lt; "}";
+    return os;
+}//end operator&lt;&lt;
+
+
+//===================================================== operator ==
+template&lt;class T&gt;
+bool xvector&lt;T&gt;::operator==(xvector&amp; v) const {
+    if (_size != v._size) return false;
+    for (int i=0; i&lt;_size; i++) {
+        if (_data[i] != v._data[i]) return false;
+    }
+    return true;
+}//end operator ==
+
+
+//======================================================== _checkRange
+template&lt;class T&gt;
+void xvector&lt;T&gt;::_checkRange(int position) const {
+    if (position &lt; 0) {
+        throw out_of_range("xvector subscript less than zero");
+    } else if (position &gt;= _size) {
+        throw out_of_range("xvector subscript too large");
+    }
+}//end _checkRange
+
+
+//========================================================= _ensure
+template&lt;class T&gt;
+void xvector&lt;T&gt;::_ensure() {
+    if (_capacity &lt;= _size) {
+        _expand();
+    }
+}//end _ensure
+
+
+//========================================================== _expand
+template&lt;class T&gt;
+    // start at 10, then double capacity each time
+void xvector&lt;T&gt;::_expand() {
+    if (_capacity &lt;= 0) {
+        reserve(10);   // Start with 10 elements.
+    } else {
+        reserve(2*_capacity); // Double capacity each time.
+    }
+}//end _expand
+#endif
+</pre></div>
+</td></tr></table>
+
+
+
+<div class="footer">Copyleft 2004 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+</html>
+

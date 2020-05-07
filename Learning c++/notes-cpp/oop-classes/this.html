@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>C++: OOP: this</title>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: OOP: this</h1>
+
+<p>When you are writing code in a member function, the predefined variable <i><code>this</code></i>
+contains a pointer to the current object.  Any member element, for example <i><code>m_x</code></i>, can be referenced
+in two ways:
+</p>
+<pre class="fragment">
+m_x = 10;
+this->m_x = 10;  // same as above.</pre>
+   
+<p>References to members are usually written without <code>this</code>
+because there is no need to use it, however, there are situations where 
+<code>this</code> is needed.
+</p>
+
+
+<h2>Naming clarity</h2>
+<p>If a naming convention isn't used that makes member/instance variables 
+clear (eg, prefixing such variables with "m_"), the use of <i><code>this</code></i>
+can be used to document the nature of the variable.  Naming rules are to be
+preferred however.
+</p>
+
+<h2>Returning or passing the current object</h2>
+<p>The primary use of <i><code>this</code></i> is to return a pointer 
+to the current object, or to pass the object to a function.
+</p>
+   
+<div class="footer">Copyleft 2004 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+</body>
+
+</html>

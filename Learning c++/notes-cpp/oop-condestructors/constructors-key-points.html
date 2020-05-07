@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <title>C++: Key Points - Constructors</title>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: Key Points - Constructors</h1>
+
+<h2>Purpose</h2>
+<p>Constructors have one purpose - to allow you to guarantee that 
+objects are correctly initialized.  The compiler will guarantee that
+your constructors are called, inserting constructor calls as necessary.
+This is a great leap in reliability over C programming where, if the
+programmer forgot to initialize something explicitly, it contained whatever
+garbage was in memory.
+</p>
+
+<p><b>Three types</b> - No-parameter (default), copy constructors, and all others.
+Only the first two have unexpected aspects.</p>
+
+<h2>1. No-parameter (default) constructors</h2>
+<ul>
+<li><b>Default</b>: If you don't declare any constructors, the compiler creates a default, 
+    parameterless constructor.  Unfortunately, it does nothing good; it 
+    only satisfies the compiler's need for a parameterless constructor.
+    </li>
+<li><b>No default</b>: If you declare constructors with parameters, no default parameterless
+    constructor will be created.
+    </li>
+<li><b>Forbid creation</b>. If you want control over creation of objects from you class (eg, to enforce
+    use of a <i>factory</i> method, declare a <i>private</i> parameterless 
+    constructor.
+    </li>
+<li><b>Automatically called</b>: The parameterless constructor for class A would be called in these circumstances:
+    <pre class="fragment">
+    A x;              // Calls default constructor
+    A xa = new A[99]; // Calls default constructor for each array element.</pre>
+    </li>
+</ul>
+
+<h2>2. Copy constructors</h2>
+<ul>
+<li><b>Purpose</b>: To initialize one object from another.
+    This is different than assignment because there is no pre-existing value
+    that may have to be destroyed.
+    </li>
+<li><b>Syntax</b>: 
+    <pre class="fragment">
+    A(const A&amp; a2) {
+        . . .
+    }</pre>
+    Note that the parameter must be a const reference.
+    </li>
+    
+<li><b>Default creation</b>.  If you don't define a copy constructor, the compiler creates one which 
+    simply does a shallow memberwise copy. If you dynamically allocate memory
+    for your class, you can only get a deep copy by writing your own copy 
+    constructor.
+    </li>
+    
+<li><b>Automatically called</b>: A copy constructor is called in the following 
+    circumstances.
+    <pre class="fragment">
+A x(y);  // Where y is of type A.
+f(x);    // A copy constructor is called for value parameters.
+x = g(); // A copy constructor is called for value returns.</pre>
+    </li>
+
+<li><b>Preventing copying</b>.  To prevent copies, eg, to prevent an object
+    from being passed by value, declare the copy constructor as <i>private</i>.
+    </li>
+    
+</ul>
+
+<h2>Questions</h2>
+<p>Assume A is a class.</p>
+
+<h3>Function definitions</h3>
+<pre>
+A f(A x)   { return x;}
+A g(A&amp; x)  { return x;}
+A&amp; h(A&amp; x) { return x;}</pre>
+
+<h3>Questions</h3>
+<p>For each of the following function calls, how many times is the copy constructor called?</p>
+<pre>
+A a;
+A b;
+
+a = f(b);
+a = g(b);
+a = h(b);</pre>
+
+<!-- ans: f 2, g 1, h 0 -->
+
+   
+<div class="footer">Copyleft 2005 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+
+</html>

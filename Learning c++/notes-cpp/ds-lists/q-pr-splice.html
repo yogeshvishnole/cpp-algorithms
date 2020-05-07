@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www/leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <title>C++:  Combining two circular, doubly linked lists</title>
+</head>
+
+<body>
+<h1><a href="../index.html">C++</a>: Combining two circular, doubly linked lists</h1>
+
+<p>Given two circular, doubly linked lists, write a function that combines them.
+</p>
+
+<pre class="fragment">
+//--- Node for doubly linked list of floats.
+struct Node {
+    Node* next;  // Pointer to next element
+    Node* prev;  // Pointer to previous element
+    float data;
+};
+
+//--- Function prototype
+Node* splice(Node* p, Node* q);</pre>
+
+<p>The <code>splice()</code> function should do the following:
+</p>
+<ul>
+<li>This should return the the combined list.</li>
+<li>Elements of <i>q</i> should be placed after the element that
+    <i>p</i> points to.  They should be linked into the list <i>p</i>,
+    not copied.
+    </li>
+<li>Return <i>p</i> if it isn't NULL, otherwise return <i>q</i>.</li>
+</ul>
+
+<p><a href="q-pr-splice-ans.html">Answer</a></p>
+
+<div class="footer">Copyleft 2004 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+</html>
+

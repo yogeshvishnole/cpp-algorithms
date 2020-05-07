@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet"           type="text/css" title="noanswers" href="../../../notes.css"/>
+    <!-- <link rel="alternate stylesheet" type="text/css" title="answers"   href="../../../notesanswer.css"/> -->
+    <title>C++: Diagnostic Test</title>
+</head>
+
+<body>
+<h1><a href="../../index.html">C++</a>: Diagnostic Test - Data Structures <span class="answer"> - Answers</span></h1>
+
+
+<p>Name ______________________</p>
+
+<p>The purpose of this test is to get a rough idea of whether you have the basic skills
+   to start working in the Data Structures course.
+   You must be comfortable with the basics of one-dimensional arrays and functions.
+   The course will review these, as well as many other features, and will 
+   cover more about these features.
+   If you haven't used C++ in a long time, some of the questions may be difficult.
+   If you do poorly on this test, but feel that everything will come back soon,
+   that's ok.
+   </p>
+   
+<p>This test will not count in any way toward a grade -- it's only to let you,
+   and me, know about your current skills.
+   </p>
+
+<ol>
+<li class="question">What is printed by this statement?
+<pre class="fragment">
+cout &lt;&lt; 9 / 5;</pre>
+Output = ____________________________  
+<span class="answer">Answer: 1 (integer division)</span>
+</li>
+    
+<li class="question">What is printed by this statement?
+<pre class="fragment">
+cout &lt;&lt; 9 % 5;</pre>
+Output = ____________________________  
+    <span class="answer">Answer: 4 (remainder after integer division)</span>
+    </li>
+
+<li class="question">What is printed by these statements?
+<pre class="fragment">
+int x=1, y=2;
+if (x &lt; y || x &gt; y) {
+    cout &lt;&lt; "aaa";
+} else {
+    cout &lt;&lt; "bbb";
+}</pre>
+Output = ____________________________ <span class="answer">Answer: aaa</span>
+</li>
+
+<li class="question">What is printed by these statements?
+<pre class="fragment">
+int x=1, y=2;
+if (x &lt; y) {
+    if (x * 2 == x + 1) {
+        cout &lt;&lt; "ddd";
+    } else {
+        cout &lt;&lt; "eee";
+    }
+} else {
+   cout &lt;&lt; "fff";
+}</pre>
+Output = ____________________________ <span class="answer">Answer: ddd</span>
+</li>
+
+<li class="question">What is printed by these statements?
+<pre class="fragment">
+int n = 0;
+for (int x=1; x&lt;4; x++) {
+    n = n+x;
+}
+cout &lt;&lt; "n = " &lt;&lt; n;
+</pre>
+Output = ____________________________ <span class="answer">Answer: n = 6 (ie, the sum 1+2+3)</span>
+</li>
+
+<li class="question">What is printed by these statements?
+<pre class="fragment">
+int a[] = {25, -3, 6, 0, -3, 6};
+int i = 2;
+cout &lt;&lt; "a[" &lt;&lt; i &lt;&lt; "] = " &lt;&lt; a[i];</pre>
+Output = ____________________________ 
+<span class="answer">Answer: a[2] = 6.  Aray subscripts start at 0.</span>
+</li>
+
+<li class="question">What is printed by these statements?
+<pre class="fragment">
+int a[] = {25, -3, 6, 0, -3, 6};
+int n = 0;
+for (int i=0; i&lt;6; i++) {
+     if (a[i] &lt; 0) {
+         n++;
+     }
+}
+cout &lt;&lt; "n = " &lt;&lt; n;</pre>
+Output = ____________________________ 
+<span class="answer">Answer: n = 2.  This counts the number of negative values in the array.</span>
+</li>
+
+<li>
+For the next questions assume these function definitions.
+<pre class="fragment">
+   void f(int n){
+      for (int i=0; i&lt;n; i++) {
+         cout &lt;&lt; "f";
+      }
+   }
+   
+   void h(int m){
+      cout &lt;&lt; "h";
+      f(m-1);
+      cout &lt;&lt; "h";
+      return;
+   }
+</pre>
+<ol>
+<li class="question">_______________ <code>f(3);</code> What does this print?
+    <span class="answer">Answer: fff</span>
+    </li>
+<li class="question">_______________ <code>h(3);</code> What does this print?
+    <span class="answer">Answer: hffh</span>
+    </li>
+</ol>
+
+<li>Write a function with header
+<pre>
+   int sum(const int nums[], const int n)</pre>
+This function should add the first <code>n</code> values in the array <code>nums</code>
+and return that sum.
+    <div class="answer">Answer:
+    <pre class="example">
+int sum(const int nums[], const int n) {
+    int total = 0;
+    for (int i=0; i&lt;n; i++) {
+        total = total + nums[i];
+    }
+    return total;
+}</pre>
+    
+    </div>
+    </li>
+</ol>
+
+<p>
+<a href="#" onclick="setActiveStyleSheet('answers'  ); return false;">Show Answers</a> -
+<a href="#" onclick="setActiveStyleSheet('noanswers'); return false;">Hide Answers</a>
+</p>
+
+
+<div class="footer">Copyleft 2004 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+</html>
+

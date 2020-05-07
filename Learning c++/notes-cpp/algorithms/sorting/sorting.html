@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Algorithms: Sorts</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++ Notes</a>: Algorithms: Sorting</h1>
+Arranging elements in some order is called <i>sorting</i>.  Typically
+this is an operation applied to arrays or other indexable data structures.
+
+<p><b>Warning to students</b>.  Professional programmers do not write
+their own sorts functions.  Why?  They use the <code>sort()</code> function
+in the <code>&lt;algorithm&gt;</code> part of the STL library because
+</p>
+<ul>
+<li>It <i>saves programming time</i> (your reputation and your customer's money).</li> 
+<li><i>It's correct</i>.  It's surprisingly easy to write a sort with unobvious bugs.</li>
+<li><i>It's efficient</i>.  Writing a sort that is as fast would be unlikely.</li>
+</ul>
+
+<p>Is the time spent in classes studying sorting wasted?
+Sorting provides a lot of programming practice, and is considered
+a good introduction to Big-Oh issues.  So maybe it's worth the class time.
+But take a look at <a href="stl-sort-arrays.html">STL sort for arrays</a> for an introduction
+to using the library sort function.
+</p>
+
+
+<h2>Introductory Sorts - bubble sort and selection sort</h2>
+Perhaps the two most common sorts for introducing sorting are
+<i>bubble sort</i> and <i>selection sort</i>.  Both are 
+simple and adequate for small amounts of data.  
+Their  O(n<super>2</super>) performance is not acceptible for large data sets.
+For faster sorts, O(n log n), already implemented in the library,
+should be used.
+
+
+<h2>Bubble sort</h2>
+Bubble sort compares two values next to each other and exchanges them
+if necessary to put them in the correct order.  There are many variations on
+bubble sort, but they all examine adjacent pairs.
+
+<p>Students like bubble sorts -- could it be the name or the
+   intuitive algorithm?  Instructors also like bubble sorts, perhaps
+   for the many interesting programming variations.  However, the sad
+   truth is that they often aren't very efficient.  They should only be used
+   with small arrays or almost sorted data.
+<p>
+
+
+<h2>Selection sort</h2>
+Selection sort successively choses the largest (or smallest) value remaining in the
+array.  While the performance on the average may be no better than bubble sort,
+it does allow for a significant reduction in the number of swaps, which can 
+have a good performance effect on cache memory usage.  On the other hand, it can not
+finish early if the data is already sorted.
+
+<h2>Faster sorts</h2>
+[TO DO - explain a little about the O(n log n) sorts, such as introsort, quicksort, heapsort, ...]
+
+<h2>Using the STL sort</h2>
+The <code>sort()</code> function in the STL library can be used with 
+arrays and other data collections.  The only description in these
+notes is <a href="stl-sort-arrays.html">STL sort for arrays</a>.
+
+<h2>Stable sorts</h2>
+[TO DO]
+   
+<script type="text/JavaScript">footer("2003");</script>
+
+</body>
+</html>
+

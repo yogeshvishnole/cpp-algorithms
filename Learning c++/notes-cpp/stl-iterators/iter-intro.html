@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+  <title>C++ Notes: STL Iterators - Introduction</title>
+</head>
+
+<body>
+<h1><a href="../index.html">C++ Notes</a>: <a href="../index.html#STL">STL</a> Iterators - Introduction</h1>
+<p>An <i>iterator</i> is used to move thru the elements an STL container 
+(vector, list, set, map, ...).  </p>
+
+<p>Each type of container has an underlying
+<b>implementation</b> (eg, vector or linked list) for which there is a "natural"
+way to get to the next element (incrementing a pointer for vectors, following
+the next or prev pointer for lists, ...).  Iterators are defined within each
+of the container classes to work specifically with that type of container.  An
+iterator may be as simple as a pointer, or may be defined as a class.  
+Regardless of the implementation, the same operators are defined.
+</p>
+
+<h2>Why iterators are so useful</h2>
+<ul>
+<li class="compact"><b>Uniform access</b>.  Iterators can be used with all containers,
+    and also with arrays.  If you start with a <code>vector</code>,
+    but later decide a <code>list</code> would be more efficient,
+    iterator code will not have to change.</li>
+    
+<li class="compact"><b>Algorithms for all containers</b>.  The algorithms in the STL &lt;algorithm&gt;
+    library work on iterators.  This means that they operator on the standard
+    containers. 
+    </li>
+    
+<li class="compact"><b>New containers can use existing algorithms</b>.  Not only do the library
+    algorithms work with the STL containers, but they will work with
+    any new data structures (containers) you define, if iterators are defined for the 
+    new container.
+    </li>
+    
+<li class="compact"><b>New algorithms can use existing containers</b>.  When a new algorithm is
+    written based on iterators, it applies to all existing containers for which
+    there are iterators.
+    </li>
+    
+<li class="compact"><b>Iterators for arrays</b>.  In addition to the STL containers,
+    pointers to arrays act as iterators.
+    </li>
+</ul>
+
+<h2>Kinds of iterators</h2>
+<p>There are several types of iterators, but most often you will use
+either <b>bidirectional</b> (list) or <b>random</b> iterators (vector, deque, array),
+which have all the operations of bidirectional iterators and more.  Because
+so many algorithms only require bidirectional access, they can be applied
+to all containers.
+</p>
+
+<p>Some of the other types are as follows.
+<i>Forward</i> iterators move only forward over the elements of a container.
+<i>Input</i> iterators that move only in a forward direction, at most one time,
+and can only access values.
+<i>Output</i> iterators that move only in a forward direction, at most one time,
+and can only write values.
+</p>
+
+<h3>Constant iterators</h3>
+<p>To preserve <i>constantness</i> there are both non-constant and constant
+versions of iterators
+</p>
+
+<script type="text/JavaScript">footer("2002-4");</script>
+</body>
+</html>
+

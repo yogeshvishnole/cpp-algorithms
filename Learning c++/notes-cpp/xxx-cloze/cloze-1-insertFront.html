@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <style type="text/css">
+    	li {margin-top: 1em;}
+    </style>
+    <title>C++: Fill-in Question</title>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: Fill-in Question</h1>
+
+
+Name: _________________________________
+
+
+<ol>
+
+
+
+
+
+<li>Here is a function that inserts an element at the beginning of an array,
+and shifts all existing elements up by one position.
+<pre>
+    void insertFront(int val, int d[], int&amp; n);
+</pre>
+Before this puts val into d[0], which is the first element, it must
+move all array elements (if there are any) to the next higher position.
+For example,
+<pre>
+    int xx[22];
+    int howmany = 0;
+    insertFront(97, xx, howmany); // now xx[0]=97, howmany=1
+    insertFront(88, xx, howmany); // now xx[0]=88, xx[1]=97, howmany=2
+    . . .
+</pre>
+Fill in the missing spaces in this function
+<pre>
+void insertFront(int val, int d[], int&amp; n) {
+    // move all the elements to higher positions
+    for (__________ i=n; i__________0; i--) {
+        d[__________] = d[i-1];
+    }
+    // put the value into the first element
+    d[0] = __________;
+    n__________;  // increment count of elements
+    return __________;
+}
+</pre>
+</li>
+
+</ol>
+
+
+<script type="text/JavaScript">footer("2000");</script>
+</body>
+</html>
+

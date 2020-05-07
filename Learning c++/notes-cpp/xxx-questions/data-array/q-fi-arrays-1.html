@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++:  Array Problems - Evaluate</title>
+</head>
+
+<body>
+<h1><a href="../../index.html">C++</a>: Array Problems - Evaluate</h1>
+
+
+<p>Name ______________________</p>
+
+For the following questions assume these declarations:
+<pre class="fragment">
+int   qqsv[] = {3, 1, 0, 2};
+float nums[] = {3.5, 1.0, 1.5};
+float wips[] = {2000., 300., -555, 0.0, 1.9999};
+</pre>
+   
+   What is printed by these statements?
+
+<ol>
+<li class="question">
+    <pre class="fragment">
+cout &lt;&lt; qqsv[2];</pre>
+    Output: _________________________
+    </li>
+
+<li class="question">
+    <pre class="fragment">
+cout &lt;&lt; nums[qqsv[2]];</pre>
+    Output: _________________________
+    </li>
+
+
+<li class="question">
+    <pre class="fragment">
+int n = 0;
+for (int i=0; i&lt;3; i++) {
+   n = n + qqsv[i];
+}
+cout &lt;&lt; n;</pre>
+    Output: _________________________
+    </li>
+
+
+<li class="question">
+    <pre class="fragment">
+int n = 0;
+for (int i=0; i&lt;4; i++) {
+   if (wips[i] &gt; wips[i+1]) {
+      n++;
+   }
+}
+cout &lt;&lt; n;</pre>
+    Output: _________________________
+    </li>
+
+
+<li class="question">
+    <pre class="fragment">
+int n = 0;
+for (int i=0; i&lt;3; i++) {
+    if (nums[i] &gt; wips[i])
+        break;
+    }
+    n++;    
+}
+cout &lt;&lt; n;</pre>
+    Output: _________________________
+    </li>
+
+</ol>
+
+<script type="text/JavaScript">footer("2003");</script>
+</body>
+</html>
+

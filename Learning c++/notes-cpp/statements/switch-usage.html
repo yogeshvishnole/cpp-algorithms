@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Switch usage</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Switch usage</h1>
+
+
+<h2>When to use <code>switch</code> instead of <code>if</code>?</h2>
+The <code>if</code> statement is used most frequently.
+However, when a single integral value (<code>char</code>, <code>short</code>, <code>int</code>, 
+<code>long</code>) is used to select from
+many possibilities, it is better to use
+<code>switch</code> because the source code is simpler, and therefore 
+the chance of writing an erroneous comparison is less and the code
+is easier to read and therefore maintain.  
+
+
+<h2>The <code>break</code> problem</h2>
+The <code>break</code> statement at the end of the each <code>switch</code> clause is 
+a major source of errors because it is easy to forget and C++ won't complain.
+Execution simply continues with the next case.  Java was
+criticized for using adopting the C++ switch statement without fixing this
+problem.  C# has fixed this by making the defualt action at the end of a case to break,
+and requiring the <code>continue</code> keyword for the unusual case of falling into
+the next case.
+
+<h2>Indenting and spacing <code>switch</code> statements</h2>
+<p>
+A typical <code>switch</code> statement uses two levels of indentation:
+the <code>case</code> keyword is indented one level, and the statements
+in a case are indented an additional level.
+</p>
+
+<p><i>Single, short statements</i> may be written on the same line as the case.
+</p>
+
+<p>Add blank lines after <code>break</code> statements if that 
+makes the code more readable.
+</p>
+
+
+<h2><code>break</code> after last case</h2>
+Altho there is no need to put a <code>break</code> after the last
+case, it is good practice so that it isn't forgotten when addition
+cases are added.  Exception: <code>default</code>, if used, should be 
+the last case and there doesn't need to be a <code>break</code>
+because nothing will ever be added after it.
+
+<script type="text/JavaScript">footer("2001-3");</script>
+</body>
+
+</html>

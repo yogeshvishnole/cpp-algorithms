@@ -1,0 +1,3 @@
+@import"notes.css";
+.answer {display: inline; font-family: "Comic Sans MS", sans-serif; color: red;}
+.answerspace {display: none;}

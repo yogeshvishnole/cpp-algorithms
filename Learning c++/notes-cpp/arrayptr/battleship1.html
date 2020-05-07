@@ -1,0 +1,272 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Example - Battleship ver 1b</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Example - Battleship ver 1b</h1>
+<p>This is an early iteration for a program to play <i>Battleship</i>.
+It doesn't do much yet, and it's only one-dimensional.  Proposed enhancements
+for the next iteration are in the program comments.  You can either use this
+program as a start, or just to get some ideas.
+</p>
+
+
+<p>Note: This is essentially the same as version 1 - some names were
+changed and the SHIP_SUNK enum value was removed because it was causing
+too many worries.  Also, a hasty late change resulted in an undeclared variable
+in version 1a.  This has been corrected here.
+</p>
+
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+ 22 
+ 23 
+ 24 
+ 25 
+ 26 
+ 27 
+ 28 
+ 29 
+ 30 
+ 31 
+ 32 
+ 33 
+ 34 
+ 35 
+ 36 
+ 37 
+ 38 
+ 39 
+ 40 
+ 41 
+ 42 
+ 43 
+ 44 
+ 45 
+ 46 
+ 47 
+ 48 
+ 49 
+ 50 
+ 51 
+ 52 
+ 53 
+ 54 
+ 55 
+ 56 
+ 57 
+ 58 
+ 59 
+ 60 
+ 61 
+ 62 
+ 63 
+ 64 
+ 65 
+ 66 
+ 67 
+ 68 
+ 69 
+ 70 
+ 71 
+ 72 
+ 73 
+ 74 
+ 75 
+ 76 
+ 77 
+ 78 
+ 79 
+ 80 
+ 81 
+ 82 
+ 83 
+ 84 
+ 85 
+ 86 
+ 87 
+ 88 
+ 89 
+ 90 
+ 91 
+ 92 
+ 93 
+ 94 
+ 95 
+ 96 
+ 97 
+ 98 
+ 99 
+100 
+101 
+102 
+103 
+104 
+105 
+106 
+107 
+108 
+109 
+110 
+111 
+112 
+113 
+114 
+115 
+116 
+117 
+118 
+</pre></td><td valign='top'>
+<div class="example"><pre>
+//  battleship1/main.cpp -- Version 1 of Battleship game.
+//  Fred Swartz, 2003-11-25
+
+// This first iteration runs, but needs lots of work.
+// Here is a list of some important changes.  
+// Choose one simple improvement and get that working
+// before starting on the next iteration.  Most of these
+// are small improvements, but its important to get this
+// one-dimensional version running first, then extend it
+// to two-dimensions, multiple ships, different size ships,
+// . . .
+// 
+// FUNCTIONALITY
+//  * The dropBomb() function doesn't do anything.
+//  * The initialize() function doesn't randomly place ships.
+//  * No end of game check (function to look for umbombed ship).
+//  
+// USER INTERFACE
+//  * Verify user input has legal bombing coordinates.
+//  * Print coordinates at bottom.
+//  * Allow number without command to mean drop bomb.
+//  * Not robust - crashes if bombing coordinate missing.
+//
+// INTERNAL                            
+//  * Refactor - move command decoding out of main.
+//  * Should be a developer command to display where ships are.
+//
+// LONGER RANGE (after previous improvements)
+//  * Make it two-dimensional.
+//  * Add multiple ships, and maybe multiple ship sizes.
+
+//==================================================== includes
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+//========================================= global declarations
+// Damage enum defines possible values at each grid point.
+enum Damage {WATER_UNBOMBED, WATER_BOMBED, 
+             SHIP_UNBOMBED , SHIP_BOMBED};
+
+// The display array defines what to display for
+//     each of the Damage enum values.  Changes to the
+//     Damage enum require this to be changed also.
+const char userDisplay[] = {'-', 'O', '-', 'X'};
+
+const  int WIDTH = 10;   // Width of the grid.
+Damage grid[WIDTH];      // Status of every grid cell.
+
+
+//================================================== prototypes
+void dropBomb(int xcoord);
+void initGrid();
+void displayGrid();
+
+
+//======================================================== main
+int main() {
+
+    //-- Place ships on the grid.
+    initGrid();
+    displayGrid();
+    
+    char commandCode;
+    while (cin &gt;&gt; commandCode) {
+        switch (commandCode) {
+            
+            case 'q':           // quit
+                exit(0);
+                break;
+                
+            case 'b':           // bomb
+                int column;
+                cin &gt;&gt; column;
+                dropBomb(column);
+                displayGrid();
+                break;
+                
+            default:
+                cerr &lt;&lt; "Bad input " &lt;&lt; commandCode &lt;&lt; endl;
+                break;
+        }
+    }
+    
+    return 0;
+}//end main
+
+
+//======================================================= dropBomb
+void dropBomb(int xcoord) {
+    //-- Do nothing for now except print to show
+    //   we got here.
+    cout &lt;&lt; "TRACE: bomb(" &lt;&lt; xcoord &lt;&lt; ")" &lt;&lt; endl;
+    
+    return;
+}
+
+
+//======================================================= initGrid
+// initGrid() places random ships on the grid.
+void initGrid() {
+    for (int col=0; col&lt;WIDTH; col++) {
+        grid[col] = WATER_UNBOMBED;
+    }
+    // Temporarily start with one ship, random later.
+    grid[0] = SHIP_UNBOMBED;
+    grid[1] = SHIP_UNBOMBED;
+}
+
+
+//==================================================== displayGrid
+void displayGrid() {
+    cout &lt;&lt; endl;
+    for (int col=0; col&lt;WIDTH; col++) {
+        cout &lt;&lt; " " &lt;&lt; userDisplay[grid[col]];
+    }
+    cout &lt;&lt; endl;
+}
+</pre></div>
+</td></tr></table>
+
+
+<script type="text/JavaScript">footer("2003");</script>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: I/O - Overview</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: I/O - Overview</h1>
+
+<h2><code>cin</code> and <code>cout</code> can be used for most I/O</h2>
+One of the great strengths of C++ is that simple I/O is simple.
+It seems like it should be obviously true, but Java sadly makes
+simple I/O difficult.  To input most values, just use <code>cin</code> (pronounced <i>see-in</i>)
+and the <code>&gt;&gt;</code> operator.  Similarly, for output use 
+<code>cout</code> (pronounced <i>see-out</i>) and the &lt;&lt; operator.  For example,
+<pre class="fragment">
+int x;
+int y;
+cin &gt;&gt; x &gt;&gt; y;
+cout &lt;&lt; "Sum = " &lt;&lt; (x+y) &lt;&lt; endl;
+</pre>
+The input is treated as a stream of characters without regard to spacing
+or lines.
+It's also easy to read in a loop.
+<pre class="fragment">
+while (cin &gt;&gt; x) {  // Reads until EOF
+   sum += x;
+}</pre>
+See
+<ul>
+<li><a href="cinloop.html">The <code>cin</code> loop</a></li>
+<li><a href="eof.html">End-Of-File (EOF)</a></li>
+<li><a href="reading-numbers.html">Reading numbers</a></li>
+<li><a href="io-operators.html">I/O operators - &lt;&lt; and &gt;&gt;</a></li>
+<li><a href="anti-idiom-cin.html">Anti-idiom: Testing cin for EOF</a></li>
+</ul>
+
+<h2>Reading individual characters and lines</h2>
+Because the default stream I/O skips whitespace, to read all characters or to read lines, you
+have to use some different functions. See
+<ul>
+<li><a href="reading-chars.html">Reading characters</a></li>
+<li><a href="reading-lines.html">Reading lines</a></li>
+</ul>
+
+
+<h2>Reading text files</h2>
+Reading text files is very easy.  It's basically the same as reading from <code>cin</code>, 
+but you have
+to define a new file input stream and "open" it with a file name.
+See 
+<ul>
+<li><a href="readtextfile.html">Reading Text Files</a></li>
+<li><a href="open.html">Example: File open dialog</a></li>
+</ul>
+
+<h2>Using strings as source and destination of I/O</h2>
+You can easily use all of the stream I/O capabilities to "read" and "write" using strings.  
+This isn't so commonly done, but it can be very useful.  See
+<ul>
+<li><a href="../strings/stringstream.html">String streams</a></li>
+<li><a href="../strings/stringstream-example.html">String stream example</a></li>
+</ul>
+
+<h2>Formatting output</h2>
+The <i>I/O manipulators</i> can be used to format your output, eg, to choose field widths and 
+number of decimals printed.  See
+<ul>
+<li><a href="omanipulators.html">I/O manipulators</a></li>
+</ul>
+
+<!--
+<h2>Summary of I/O</h2>
+Here is a one-page summary of some I/O facilities.
+<ul>
+<li><a href="../90summaries/60iosum.html">I/O Summary</a></li>
+</ul>
+-->
+
+
+<script type="text/JavaScript">footer("2003");</script>
+</body>
+
+</html>

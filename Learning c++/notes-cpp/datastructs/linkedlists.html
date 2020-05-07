@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+  <title>C++ Notes: Linked Lists</title>
+</head>
+
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Linked Lists</h1>
+<h2>Terminology - Head/Tail vs Front/Back</h2>
+<p>Traditional list terminology calls the first list element
+   the <i>head</i> and the last element the <i>tail</i>, sometimes
+   or the second to the end as the <i>tail</i>.
+   </p>
+   
+<p>Most recent terminology is to call the first element the <i>front</i>
+   and the element at the end the <i>back</i>.  We'll use the 
+   front/back teminology most of the time.
+   </p>
+
+<h2>Singly-Linked Lists</h2>
+
+
+<h2>Doubly-linked Lists</h2>
+
+
+<h2>Problems with Lists as Pointers to Nodes</h2>
+   <p>Several problems come up when using the combination of nodes
+   and pointers to represent lists: ambiguity about single elements and lists,
+   keeping both front and back for lists, and representing empty lists.</p>
+   
+   <h3>Ambiguity - Head of list or individual node</h3>
+   <p>If you have a pointer to a node, it can interpreted as either a single
+   element, or as the pointer to the head (or tail) of a list.  This 
+   apparent flexibility often turns in to a handicap, especially in the
+   handling of singly-linked lists where it's impossible to know if there
+   is a preceding element.
+   </p>
+   
+   <h2>Keeping both front and back pointers</h2>
+   <p>For a doubly-linked list to be useful for operations on either
+   the front or the back, it's necessary to represent it with two pointers,
+   one to the front, and one to the back.
+   </p>
+   
+   <h2>Empty lists.</h2>
+   <p>Perhaps the most difficult problem, both for singly- and doubly-linked lists
+   is how to handle empty lists.  Altho a NULL pointer can represent an empty
+   list when reading it, it isn't adequate for passing a list from function 
+   to function that will have
+   elements added to it.
+   </p>
+   
+   <!-- <p>Exposed Node mechanism ?  Doesn't have to be so.  Could have accessor functions. -->
+   
+   
+<h2>Changing Nodes and Pointers into Lists, Nodes and Iterators</h2>
+   <p>A solution to the previous issues typically uses the following approach.</p>
+   <ul>
+   <li><b>List object</b>.  The whole list is represented by a list object that has pointers to the front
+       and back elements.</li>
+   <li><b>Node structure hidden</b>.  The actual node structure is hidden as an inner class in the list class.</li>
+   <li><b>Iterators</b>.  Pointers to individual elements are represented by iterator objects with
+       overloaded operators to give them the appearance of pointers.
+       </li>
+   </ul>
+   
+
+
+<script type="text/JavaScript">footer("2004");</script>
+</body>
+</html>
+

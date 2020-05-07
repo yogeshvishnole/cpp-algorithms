@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Struct Example 2</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Struct Example 2</h1>
+
+<h2>Problem - Product info</h2>
+Let's use the Product struct, read into an array of Products, and sort by
+increasing price.
+
+
+<h2>Global Declaration</h2>
+Typically types are used in more than one function, and are therefore <i>global</i>
+or defined in an include file.
+<pre class="example">
+struct Product {
+    char mfg_id[4];    // 4 char code for the manufacturer.
+    char prod_id[8];   // 8-char code for the product
+    int  price;        // price of the product in dollars.
+    int  qty_on_hand;  // quantity on hand in inventory
+};
+</pre>
+
+<h2>Local Declarations</h2>
+<pre class="example">
+Product prods[1000]; // array to hold up to 1000 products
+int n = 0;           // number of products in the array.
+</pre>
+
+<h2>Reading the input</h2>
+
+<pre class="example">
+while (cin &gt;&gt; prods[n].mfg_id &gt;&gt; prods[n].prod_id
+           &gt;&gt; prods[n].price  &gt;&gt; prods[n].qty_on_hand) {
+    n++;
+}
+</pre> 
+
+
+<h2>Sorting the array of products</h2>
+   Here's a simple bubble sort function that stops when
+   there are no more exchanges.  This is a fairly inefficient sort,
+   and it's used here just as an example.
+   Notice we can't compare the entire struct, only individual fields.
+
+<pre class="example">
+void bubbleSort2(Product pd[], int size) {
+    bool doMore;
+    do {
+        doMore = false;  // assume this is last pass over array
+        for (int i=0; i&lt;size-1; i++) {
+            if (pd[i].price &gt; pd[i+1].price) {
+                // exchange elements
+                Product temp = pd[i]; pd[i] = pd[i+1]; pd[i+1] = temp;
+                doMore = true;  // after exchange, must look again
+            }
+        }
+    } while (doMore);
+}</pre>
+  
+
+   
+<script type="text/JavaScript">footer("2000");</script>
+</body>
+
+</html>

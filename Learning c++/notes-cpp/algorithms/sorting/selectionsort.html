@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Algorithms: Selection Sort</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++ Notes</a>: Algorithms: Selection Sort</h1>
+
+Selection sort makes n-1 passes over the data, finding the largest
+remaining value on each pass.  A common optimization is that the 
+<i>index</i> of the potentially largest element is saved, so that
+at the end of a pass, an exchange (swap) only needs to be done once.
+
+
+<h2>Example</h2><div class="example"><pre>
+void selectionSort(int x[], int n) {
+    for (int pass=0; pass&lt;n-1; pass++) {
+        int potentialSmallest = pass;  // assume this is smallest
+
+        //--- Look over remaining elements to find smallest.
+        for (int i=pass+1; i&lt;n; i++) {
+            if (x[i] &lt; x[potentialSmallest]) {
+                //--- Remember index for latter swap.
+                potentialSmallest = i;
+            }
+        }
+        
+        //--- Swap smallest remaining element
+        int temp = x[pass];
+        x[pass] = x[potentialSmallest];
+        x[potentialSmallest] = temp;
+    }
+}
+</pre></div>
+
+<script type="text/JavaScript">footer("2003");</script>
+
+</body>
+</html>
+

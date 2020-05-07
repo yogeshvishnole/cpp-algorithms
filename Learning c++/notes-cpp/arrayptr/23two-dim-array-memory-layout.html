@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: 2-D Array Memory Layout</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: 2-D Array Memory Layout</h1>
+ 
+<h2>Two kinds of multi-dimensional arrays.</h2>
+   There are two basic ways of implementing 2-dimensional arrays:
+   <i>rectangular, sequential, two-dimensional arrays</i> and <i>arrays of arrays</i>.
+   Some languages use one method, some another, and some both.  C++ allows
+   both methods, and each has its advantages and disadvantages.
+   <ul>
+   <li><b>rectangular sequential arrays</b>.  In this case the rows are laid out
+       sequentially in memory.  This provides simplicity in memory management
+       and a slight speed advantage.  This is the kind of array C/C++ creates
+       by default.
+       </li>
+   <li><b>Arrays of arrays</b>.  In this style each element of a one-dimensional array
+       is a <i>pointer</i> to another array.  
+       This is a common way to create an 
+       array of C-strings (a zero-terminated array of characters).
+       This is also useful if the rows are uneven length or are
+       dynamically allocated.  The disadvantage is that memory management 
+       is more complex, often requiring dynamic allocation and deallocation.
+       This is the only kind of multi-dimensional array in Java.
+       See <a href="24arraysofarrays.html">Arrays of Arrays</a>.
+       </li>
+   </ul>
+   
+
+<h2>Rectangular arrays allocated in memory by row</h2>
+<table border="0">
+<tr valign="top"><td>
+Let's see how the memory is allocated for this array.
+<pre class="example">
+char ttt[3][3] = {{'x', 'x', 'o'},
+                  {'o', 'o', 'x'},
+                  {'x', 'o', ' '}
+                 };
+</pre>
+<p>The memory for this array could be visualized as in the diagram to the right, which 
+identifies a few cells by their subscripts.</p>
+</td><td valign="top">
+<div align="center">
+<img alt="2D array memory representation" src="2d-arrays-1-312x183.gif" width="312" height="183" />
+</div>
+</td></tr></table>
+
+<table border="0">
+<tr valign="top">
+<td>
+<div align="center">
+<img alt="2D array memory representation" src="2d-arrays-2-375x105.gif" width="375" height="105" />
+</div>
+</td>
+<td>
+<p>Because memory is addressed linearly, a better representation 
+is like the diagram to the left.
+</p>
+</td>
+</tr></table>
+
+
+
+<h2>Computing the address of an array element</h2>
+C++ must compute the memory address of each
+array element that it accesses.  C++ does this automatically,
+but it helps to understand what's going
+on "under the hood".  Assume the following declaration:
+<pre class="example">
+char a[ROWS][COLS];  // assume ROWS and COLS are const ints
+</pre>
+Because arrays are laid out in memory by row, each <i>row length</i>
+is COLS (the number of columns is the size of a row).  Let's assume
+that you want to find the address of <code>a[r][c]</code>.
+The <i>baseAddress</i> of the array is the address of the first element.
+The <i>rowSize</i> is <code>COLS</code> in the above example.
+The <i>elementSize</i> is the number of bytes required to represent the
+data (typically 1 for <code>char</code>, 4 for <code>int</code>,
+4 for <code>float</code>, and 8 for <i>double</i>.
+<pre>
+   <i>address</i> = <i>baseAddress</i> + <i>elementSize</i> * (r*<i>rowSize</i> + c);
+</pre>
+Note
+<ul>
+<li>The number of rows (<code>ROWS</code>) is not used in the computation.</li>
+<li>Because the number of rows is not used, there is no need to pass it 
+    when declaring a formal array parameter for a two-dimension array.</li>
+</ul>
+<!--
+ Jeff Raft (jraft rogers.com) pointed out errors above. Give him credit.-->
+
+   
+<script type="text/JavaScript">footer("2003");</script>
+</body>
+
+</html>

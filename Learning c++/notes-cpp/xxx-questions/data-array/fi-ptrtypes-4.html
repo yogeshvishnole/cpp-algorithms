@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet"           type="text/css" title="noanswers" href="../../notes.css"/>
+    <link rel="alternate stylesheet" type="text/css" title="answers"   href="../../notesanswer.css"/> 
+    <title>C++: Types / Pointers 4</title>
+</head>
+
+<body>
+<h1><a href="../../index.html">C++</a>: Types / Pointers 4</h1>
+
+<p>Name ______________________</p>
+<p>Assume the following:</p>
+
+<pre class="example">
+    char  c = 'b';
+    char  ca[] = "pqrstuv";
+    char* ap[] = {"ghijklm", "qqsv", "Adios"};
+    char* xy = ap[2];
+</pre>
+<br />
+
+<table border="1" cellspacing="0" cellpadding="4" summary="">
+<tr><th>Part I - Types</th><th>Part II - Values</th></tr>
+<tr><td valign="top" width="45%">
+<p>Give the <b><i>types</i></b> of the following expressions.  
+Regard an array as being of <code>type*</code> type,
+eg, <code>ia</code> is type <code>int*</code>.
+If an expression is illegal, write "ILLEGAL".
+Choose from one of the following possibilies:
+</p>
+<pre>
+    char
+    char*
+    char**
+    char***
+</pre>
+<table>
+<tr><td>  </td><th>Type</th><th>Expression</th></tr>
+<tr><td> 1</td><td><span class="answerspace">__________</span><span class="answer">x</span></td><td><code>c</code></td></tr>
+<tr><td> 2</td><td><span class="answerspace">__________</span><span class="answer">x</span></td><td><code>*c</code></td></tr>
+<tr><td> 3</td><td><span class="answerspace">__________</span><span class="answer">x*</span></td><td><code>&amp;c</code></td></tr>
+<tr><td> 4</td><td><span class="answerspace">__________</span><span class="answer">x</span></td><td><code>*&amp;c</code></td></tr>
+<tr><td> 5</td><td><span class="answerspace">__________</span><span class="answer">x*</span></td><td><code>"abc"</code></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td> 6</td><td><span class="answerspace">__________</span><span class="answer">x</span></td><td><code>ap</code></td></tr>
+<tr><td> 7</td><td><span class="answerspace">__________</span><span class="answer">x</span></td><td><code>*ap</code></td></tr>
+<tr><td> 8</td><td><span class="answerspace">__________</span><span class="answer">x</span></td><td><code>**ap</code></td></tr>
+<tr><td> 9</td><td><span class="answerspace">__________</span><span class="answer">x</span></td><td><code>***ap</code></td></tr>
+<tr><td>10</td><td><span class="answerspace">__________</span><span class="answer">x</span></td><td><code>*(ap[0])</code></td></tr>
+</table>
+
+</td><td valign="top">
+
+<p>What is printed by the following statements?  If an address is printed, write "ADDR"  in the answer space.
+If it's illegal, write "ILLEGAL".</p>
+<table>
+<tr><td>  </td><th>Output</th><th>Statement(s)</th></tr>
+<tr><td>1</td><td><span class="answerspace">__________</span><span class="answer"><code>c</code></span></td><td><code>cout &lt;&lt; ap;</code></td></tr>
+<tr><td>2</td><td><span class="answerspace">__________</span><span class="answer"><code>a</code></span></td><td><code>cout &lt;&lt; *ap;</code></td></tr>
+<tr><td>3</td><td><span class="answerspace">__________</span><span class="answer"><code>b</code></span></td><td><code>cout &lt;&lt; **ap;</code></td></tr>
+<tr><td>4</td><td><span class="answerspace">__________</span><span class="answer"><code>c</code></span></td><td><code>cout &lt;&lt; xy[2];</code></td></tr>
+<tr><td>5</td><td><span class="answerspace">__________</span><span class="answer"><code>4.2</code></span></td><td><code>cout &lt;&lt; *(xy[2]);</code></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>6</td><td><span class="answerspace">__________</span><span class="answer"><code>5</code></span></td><td><code>cout &lt;&lt; ap+1;</code></td></tr>
+<tr><td>7</td><td><span class="answerspace">__________</span><span class="answer"><code>3</code></span></td><td><code>cout &lt;&lt; *(ap+1)</code></td></tr>
+<tr><td>8</td><td><span class="answerspace">__________</span><span class="answer"><code>b</code></span></td><td><code>cout &lt;&lt; "abc"[1];</code></td></tr>
+<tr><td>9</td><td><span class="answerspace">__________</span><span class="answer"><code>abcdef</code></span></td><td><code>cout &lt;&lt; xy++;</code></td></tr>
+<tr><td>10</td><td><span class="answerspace">__________</span><span class="answer"><code>f</code></span></td><td><code>xy++; cout &lt;&lt; *(xy+1);</code></td></tr>
+</table>
+</td></tr></table>
+<p>
+<a href="#" onclick="setActiveStyleSheet('answers'  ); return false;">Show Answers</a> -
+<a href="#" onclick="setActiveStyleSheet('noanswers'); return false;">Hide Answers</a>
+</p>
+
+<div class="footer">Copyleft 2004 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+</html>
+

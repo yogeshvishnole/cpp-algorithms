@@ -1,0 +1,299 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www/leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <title>C++: Fill in floatVector gaps</title>
+</head>
+
+<body>
+
+<h1><a href="../../index.html">C++</a>: Fill in floatVector gaps</h1>
+
+<p>Name ________________________________________________</p>
+
+<p>Fill in the missing gaps in this floatVector solution.
+Each "____________" represents one missing <i>token</i> - a single
+varible, operator, punctuation mark, etc.  Or it there may be nothing
+missing, in which case you should leave it blank.</p>
+
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+ 22 
+ 23 
+ 24 
+ 25 
+ 26 
+ 27 
+ 28 
+ 29 
+ 30 
+ 31 
+ 32 
+ 33 
+ 34 
+ 35 
+ 36 
+ 37 
+ 38 
+ 39 
+ 40 
+ 41 
+ 42 
+ 43 
+ 44 
+ 45 
+ 46 
+ 47 
+ 48 
+ 49 
+ 50 
+ 51 
+ 52 
+ 53 
+ 54 
+ 55 
+ 56 
+ 57 
+ 58 
+ 59 
+ 60 
+ 61 
+ 62 
+ 63 
+ 64 
+ 65 
+ 66 
+ 67 
+ 68 
+ 69 
+ 70 
+ 71 
+ 72 
+ 73 
+ 74 
+ 75 
+ 76 
+ 77 
+ 78 
+ 79 
+ 80 
+ 81 
+ 82 
+ 83 
+ 84 
+ 85 
+ 86 
+ 87 
+ 88 
+ 89 
+ 90 
+ 91 
+ 92 
+ 93 
+ 94 
+ 95 
+ 96 
+ 97 
+ 98 
+ 99 
+100 
+101 
+102 
+103 
+104 
+105 
+106 
+107 
+108 
+109 
+110 
+111 
+112 
+113 
+114 
+115 
+116 
+117 
+118 
+119 
+120 
+121 
+122 
+123 
+124 
+125 
+126 
+127 
+128 
+129 
+130 
+131 
+132 
+133 
+</pre></td><td valign='top'>
+<div class="file"><pre>
+#include &lt;iostream&gt;
+#include &lt;stdexcept&gt;
+using ____________ std;
+
+#include "floatVector.h"
+
+floatVector::floatVector() {
+    _capacity = 0;    
+    _size = 0;        
+    _data = ____________;     
+}
+
+floatVector::floatVector(____________ floatVector&amp; fv) {
+    _size = fv._size;         
+    _data = new float[_size]; 
+    _capacity = ____________;     
+    
+    for (int i=0; i&lt;_size; i++) {
+        _data[i] = fv._data[i];
+    }
+}
+
+floatVector::~floatVector() {
+    ____________ [] _data;
+}
+
+float&amp; floatVector::at(int ____________) const {
+    if (position &lt; 0) {
+        throw out_of_range("floatVector subscript less than zero");
+    } else if (position &gt;= ____________) {
+        throw out_of_range("floatVector subscript too large");
+    }
+    return _data[position];
+}
+
+float&amp; floatVector::front() ____________ {
+    if (_size ____________ 0) {
+        throw out_of_range("floatVector::front() called with no elements.");
+    }    
+    return _data[____________];
+}
+
+float&amp; floatVector::____________() const {
+    if (_size &lt;= 0) {
+        throw out_of_range("floatVector:: No elements.");
+    }    
+    return _data[_size-1];
+}
+
+float ____________ floatVector::operator[](int position) const {
+    if (position &lt; 0) {
+        throw out_of_range("floatVector subscript less than zero");
+    } else if (position &gt;= _size) {
+        throw out_of_range("floatVector subscript too large");
+    }
+    return ____________[position];
+}
+
+int ____________ floatVector::capacity() const {
+    return ____________;
+}
+
+void floatVector::push_back(float item) ____________ {
+    if (_capacity &lt;= _size) {
+        reserve(_capacity&gt;0 ? 2*_capacity : 10);
+    }
+    _data[_size] = item;
+    _size++;
+}
+
+int floatVector::size() const {
+    ____________ _size;
+}
+
+bool floatVector::empty() const {
+    return _size ____________ 0;
+}
+
+void floatVector::clear() ____________ {
+    _size ____________ 0;
+}    
+
+void floatVector::reserve(int ____________) {
+    if (bigger &gt; _capacity) {
+        
+        float ____________ new_data = new float[bigger]; 
+        if (_capacity &gt; 0) {
+            
+            for (int i=0; i&lt;_size; i++) {
+                 new_data[i] = _data[i];
+            }
+            delete [] _data;   
+        }
+        ____________ = bigger;       
+        _data = ____________;      
+    }
+}
+
+floatVector&amp; floatVector::operator=(const floatVector&amp; fv) {
+    if (____________ != &amp;fv) {            
+        delete [] _data;          
+        _size = ____________._size;         
+        _data = new ____________[_size]; 
+        _capacity = _size;        
+        
+        for (int i=0; i&lt;_size; i++) {
+            _data[i] = fv._data[i];
+        }
+    }
+    return *this;            
+}
+
+____________ floatVector::operator==(const floatVector&amp; v2) const {
+    if (_size != v2._size) return false;  
+    ____________ (int i=0; i&lt;_size; i++) {
+        if (_data[i] != v2._data[i]) {
+            return ____________;  
+        }
+    }
+    return ____________;  
+}
+
+ostream&amp; operator&lt;&lt;(ostream ____________ os, const floatVector&amp; fv) {
+    os &lt;&lt; "{";
+    for (int i=0; i &lt; ____________.size(); i++) {
+        if (i&gt;0) {
+            os &lt;&lt; ", ";
+        }
+        os ____________ fv.at(____________);
+    }
+    os &lt;&lt; "}";
+    return ____________;
+}
+</pre></div>
+</td></tr></table>
+
+
+<div class="footer">Copyleft 2004 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+</html>
+

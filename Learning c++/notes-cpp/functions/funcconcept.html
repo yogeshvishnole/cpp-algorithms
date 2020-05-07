@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Function Concepts</title>
+</head>
+
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Function Concepts</h1>
+<h2>Purpose of functions</h2>
+The purpose of functions is to make the programmer's life easier.
+<ul>
+<li class="compact"><b>Write code once</b>, and call it from many places.  This insures consistency, and
+    reduces the cost of writing and debugging.</li>
+<li class="compact">A function allows code to be <b>parameterized</b> by passing values to it.</li>
+<li class="compact">Functions can be collected in libraries and <b>reused</b> in other programs.</li>
+<li class="compact">Functions create new <b>conceptual units</b>
+     that form the units that programmers use in thinking about a problem. </li>
+</ul>
+
+<h2>Naming</h2>
+For a function to work well as a conceptual unit it has to have a name that
+is clear to the human reader.
+<ul>
+<li class="compact">Choose a name that has a <b>clear meaning</b>.  Eg, "f" is not
+    a good name.</li>
+<li class="compact"><b>Void functions</b> are more readable if a <i>verb</i> name is used
+    that describes what it does.
+    Eg, "printAverage" would be a good name for a void function that prints the
+    average of some numbers.  "Average" would not be a good name for it.</li>
+<li class="compact"><b>Value-returning functions</b>
+    <ul>
+    <li>A <b>verb</b> is a good choice for a value returning function that performs
+        an operation that would naturally be understood to produce a value, eg, "add(x, y)".
+        A <b>noun</b> which describes the the result can be used.  For example, 
+        "remainder(a, b)" would be a good choice for a function that computes the
+        remainder after division (ie, what the "%" operator does).  The noun is a good
+        choice if you're tempted to add a word like "compute" or "calculate" in front 
+        (eg, "computeRemainder(a, b)").
+        The "compute" or "calculate" is simple often omitted if the meaning is clear.</li>
+    <li class="compact"><b>Getter and setter functions</b>.  Prefix functions which get a value from an object or data structure
+        with "get" (eg, <code>getTime()</code>).  Similarly use "set" for functions that set values
+        (eg, <code>setTime()</code>).</li>
+    <li class="compact"><b>boolean functions</b> should usually start with "is" or another word
+        that suggests a yes/no answer.  Eg, "isOdd(n)" is a good name for a function that returns
+        true if its parameter is odd, and it's better than simply "odd()".</li>
+    </ul>
+    </li>
+<li class="compact"><b>Case</b>.  There are several conventions, but whichever one you 
+    choose, be consistent to make programs readable.  The most common convention is
+    to start names with lowercase and capitalize the first 
+    letter of each additional word in the name.  Some programmers start functions 
+    with uppercase characters, but this is less common.</li>
+</ul>
+
+
+
+<h2>Cohesion</h2>
+<b>Each function should do only one thing</b>. 
+This should be done so that the conceptual unit can be understood easily.
+Sometimes it will be convenient
+to do two things in a function because you're working on the same data.
+Try to resist this temptation.  Make two functions if you reasonably can.
+
+<p><i>Separate I/O and computation</i>.  Greater cohesion is almost always
+achieved by separating I/O and computation.  If possible, put the I/O in
+main or in separate functions.  If I/O is properly separated, the same
+functions which make up a program can be used either in a GUI or command-line
+program.
+</p>
+
+
+<h2>Side-effects</h2>
+Functions should avoid side-effects such as communicating by means
+of <b>global variables</b>.  Use of global variables increases
+<i>coupling</i>, which makes programs harder to debug and maintain.
+
+
+<h2>Functional Decomposition - top-down programming - successive refinement</h2>
+The <i>top-down programming</i> style is to write 
+a short main program that calls on additional functions to 
+accomplish it task.   These functions should similarly
+be kept short and call more functions if necessary to
+get their task done.  Start with the main function, and write
+only function <i>stubs</i> which do almost nothing except 
+maybe print a message that they were called.  
+Get this running, then expand one of the stubs, get this
+running, ... .  This very productive style of programming
+is related to <i>iterative programming</i> and is one of
+the cornerstones of Extreme Programming.
+
+<p>Top-down programming is good for for small programming tasks.
+A better approach for larger programs is to divide them into <i>objects</i>.
+</p>
+
+
+<h2>Size - One page</h2>
+It is a good idea to keep functions shorter
+than one page or one screen.  This makes them easy 
+to comprehend, If you want to make them larger, think about
+how you could break the processing into two or more
+functions (top-down programming).
+
+<h2>Parameters</h2>
+<ul>
+<li><i>Value parameters</i> copy the actual parameter value into
+    the formal parameter.  Changes to the formal parameter, which
+    is a local variable, do not get passed back to the calling program.
+    </li>
+<li><i>Reference parameters</i> are implemented by passing the <i>memory address</i>
+    of the actual parameter to the formal parameter. 
+    Reference parameters are used to pass values back from 
+    a function.  This is necessary to return more than one value.
+    </li>
+<li>It is helpful to have a clear idea of the direction of data flow
+    of each parameter: <i>in</i> means the data only flows into the
+    function (typically a value parameter), <i>out</i> means the data only flows out of the function
+    (a reference parameter), or <i>inout</i> means that data flows
+    both  into and out of the function thru this (reference) parameter.
+    There is no language support for these ideas in C++ altho these 
+    keywords are used in the Ada programming language.
+    </li>
+</ul>
+
+<h2>Prototypes</h2>
+The compiler must know about the return and parameter types before it can
+understand the call to a function.  You should declare all of your function
+prototypes at the beginning of your program.  This is one of the primary 
+purposes of the system include files.  If you've written a number of functions
+in many files, it is common to define your one include file which defines
+the prototypes.
+ 
+</body>
+</html>

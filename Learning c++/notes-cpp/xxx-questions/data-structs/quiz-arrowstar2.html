@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <title>C++: Reference/Dereference Questions 2</title>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: Reference/Dereference Questions 2</h1>
+
+<p>Name __________________________________</p>
+
+<p>
+Given the following declarations</p>
+<pre class="fragment">
+   class Node {
+       public:
+           int data;
+           Node* next;
+   };
+   
+   Node n, n2;
+   Node *np, *np2;
+</pre>
+
+<h3>Types</h3>
+<p>Indicate the expression <b>type</b> (Node, Node*, Node**, int, int*, ILLEGAL)?</p>
+
+<ol>
+<li>____________ n</li> 
+<li>____________ *n</li> 
+<li>____________ &amp;n</li> 
+<li>____________ np</li> 
+<li>____________ *np<br/><br/></li> 
+<li>____________ &amp;np</li> 
+<li>____________ n.next</li> 
+<li>____________ n->next</li> 
+<li>____________ np.next</li>
+<li>____________ np.next.next.data<br/><br/></li>  
+<li>____________ np->next</li> 
+<li>____________ np->next->next->data</li>
+<li>____________ (*n).data</li> 
+<li>____________ (*n)->data</li> 
+<li>____________ (*np).data</li> 
+<li>____________ (*np)->data</li> 
+<li>____________ (&amp;n)->data</li> 
+
+</ol>
+
+
+<h3>Assignments</h3>
+
+
+<p>Put "Y" a cell to indicate that the 
+expression on the top could syntactically be assigned to the item on the
+left.  Leave the illegal cells empty.
+</p>
+
+<table border="1" cellspacing="0">
+<tr><td align="right">&nbsp;</td><td>new Node()</td><td>&nbsp;&nbsp;n2&nbsp;&nbsp;</td><td>&nbsp;&amp;n2&nbsp;</td><td>&nbsp;37&nbsp;</td><td>&nbsp;&nbsp;np2&nbsp;&nbsp;</td><td>&nbsp;&amp;np2&nbsp;</td><td>&nbsp;*np2&nbsp;</td></tr>
+<tr><td align="right">n =</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td align="right">np =</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td align="right">np->next =</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td align="right">np.next =</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td align="right">*np =</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td align="right">n.data =</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+    
+   
+
+<div class="footer">Copyleft 2004 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+
+</html>
+

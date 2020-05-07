@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++: Addresses, Pointers, References</title>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: Addresses, Pointers, References</h1>
+
+<h2>Memory addresses</h2>
+Every byte in memory has an integer memory <b><i>address</i></b>.  
+Addresses start at zero and go to the maximum amount of memory that
+the computer has.  For example, in a computer that has 256 MB of RAM
+the bytes would be numbered 0, 1, 2, 3, 4, 5, etc (up to the power of 2 closest 
+to 256,000,000).  Instructions and data are stored in RAM when a program is
+running, so each instruction or data element is identified by its memory 
+address, or the address of its first byte because many types are longer than one byte. 
+The CPU uses these memory addresses for all operations.
+One of the great advantages of higher-level language is that all these 
+addressing details are taken care of automatically by the programming
+language and the programmer doesn't have to worry about them.  
+However, it can be very useful for the programmer to be able
+to explicitly use memory addresses as data.  This data type is 
+called a <b><i>pointer</i></b>.
+
+
+
+<h2>Pointers</h2>
+C and C++ have variables that 
+hold memory <i>addresses</i>.  These are called <b><i>pointers</i></b>.  
+Pointers are an extremely powerful
+programming feature, long regarded as essential to any full-strength
+programming language.  But the power of pointers also comes at a price, and  
+safe use of pointers turns out to be rather difficult in large programs and
+the source of many bugs.  The most common uses of pointers are:
+
+<ul>
+<li>Working with <i>arrays</i>, especially char arrays.</li>
+<li>For <i>dynamic memory allocation</i> of data structures.</li>
+<li>To <i>link</i> data structures together.</li>
+</ul>
+
+<p>Pointers are so powerful they are dangerous.
+They are dangerous because they can access any memory location and a small 
+error in their use can have mysteriously bizarre results, often showing up
+only later in execution or when the program is run in a different environment.
+It is estimated that about 50% of the bugs in production ("shrink-wrapped") software
+are due to pointer misuse.  Consequently, some languages do not have pointers,
+and only have a more restricted
+use of memory addresses called <i>references</i>.
+<p>
+
+<p>See <a href="10pointers.html">Pointers</a></p>
+
+
+<h2>References - Pointers with restrictions</h2>
+A much safer and simpler use of memory addresses are <b><i>references</i></b>.  References
+are pointers that can't be modified with addition and 
+subtraction.  Removing this capability makes references
+much safer to use than pointers.  In addition, they are automatically
+dereferenced so the programming notation is simpler and less error prone.
+Newer programming languages, such as Java, have completely eliminated pointers
+and only use references for greater reliability and security.
+
+<p>The most common use of references is in function parameters.  
+   Passing a reference to a value has two advantages.</p>
+   <ul>
+   <li>It is more efficient than passing a large structure.  With OOP this
+       is the main use of references.</li>
+   <li>It allows the parameter to be changed.</li>
+   </ul>
+
+
+<script type="text/JavaScript">footer("2002-4");</script>
+</body>
+
+</html>

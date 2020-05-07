@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Programming Exercises - Extend CheckedArray</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Programming Exercises - Extend CheckedArray</h1>
+<h2>Base Program</h2>
+Use one of the following for the base program for these changes.
+<ul>
+<li>See <a href="template-ex1.html">Example - CheckedArray Template Class</a></li>
+<li>See <a href="template-ex2.html">Example - CheckedArray Alternate Style</a></li>
+</ul>
+
+
+<h2>Exercises</h2>
+<ol>
+<li class="question">The CheckedArray class dynamically allocates memory, but never deallocates
+    it.  Fix this <i>memory leak</i> by writing a <i>destructor</i>.
+    </li>
+<li class="question">When a CheckedArray parameter is passed, the default copy constructor
+    will only make a <i>shallow copy</i>.  Write a <i>copy constructor</i>
+    to make a <i>deep copy</i>.
+    </li>
+<li class="question">Shallow copies are also made by the assignment operator by default.
+    <i>Overload the assignment operator</i> to make a deep copy.
+    </li>
+    
+</ol>
+
+   
+<script type="text/JavaScript">footer("2001");</script>
+</body>
+
+</html>

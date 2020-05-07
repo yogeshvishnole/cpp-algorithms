@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0047)http://leepoint.net/notes/vb/quizzes/quiz7.html -->
+<HTML><HEAD><TITLE>Loop Exercises 3</TITLE>
+<META content="text/html; charset=windows-1252" http-equiv=Content-Type>
+<META content="Fred Swartz (www.leepoint.net/fred)" name=author>
+</HEAD>
+<BODY bgColor=white>
+<H1>Loop Exercises 3</H1>
+Name: _________________________________
+<P>What is the value of the variable <b>n</b> after the code
+in these questions executes?  If the loop doesn't terminate,
+write <b>infinite</b> in the answer space.
+
+<p>Assume: <code>int a, b, i, j, n, mx, mn, n=0;</code>
+
+<P><BIG><B>For these questions, a = ________, b = _______ </B></BIG>
+<P>
+<TABLE border=1 cellPadding=8 cellSpacing=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top>
+
+<OL>
+<LI>Value of n? __________
+<PRE>
+  for (i=0; i&lt;a; i++) {
+    n += (a mod b) + 1;
+  }
+</PRE>
+
+
+<LI>Value of n? __________
+<PRE>  i = a*3;
+  while (i &gt; b) {
+    n = n + a;
+    i = i - 3;
+  }</PRE>
+
+
+<LI>Value of n? __________
+<PRE>  n = 0;
+  i = 1;
+  while (i &lt; a) {
+    n++;
+    i++;
+  }
+
+  i = b;
+  do {
+    n -= 2;
+    i--;
+  } while (i &gt; 0)
+</PRE>
+</LI>
+</OL>
+</TD>
+<TD vAlign=top>
+<OL start=4>
+
+
+<LI>Value of n? __________
+<PRE>
+  n = 0;
+  for (i=1; i&lt;= a) {
+    for (j=1; j&lt;=b; j++) {
+      if (i &lt;&gt; j) {
+        n--;
+      }
+    }
+  }</PRE>
+
+
+<LI>Value of n? __________
+<PRE>
+  mn = a;
+  mx = b;
+  if (b &lt; mn) {
+    mn = b;
+    mx = a;
+  }
+
+  n = 1;
+  for (i=mn; i&lt;=mx; i++) {
+    n *= 2;
+  }
+</PRE>
+
+
+<LI>Value of n? __________
+<PRE>
+  for (i=1; i&lt;=100; i++) {
+    if (i == (a + b)) {
+       break;
+    }
+    n += (i mod 3);
+  }
+</PRE>
+</LI>
+</OL>
+</TD>
+</TR></TBODY></TABLE>
+</BODY>
+</HTML>

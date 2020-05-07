@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <style type="text/css">
+        li {margin-top: 1em;}
+    </style>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes:  Example - Celsius to Fahrenheit loop</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Example - Celsius to Fahrenheit loop</h1>
+Rather than read only one data point and terminate, as <a href="c2f.html">Celsius to Fahrenheit</a>
+does, it's much more common to read in a loop.  Here is the typical idiom for 
+doing that.
+
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+</pre></td><td valign='top'>
+<div class="example"><pre>
+// basics/c2f-loop.cpp - Celsius to Fahrenheit loop.
+// Fred Swartz, 2003-10-29 
+
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    float celsius;
+    float fahrenheit;
+    
+    cout &lt;&lt; "Celsius to Fahrenheit conversion." &lt;&lt; endl;
+    
+    <span class="hilite">while (cin &gt;&gt; celsius)</span> {                // (1)
+        fahrenheit = 1.8 * celsius + 32;
+        cout &lt;&lt; "Fahrenheit = " &lt;&lt; fahrenheit &lt;&lt; endl;
+    }
+    
+    return 0;
+}
+</pre></div>
+The text from the above example can be selected, copied, and pasted into an editor.
+</td></tr></table>
+
+<h3>Notes</h3>
+<ol>
+<li>Because the read from <code>cin</code> produces a value that 
+    can be tested, this loop will continue while the read is successful,
+    and fail when there is an EOF or bad input.
+    <p>
+    See <a href="../io/cinloop.html">Idiom - cin loop</a> for more discussion of this.
+    </p>
+</li>
+</ol>
+
+<script type="text/JavaScript">footer("2003");</script>
+</body>
+
+</html>

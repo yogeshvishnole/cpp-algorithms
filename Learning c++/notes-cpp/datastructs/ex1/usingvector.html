@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>C++: Containers: Example 1 Using Arrays</title>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../../notes.js"></script>
+</head>
+<body>
+<h1><a href="../../index.html">C++</a>: Containers: Example 1 Using a Vector</h1>
+One of three contrasting examples of solving the problem with increasingly
+powerful tools: 
+<a href="usingarray.html">using arrays</a>, then 
+<a href="usingvector.html">vectors</a>, then 
+<a href="usingstack.html">stacks</a>.
+
+<br /><br />The great advantage of using vectors and strings instead of
+arrays is that there are no size limits - strings and vectors expand
+as needed.
+<pre class="example">
+// Read words and print them in reverse order.
+//   Variation 3: Using vector and string
+// Fred Swartz 2001-11-08, 2001-12-04
+
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main() {
+
+    vector&lt;string&gt; allwords; // vector of strings to hold words
+    string word;             // input buffer for each word.
+
+    //--- read words/tokens from input stream
+    while (cin &gt;&gt; word) {
+        allwords.push_back(word);
+    }
+    
+    int n = allwords.size();
+    cout &lt;&lt; "Number of words = " &lt;&lt; n &lt;&lt; endl;
+
+    //--- write out all the words in reverse order.
+    for (int i=n-1; i&gt;=0; i--) {
+        cout &lt;&lt; allwords[i] &lt;&lt; endl;
+    }
+    return 0;
+}//end main</pre>
+
+   
+<script type="text/JavaScript">footer("2001");</script>
+</body>
+
+</html>

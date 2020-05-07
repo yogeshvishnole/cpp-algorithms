@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)" />
+    <link rel="stylesheet" type="text/css" href="../90summaries/summaries.css" />
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Expressions</title>
+</head>
+
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Summary - Expressions</h1>
+
+<table summary="">
+<tr>
+<td valign="top">  <!-- column 1 -->
+<b>Parentheses</b> () have three uses:
+<ol>
+<li>Grouping to control order of evaluation, or for clarity.
+    <br />Eg, (a + b) * (c - d)</li>
+<li>After a function name to enclose parameters. Eg, x = sum(a, b);</li>
+<li>Around a type name to form a <i>cast</i>. Eg, i = (int)x;</li>
+</ol>
+
+<br /><b>Order of evaluation</b>
+<ol>
+<li>Higher precedence are done before lower precedence.</li>
+<li>Left to right among equal precedence except:
+    unary, assignment, conditional operators.</li>
+</ol>
+
+<br /><b>Abbreviations</b>
+   <br />i, j - integer (char, short, int, long) values.
+   <br />m, n - numeric values (integers, floating-point).
+   <br />b, c - int expr: 0=true, non-zero=false; x, y - any type.
+   <br />a - array; p - pointer; f - field.
+   <br />obj - a class object; T - a class type.
+   <br />x - anything, t - a type.
+
+</td>
+
+
+<td valign="top">  <!-- column 2 -->
+
+<table border="1" cellspacing="0" summary="">
+<tr align="center"><td colspan="2"><strong>Operator Precedence</strong></td>
+</tr>
+<tr><td>
+<pre>
+::
+. [] -&gt; (<i>args</i>) <i>post</i> ++ --
+   type_id dynamic_cast static_cast
+   cont_cast reinterpret_cast
+<i>unary</i> + - * &amp; <i>pre</i> ++ --
+   ! ~ (<i>type</i>) new sizeof delete
+-&gt;* .*
+* / %
++ -
+&lt;&lt; &gt;&gt;
+&lt; &lt;= &gt; &gt;=
+== !=
+&amp;
+^
+|
+&amp;&amp;
+||
+?:
+= += -= <i>etc</i>
+throw
+,
+</pre>
+</td>
+<td valign="top">
+Remember at a minimum
+<ol>
+<li>unary&nbsp;operators</li>
+<li>* / %</li>
+<li>+ -</li>
+<li><i>comparisons</i></li>
+<li>&amp;&amp; ||</li>
+<li>=  <i>assignments</i></li>
+</ol>
+Use () for all others
+</td></tr>
+</table>
+</td>
+</tr></table>
+
+<hr />
+
+<table border="0" summary=""> <!-- table for columns -->
+<tr><td valign="top" width="50%"> <!-- col 1 -->
+
+<table border="0" cellspacing="1" cellpadding="0" summary=""> <!-- table for content -->
+
+<tr><td colspan="2" class="header">Arithmetic Operators</td></tr>
+<tr><td colspan="2"><i>The result of arithmetic operators is double if either operand is double,
+				else float if either operand is float,
+				else long if either operand is long, else int.</i></td></tr>
+
+<tr valign="top"><td class="code">n + m</td><td>Addition. <i>Eg</i> 7+5 is 12,  3 + 0.14 is 3.14</td></tr>
+<tr valign="top"><td class="code">n - m</td><td>Subtraction</td></tr>
+<tr valign="top"><td class="code">n * m</td><td>Multiplication. <i>Eg</i> 3 * 6 is 18</td></tr>
+<tr valign="top"><td class="code">n / m</td><td>Division. <i>Eg</i> 3.0 / 2 is 1.5  , 3 / 2 is 1</td></tr>
+<tr valign="top"><td class="code">n % m</td><td>Remainder (Mod) after dividing n by m. <i>Eg</i> 7 % 3 is 1</td></tr>
+<tr valign="top"><td class="code" width="64">++i</td><td>Add 1 to i <i>before</i> using the value.</td></tr>
+<tr valign="top"><td class="code">--i</td><td>As above for subtraction</td></tr>
+<tr valign="top"><td class="code">i++</td><td>Add 1 to i <i>after</i> using the value.</td></tr>
+<tr valign="top"><td class="code">i--</td><td>As above for subtraction</td></tr>
+
+
+
+<tr><td colspan="2" class="header">Comparison Operators</td></tr>
+<tr><td colspan="2"><i>The result of all comparisons is 0 (false) or non-zero (true).</i></td></tr>
+<tr valign="top"><td class="code" colspan="2">&lt; &lt;= == != &gt; &gt;=</td></tr>
+
+
+
+<tr><td colspan="2" class="header">Logical Operators</td></tr>
+<tr><td colspan="2"><i>Logical values are zero (false) and non-zero (true).</i></td></tr>
+<tr valign="top"><td class="code">b &amp;&amp; c</td><td>Conditional &quot;and&quot;.  true if both operands are true,
+                                  otherwise false. Short circuit evaluation.
+                                  <i>Eg</i> (false &amp;&amp; anything) is false.</td></tr>
+<tr valign="top"><td class="code">b || c        </td><td>Conditional &quot;or&quot;. true if either operand is true,
+                                  otherwise false.  Short circuit evaluation.
+                                  <i>Eg</i> (true || anything) is true.</td></tr>
+<tr valign="top"><td class="code">!b            </td><td>true if b is false, false if b is true.</td></tr>
+
+
+<tr><td colspan="2" class="header">Conditional Operator</td></tr>
+<tr valign="top"><td class="code">b?x:y</td><td>if b is true, the value is x, else y.
+                     x and y must be the same type.</td></tr>
+
+
+<tr><td colspan="2" class="header">Assignment Operators</td></tr>
+<tr valign="top"><td class="code">=</td>           <td>Left-hand-side must be an lvalue.</td></tr>
+<tr valign="top"><td class="code">+= -= *= ...</td><td>All binary operators (except &amp;&amp; and ||)
+                 can be combined with assignment.
+                 <i>Eg</i><br /> a += 1 is the same as a = a + 1</td></tr>
+
+
+<tr><td colspan="2" class="header">Bitwise Operators</td></tr>
+<tr><td colspan="2"><i>Bitwise operators operate on bits of ints. Result is int.</i></td></tr>
+<tr valign="top"><td class="code">i &amp; j</td><td>Bits are &quot;anded&quot; - 1 if both bits are 1</td></tr>
+<tr valign="top"><td class="code">i | j</td><td>Bits are &quot;ored&quot; - 1 if either bit is 1</td></tr>
+<tr valign="top"><td class="code">i ^ j</td><td>Bits are &quot;xored&quot; - 1 if bits are different</td></tr>
+<tr valign="top"><td class="code">~i</td><td>Bits are complemented (0 -&gt; 1, 1 -&gt; 0)</td></tr>
+<tr valign="top"><td class="code">i &lt;&lt; j</td><td>Bits in i are shifted j bits to the left,
+      zeros inserted on right. </td></tr>
+<tr valign="top"><td class="code">i &gt;&gt; j</td><td>Bits in i are shifted j bits to the right.
+      On left 0 bits inserted for unsigned, sign bits for signed.</td></tr>
+      
+</table> <!-- end of content table -->
+
+</td><td valign="top" width="12"> <!-- start next col -->
+</td><td valign="top" width="50%"> <!-- start next col -->
+
+<table border="0" cellspacing="1" cellpadding="0" summary=""> <!-- content -->
+
+<tr><td colspan="2" class="header">I/O Operators</td></tr>
+<tr><td colspan="2"><i>There are two operators defined in &lt;iostream&gt;.</i></td></tr>
+<tr valign="top"><td class="code">cout &lt;&lt; x</td><td>Output &quot;insertion&quot; operator.</td></tr>
+<tr valign="top"><td class="code">cin &gt;&gt; x</td><td>Input &quot;extraction&quot; operator.</td></tr>
+
+<tr><td colspan="2" class="header">Reference Operators</td></tr>
+<tr valign="top"><td class="code">a[i]</td><td>Array element access.</td></tr>
+<tr valign="top"><td class="code">s.f</td><td>Member. The f field or method of struct/class s.</td></tr>
+<tr valign="top"><td class="code">p-&gt;f</td><td>Member. The f field or method of struct/class pointer p.</td></tr>
+<tr valign="top"><td class="code">&amp;x</td><td>Address of x.</td></tr>
+<tr valign="top"><td class="code">*p</td><td>Dereference pointer p.</td></tr>
+<tr valign="top"><td class="code">.*</td><td>Dereference pointer to class memeber.</td></tr>
+<tr valign="top"><td class="code">-&gt;*</td><td>Dereference pointer to pointer to class memeber.</td></tr>
+<tr valign="top"><td class="code">std::cout</td><td>Scope resolution operator.</td></tr>
+
+<tr><td colspan="2" class="header">Misc Operators</td></tr>
+<tr valign="top"><td class="code">sizeof x</td><td>Memory size of x in bytes. Usually written as sizeof(x).</td></tr>
+
+
+<tr><td colspan="2" class="header">Casts</td></tr>
+<tr><td colspan="2">Use casts to make type conversion clear, and especially when
+                       &quot;narrowing&quot; range of a value. 
+                       <i>x</i> is a value and <i>T</i> is a type.</td></tr>
+<tr valign="top"><td class="code">(<i>T</i>)x</td><td>Casts x to type T. <i>Eg</i> us = (unsigned short)i; Most universal.</td></tr>
+<tr valign="top"><td class="code"><i>T</i>(x)</td><td>Casts x to type T. <i>Eg</i> i = int(f); Use with simple type names.</td></tr>
+<tr valign="top"><td class="code">dynamic_cast&lt;T&gt;(obj)</td><td>Downcasts obj to subclass T.  
+                                                                     May throw <code>bad_cast</code>.</td></tr>
+<tr valign="top"><td class="code">static_cast&lt;t&gt;(x)</td><td>Used for traditional casts, eg int to double.</td></tr>
+<tr valign="top"><td class="code">const_cast&lt;t&gt;(x)</td><td>To cast away <code>const</code> 
+                                                                 or <code>volatile</code>.</td></tr>
+<tr valign="top"><td class="code">reinterpret_cast&lt;t&gt;(x)</td><td>Reinterprets bit pattern.  
+                                                                       Evil, dangerous, non-portable.</td></tr>
+
+
+<tr><td colspan="2" class="header">Dynamic memory allocation/deallocation</td></tr>
+<tr><td colspan="2"><i>T</i> is a type (simple, struct, or class)</td></tr>
+<tr valign="top"><td class="code"><i>T</i>* p;</td><td>Pointer declaration.  Eg, <code>int* a;</code> or <code>Card c;</code></td></tr>
+<tr valign="top"><td class="code">p = new T;</td><td>Allocates memory for one T.  Returns address.</td></tr>
+<tr valign="top"><td class="code">p = new T(params,...);</td><td>Allocates new object, constructor called to initialize fields.</td></tr>
+<tr valign="top"><td class="code">p = new T[<i>n</i>];</td><td>Allocates array of n elements.  Returns pointer to first.</td></tr>
+<tr valign="top"><td class="code">delete p;</td><td>Deallocates object p points to.  Must not be an array.</td></tr>
+<tr valign="top"><td class="code">delete [] p;</td><td>Deallocates array p points to.</td></tr>
+
+
+</table> <!-- end of content -->
+</td></tr></table> <!-- end of columns -->
+
+
+<script type="text/JavaScript">footer("2000-3");</script>
+</body>
+</html>
+

@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <title>C++ Notes: Dynamic Allocation Issues</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Dynamic Alloc. Issues</h1>
+
+   
+<h2>Memory leaks</h2>
+<p>A program that
+allocates memory, but doesn't free it,
+is said to have a <i>memory leak</i>.  For a small amount of data this usually
+isn't a big problem.  However, a program that runs for a long time repeatedly
+allocating memory without freeing it will eventually crash, often crashing
+the entire system.
+</p>
+
+
+<h2>Dangling pointers</h2>
+<p><i>Dangling</i> or <i>stale</i> pointers are another source of problems.
+These are pointers to memory that has been deallocated.  There's no problem
+in principle with leaving old pointers lying around, as long as they're never used.
+It's good practice to set pointer to NULL immediately after a <i>delete</i> so
+there is no possibility of using them again.
+</p>
+
+
+<h2>Dynamic allocation expansion policy</h2>
+<p>There is some (usually a very small percentage of the total cpu time) overhead 
+in dynamically allocating memory.  The <i>policy</i> on how big each expansion
+should be is important to efficiency.
+A common policy for array expansion is to double the size each time.
+One could, in principle,
+allocate one one extra element each time it the array was expanded, but this
+would be too inefficient.  D
+Altho it is commonly used, there is no magic in doubling -- it might be more appropriate for a particular 
+application to add a fixed increment.
+</p>
+   
+<div class="footer">Copyleft 2004 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+
+</html>

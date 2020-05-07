@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com/fred/)"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../notes.css" />
+    <title>C++: Array Exercise 3</title>
+</head>
+
+<body>
+<h1><a href="../../index.html">C++</a>: Array Exercise 3</h1>
+<p>Name __________________________________</p>
+
+<p>Remember that double-quoted character strings are really arrays
+   of characters with a final zero.  For example,
+</p>
+<pre>
+    char[] a = "abc";</pre>
+is the same as
+<pre>
+    char[] a = {'a', 'b', 'c', '\0'};</pre>
+
+<ol>
+
+<li class="question">
+<pre class="fragment">
+char alfa[] = "ABCDEF";
+cout &lt;&lt; alfa[2];</pre>
+_______________________ output?
+</li>
+
+<li class="question">
+<pre class="fragment">
+char alfa[] = "ABCDEF";
+alfa[4] = alfa[3];
+cout &lt;&lt; alfa;</pre>
+_______________________ output?
+</li>
+
+<li class="question">
+<pre class="fragment">
+int a[] = {25, -3, 6, 0, -3, 6};
+int n = 0;
+for (int i=0; i&lt;6; i++) {
+     if (a[i]%2 == 0) {
+         n++;
+     }
+}
+cout &lt;&lt; n;</pre>
+_______________________ output?
+</li>
+
+
+<li class="question">
+<pre class="fragment">
+char abra[] = "ABRACADABRA";
+int n = 0;
+for (int i=10; i&gt;=0; i--) {
+    if (abra[i] == 'A') {
+        n++;
+    }
+}
+cout &lt;&lt; n;</pre>
+_______________________ output?
+</li>
+
+
+<li class="question">
+<pre class="fragment">
+char alfa[] = "ABCDEF";
+int length = 5;
+for (int i=0; i&lt;=length/2; i++) {
+    char temp = alfa[i];
+    alfa[i] = alfa[length-i];
+    alfa[length-i] = temp;
+}
+cout &lt;&lt; alfa;</pre>
+_______________________ output?
+</li>
+
+
+</ol>
+
+   
+<script type="text/JavaScript">footer("2003");</script> 
+</body>
+
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <style type="text/css">
+        .answer {display: none;}
+        .blank  {}
+    </style>
+    <title>C++: Loop Exercises 4c</title>
+</head>
+<body>
+<!-- Same as 4b, but with different input -->
+<h1><a href="../../index.html">C++</a>: Loop Exercises 4b <span class="answer">- Answers</span></h1>
+
+
+Name: _________________________________
+
+<ol>
+<li class="question">What is the output given these six input values: 
+6&nbsp;&nbsp;1&nbsp;&nbsp;5&nbsp;&nbsp;-999&nbsp;&nbsp;0&nbsp;&nbsp;2 ?
+<pre class="example">
+int n;
+while (cin &gt;&gt; n) {
+    cout &lt;&lt; n &lt;&lt; " ";
+}
+</pre>
+<div class="blank">
+Output = ______________________________________________
+</div>
+<div class="answer">
+Answer =  
+6&nbsp;&nbsp;1&nbsp;&nbsp;5&nbsp;&nbsp;-999&nbsp;&nbsp;0&nbsp;&nbsp;2  <br />This just echos the input numbers.
+</div>
+</li>
+
+<li class="question">What is the output given these six input values:  
+6&nbsp;&nbsp;1&nbsp;&nbsp;5&nbsp;&nbsp;-999&nbsp;&nbsp;0&nbsp;&nbsp;2 ?
+<pre class="example">
+int n = 7;
+int x = 0;
+while (cin &gt;&gt; n) {
+    x++;
+}
+cout &lt;&lt; x;
+</pre>
+<div class="blank">
+Output = ______________________________________________
+</div>
+<div class="answer">
+Answer = 6   <br />This simply counts the input numbers. x isn't a good variable
+name, but I didn't want to give away the purpose.  n's initial value is just
+to distract you -- every variable has some initial value, even it it's just
+what was in memory before.
+</div>
+</li>
+
+
+<!-- Too simple?  Just counts up
+<li class="question">What is the output from this code?
+<pre class="example">
+int n = 0;
+while (n &lt; 5) {
+    cout &lt;&lt; n &lt;&lt; " ";
+    n++;
+}
+</pre>
+<div class="blank">
+Output = ______________________________________________
+</div>
+<div class="answer">
+Answer = 0 1 2 3 4
+</div>
+</li>
+-->
+
+<li class="question">What is the output?
+<pre class="example">
+int n = 5;
+for (int i=n; i&gt;0; i--) {
+    cout &lt;&lt; i &lt;&lt; " ";
+}
+</pre>
+<div class="blank">
+Output = ______________________________________________
+</div>
+<div class="answer">
+Answer = 5 4 3 2 1   <br />Counts down.
+</div>
+</li>
+
+
+
+<li class="question">What is the output given these six input values:  
+6&nbsp;&nbsp;1&nbsp;&nbsp;5&nbsp;&nbsp;-999&nbsp;&nbsp;0&nbsp;&nbsp;2 ?
+<pre class="example">
+int number;
+int sum = 0;
+while ((cin &gt;&gt; number) &amp;&amp; (number &gt; 0)) {
+    sum = sum + number;
+}
+cout &lt;&lt; sum &lt;&lt; endl;
+</pre>
+<div class="blank">
+Output = ______________________________________________
+</div>
+<div class="answer">
+Answer = 12  <br />The sum of 6+1+5.  The while is terminated when the while
+clause becomes false after reading the -999.
+</div>
+</li>
+
+
+<li class="question">Rewrite this code using a <code>for</code> loop.
+<pre class="example">
+int n = 10000;
+while (n &gt; 0) {
+    if (isPrime(n)) {
+        cout &lt;&lt; n  &lt;&lt " is prime" &lt;&lt; endl;
+    } else {
+        cout &lt;&lt; n  &lt;&lt " is uninteresting" &lt;&lt; endl;
+    }
+    n--;
+}
+</pre>
+<div class="blank">
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+</div>
+<div class="answer">
+Answer
+<pre class="example">
+for (int n=10000; n&gt;0 n++) {
+    if (n%2 == 0) {
+        cout &lt;&lt; n  &lt;&lt " is even" &lt;&lt; endl;
+    } else {
+        cout &lt;&lt; n  &lt;&lt " is odd" &lt;&lt; endl;
+    }
+}
+</pre>
+This isn't exactly the same because the declaration of n was moved inside the
+scope of the loop, so it won't be accessible later.  However, this is the 
+<i>typical</i> equivalent.
+</div>
+</li>
+
+</ol>
+
+<script type="text/JavaScript">footer("1999-2003");</script>
+</body>
+</html>
+

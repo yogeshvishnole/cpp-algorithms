@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Pointers</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: The NULL Pointer</h1>
+
+<h2>Problem: Initial value for pointers</h2>
+<p>Variables are not automatically given an intial value by the system,
+and start with whatever garbage is left in memory when they are allocated.
+Pointers have the potential to cause substantial damage when they
+are used without a valid address. 
+For this reason it's important to initialize them.
+</p>
+<p><b>NULL</b>.  
+The standard initialization is to the predefined constant NULL.
+Using the NULL value as a pointer will cause an error on almost
+all systems, making the debugging process somewhat easier.
+NULL is defined in <code>&lt;cstdlib&gt;</code>.
+</p>
+<pre class="fragment">
+#include &lt;cstdlib&gt;
+. . .
+Node* head = NULL;   // Initialized pointer to NULL.</pre>
+
+
+<h2>Is NULL zero?</h2>
+<p>In theory, NULL can be defined to be non-zero.  In practice 
+this doesn't happen on any mainstream system.  So much code
+is written making the assumption that NULL is zero, it is 
+hard to image it using anything except 0.
+</p>
+
+<script type="text/JavaScript">footer("2000-4");</script>
+</body>
+
+</html>

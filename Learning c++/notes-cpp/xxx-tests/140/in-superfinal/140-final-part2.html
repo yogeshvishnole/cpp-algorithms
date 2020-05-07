@@ -1,0 +1,244 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <style type="text/css">
+    	li {margin-top: 1em;}
+    </style>
+    <title>CMIS 140 Final Exam - Part II</title>
+</head>
+<body>
+<h1>CMIS 140 Final Exam - Part II</h1>
+
+
+Name: _________________________________
+
+
+<h2>Part II.A - Reading Programs (30 points)</h2>
+
+<ol>
+
+<li>(15 points) Fill in the blanks in the following program.
+    You may notice that the names aren't the same as those we
+    used in the similar example in class, and there are some
+    other small variations.  The comments explain what the program
+    does.
+<pre>
+
+// Program that reads numbers greater than zero, sorts them
+// from low to high, and prints them 10 per line.
+#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+using namespace std;
+
+int main() {
+   const int ASIZE = 10000;
+   int __________[ASIZE];
+   int size __________ 0;  // number of elements in array
+   
+   //--- read only numbers &gt; 0 into the array
+   while ((size &lt; __________) &amp;&amp; (cin &gt;&gt; bb[size])) {
+       if (bb[size] &gt; __________) {
+           size++;
+       }
+   __________
+   
+   //--- sort the array from low (bb[0]) to high
+   for (int f=0; f&lt;__________-1; f++) {
+       for (int d=f+1; d&lt;size; d++) {
+           if (bb[__________] __________ bb[f]) {
+               int __________ = bb[d];
+               bb[d] __________ bb[f];
+               bb[__________] = n;
+           }
+       }
+   }
+   
+   //--- print the array, 10 numbers per line.
+   for (int g=0; g&lt;size; g =  g + __________) {
+       if (g % 10 __________ 0) {
+           cout &lt;&lt; endl;
+       }
+       cout &lt;&lt; setw(6) __________ bb[__________];
+   }
+   
+   __________ 0;
+}
+
+
+
+
+
+
+
+</pre>
+</li>
+
+<li>(10 points) For the following questions assume the following declarations:
+   <pre>
+   float s; int n;
+   int   qqsv[] = {3, 1, 0, 2};
+   float nums[] = {3.5, 1.0, 1.5};
+   float wips[] = {2000., 300., -555, 0.0, 1.9999};
+   </pre>
+   
+   What is printed by these statements?
+<table border="1" cellspacing="0" cellpadding="4">
+<tr><th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Output&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th><th>Code</th></tr>
+
+<tr valign="top"><td>&nbsp;</td>
+<td>cout &lt;&lt; qqsv[2];</td></tr>
+
+<tr valign="top"><td>&nbsp;</td>
+<td>cout &lt;&lt; nums[qqsv[2]];</td></tr>
+
+<tr valign="top"><td>&nbsp;</td>
+<td>
+<pre>
+s = 0;
+for (int i=0; i&lt;3; i++) {
+   s = s + qqsv[i];
+}
+cout &lt;&lt; s;</pre></td></tr>
+
+
+<tr valign="top"><td>&nbsp;</td>
+<td>
+<pre>
+n = n-n;
+for (int i=0; i&lt;4; i++) {
+   if (wips[i] &gt; wips[i+1]) {
+      n++;
+   }
+}
+cout &lt;&lt; n;</pre></td></tr>
+
+
+<tr valign="top"><td>&nbsp;</td>
+<td>
+<pre>
+n = 0;
+for (int i=0; i&lt;3; i++) {
+   n += qqsv[(int)(nums[i]-1.0)];
+}
+cout &lt;&lt; n;</pre></td></tr>
+</table>
+</li>
+
+
+<li>(5 points) For the next group of questions assume these function definitions.
+<pre>
+   int f(int n){
+      for (int i=0; i&lt;n; i++) {
+         cout &lt;&lt; "f";
+      }
+      return n-1;
+   }
+   
+   void h(int m){
+      cout &lt;&lt; "h";
+      f(m-1);
+      cout &lt;&lt; "h";
+      return;
+   }
+</pre>
+
+What is printed by the following statements
+
+<br />__________ f(3);
+<br />__________ f(f(3));
+<br />__________ f(3) + f(3);
+<br />__________ h(3);
+<br />__________ h(f(3));
+
+</li>
+</ol>
+
+
+
+<h2>Part II.B - Writing Programs (35 points)</h2>
+
+<ol>
+<li>(5 points) Read in a sequence of numbers and print them out in reverse.
+    Do not use any functions for this problem.  Do use an array.
+</li>
+
+<li>(10 points) Write a function, countGreater, to count the number of values 
+in an array that are larger than a specified floating=point value. The prototype is<pre>
+   int countGreater(float val, float b[], int n);</pre>
+where b is an array of n floating-point numbers b[0]..b[n-1], and val is the 
+value you will compare against each of the array values.
+Example call in the main program:<pre>
+   float nums[] = {3.5, 1.0, 1.5};
+   float wips[] = {2000., 300., -555, 0.0, 1.9999};
+   int count = countGreater(1.0, nums, 3);
+   cout &lt;&lt; count;  // would print 1
+   count = countGreater(-33.3, wips, 5);
+   cout &lt;&lt; count;  // would print 4
+</pre>
+</li>
+   
+
+<li>(10 points) Write a function to compute the average 
+(sum of all values divided by the number of values)
+of all the floating-point values in an array.
+The function prototype is:<pre>
+   float computeAvg(float b[], int n);</pre>
+where b is an array of n floating-point values b[0]..b[n-1].  
+The function should compute the average value in the b 
+array and return that value.  Remember how you found
+the maximum value when reading values from cin with a while loop.  Use the
+same idea but go thru the array with a for loop.  If there are no values
+in the array, return 0.0 .  Remember, this function will not do any I/O.
+Example call in the main program:<pre>
+   float nums[] = {3.5, 1.0, 1.5};
+   float wips[] = {2000., 300., -555, 0.0, 1.9999};
+   float av = computeAverage(nums, 3);
+   cout &lt;&lt; av;  // would print 2.0
+   av = computeAverage(wips, 5);
+   cout &lt;&lt; av;  // would print 349.4
+</pre>
+</li>
+
+<li>(10 points) Write a program to read a sequence of floating-point numbers and 
+    print how many are greater than the average (mean) value.  
+    Use the functions from the above two questions -- you can assume they're 
+    written even if you didn't write them.
+    To read the numbers, assume there is a readFloatArray function which reads
+    input numbers into an array and returns the number of elements it read.
+    <br />Prototypes of functions you can assume are already defined:
+    <pre>
+int readFloatArray(float a[]); // reads into a, returns num of elems
+float computeAvg(float b[], int n); // average of b array
+int countGreater(float val, float b[], int n); // counts elems > val
+    </pre>
+</li>
+
+<li>(4 cancellation points) Extra credit.  You shouldn't try this program until you've done
+    the others because it's harder, but worth fewer points!
+    Any points on this question won't add to your
+    total, but will be used to cancel out up to 4 points off on one of the 
+    other program writing questions.
+    <br />This is another variation on the bar graph program.  We had programs
+    to print bar graphs with the base at the left.  Now try it so the base is at the bottom.
+    
+    <br /><br />You're going to have to save all the values in an array
+    and figure out how many rows you'll have to
+    print (the maximum value).  When you print each row, you'll have to make
+    a decision at each column position to print either a blank (the bar in that 
+    column has a lower
+    value) or a star('*') if the bar for this column is greater or equal to 
+    this row's "value".  Note that the subscripts in the array will correspond
+    to a column in the output.
+</li>
+
+    
+</ol>
+
+
+<script type="text/JavaScript">footer("2000");</script>
+</body>
+</html>
+

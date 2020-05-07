@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Arrays</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Arrays</h1>
+
+<h2>Many values, one name</h2>
+<p>An array stores many values in memory using one name, 
+and individual values are identified by number.
+Unlike math, arrays must be <i>declared</i> and
+a <i>fixed</i> amount of memory must be <i>allocated</i>
+for them.
+</p>
+      
+<p>Individual elements are identified by integer subscripts which
+are enclosed in square brackets <code>[]</code> following the array variable.
+<code>x<sub>i</sub></code> in mathematics is written as
+<strong><b><code>x[i]</code></b></strong> in C++ and most other programming languages.
+</p>
+   
+<p>Arrays are the basic underlying mechanism for storing multiple values, and
+many additional ways to store values are built on them, especially in the
+<i>Standard Template Library</i> (STL).  A solid understanding of arrays is
+essential, even tho you will want to use some of STL library data structures.
+</p>
+<p>
+In general, you should use arrays only for storing a fixed number of elements,
+and <a href="../stl-containers/vector/header-vector.html">vectors</a> when storing a variable number of elements.
+This section is about arrays, so it uses them in all examples, even
+when there are better choices (esp, <code>vector</code>).
+</p>
+      
+        
+<h2>Declaring an array</h2>
+   Array <i>size</i> and element <i>type</i> must be declared.  
+   All elements must be the same type, eg, all <code>int</code> or all <code>char</code>.  Write the
+   element type name, the name of the array variable, then the size
+   enclosed in square brackets ("<code>[]</code>").
+ <pre class="example">
+int scores[100];  // 100 ints, scores[0] to scores[99]
+char name[40];    // 40 chars, name[0] to name[39]</pre>
+   
+
+<h2>Subscripts start at zero</h2>
+   Subscript ranges always start at zero.
+   This is unfriendly because it isn't the way that 
+   humans normally count, but it's the way that C, C++, Java 
+   and many other languages do it.
+   
+   
+<h2>Length of an array</h2>
+   There is no general way to find the length of an array.  You must keep the
+   size (both the maximum, and currently filled size) of the array in variables.
+   For example,
+<pre class="example">
+const int MAXSIZE = 366;
+...
+int temperature[MAXSIZE];
+int numOfTemps = 0;  // Number of entries in temperature.
+</pre>
+   
+   
+<h2>Arrays are to data what loops are to control flow</h2>
+<p>Loops and arrays go together.  This example
+sets all array elements to zero.
+</p>
+<pre class="fragment">
+float height[1000];
+. . .
+for (int i=0; i&lt;1000; i++) {
+    height[i] = 0.0;
+}</pre>
+
+
+<h2>Operations on arrays</h2>
+<p>Very few operations are legal for arrays.</p>
+<ul>
+<li><i>No assignment</i>.  Use a loop to copy elements from one array to another.</li>
+<li><i>No comparisons</i>.  Use a loop to compare elements of two arrays.</li>
+<li><i>No arithmetic operations</i>.  Use a loop to perform arithmetic
+                 operations between two arrays.</li>
+<li><i>Subscription</i> is one of the few operations that can be applied
+                   to arrays.  Because arrays are like pointers, the pointer
+                   operations are legal, but those aren't covered here.</li>
+</ul>
+
+
+<script type="text/JavaScript">footer("2000-3");</script>
+</body>
+
+</html>

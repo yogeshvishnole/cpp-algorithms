@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+  <title>C++ Notes: String stream example</title>
+</head>
+
+<body>
+<h1><a href="../index.html">C++ Notes</a>: String stream example</h1>
+
+<p>This example reads lines with an integer, an operator, and another integer.
+For example,
+</p>
+<pre>
+   25 * 3
+   4 / 2</pre>
+<p>It's simple to read each of these three elements, but what happens if something
+is wrong with the input.  For example, errors in the input like
+</p>
+<pre>
+   25 * 3 + 1 or
+   25 *</pre>
+<p>
+   will cause the whole program to fail.
+   The solution is to read each line into a string,
+   then read from the string.  This will isolate the errors to one
+   line, which is something that isn't possible with normal stream I/O, which
+   will simply ignore whitespace, including line breaks.  The example below 
+   shows how to do this.
+</p>
+
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+ 22 
+ 23 
+ 24 
+ 25 
+ 26 
+ 27 
+ 28 
+ 29 
+ 30 
+ 31 
+</pre></td><td valign='top'>
+<div class="file"><pre>
+// sstream-line-input.cpp - Example of input string stream.
+//          This accepts only lines with an int, a char, and an int.
+// Fred Swartz 11 Aug 2003
+
+#include &lt;iostream&gt;
+#include &lt;sstream&gt;
+#include &lt;string&gt;
+using namespace std;
+//================================================================ main
+int main() {
+    string s;                 // Where to store each line.
+    int    a, b;              // Somewhere to put the ints.
+    char   op;                // Where to save the char (an operator)
+    istringstream instream;   // Declare an input string stream
+    
+    while (getline(cin, s)) { // Reads line into s
+        instream.clear();     // Reset from possible previous errors.
+        instream.str(s);      // Use s as source of input.
+        if (instream &gt;&gt; a &gt;&gt; op &gt;&gt; b) {
+            instream &gt;&gt; ws;        // Skip white space, if any.
+            if (instream.eof()) {  // true if we're at end of string.
+                cout &lt;&lt; "OK." &lt;&lt; endl;
+            } else {
+                cout &lt;&lt; "BAD. Too much on the line." &lt;&lt; endl;
+            }
+        } else {
+            cout &lt;&lt; "BAD: Didn't find the three items." &lt;&lt; endl;
+        }
+    }
+    return 0;
+}
+</pre></div>
+</td></tr></table>
+
+<p>
+Note that <code>ws</code> is an input manipulator that skips whitespace.  
+The flow could be simplified somewhat by making the <code>if</code> more complicated. 
+Here is the central part rewritten, adding some calculator code.
+</p>
+
+<pre class="fragment">
+if ((instream &gt;&gt; a &gt;&gt; op &gt;&gt; b &gt;&gt; ws) &amp;&amp; instream.eof()) {
+   switch (op) {
+       case '+': result = a + b; break;
+       case '-': result = a - b; break;
+       case '*': result = a * b; break;
+       case '/': result = a / b; break;
+       default : cout &lt;&lt; "Bad operator '" &lt;&lt; op &lt;&lt; endl;
+                 continue;  // next loop iteration
+   }
+   cout &lt;&lt; result &lt;&lt; endl &lt;&lt; endl;
+} else {
+   cout &lt;&lt; "BAD INPUT." &lt;&lt; endl;
+}</pre>
+
+<script type="text/JavaScript">footer("2003");</script>
+</body>
+</html>
+

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)" />
+    <link rel="stylesheet" type="text/css" href="../notes.css" />
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++: Example: File open dialog</title>
+</head>
+
+<body>
+<h1><a href="../index.html">C++</a>: Example - File open dialog</h1>
+
+<h2>Example of file open dialog</h2>
+When you aren't using a GUI,
+you can make a simple text-based file open dialog with something like the following
+code.  A portability problem with this code is that 
+the default directory depends on the settings of the I/O library that you're using.
+The system I'm using defaults to the directory where the object
+program is located, but results will vary.
+
+<pre class="fragment">
+#include &lt;fstream&gt;
+using namespace std;
+. . .
+//--- select and open file
+ifstream fin;     // The new file stream.
+string filename;  // Where to read file name.
+do {
+    cout &lt;&lt; &quot;Enter input data file name:&quot;;
+    cin &gt;&gt; filename;     // Get the file name.
+    fin.open(filename.c_str());  // Convert to C-string and open it.
+    if (!fin) {          // Will fail if didn't exist.
+        cout &lt;&lt; "Unable to open " &lt;&lt; filename &lt;&lt; endl;
+    }
+} while (!fin);          // Continue until good file.
+
+while (fin &gt;&gt; . . .
+   . . .
+   
+fin.close();</pre>
+
+<h2>Parameter to <code>open</code> must be a C-string</h2>
+The call to <code>open</code> takes a file name parameter.
+It must be a C-string (type <code>char *</code>), not type
+<code>string</code>.  The example above illustrates
+the use of the <code>c-str()</code> function which returns
+a C-string from a string.
+   
+<script type="text/JavaScript">footer("2001-3");</script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet"           type="text/css" title="noanswers" href="../../notes.css"/>
+    <title>C++: Programming - List of C-strings</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++</a>: Programming - List of C-strings</h1>
+
+<p>Name __________________________________</p>
+
+<p>Write a program that reads "words" into c-strings, adds them to a linked list, and
+prints them in reverse order.
+</p>
+
+<p>Assume no "word"  is longer than 100 characters (this makes the program
+vulnerable to buffer-overflow exploits, but we'll ignore that).
+Here's what some of the code for reading the input would look like.</p>
+
+<pre class="example">
+struct Node {
+    Node* next;
+    char* s;
+};
+. . .
+    char word[101];
+    
+    //--- Input phase
+    while (cin &gt;&gt; word) {
+        . . .
+    }
+    
+    //--- Output phase.
+    for (Node* p = head; p != NULL; p = p-&gt;next) {
+        . . .
+    }
+. . .</pre>
+
+<p>Write the entire program, incorporating the fragments I've give above.</p>
+
+<p><b>Dynamic storage allocation</b>.  This requires use of <i>new</i> and 
+<i>delete</i>.  Be sure that you deallocate all memory that you allocated.
+</p>
+
+<p>Write the answer below or on the back of this page.</p>
+
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Array Initialization</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Array Initialization</h1>
+
+
+An array can be initialized in the declaration by writing a comma-separated
+list of values enclosed in braces following an equal sign.
+<pre class="fragment">
+int days<span class="hilite">[12]</span> = {31,28,31,30,31,30,31,31,30,31,30,31};</pre>
+Altho this looks like an assignment, assignment statements with arrays are not
+allowed, and this syntax is legal only in a declaration.
+
+
+<h3>Size can be set from initial value list</h3>
+<p>If the size is omitted, 
+   the compiler uses the number of values.  For example,
+</p>
+<pre class="fragment">
+// is the same as the statement below:
+int days<span class="hilite">[]</span> = {31,28,31,30,31,30,31,31,30,31,30,31};</pre>
+
+<h3>No default value</h3>
+<p>If an array has no initialization, the values are undefined.
+</p>
+<pre class="fragment">
+float pressure[10];   // Initial values of pressure undefined.</pre>
+
+<h3>Missing initialization values use zero</h3>
+<p>If an explicit array size is specified, but an shorter
+initiliazation list is specified, the unspecified elements are
+set to zero.
+</p>
+<pre class="fragment">
+float pressure[10] = {2.101, 2.32, 1.44};</pre>
+<p>This not only initializes the first three values, but all
+remaining elements are set to 0.0. 
+To initialize an array to all zeros, initialize only the
+first value.
+</p>
+<pre class="fragment">
+float p1[1000];         // No intitialization.
+float p2[1000] = {0.0}; // All 1000 values initialized to zero.</pre>
+
+<h3>Initialization of character arrays</h3>
+<p>Character arrays can be initialized on the right by writing a 
+double-quoted string.</p>
+<pre class="fragment">
+char greeting[100] = "Hello"; // Remaining characters zero.
+char goodbye[] = "Adios";     // Array size is 6 (final zero on strings).</pre>
+
+   
+<script type="text/JavaScript">footer("2003");</script>
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+Programs done in class:
+
+Programs to print some kind of box/triangle
+
+Calculator: read lines with op opnd1 opnd1, print result
+            Ex.   + 3 4  prints 7
+
+Multiplication table: reads n in loop, writes multiplication table 
+      with axes.
+      
+Calculate BMI, first reads what kind of units are wanted (english/metric),
+      then weight and height.
+      Stressed top-down, iterative development.
+      =getUnits(), =readWeight(units), =readHeight(units), =computeBMI(h, w)),
+      printEvaluation(someBMI)

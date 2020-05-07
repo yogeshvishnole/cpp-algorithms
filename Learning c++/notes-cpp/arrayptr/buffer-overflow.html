@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Arrays: Buffer Overflow</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Arrays: Buffer Overflow</h1>
+Because
+<ol>
+<li>Arrays are fixed size.</li>
+<li>C++ does not perform subscript range checking.</li>
+<li>Programmers forget to check bounds, or simply assume
+    nothing can go wrong.
+    </li>
+</ol>
+giving a program more data than it can handle is the number one
+trick in the arsenal of the hacker.
+
+<p><b>Buffer overflow</b> is the phrase used to describe trying
+to put more data into an array than there is room for.
+</p>
+
+<h2>What's wrong with this code?</h2>
+Hint: What happens in the following loop if there are more than 1000
+numbers in the input?
+
+
+<pre class="example">
+int a[1000];       // Declare an array of 1000 ints
+int n = 0;         // number of values in a.
+. . .
+while (cin &gt;&gt; a[n]) {
+    n++;
+}</pre>
+
+<p>Answer: The additional numbers go somewhere in memory
+beyond the end of the array!  They overwrite whatever
+was there.  The hacker trick is to figure out where program
+instructions occur and supply sufficient data to overwrite 
+the instructions.  And to figure out exactly which numbers
+are translated into the binary codes for instructions that
+they want to be exectuted the next time anyone calls on
+the original code.
+</p>
+
+<h2>Solution 1 - Check array bounds</h2>
+The following solution prevents subscript bounds violations,
+by terminating the input after 1000 input numbers without comment. 
+<pre class="example">
+int a[1000];       // Declare an array of 1000 ints
+int n = 0;         // number of values in a.
+. . .
+while (<span class="hilite">n &lt; 1000 &amp;&amp;</span> cin &gt;&gt; a[n]) {
+    n++;
+}</pre> 
+It would be <i>much</i> better to give
+an error message, otherwise the user will not realize
+the results from the program are incorrect.  An improvement would be.
+<pre class="fragment">
+int temp;
+while (cin &gt;&gt; temp) {
+    if (n &lt; 1000) {
+        a[n] = temp;
+        n++;
+    } else {
+        cerr &lt;&lt; "ERROR: More than 1000 number input" &lt;&lt; endl;
+        exit(1);
+    }
+}</pre>
+
+This still has problems.  if we're using a GUI, we can't write to <code>cerr</code>.
+The solution to that is to throw an exception, but that example will have to wait.
+
+
+<h2>Solution 2 - vectors - the correct solution</h2>
+Vectors (from the Standard Template Library) are an expandable array. 
+Look at <a href="../stl-containers/vector/vector-read-reverse.html">Example - Vector - reverse input</a> example
+for a solution to the above problems.
+<script type="text/JavaScript">footer("2002-3");</script>
+</body>
+
+</html>

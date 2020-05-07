@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <title>C++ Notes: Dynamic Allocation of Arrays</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Dynamic Allocation of Arrays</h1>
+
+<h2>The problems with fixed size arrays</h2>
+<p>Declaring an array with a fixed size like
+</p>
+<pre class="example">
+int a[100000];</pre>
+<p>has two typical problems: </p>
+<ul>
+<li><b>Exceeding maximum</b>. 
+    Choosing a real maximum is often impossible because the programmer has
+    no control over the size of the data sets the user is interested in.
+    Erroneous assumptions that a maximum will never be exceeded are the
+    source of many programming bugs.
+    Declaring very large arrays can be extremely 
+    wasteful of memory, and if there are many such arrays, may
+    prevent the program from running in some systems.</li>
+<li><b>No expansion</b>. Using a small size may be more efficient for the typical data set, 
+    but prevents the
+    program from running with larger data sets.  If array limits are
+    not checked, large data sets will run over the end of an array with
+    disastrous consequences.  Fixed size arrays can not expand as needed.
+    </li>
+</ul>
+<p>These problems can be avoided by dynamically
+allocating an array of the right size, or reallocating an array when it
+needs to expand.  Both of these are done by declaring an array as a 
+pointer and using the <code><b>new</b></code> operator to allocate memory,
+and <code><b>delete</b></code> to free memory that is no longer needed.
+</p>
+
+<p>This is exactly what is <code><a href="../stl-containers/vector/vector.html">vector</a></code>
+does, but let's see how it's done with an array.</p>
+
+<h2>Declare array as a pointer, allocate with <code>new</code></h2>
+<p>To create a variable that will point to a dynamically allocated
+array, declare it as a pointer to the element type.
+For example,
+</p>
+<pre class="example">
+int* a = NULL;  // pointer to an int, intiallly to nothing.
+</pre>
+<p>A dynamically allocated array is declared as a pointer, and must not
+use the fixed array size declaration.
+The above declaration creates a pointer, but doesn't yet allocate
+any memory to it.
+</p>
+
+<h2>Allocate an array with code>new</h2>
+<p>When the desired size of an array is known, allocate memory for it
+with the <code><b>new</b></code> operator and save the address of that memory
+in the pointer.  Remember: <i>Pointers may be subscripted just as arrays are.</i>
+The example below reads in a number and allocates that size array.
+</p>
+
+<pre class="example">
+<span class="hilite">int* a</span> = NULL;   // Pointer to int, initialize to nothing.
+int n;           // Size needed for array
+cin &gt;&gt; n;        // Read in the size
+<span class="hilite">a = <b>new</b> int[n]</span>;  // Allocate n ints and save ptr in a.
+for (int i=0; i&lt;n; i++) {
+    a[i] = 0;    // Initialize all elements to zero.
+}
+. . .  // Use a as a normal array
+<span class="hilite">delete [] a</span>;  // When done, free memory pointed to by <i>a</i>.
+a = NULL;     // Clear a to prevent using invalid memory reference.
+</pre>
+   
+<h2>Freeing memory with delete</h2>
+<p>When you are finished with dynamically allocated memory, <i>free</i> it
+with the <b>delete</b> operator.  After memory is freed, it can be 
+reused by later <code>new</code> requests.  Memory that your program didn't free
+will be freed when the program terminates.  Never free memory that
+wasn't dynamically allocated - the results are unpredictable.
+</p>
+<pre class="example">
+delete [] a;  // Free memory allocated for the <i>a</i> array.
+a = NULL;     // Be sure the deallocated memory isn't used.
+</pre>
+   
+<h3>Use <code>[]</code> when deleting arrays</h3>
+<p>You must specify "<code>[]</code>"
+when deleting an array, but not for a single value. 
+It isn't possible to delete only part of an array.
+</p>
+
+<h3>Do you have to reset a pointer after delete?</h3>
+<p>Following the <code>delete</code> in these examples, I reset the pointer to <code>NULL</code>.
+This isn't strictly necessary, but it's very good practice so that any use
+of the pointer will produce an error.  Attempts to use memory location 0, which
+is the normal default value of <code>NULL</code>, will be blocked by the
+way most operating systems allocate memory.
+</p>
+<p>Why doesn't <code>delete</code> reset the pointer?  It does in some systems,
+but the language specification does not require it, so not all systems do it.
+</p>
+
+
+
+<h2>Examples</h2>
+<ul>
+<li><a href="alloc-cstring.html">Allocating C-Strings</a> shows a typical 
+    example of allocating an array of a known size.
+    </li>
+<li><a href="55dynexample.html">Expanding an Array</a> shows how to 
+    expand the size of an array dynamically.
+    </li>
+</ul>
+   
+<div class="footer">Copyleft 2004 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+</html>

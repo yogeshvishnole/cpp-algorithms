@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++: Quiz: Exercises - Infix, Postfix, Trees</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++</a>: Exercises - Infix, Postfix, Trees</h1>
+
+<p>Name __________________________________</p>
+
+<p>All answers are worth one point unless otherwise indicated.</p>
+
+Each question has the following parts:
+<ol>
+<li><b>Infix</b> notation - "normal" expressions with precedence, parentheses, and left-to-right evaluation.</li>
+<li><b>Postfix</b> notation.</li>
+<li><b>Maximum stack depth</b>.  This is how much of the stack would be used if the Postfix 
+    expression was evaluated in the normal way, pushing operands on the stack,
+    popping them off to do the operations, and pushing the results back on the stack.</li>
+<li><b>Value</b>.  Show the value assuming integer arithmetic.</li>
+<li><b>Tree</b>.  Draw the tree reprsentation on the right.</li>
+</ol>
+<h3>Do not reorder expressions</h3>
+<p>Do not reorder expressions according to the usual commutative rules. 
+    Ie, a+b is the same as b+a in normal arithmetic.  Because of 
+    operator overloading, plus may not be what you think it is
+    for objects.  Even tho the arithmetic plus can not be overloaded,
+    it's good practice to write the operands in the "correct" order.
+    </p>
+<br />
+<b>Fill in the missing parts.  To the right show the equivalent expression tree.</b>
+<br />
+<table border="1" cellspacing="0" summary="">
+<tr><th>Q</th><th>Expressions</th></tr>
+
+<tr><td>1</td>
+    <td>Infix: <b>1 + 2</b>
+    <br />Postfix: ___________________________
+    <br />Maximum stack depth: __________
+    <br />Value: __________
+    </td>
+</tr>
+
+<tr><td>2</td>
+    <td>Infix: <b>3 + 4 * 5</b>
+    <br />Postfix: ___________________________
+    <br />Maximum stack depth: __________
+    <br />Value: __________
+    </td>
+</tr>
+
+<tr><td>3</td>
+    <td>Infix: <b>(3 + 4) * 5</b>
+    <br />Postfix: ___________________________
+    <br />Maximum stack depth: __________
+    <br />Value: __________
+    </td>
+</tr>
+
+<tr><td>4</td>
+    <td>Infix: ___________________________
+    <br />Postfix: <b>8 5 9 3 % + *</b>
+    <br />Maximum stack depth: __________
+    <br />Value: __________
+    </td>
+</tr>
+
+<tr><td>5</td>
+    <td>Infix: ___________________________
+    <br />Postfix: <b>8 5 % 9 3 + *</b>
+    <br />Maximum stack depth: __________
+    <br />Value: __________
+    </td>
+</tr>
+
+<tr><td>6</td>
+    <td>Infix: <b>((8 + 6 + 4) / (2 + 3)) * 5</b>
+    <br />Postfix: ___________________________
+    <br />Maximum stack depth: __________
+    <br />Value: __________
+    </td>
+</tr>
+
+</table>
+
+  
+<script type="text/JavaScript">footer("2004");</script>
+</body>
+
+</html>

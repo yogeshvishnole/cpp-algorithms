@@ -1,0 +1,5 @@
+1. inline ,const in place  of macros
+2. static_cast<type>
+3. namespaces (for encapsulation)
+4. i0tsream
+5. Declarations anywhere including (for declarations)

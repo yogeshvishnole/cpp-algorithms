@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Example - erase</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++ Notes</a>: Example - erase</h1>
+To remove an element at a given position in a sorted array, shift
+all the elements above it down one position.
+<br /><br />
+
+<pre class="example">
+void erase(int a[], int&amp; n, int index) {
+   // function:
+   //    Removes key at a[index], shifting other values down as necessary.
+   //    Updates number of elements in a.
+   // parameters:
+   //    a       inout  array of values.
+   //    n       inout  number of values in a, a[0]..a[n-1]
+   //    index   in     position to delete.
+   // returns: nothing
+   
+   // Move all elements up down position.  i is destination.
+   for (int i=index; i&lt;n; i++) {
+       a[i] = a[i+1];
+   }
+   n--;             // update count of items in a
+   return;
+}</pre>
+
+<h2>Exercises</h2>
+<ol>
+<li>Rewrite this using pointers.</li>
+</ol>
+
+   
+<script type="text/JavaScript">footer("1999");</script>
+
+</body>
+</html>
+

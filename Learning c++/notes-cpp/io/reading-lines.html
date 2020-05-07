@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Reading Lines</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Reading Lines</h1>
+These notes are written using <code>cin</code> as an example, but
+they apply to all input streams.
+
+<h2>What kind of strings?</h2>
+Strings (sequences of characters) are stored two different ways
+in C++.  C-strings are arrays of characters with a terminating
+zero value at the end.  There is also a <code>string</code> 
+class in the C++ standared library.  In general, it's better
+to use the <code>string</code> class, but many
+times that C-strings must be used because the <code>string</code>
+class was not available when many other classes were developed.
+
+
+<h2>Reading a line into a <code>string</code></h2>
+<pre class="fragment">
+   string s;
+   . . .
+   while (getline(cin, s)) {
+      // s contains the input line, without final newline char.
+      . . .
+   }</pre>
+   
+<h2>Reading a line into a C-string</h2>
+<pre class="fragment">
+   char ca[100];
+   . . .
+   while (cin.get(ca, 99)) {
+      // ca has one input line without crlf and with terminating 0
+      . . .
+   }</pre>
+   
+<script type="text/JavaScript">footer("2000-3");</script>
+</body>
+
+</html>

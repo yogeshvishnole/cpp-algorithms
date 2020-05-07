@@ -1,0 +1,625 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="author" content="Fred Swartz (www.leepoint.net/fred)">
+  <link rel="stylesheet" type="text/css" href="../../notes.css">
+  <script type="text/JavaScript" src="../../notes.js"></script>
+  <title>C++ Notes: STL Vector, list, and deque operations</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++ Notes</a>: STL Vector, list, and
+deque operations</h1>
+The sequence container template classes (vector, list, deque) have many
+common operations
+which makes it easy to learn and use them.
+Assume that <code>T</code> is some type (eg, int) and the following
+declarations:, where <span style="font-style: italic;">seq</span> is
+one of the sequence containers (<span style="font-style: italic;">vector</span>,
+<span style="font-style: italic;">list</span>, or deque).<br>
+<pre>   T e;<br>   <span style="font-style: italic;">seq</span>&lt;T&gt; c, c1;<br>   <span
+ style="font-style: italic;">seq</span>&lt;T&gt;::iterator iter, iter2, beg, end;<br>   <span
+ style="font-style: italic;">seq</span>&lt;T&gt;::reverse_iterator riter;  // beg, end could also be here<br>   int i, n;<br>   bool b;</pre>
+<h2>Common sequence container constructors, functions, operators, etc</h2>
+<table cellspacing="0" cellpadding="0" border="0"
+ summary="sequence container functions">
+  <tbody>
+    <tr>
+      <th>Result</th>
+      <th>Method</th>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td>&nbsp;<br>
+      </td>
+      <td style="vertical-align: top; font-weight: bold;">Description</td>
+    </tr>
+    <tr valign="top">
+      <td colspan="7" class="rowheader"><i>Constructors and destructors</i></td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td> <code><span style="font-style: italic;">seq</span>&lt;T&gt;
+c;</code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Creates an empty <i>seq</i> of T's.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code><i>seq</i>&lt;T&gt; c(<span style="font-style: italic;">n</span>);</code></td>
+      <td>V<br>
+      </td>
+      <td>-<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Creates <i>seq</i> of <span style="font-style: italic;">n</span>
+default values.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td nowrap="nowrap"><code><i>seq</i>&lt;T&gt; c(<span
+ style="font-style: italic;">n</span>, <span
+ style="font-style: italic;">e</span>);</code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Creates <i>seq</i> of <span style="font-style: italic;">n</span>
+copies of <span style="font-style: italic;">e</span>.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td nowrap="nowrap"><code><i>seq</i>&lt;T&gt; c(<span
+ style="font-style: italic;">beg</span>, <span
+ style="font-style: italic;">end</span>);</code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Creates <i>seq</i> with elements copied from range <span
+ style="font-style: italic;">beg</span>..<span
+ style="font-style: italic;">end</span>.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code><i>c</i>.~<i>seq</i>&lt;T&gt;();</code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Destroys all elems and frees memory.</td>
+    </tr>
+    <tr valign="top">
+      <td colspan="7" class="rowheader"><i>Size</i></td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>i =&nbsp;</code></td>
+      <td><code><i>c</i>.<b>size</b>(); </code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Number of elements.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>b =&nbsp;</code></td>
+      <td><code><i>c</i>.<b>empty</b>(); </code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>True if empty. Same as <code><i>c</i>.size()==0</code></td>
+    </tr>
+    <tr valign="top">
+      <td colspan="7" class="rowheader"><i>Altering</i></td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>c =&nbsp;</code></td>
+      <td><code>c1;</code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Assigns <i>c1</i> to <i>c</i>.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>c<b>[</b>i<b>]</b> =&nbsp;</code></td>
+      <td><code>e;</code></td>
+      <td>V<br>
+      </td>
+      <td>-<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Sets ith element. Subscripts from zero.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right" nowrap="nowrap"><code><i>c</i>.<b>at</b>(i)&nbsp;=&nbsp;</code></td>
+      <td><code>e;</code></td>
+      <td>V<br>
+      </td>
+      <td>-<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>As subscription, but may throw <code>out_of_range</code>.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right" nowrap="nowrap"><code><i>c</i>.<b>front</b>()&nbsp;=&nbsp;</code></td>
+      <td><code>e;</code></td>
+      <td>V<br>
+      </td>
+      <td>L </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Same as <code>c[0] = e</code>.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right" nowrap="nowrap"><code><i>c</i>.<b>back</b>()&nbsp;=&nbsp;</code></td>
+      <td><code>e;</code></td>
+      <td>V<br>
+      </td>
+      <td>L </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Same as <code>c[<i>c</i>.size()-1] = e</code>.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code><i>c</i>.<b>push_back</b>(<span
+ style="font-style: italic;">e</span>);</code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Adds <span style="font-style: italic;">e</span> to end of <span
+ style="font-style: italic;">c</span>. Expands c if necessary.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code><i>c</i>.<b>pop_back</b>();</code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Removes last element of <i>c</i>.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code><i>c</i>.<b>push_front</b>(<span
+ style="font-style: italic;">e</span>);</code></td>
+      <td>-<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Adds <span style="font-style: italic;">e</span> to front of <span
+ style="font-style: italic;">c</span>. Expands c if necessary.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code><i>c</i>.<b>pop_front</b>();</code></td>
+      <td>-<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Removes first element of <i>c</i>.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code><i>c</i>.<b>clear</b>();</code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Removes all elements.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>iter =&nbsp;</code></td>
+      <td><code><i>c</i>.<b>assign</b>(<span style="font-style: italic;">n</span>,
+      <span style="font-style: italic;">e</span>);</code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Replaces existing elements with <span
+ style="font-style: italic;">n</span> copies of <span
+ style="font-style: italic;">e</span>.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>iter =&nbsp;</code></td>
+      <td><code><i>c</i>.<b>assign</b>(<span style="font-style: italic;">beg</span>,
+      <span style="font-style: italic;">end</span>);</code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Replaces existing elems with copies from range <span
+ style="font-style: italic;">beg</span>..<span
+ style="font-style: italic;">end</span>.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>iter2 =&nbsp;</code></td>
+      <td><code><i>c</i>.<b>insert</b>(<span style="font-style: italic;">iter</span>,
+      <span style="font-style: italic;">e</span>);</code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Inserts a copy of <span style="font-style: italic;">e</span>
+at <span style="font-style: italic;">iter </span>position and returns
+its position.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td><code><i>c</i>.<b>insert</b>(<span style="font-style: italic;">iter</span>,
+      <span style="font-style: italic;">n</span>, <span
+ style="font-style: italic;">e</span>);</code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Inserts <span style="font-style: italic;">n</span> copies of
+      <span style="font-style: italic;">e</span> starting at <span
+ style="font-style: italic;">iter </span>position.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>&nbsp;</code></td>
+      <td nowrap="nowrap"><code><i>c</i>.<b>insert</b>(<span
+ style="font-style: italic;">iter</span>, <span
+ style="font-style: italic;">beg</span>, <span
+ style="font-style: italic;">end</span>);</code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Inserts all elements in range <span
+ style="font-style: italic;">beg</span>..<span
+ style="font-style: italic;">end</span>, starting at <span
+ style="font-style: italic;">iter </span>position.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>iter2 =&nbsp;</code></td>
+      <td><code><i>c</i>.<b>erase</b>(<span style="font-style: italic;">iter</span>);</code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Removes elem at <span style="font-style: italic;">iter </span>and
+returns position of next elem.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>iter =&nbsp;</code></td>
+      <td><code><i>c</i>.<b>erase</b>(<span style="font-style: italic;">beg</span>,
+      <span style="font-style: italic;">end</span>);</code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Removes range <span style="font-style: italic;">beg</span>..<span
+ style="font-style: italic;">end </span>and returns position of next
+element.</td>
+    </tr>
+    <tr valign="top">
+      <td colspan="7" class="rowheader"><i>Access</i></td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>e =&nbsp;</code></td>
+      <td><code><i>c</i>.<b>front</b>();</code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>First element. No range checking.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>e =&nbsp;</code></td>
+      <td><code><i>c</i>.<b>back</b>();</code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Last element. No range checking.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>e =&nbsp;</code></td>
+      <td><code>c<b>[</b>i<b>]</b>;</code></td>
+      <td>V<br>
+      </td>
+      <td>-<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>ith element. No range checking.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>e =&nbsp;</code></td>
+      <td><code><i>c</i>.<b>at</b>(i);</code></td>
+      <td>V<br>
+      </td>
+      <td>-<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>As subscription, but may throw <code>out_of_range</code>.</td>
+    </tr>
+    <tr valign="top">
+      <td colspan="7" class="rowheader"><i>Iterators (operators apply
+to both forward and reverse iterators)</i></td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>e =&nbsp;</code></td>
+      <td><code><b style="font-style: italic;">*</b><span
+ style="font-style: italic;">iter</span>;</code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Dereference the iterator to get the value.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>iter =&nbsp;</code></td>
+      <td><code><i>c</i>.<b>begin</b>();</code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Returns iterator to first element.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>iter =&nbsp;</code></td>
+      <td><code><i>c</i>.<b>end</b>();</code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Returns iterator to <i>after</i> last element.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>riter =&nbsp;</code></td>
+      <td><code><i>c</i>.<b>rbegin</b>();</code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Returns iterator to first (in reverse order) element.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>riter =&nbsp;</code></td>
+      <td><code><i>c</i>.<b>rend</b>();</code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Returns iterator to <i>after</i> last (in reverse order)
+element.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code></code><br>
+      </td>
+      <td><code>++<span style="font-style: italic;">iter;</span></code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Preincrement <i>iter</i> to next elem. Prefer to
+postincrement.<br>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code></code><br>
+      </td>
+      <td><code>--<span style="font-style: italic;">iter;</span></code></td>
+      <td>V<br>
+      </td>
+      <td>L<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Predecrement <i>iter</i>. Can also postincrement. Returns
+value.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>iter2 =&nbsp;</code></td>
+      <td><code><span style="font-style: italic;">iter </span>+ i;</code></td>
+      <td>V<br>
+      </td>
+      <td>-<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Iterator <i>i</i> elements after <i>iter</i>. <code>+=</code>
+assigment also defined.</td>
+    </tr>
+    <tr valign="top">
+      <td align="right"><code>iter2 =&nbsp;</code></td>
+      <td><code><span style="font-style: italic;">iter </span>- i;</code></td>
+      <td>V<br>
+      </td>
+      <td>-<br>
+      </td>
+      <td>D<br>
+      </td>
+      <td><br>
+      </td>
+      <td>Iterator <i>i</i> elements before <i>iter</i> <code>-=</code>
+assignment also defined.</td>
+    </tr>
+    <tr valign="top">
+      <td colspan="7" class="rowheader">Value-based functions<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">...<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td colspan="7" class="rowheader"><i>Algorithms - implemented as
+member function. (a indicates non-member in &lt;algorithm&gt;)<br>
+      </i></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">...<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<script type="text/JavaScript">footer("2004");</script>
+</body>
+</html>

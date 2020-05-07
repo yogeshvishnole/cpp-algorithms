@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++: Statements: try...catch</title>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: Statements: try...catch</h1>
+
+<h2>Syntax</h2>
+<pre>
+   try {
+      // normal statements
+   } catch (<i>some-exception-type</i> e) {
+      // process exception
+   }</pre>
+
+<h2>Exceptions are thrown, you can catch them</h2>
+      <b>When your program causes an error in some library functions, an <i>exception</i></b>
+      is created and <i>thrown</i>.
+      The system looks for enclosing <code>try...catch</code> statement that can <i>handle</i>
+      (process) this exception.  First it looks to see if the code that caused
+      the exception is inside of a <code>try</code> statement that can handle the 
+      exception.
+      
+      <br /><br />If the <code>try</code> statement has a <code>catch</code> part that can 
+      handle this type of exception, then it goes to that code.
+      
+      <br /><br />If there is no <code>try</code> statement around the code that caused
+      the error (exception), the system looks at the function that called this function,
+      and checks for a <code>try</code> statement there.  It continues unwinding the call
+      stack looking for someone who can handle the exception.   Ultimately, the
+      system function that called <code>main</code> will handle it if no one
+      else does.
+
+        
+<h2>Kinds of Exceptions</h2>
+       There are many kinds of exceptions, but they can be generally put
+       into two groups:
+       <ul>
+       <li><b>Programming errors</b> -- There is something wrong with your
+           program.  For example, you should never get an <code>out_of_range</code> exception.
+           If you do, there is something wrong with your program, and you 
+           need to fix it.  <b>You never need to catch exceptions from
+           programming errors</b>.
+           </li>
+        <li><b>Input errors</b> -- These are usually errors in the input data.
+           The programmer has no control over the input the user gives you,
+           eg, file names, integer values, ....  If the user gives you a bad
+           value, it may cause an exception when you use it.  
+           You need to check for bad input using a <code>try</code> statement.
+           </li>
+        </ul>
+
+        
+<h2><code>try</code> statement -- What you can do to catch Errors</h2>
+       You need to put a <code>try</code> statement around any section of code that
+       might generate a user generated error.
+
+
+<h2>Example</h2>
+   [need example]
+
+
+<h2>Advanced</h2>
+       You can also use exceptions of your own, and generate them using
+       the <b><code>throw</code></b> statement.
+   
+<script type="text/JavaScript">footer("2002");</script>
+</body>
+
+</html>

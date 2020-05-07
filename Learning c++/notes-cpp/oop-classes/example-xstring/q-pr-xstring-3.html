@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www/leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <title>C++: Programming: xstring version 2</title>
+</head>
+
+<body>
+
+<h1><a href="../../index.html">C++</a>: <a href="../../index.html#OOP">OOP</a>: Programming: xstring version 2</h1>
+
+
+<h3>Programming Problem - xstring version 3</h3>
+
+<p>This program builds on version 2 of xstring, and continues the process of 
+creating a class that resembles the predefined <i>string</i> class.
+</p>
+
+<h3>Due</h3>
+<p><b>Due</b>: January 19.  The deliverables: <code>xstring.cpp</code>.  
+The header file is given below, and the test file will be supplied shortly.
+   </p>
+   
+
+<h3>Additions for version 3 of xstring</h3>
+
+<dl>
+<dt><b>clear() function</b></dt>
+    <dd>Write a clear() function that simply sets the number of characters 
+    currently in the xstring to zero.  The easiest way to do this is to set
+    _next and keep the current capacity.
+    </dd>
+    
+<dt><b>Additional constructor</b>.  Add another constructor that takes a <i>const char*</i> parameter (eg, a quoted string): 
+    <code>xstring(const char* cstring)</code></dt>
+    <dd>This constructor initializes the xstring to contain the characters in the
+    zero-terminated char string.
+    </dd>
+    
+<dt><b>Overload the == operator</b></dt>
+    <dd>This should be overloaded to allow comparing xstrings with xstrings as
+    well as comparing xstrings with C-strings.
+    </dd>
+
+<dt><b>Copy constructor</b></dt>
+    <dd>Write a <i>copy constructor</i>, which initializes one xstring from another.
+    </dd>
+    
+<dt>Overload assignment</dt>
+   <dd>
+   The assignment operator should be overloaded to allow either xstrings or
+   C-strings on the right hand side.  The copy constructor and assignment operator
+   have some similarities, of course.
+    </dd>
+</dl>
+   
+   
+
+<h3>xstring.h</h3>
+<p>Here is the header file.</p>
+<div class="file"><pre>
+// File:    xstring3/xstring.h
+// Purpose: Header file for version 3 of xstring
+// Author:  Fred Swartz
+// Date:    2005-02-05
+
+class xstring {
+  public:
+    xstring();              // Constructor
+    ~xstring();             // Destructor
+    int   capacity() const; // Returns size of allocated buffer.
+    void  append(char c);   // Add one character to end.
+    void  append(const char* cs);     // Add c-string to end.
+    void  append(const xstring&amp; xs2); // Add xstring to end.
+    char&amp; at(int index) const; // Return character at position index.
+    int   size() const;        // Return size of xstring data.
+    
+    void clear();                                   // (3) remove all contents.
+    bool xstring::operator==(const xstring&amp; xstring2) const; // (3) == xstring
+    bool xstring::operator==(const char* cs) const; // (3) == c-string
+    xstring::xstring(const xstring&amp; xstring2);      // (3) copy constructor
+    xstring::xstring(const char* cs);               // (3) c-string constructor
+    xstring&amp; xstring::operator=(const xstring&amp; xstring2); // (3) = xstring
+    xstring&amp; xstring::operator=(const char* cs);    // (3) = c-string
+    
+    
+  private:
+    int   _next;     // Next empty space = how many chars are there.
+    int   _quantity; // Capacity of allocated storage.
+    char* _storage;  // Dynamically allocated array of chars
+    void  inflate(int increase);  // Increase memory capacity.
+
+    static const int INCREMENT = 10;  // Increment when expanding
+};
+</pre></div>
+
+
+<h3>A sample test program</h3>
+<p>I'll post a sample test program soon.</p>
+
+
+<div class="footer">Copyleft 2005 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+</html>
+

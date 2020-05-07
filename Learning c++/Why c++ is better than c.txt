@@ -1,0 +1,28 @@
+1. More typesafe
+
+2. More libraries 
+
+3. Less reliance on preprocessor
+
+4. Object Oriented as well as imperative
+
+5. Function overloading  --> c++ uses signature
+     matching algorithm for this purpose.
+
+NOTE That c++ Make excessive use of 
+signature matching algorithm.
+
+6. Generic programming
+
+
+C++ New stuff in functions
+
+1.  default parameters , variable argument lists
+
+2. const parameters  --> const parameters are immutable
+     inside the function body. And this concept is called 
+      as "const correctnes"
+
+3. Multiple types in a generic
+
+4. Operator overloading

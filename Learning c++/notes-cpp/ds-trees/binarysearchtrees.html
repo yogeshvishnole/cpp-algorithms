@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Binary Search Trees</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Binary Search Trees</h1>
+
+<h2>O(log N) can be MUCH better than O(N)</h2>
+For large values of N, differences in efficiency are dramatic. For example,
+a linear search of an array requires n/2 comparisons on the average.  If the array
+is sorted, it's possible to do a binary search with an average of log base 2 comparisons.
+For small values of n this is not an important difference.  For example, for 32 items
+it takes 16 comparisons for linear search vs 5 for a binary search.  The extra 11
+comparisons are negligible.
+
+<br /><br />In contrast to this, if n is a million, a linear search requires
+500,000 comparisons vs 20 comparisons for binary search.  This is significant,
+but there are other issues.  For example, inserting or deleting in a sorted list is
+an O(N) operation because, on the average, half of the elements that have to be moved, 
+so for frequent updates there is much less advantage to a sorted array.
+Binary search is also not possible on a linked list because random access is
+required.
+
+
+<h2>Binary search trees: O(log N) search and insert</h2>
+Because insertion in a tree is a matter of changing links and not moving
+data, binary search trees have the speed advantages of sorted arrays
+for searching plus fast inserting (O(log n) to find the insertion point and
+O(1) to insert).  A fairly well balanced tree can be maintained with 
+so-called red-black trees.
+
+
+<h2>Typical binary tree node</h2>
+<pre class="example">
+struct tree_node {
+    tree_node *left;   // left subtree has smaller elements
+    tree_node *right;  // right subtree has larger elements
+    int data;
+};</pre>
+
+
+<h2>Standard Template Library uses binary search trees</h2>
+Binary search trees are so good, they are the underlying implementation
+for the STL map, multimap, set, and multiset.
+
+
+<h2>Related Pages</h2>
+Next: <a href="binarytreetraversal.html">Binary Tree Traversal</a>.
+
+
+<script type="text/JavaScript">footer("2000");</script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Function Structure</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Function Structure</h1>
+
+<h2>Prototypes</h2>
+Every function (except main) should be declared near the beginning of a program
+with a <b>prototype</b> which gives the return type (or <code>void</code>), name, and the parameter names and types.
+Parameter names are not required in prototypes, but they are very useful to 
+readers of your program.
+<pre class="example">
+void printChars(char c, int count);
+</pre>
+Note that prototypes always <b>end with a semicolon</b>.  If you are developing a program
+with many modules, its common to put the prototypes into an include file.
+Assuming you are using prototypes, the order of the later function definitions doesn't matter.
+Prototypes are needed by the compiler to know how many and type of the 
+parameters, and the return value type.  
+
+
+<h2>Function Definition</h2>
+The first line of a function definition (called the function header)
+is the same at a prototype, except that it is followed by the
+function body in braces.  Neither the header nor the body is followed
+by a semicolon.
+<pre class="example">
+void printChars(char c, int count) {
+   for (int i=0; i&lt;count; i++) {
+     cout &lt;&lt; c;
+   }
+}//end printChars
+</pre>
+
+
+<h2>void functions</h2>
+If a function doesn't return a value (perhaps it changes a reference parameter,
+changes a global, or produces a side-effect like I/O), it must be declared as
+<b>void</b> type.  In some programming languages 
+(Visual Basic, Pascal, Fortran, ...), void functions
+are called by a different name (subroutine, procedure, ...).
+
+
+<h2>Local Variables</h2>
+All variables that are declared in a function are <i>local</i> to the function.
+They can not be referenced from outside the function (local scope).  Their
+lifetime is the same as the activation of the function: they are created
+when the function is called and are destroyed when the function returns.
+They have no initial values so will have whatever value happens to be in
+memory when they are allocated.
+Parameters are like local variables (local scope, function lifetime), but are assigned an initial value
+from the corresponding expression in the function call.
+
+
+<h2>Return statement</h2>
+The <b>return</b> statement stops execution and returns to the calling function.
+A void function doesn't need a return statement -- when the end is 
+reached, it automatically returns.  However, a void function may optionally have one or more return 
+statements.
+
+ 
+</body>
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com/fred/)"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <link rel="stylesheet" type="text/css" href="../notes.css" />
+  <title>C++ Notes: Character functions - &lt;cctype&gt;</title>
+</head>
+
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Character functions - &lt;cctype&gt;</h1>
+
+<h2>Character functions - &lt;cctype&gt;</h2>
+Here are some of the most common functions to with single characters.  
+The types of the parameters are 
+<i>c</i>=<code>char/int</code>. Some parameters have the <code>const</code> attribute, but it's
+not indicated below.  
+
+<p>Because these are the original C functions, <code>bool</code> isn't used.
+Instead, zero is false and non-zero is true.
+</p>
+<table cellspacing="0" cellpadding="2" border="1" summary="cctype functions">
+<tr><th>Type</th><th>Method</th><th>Description</th></tr>
+
+<tr><td colspan="3"><code>#include &lt;cctype&gt;</code> (or older <code>&lt;ctype.h&gt;</code>)</td></tr>
+<tr><td valign="top">int</td><td valign="top" nowrap="nowrap"><code><b>isalnum</b>(<i>c</i>)</code></td>
+                                              <td>true if <i>c</i> is a letter or digit.</td></tr>
+<tr><td valign="top">int</td><td valign="top"><code><b>isalpha</b>(<i>c</i>)</code></td>
+                                              <td>true if <i>c</i> is a letter.</td></tr>
+<tr><td valign="top">int</td><td valign="top"><code><b>isblank</b>(<i>c</i>)</code></td>
+                                              <td>true if <i>c</i> is a blank or tab.</td></tr>
+<tr><td valign="top">int</td><td valign="top"><code><b>isdigit</b>(<i>c</i>)</code></td>
+                                              <td>true if <i>c</i> is a digit.</td></tr>
+<tr><td valign="top">int</td><td valign="top"><code><b>islower</b>(<i>c</i>)</code></td>
+                                              <td>true if <i>c</i> is a lowercase letter.</td></tr>
+<tr><td valign="top">int</td><td valign="top"><code><b>isupper</b>(<i>c</i>)</code></td>
+                                              <td>true if <i>c</i> is an uppercase letter.</td></tr>
+<tr><td valign="top">int</td><td valign="top"><code><b>isspace</b>(<i>c</i>)</code></td>
+                                              <td>true if <i>c</i> is whitespace character
+                                              (space, tab, vertical tab, formfeed, carriage return, or newline).</td></tr>
+<tr><td valign="top">int</td><td valign="top"><code><b>tolower</b>(<i>c</i>)</code></td>
+                                              <td>returns lowercase version of <i>c</i> if there is one, otherwise
+                                              it returns the character unchanged.</td></tr>
+<tr><td valign="top">int</td><td valign="top"><code><b>toupper</b>(<i>c</i>)</code></td>
+                                              <td>returns uppercase version of <i>c</i> if there is one, otherwise
+                                              it returns the character unchanged.</td></tr>
+</table>
+
+<script type="text/JavaScript">footer("1996");</script>
+</body>
+</html>
+

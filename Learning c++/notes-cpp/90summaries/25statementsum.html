@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)" />
+    <link rel="stylesheet" type="text/css" href="summaries.css" />
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Summary - Control Flow Statements</title>
+</head>
+
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Control Flow Statements</h1>
+The control statements contain one logical statement,
+which is usually a <i>block</i> of statements enclosed in curly braces {}.
+
+<p><b>Indenting</b> control structures is essential to making readable programs.
+There are several styles.  The style I
+use is the common <i>industrial</i> or K&amp;R style.  The openning curly brace is
+on the end of the beginning statement.  The idea is to avoid creating
+too much visual white space separating the parts of the statement.
+Indentation is usually best with 4 spaces, altho 3 and 2 are also used.
+</p>
+
+<p><b>True/false</b> values are used in the <code>if</code> and loop statements.
+These are either the Boolean values <code>true</code> and <code>false</code>, or
+any non-zero value for true and zero for false (as in C).
+</p>
+
+<table> <!-- table for columns -->
+<tr><td colspan="3" class="subhead">Selection (if, switch)</td></tr>
+
+<tr><td valign="top"> <!-- col 1 -->
+
+<h2>if Statement</h2>
+<pre>
+//----- if statement with a true clause
+   <b>if</b> (<i>expression</i>) {
+       <i>statements</i> // do these if  expression is true
+   }
+   
+//----- if statement with true and false clause
+   <b>if</b> (<i>expression</i>) {
+       <i>statements</i> // do these if expression is true
+   } <b>else</b> {
+       <i>statements</i> // do these if expression is false
+   }
+   
+//----- if statements with many parallel tests
+   <b>if</b> (<i>expression1</i>) {
+       <i>statements</i> // do these if expression1 is true
+   } <b>else if</b> (<i>expression2</i>) {
+       <i>statements</i> // do these if expression2 is true
+   } <b>else if</b> (<i>expression3</i>) {
+       <i>statements</i> // do these if expression3 is true
+   . . .
+   } <b>else</b> {
+       <i>statements</i> // do these no expression was true
+   }
+   
+</pre>
+
+</td><td>&nbsp;&nbsp;&nbsp;</td><td valign="top">   <!-- start rightmost column -->
+
+<h2>switch Statement</h2>
+The <b>switch</b> statement chooses statements to execute
+depending on an <i>integer value</i>.  The same effect can be achieved
+with a series of cascading <b>if</b> statements, but in some cases the <b>switch</b> statement
+is easier to read, and in some compilers it can produce more efficient code.
+The <b>break</b> statement exits from the switch statement.  If there is no break
+at the end of a case, execution continues in the next case, but this is almost always
+an error.
+<pre>
+  <b>switch</b> (expr) {
+      <b>case</b> c1:
+            <i>statements</i> // do these if expr == c1
+            <b>break</b>;
+            
+      <b>case</b> c2: 
+            <i>statements</i> // do these if expr == c2
+            <b>break</b>;
+            
+      <b>case</b> c2:  // Multiple values can share same code.
+      <b>case</b> c3:
+      <b>case</b> c4:
+            <i>statements</i> // do these if expr ==  any of c2, c3, or c4.
+            <b>break</b>;
+      . . .
+      <b>default</b>:
+            <i>statements</i> // do these if expr != any above
+  }
+</pre>
+
+</td></tr>
+<tr><td colspan="3" class="subhead">Loop Statements</td></tr>
+
+<tr><td valign="top"> <!-- col 1 -->
+
+<h2>while Statement</h2>
+The <b>while</b> statement tests an expression. If the expression
+evaluates to true, it executes the body of the while.  If it is false,
+execution continues with the statement after the while body.
+Each time after the body is executed, execution starts with the
+test again.  This continues until the expression is false or
+some other statement (break or return) stops the loop.
+<pre>
+  <b>while</b> (<i>testExpression</i>) {
+      <i>statements</i>
+  }
+</pre>
+
+<h2>for Statement</h2>
+Many loop have an initialization before the loop, and some &quot;increment&quot;
+before the next loop.  The <b>for</b> loop is the standard way of
+combining these parts.
+<pre>
+  <b>for</b> (<i>initialStmt</i>; <i>testExpr</i>; <i>incrementStmt</i>) {
+      <i>statements</i>
+  }
+</pre>
+This is the same as:
+<pre>
+   <i>initialStmt</i>;
+   <b>while</b> (<i>testExpr</i>) {
+       <i>statements</i>
+       <i>incrementStmt</i>
+   }
+</pre>
+
+</td><td>&nbsp;&nbsp;&nbsp;</td><td valign="top">   <!-- start rightmost column -->
+
+<h2>do Statement</h2>
+This is the least used of the loop statements, but sometimes
+you want a loop that executes one time before testing.
+<pre>
+   <b>do</b> {
+       <i>statements</i>
+   } <b>while</b> (<i>testExpression</i>);
+</pre>
+
+<h2>Other loop controls</h2>
+<pre>
+<b>break</b>;    // exit innermost loop or switch
+<b>continue</b>; // start next innermost loop iteration
+</pre>
+
+
+<h2>Function Return</h2>
+<pre>
+<b>return</b>;      //return no value from <b>void</b> function
+<b>return</b> <i>expr</i>; //return value of <i>expr</i> from function
+</pre>
+
+</td>
+
+</tr>
+</table>
+
+
+<script type="text/JavaScript">footer("2000-3");</script>
+</body>
+</html>
+

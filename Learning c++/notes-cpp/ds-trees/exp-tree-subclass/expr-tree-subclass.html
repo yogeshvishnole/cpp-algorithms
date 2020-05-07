@@ -1,0 +1,372 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <title>C++: Data Structures: Expression Tree: ExprNode.h</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++ Notes</a>: Expression Tree using Inheritance</h1>
+
+<p>Here is a basic framework for creating an expression tree using
+inheritance.  There are many parts to be filled in, but it gives
+the general idea. It consists of three files.</p>
+<ul>
+<li>ExprNode.h</li>
+<li>ExprNode.cpp</li>
+<li>ExprNodeTest.cpp</li>
+</ul>
+
+<h2>ExprNode.h</h2>
+
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+ 22 
+ 23 
+ 24 
+ 25 
+ 26 
+ 27 
+ 28 
+ 29 
+ 30 
+ 31 
+ 32 
+ 33 
+ 34 
+ 35 
+ 36 
+ 37 
+ 38 
+ 39 
+ 40 
+ 41 
+ 42 
+ 43 
+ 44 
+ 45 
+ 46 
+ 47 
+ 48 
+ 49 
+ 50 
+ 51 
+ 52 
+ 53 
+ 54 
+ 55 
+ 56 
+ 57 
+ 58 
+ 59 
+ 60 
+</pre></td><td valign='top'>
+<pre class="file">
+// ExprNode.h - Demonstrates inheritance.
+//    Incomplete: Needs everything that goes with
+//      deep copies (copy constructor, assignment,
+//      destructors, ==, ...)
+//    -- Fred Swartz 2002-10-06
+// Class hierarchy
+// ExprNode // for a node of an expression tree
+//     OperandNode   // for a single integer value.
+//     OperatorNode  // instantiate only subclasses
+//         AddNode   // for addition
+//         SubtractNode // for subtraction
+#ifndef EXPRNODE_H
+#define EXPRNODE_H
+
+////////////////////////////////////////////////// class ExprNode
+class ExprNode {
+  public:
+    virtual int eval() = 0;  // pure virtual function
+                             // must be overridden in subclass
+    ExprNode();
+};//end class ExprNode
+
+
+/////////////////////////////////////////////// class OperandNode
+class OperandNode : public ExprNode {
+  public:
+    OperandNode(int v);
+    int eval();
+  private:
+    int value;
+};//end class OperandNode
+
+
+////////////////////////////////////////////// class OperatorNode
+class OperatorNode : public ExprNode {
+  public:
+               // Should define all functions common to 
+               // subclasses here.
+  protected:   // protected allows subclasses to use these
+    ExprNode* left;   // left operand subtree
+    ExprNode* right;  // right operand subtree
+};//end class OperatorNode
+
+
+/////////////////////////////////////////////////// class AddNode
+class AddNode : public OperatorNode {
+  public:
+    AddNode::AddNode(ExprNode* lft, ExprNode* rt);
+    int eval(); // provide real version of ExprNode pure virtual.
+};//end class AddNode
+
+
+////////////////////////////////////////////// class SubtractNode
+class SubtractNode : public OperatorNode {
+  public:
+    SubtractNode::SubtractNode(ExprNode* lft, ExprNode* rt);
+    int eval(); // provide real version of pure virtual fcn.
+};//end class SubtractNode
+
+#endif</pre></td></tr></table>
+
+
+<h2>ExprNode.cpp</h2>
+
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+ 22 
+ 23 
+ 24 
+ 25 
+ 26 
+ 27 
+ 28 
+ 29 
+ 30 
+ 31 
+ 32 
+ 33 
+ 34 
+ 35 
+ 36 
+ 37 
+ 38 
+ 39 
+ 40 
+ 41 
+ 42 
+ 43 
+ 44 
+ 45 
+ 46 
+ 47 
+ 48 
+ 49 
+ 50 
+ 51 
+ 52 
+ 53 
+ 54 
+ 55 
+ 56 
+ 57 
+ 58 
+ 59 
+ 60 
+ 61 
+ 62 
+ 63 
+ 64 
+ 65 
+ 66 
+ 67 
+ 68 
+ 69 
+</pre></td><td valign='top'>
+<pre class="file">
+// ExprNode class -- Fred Swartz 2002-10-06
+
+#include &lt;stdexcept&gt;
+using namespace std;
+
+#include "ExprNode.h"
+
+/////////////////////////////////////////////// ExprNode implementation
+//================================================ ExprNode constructor
+ExprNode::ExprNode() {
+    cerr &lt;&lt; "ExprNode::ExprNode" &lt;&lt; endl;
+}//end constructor
+
+
+//====================================================== ExprNode::eval
+int ExprNode::eval() {
+    throw logic_error("ExprNode::eval() must be overridden");
+}//end eval
+
+
+///////////////////////////////////////////// OperandNode implementation
+
+//============================================== OperandNode constructor
+OperandNode::OperandNode(int val) {
+    cerr &lt;&lt; "OperandNode::OperandNode" &lt;&lt; endl;
+    value = val;
+}//end constructor OperandNode
+
+//==================================================== OperandNode::eval
+int OperandNode::eval() {
+    cerr &lt;&lt; "OperandNode::eval " &lt;&lt; value &lt;&lt; endl;
+    return value;
+}//end OperandNode::eval
+
+
+
+///////////////////////////////////////////////// AddNode implementation
+
+//=================================================== AddNode constructor
+AddNode::AddNode(ExprNode* lft, ExprNode* rt) {
+    cerr &lt;&lt; "AddNode::AddNode" &lt;&lt; endl;
+    left  = lft;
+    right = rt;
+}//end constructor AddNode
+
+//======================================= AddNode::eval
+   // Override ExprNode::eval
+int AddNode::eval() {
+    cerr &lt;&lt; "AddNode::eval" &lt;&lt; endl;
+    return left-&gt;eval() + right-&gt;eval();
+}//end AddNode::eval
+
+
+
+//////////////////////////////////////////// SubtractNode implementation
+
+//============================================== SubtractNode constructor
+SubtractNode::SubtractNode(ExprNode* lft, ExprNode* rt) {
+    cerr &lt;&lt; "SubtractNode::SubtractNode" &lt;&lt; endl;
+    left  = lft;
+    right = rt;
+}//end constructor SubtractNode
+
+//==================================================== SubtractNode::eval
+   // Override ExprNode::eval
+int SubtractNode::eval() {
+    cerr &lt;&lt; "SubtractNode::eval" &lt;&lt; endl;
+    return left-&gt;eval() - right-&gt;eval();
+}//end SubtractNode::eval</pre></td></tr></table>
+
+
+<h2>ExprNodeTest.cpp</h2>
+
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+ 22 
+ 23 
+ 24 
+ 25 
+ 26 
+ 27 
+ 28 
+ 29 
+</pre></td><td valign='top'>
+<pre class="file">
+// ExprNodeTest.cpp - Demos use of ExprNode
+//   Fred Swartz - 2002-10-06
+
+#include &lt;iostream&gt;
+using namespace std;
+
+#include "ExprNode.h"
+
+//======================================== main
+int main() {
+   ExprNode* x;
+   OperandNode* a = new OperandNode(3);
+   OperandNode* b = new OperandNode(-6);
+   
+   x = new AddNode(a, b);
+   cout &lt;&lt; x-&gt;eval() &lt;&lt; endl;
+   
+   x = new SubtractNode(
+                        new AddNode(
+                                    new OperandNode(19),
+                                    new OperandNode(-11)),
+                        new SubtractNode(
+                                    new OperandNode(5),
+                                    new OperandNode(-5))
+                        );
+   cout &lt;&lt; x-&gt;eval() &lt;&lt; endl;
+   
+   return 0;
+}//end main</pre></td></tr></table>
+
+<p><b>Correction</b>: Bob Remeika noted that there is a <i>memory leak</i>
+in this program, and that a <code>delete</code> is needed to 
+reclaim the memory which is assigned to <code>x</code>.
+When <code>main</code> returns, <i>all</i> of this program's memory is reclaimed, so the
+undeleted memory wouldn't be a big problem in this particular case.  However, he's right,
+and when I get back to editing these notes, I'll insert the 
+<code>delete</code>s along with some other improvements.  Or I could just leave it as an
+"exercise for the student" :-}. 
+</p>
+
+<div class="footer">Copyleft 2004 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Struct Example</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Struct Example</h1>
+
+<h2>Problem - Points</h2>
+Suppose we have the following problem.  We want to read a set of (x, y)
+coordinates and a name, then sort them in order increasing distance from the origin (0, 0).
+This is the kind of data you might have if we digitized a map with the origin
+at some central point (eg, London) and the coordinates of other cities.
+
+
+<h2>Global Declaration</h2>
+Types are usually used in more than one function, and are therefore global
+or defined in an include file.
+<pre class="example">
+// Define a struct to hold each point.
+struct Point {
+    float x;   // x coordinate
+    float y;   // y coordinate
+    char  name[20]; // name of the point
+};
+</pre>
+
+<h2>Local Declarations</h2>
+<pre class="example">
+Point pts[1000];  // array to hold up to 1000 points.
+int   n = 0;      // number of points in the array.
+</pre>
+
+<h2>Reading the input</h2>
+To read structs, you need to read each of the fields.
+<pre class="example">
+while (cin &gt;&gt; pts[n].name &gt;&gt; pts[n].x &gt;&gt; pts[n].y) {
+    n++;
+}
+</pre> 
+
+
+<h2>Utility function to compute distance to origin</h2>
+<pre class="example">
+float dist(Point p) {
+    // Compute the distance from the origin
+    return sqrt(p.x*p.x + p.y*p.y);
+}
+</pre>
+
+<h2>Sorting an array of Points</h2>
+   Here's a simple bubble sort function that stops when
+   there are no more exchanges.  
+   It sorts Points by their distance from the origin
+   by calling on the function defined above.
+
+<pre class="example">
+void bubbleSort(Point pt[], int size) {
+    bool doMore = true;
+    while (doMore) {
+        doMore = false;  // Assume no more passes unless exchange made.
+        for (int i=0; i&lt;size-1; i++) {
+            if (dist(pt[i]) &gt; dist(pt[i+1])) {
+                // Exchange elements
+                Point temp = pt[i]; pt[i] = pt[i+1]; pt[i+1] = temp;
+                doMore = true;  // Exchange requires another pass.
+            }
+        }
+    }
+}</pre>
+  
+
+   
+<script type="text/JavaScript">footer("2000-3");</script>
+</body>
+
+</html>

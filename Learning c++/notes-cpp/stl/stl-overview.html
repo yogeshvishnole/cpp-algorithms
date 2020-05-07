@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+  <title>C++ Notes: STL Overview</title>
+</head>
+
+<body>
+<h1><a href="../index.html">C++ Notes</a>: STL Overview</h1>
+
+
+
+<h2>STL features: containers, iterators, and algorithms</h2>
+<p>C++'s <i>Standard Template Library</i> (STL), standardized in 1999,
+solves many standard data structure and algorithm problems.
+The STL is (or should be) the first choice in all programming.
+Altho you many need to write certain specialized data structures,
+or build on top of the STL structures, but you should never
+be writing duplicate code.
+The STL provides functionality in several areas:
+containers, iterators, and algorithms.
+</p>
+
+
+<h3>1. Containers</h3>
+<p>STL containers implement many or the standard ways to storing data to achieve
+performance goals.  These are all template types.  They store values, and may
+copy them.  If you don't want values copied, use addresses of the values.
+</p>
+    <table>
+    <tr><td><b><code><a href="../stl-containers/vector/header-vector.html">vector</a></code></b></td><td>Like an expandable array.</td><td></td></tr>
+    <tr><td><b><code>deque</code></b></td><td>Double-Ended Queue.  Like an array expandable at both front and back.</td><td></td></tr>
+    <tr><td><b><code><a href="../stl-containers/list/list-header.html">list</a></code></b></td><td>Doubly linked-list.</td><td></td></tr>
+    <tr><td><b><code>map</code></b></td><td>Associates <i>key</i> with single value. Balanced tree.</td><td></td></tr>
+    <tr><td><b><code>multimap</code></b></td><td>Associates <i>key</i> with multiple values. Balanced tree.</td><td></td></tr>
+    <tr><td><b><code>set</code></b></td><td>Records whether value belongs to it. Balanced tree.</td><td></td></tr>
+    <tr><td><b><code>multiset</code></b></td><td>Like <code>set</code> but allows more than one entry with the same value.</td><td></td></tr>
+    <tr><td><b><code>stack</code></b></td><td>Adapter to permit only LIFO (Last In, First Out) access.</td><td></td></tr>
+    <tr><td><b><code>queue</code></b></td><td>Adapter to permit only FIFO (First In, First Out) access.</td><td></td></tr>
+    <tr><td><b><code>priority_queue</code></b></td><td>Adapter to return element with the highest priority.</td><td></td></tr>
+    <tr><td><b><a href="../strings/header-string.html"><code>string</code></a></b></td><td>Character strings.</td><td></td></tr>
+    <tr><td><b><code>bitset</code></b></td><td>Bit strings, including set operations.</td><td></td></tr>
+    </table>
+
+<h3>2. Iterators</h3>
+    <p>Iterators provide uniform ways to go over the elements of the STL containers,
+    as well as arrays.  There are iterators for going sequentially forward and/or
+    backward as well as random access iterators.  Iterators are used by the STL algorithms.
+    Iterator syntax uses the ++, --, and * operators which are familiar to users of pointers.
+    </p>
+
+<h3>3. Algorithms</h3>
+    <p>
+    Many common algorithms are implemented for containers and arrays.
+    Sorting, searching, inserting, deleting, shuffling, permuting, rotating,
+    reversing, moving, copying, counting, minimum and maximum, for each, ...
+    </p>
+    
+<h3>Other</h3>
+    <p>The STL contains other classes useful for numerics (eg, <code>complex</code> 
+    and <code>valarray</code>), I/O (eg, stream I/O classes), 
+    internationalization (eg, wide characters and locales), etc.
+    </p>
+    
+<h2>Other sources of STL information</h2>
+    <ul>
+    <li><a href="http://www.cs.rpi.edu/projects/STL/htdocs/stl.html">Standard Template Library Online Reference</a>.</li>
+    </ul>
+    
+    
+<h2>Limited built-in C++ data structures</h2>
+<p>There are two kinds of built-in data structures in C++:</p>
+   <ol>
+   <li>Arrays - Fixed size collection of elements accessed by index/pointer.</li>
+   <li>Structs/Classes - Record structure with fields accessed by name.</li>
+   </ol>
+<p>These are useful, but have numerous serious deficiencies
+(eg, performance or fixed size) or
+construct their own data structures using these basic features
+(most coding, slower development, less reusable, ...).
+</p>
+    
+
+<script type="text/JavaScript">footer("2003-4");</script>
+</body>
+</html>
+

@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <meta NAME="author" CONTENT="Fred Swartz (www.leepoint.net/fred/)"/>
+  <link REL="stylesheet" TYPE="text/css" HREF="../notes.css"/>
+  <script TYPE="text/JavaScript" LANGUAGE="JavaScript" SRC="../notes.js"></script>
+<title>C++: Loop Exercises 5 - Answers</title>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: Loop Exercises 5 - Answers</h1>
+
+
+Name: _________________________________
+
+<ol>
+<li>What is the "while" loop equivalent of this "for" loop?
+    <pre>
+    int n;
+    cin >> n;
+    int sum = 0;
+    for (int i=0; i&lt;n; i++) {
+        sum += i;
+    }
+    </pre>
+    Answer:
+    <pre style="color: red;">
+    int n;
+    cin >> n;
+    int sum = 0;
+    int i = 0;
+    while (i &lt; n) {
+        sum += i;
+        i++;
+    }    
+    </pre>
+</li>
+
+<li>What is the "for" loop equvalent of this "while" loop?
+    <pre>
+    int i = 25;
+    while (i > 0) {
+        if (i%2 == 1) {
+            cout &lt;&lt; i &lt;&lt; endl;
+        }
+        i--;
+    }
+    </pre>
+    Answer:
+    <pre style="color: red;">
+    for (int i=25; i > 0; i--) {
+        if (i%2 == 1) {
+            cout &lt;&lt; i &lt;&lt; endl;
+        }
+     }
+    </pre>
+</li>
+
+<li>Write a loop to read integers and print the maximum value.
+    <br />Answer:
+    <pre style="color: red;">
+    int max;           // var to remember maximum value.
+    int x;             // var for each value read.
+    cin >> max;        // start max with the first value.
+    while (cin >> x) { // read each of the remaining numbers
+        if (x > max) {
+            max = x;   // save this bigger number
+        }
+    }
+    cout &lt;&lt; "Maximum = " &lt;&lt; max &lt;&lt; endl;
+    </pre>
+</li>
+
+
+<li>Read one number from the input, and write a loop
+    that computes how many integers from 1 to 1,000,000
+    can be evenly divided by that number.  Print the result.
+    <br />Answer:
+    <pre style="color: red;">
+    int count = 0;      // to count even divisions.
+    int divisor;        // num to divide all numbers by.
+    cin >> divisor;     // read in the value.
+    for (int i=1, i&lt;=1000000; i++) {
+        if (i%divisor == 0) {
+            count++;    // count this even division
+        }
+    }
+    cout &lt;&lt; "Count = " &lt;&lt; count &lt;&lt; endl;
+    </pre>
+</li>
+
+
+<li>What is the output from the following code, given input 5 4?
+   <pre>
+   int rows, cols;
+   cin >> rows >> cols;
+   for (int r=1; r&lt;=rows; r++) {
+       for (int c=1; c&lt;=cols; c++) {
+           if (r==1 || r==rows || c==1 || c==cols) {
+               cout &lt;&lt; 'X';
+           }else{
+               cout &lt;&lt; '-';
+           }
+       }
+       cout &lt;&lt; endl;
+   }
+   </pre>
+    <br />Answer:
+    <pre style="color: red;">
+    XXXX
+    X--X
+    X--X
+    X--X
+    XXXX
+    </pre>
+</li>
+</ol>
+
+
+</body>
+</html>
+

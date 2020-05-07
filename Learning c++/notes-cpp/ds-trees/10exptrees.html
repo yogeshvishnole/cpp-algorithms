@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Expression Trees</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Expression Trees</h1>
+
+
+<p>There are a many ways to write expressions: normal <i>infix</i> notation
+using operator precedence and parentheses,
+<i>prefix</i> (function) notation, <i>postfix</i> (reverse Polish, named after
+the Polish mathematicial Lukasiewicz) notation, and as
+<i>trees</i>. Trees are hard to represent in text-based writing 
+systems, however, they are easy to use in a computer.
+In computing diagrams of trees are most often written with the <i>root</i>
+at the top.
+</p>
+
+<p>This example has +, -, and * operators
+and integer operands.
+</p>
+<pre>
+Normal infix notation: (7-5) * (3+(1-2))
+
+Tree equivalent:
+          *
+         / \
+        /   \
+       -     +
+      / \   / \
+     #   # #   -
+     7   5 3  / \
+             #   #
+             1   2
+</pre>
+
+Each node in the tree is represented as a struct/class,
+with the following fields:
+<ul>
+<li>The operator, which can be encoded as a char variable.
+    We'll represent integers with the special operator '#'
+    and a field that contains the integer value.
+    </li>
+<li>The integer value.  This field is always there, but is
+    only used with the '#' operator.
+    </li>
+<li>A pointer to the the left subtree if it's not the '#' operator
+    (a terminal node).</li>
+<li>A pointer to the right subtree as above.</li>
+</ul>
+
+<p>Processing trees can be done
+in a nice, compact, natural, recursive manner.
+</p>
+
+<h3>Two examples of how to declare this:</h3>
+<ul>
+<li><a href="20exptreestruct.html">Expression Tree Struct</a></li>
+<li><a href="30exptreeclass.html">Expression Tree Class - 1</a></li>
+</ul>
+
+
+<script type="text/JavaScript">footer("2005");</script>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Reading numbers</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Reading numbers</h1>
+
+<h2>Idiom: Read from <code>cin</code> in a <code>while</code> loop</h2>
+   The standard C/C++ style for reading is to put the read operation
+   in a while loop condition.  If the read proceeds correctly, then
+   the value is true.  If there is an end-of-file (EOF) meaning that the
+   end of the data has been reached, or if there is an error in reading,
+   then the value returned is false and execution continues at the end 
+   of the loop.
+   
+<h2>Example -- Adding numbers in the input</h2>
+   <div class="fragment">
+   <pre>
+   int sum = 0;
+   int x;
+   
+   while (cin &gt;&gt; x) {
+       sum += x;
+   }
+   
+   cout &lt;&lt; sum;</pre>
+   </div>
+   
+<h2>Anti-idiom: Checking for EOF instead of reading</h2>
+The following code does almost the same thing as the code above, but
+it has disadvantages.
+   <div class="fragment">
+   <pre>
+   int sum = 0;
+   int x;
+   
+   cin &gt;&gt; x;       // BAD idiom for input.
+   while (cin) {   // Required by inadequate Pascal I/O.
+       sum += x;   // Should not be used in C++.
+       cin &gt;&gt; x;
+   }
+   
+   cout &lt;&lt; sum;</pre>
+   </div>
+<ul>
+<li><b>Duplication</b>.  The input is read in <i>two</i> places, not one.
+    Duplicate code creates an opportunity to update one and not the other
+    when modifying the program.
+    </li>
+<li><b>More code</b>. The reading and testing is split between three lines instead of one.
+    This makes it more difficult to read and maintain.
+    </li>
+<li><b>Possible failure</b>.  The GCC I/O library, which is used by DevC++, does
+    a good job with this.  However, I've used systems that behaved differently 
+    using the <code>while (cin)</code> test, depending
+    on whether there is whitespace after the last value.  Think about it.  
+    The issue is rather subtle - how does the I/O system know that you aren't going to
+    read the blanks after the last value?  Well, it can't really know, so it makes 
+    some assumptions.  Not all systems make the same assumptions about how to handle
+    trailing whitespace after the last value.
+    </li>
+</ul>
+
+   
+   
+<h2>See also</h2>
+<a href="eof.html">End-Of-File (EOF)</a>
+   
+<script type="text/JavaScript">footer("2000-3");</script>
+</body>
+
+</html>

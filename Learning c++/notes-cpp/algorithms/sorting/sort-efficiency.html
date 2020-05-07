@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Algorithms: Sort Efficiency</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++ Notes</a>: Algorithms: Sort Efficiency</h1>
+
+Bubble sorts are O(N<sup>2</sup>) on the average (and worst),
+but have O(N) best case performance.
+The one efficient aspect of bubble sorts is that they can quit early if the
+elements are almost sorted. 
+Selection sorts have O(N<sup>2</sup>) efficiency.
+
+<br /><br />
+If you need a faster sort, use Quicksort (best O(log N), average O(log N), 
+worst O(N<sup>2</sup>)) or heap sort (best, average, and worst are all O(log N)) in the library.
+
+
+<script type="text/JavaScript">footer("1999-2003");</script>
+
+</body>
+</html>
+

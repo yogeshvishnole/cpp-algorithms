@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Development Techniques</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Development Techniques</h1>
+
+<p>Here are some techniques to help develop your programs.
+   </p>
+<h2>Use Extreme Programming (XP) techniques</h2>
+    <p>Some of the more useful XP techniques.</p>
+    <ul>
+    <li>Start very small.  Get it running.</li>
+    <li>On each iteration, add only a tiny bit of functionality.  Compile.  Test</li>
+    <li>Tests should be written before the code!  In fact there is a popular movement
+        called <i>Test-Driven Development</i> (TDD) based on this idea.</li>
+    <li>Have two people work on all code.  Or at least review the code.</li>
+    <li>Use Object-Oriented Programming (ie, classes) for all you code.</li>
+    </ul>
+    
+<h2>Other useful techniques</h2>
+   
+<ul>
+<li><b>Use <code>cerr</code></b> or <code>cout</code> to print intermediate results so that you can
+    see what the program is doing.  So you can turn this on and off, create
+    a debug switch so you don't have to remove the cerr's later.  Print a 
+    prefix at the beginning of each message (eg, the function name) so that you know where it came from.
+    For example,
+    <pre class="example">
+if (debug) cerr &lt;&lt; "setName: name='" &lt;&lt; name &lt;&lt; "'" &lt;&lt; endl;</pre>
+    </li>
+    
+<li><b>Use <code>at()</code></b> instead of subscription when accessing elements
+    in a vector.  <code>at()</code> checks that the subscript
+    is in a legal range.  For example
+    <pre class="example">
+sum = sum + weight.at(i);  // Checks subscript range.</pre>
+Instead of
+<pre class="example">
+sum = sum + weight[i];     // No subscript range checking.</pre>
+    </li>
+    
+<li><b>Use <code>assert</code></b> to verify that things are as you think they are.  
+    This is very useful in functions that use pointers
+    and expect a non-null pointer.  Include &lt;cassert&gt;.  For example,
+    <pre class="example">
+assert(mylist!=NULL);</pre>
+
+    <p>There are approaches to development such as <i>Design by Contract</i>
+       (also called <i>Contract-Driven Development</i>) which emphasize writing
+       pre- and post-conditions.  Assert is one of the ways to implement this.
+       </p>
+    </li>
+    
+<li><b>Separate the user interface from the logic</b> as much as possible.
+    Put the code in separate files.  The logic should have a header file
+    that describes what it can do.
+    </li>
+    
+<li><b>Think in terms of classes</b> -- grouping data and functions together
+    that represent one element in your solution.  When defining the classes,
+    write the header file description first as a nice summary of what has to
+    be done.
+    </li>
+    
+<li><b>Use standard library structures</b> (eg, the STL classes) in preference to writing your own.
+    </li>
+    
+<li><b>Always write constructors</b> for your structs/classes so that there are no
+    unititialized fields.
+    </li>
+</ul>
+    
+
+<script type="text/JavaScript">footer("2004");</script>
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com/fred)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+<title>C++: C-Strings: Exercises 1: Answers</title>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: C-Strings: Exercises 1: Array Answers</h1>
+
+Here are the exercises with the answers.  All problems are solved in the simplest array-based style
+The prototypes for the actual library functions are slightly different, 
+especially because some of the library functions return the address
+of the first argument instead of void.
+<ol>
+
+<li>Write a <code>myStrlen</code> function which is the same as the library <code>strlen</code> function.  
+Assume the prototype is
+<pre>
+    int myStrlen(char a[]);</pre>
+    Solution using arrays:
+    <pre class="example">
+//========================================================= myStrlen
+    //=== return length of c-string (same as strlen)
+int  myStrlen(char a[]) {
+    int len = 0;
+    while (a[len] != '\0') {
+        len++;
+    }
+    return len;
+}//end myStrlen </pre>
+</li>
+
+<li>Write the <code>myStrcpy</code> function which is the same as the library <code>strlen</code> function.  
+Assume the prototype is
+<pre>
+    void myStrcpy(char a[], char b[]);</pre>
+    <pre class="example">
+//========================================================= myStrcpy
+    //=== copies second arg to first (like strcpy)
+void myStrcpy(char a[], char b[]) {
+    // copy b to a .  Could use do-while.
+    int i;  // declared outside loop so can be used later
+    for (i = 0; b[i] != '\0'; i++) {
+        a[i] = b[i];
+    }
+    a[i] = '\0';  // terminate the string
+}//end myStrcpy 
+</pre>
+</li>
+
+<li>Write the <code>myStrcat</code> function which is the same as the library <code>strlen</code> function.  
+Assume the prototype is
+<pre>
+    void myStrcat(char a[], char b[]);</pre>
+    Solution:
+    <pre class="example">
+//========================================================= myStrcat
+    //=== copy second arg to end of first (like strcat)
+void myStrcat(char a[], char b[]) {
+    int to = 0;  // where to copy the second c-string to.
+    // find the end of the first string.
+    while (a[to] != '\0') {
+        to++;
+    }
+    // The preceding loop left "to" at a's terminating 0.
+    // copy b onto end of a, then add terminating 0.
+    int from = 0;  // index of char in b
+    while (b[from] != '\0') {
+        a[to] = b[from];
+        to++;
+        from++;
+    }
+    a[to] = '\0'; // copy final zero
+
+}//end myStrcat</pre>
+</li>
+
+<li>Write the <code>myStrcmp</code> function which is the same as the library <code>strlen</code> function.  
+Assume the prototype is
+<pre>
+    int myStrcmp(char a[], char b[]);  // array version</pre>
+For example,
+<pre>
+         i = myStrcmp("abc", "after");  // result is a negative value</pre>
+There is a slight twist to this problem.  The standard allows each compiler
+to decide if the <code>char</code> type is signed or not, so the range of 
+of a <code>char</code> is either -128..127 (signed) or 0..255 (unsigned).
+To do the comparison properly, the comparison should be done on the
+unsigned characters, which requires casting to that type.
+<br />Solution:
+<pre class="example">
+//======================================================== myStrcmp
+    //=== Same as library strcmp:, 
+    //&lt; 0 means a &lt; b, == 0 if a == b, &gt; 0 if  a &gt; b
+int  myStrcmp(char a[], char b[]) {
+    int i;
+    for (i=0; a[i]==b[i]; i++) {
+        if (a[i] == '\0') {
+            return 0;  // they're equal
+        }
+    }
+    // Because characters may be signed, the following casts
+    // are necessary for codes beyond ascii [ie, 0x7F],
+    // which will otherwise be negative.
+    return (unsigned char)a[i] - (unsigned char)b[i];
+}//end myStrcmp</pre>
+</li>
+</ol>
+
+
+</body>
+</html>
+

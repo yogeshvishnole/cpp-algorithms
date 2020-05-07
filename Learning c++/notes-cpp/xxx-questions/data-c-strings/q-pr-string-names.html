@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+<title>C++: Programming - formatName Function</title>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: Programming - <code>formatName</code> Function</h1>
+<p>Name _______________________________</p>
+<p>Write a funtion using C-strings which takes a first name, last name,
+and middle name.  It combines these as last name, comma, space, first name,
+comma, space, middle name.  The prototype is.</p>
+<pre>
+   void formatName(char result[], char first[], char middle[], char last[]);</pre>
+   
+<p>If the middle name has no characters in it, the comma after the 
+first name should be omitted.  If either the first or middle name is only
+one character long, it should have a period added to it.  For example.</p>
+
+<p>You may use the standard C-string functions 
+(<code>strlen</code>, <code>strcat</code>, <code>strcpy</code>, <code>strcmp</code>).
+Write only the formatName function (no main program).  Do not do any I/O in the function.</p>
+
+<h2>Example</h2>
+<pre>
+    char aName[100];
+    char anotherName[200];
+    formatName(aName, "D", "B", "Duck");
+       // aName is set to "Duck, D., B." (period after single letters)
+    formatName(aName, "Michael", "", "Maus");
+       // aName is set to "Maus, Michael" (no comma after first name)
+    formatName(anotherName, "Alpha", "Beta", "Jones");
+       // anotherName is set to "Jones, Alpha, Beta"</pre>
+       
+</body>
+</html>
+

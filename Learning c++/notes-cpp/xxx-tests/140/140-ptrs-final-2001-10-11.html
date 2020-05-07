@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <style type="text/css">
+    	li {margin-top: 1em;}
+    </style>
+    <title>CMIS 140 Final Exam - Part II</title>
+</head>
+<body>
+<h1>CMIS 140 Final Exam - Part II</h1>
+
+
+Name: _________________________________
+
+
+<ol>
+<li>(25 points) Fill in the blanks to make this program correct.
+    All blanks should be filled with a single <i>token</i> (variable
+    name, operator, keyword, literal, ...).
+<br /><br />
+<pre>// Program read ints, sorts them, finds unique values, prints them.
+#include &lt;__________.h&gt;
+#include &lt;stdlib.h&gt;
+               
+               
+//======================================== prototypes
+void bubbleSort(int a[], int limit);
+void printArray(int y[], __________ syz);
+void __________(int a[], int&amp; n, int maxsize);
+void unique(int __________[], int&amp; howmany);
+
+
+//======================================== main
+int main() {
+    int numz[1000];
+    int __________;
+
+    cout &lt;&lt; "Read, Sort, Unique, Write array" &lt;&lt; endl;
+    readArray(numz, count, __________);
+    bubbleSort(__________, count);
+    unique(numz, count);
+    printArray(numz, __________);
+
+    system("PAUSE");
+    return 0;
+}//end main
+
+
+
+void readArray(int a[], int&amp; n, int maxsize) {
+    // function:
+    //    Reads from cin until array full or to an EOF.
+    // parameters:
+    //    a       out  array destination of values.
+    //    n       out  number of values in a, a[0]..a[n-1]
+    //    maxsize in   maximum number of elements that can fit in a
+    // returns: 
+    //   nothing
+   
+    __________ = 0;  // start with an empty array.
+    while (n &lt; maxsize  &amp;&amp;  cin __________ a[n]) {
+        __________++;
+    }
+    return;
+}//end readArray
+
+
+
+//=========================================================== bubbleSort
+void bubbleSort(int a[], int limit) {
+  for (int done=1; done &lt; limit; done__________) {  // count how many times
+     // This next loop becomes shorter and shorter
+     for (int i=__________; i &lt; limit-done; i++) {
+        if (a[i] &gt; a[i __________ 1]) {
+           // exchange elements
+           int __________ = a[i];
+           a[__________] = a[i+1];
+           a[i+1] = xxx;
+        }
+     }
+  }
+}//end bubbleSort
+
+              
+               
+//=========================================================== printArray
+void printArray(int y[], int syz) {
+    __________ (int i=0; i &lt; __________; i++) {
+        cout &lt;&lt; y[__________] &lt;&lt; endl;
+    }
+}//end printArray
+ 
+ 
+ 
+//=========================================================== unique
+   // Eliminates duplicates in a sorted array.
+   // All equal elements in a sorted array will be
+   // together, so just check the previous element
+   // to see if we should keep it if it is different.
+void unique(int __________[], int&amp; howmany) {
+    if (howmany &lt;= __________) {
+        return;  // nothing to do
+    }
+    // since first element is unique, start at 1
+    __________ to   = 1;  // where to copy to
+    int from = 1;  // current element;
+
+    while (from &lt; howmany) {
+        // check to see if differnt than previous value.
+        if (z[from] != z[from-1]) {
+            z[to] = __________[from];  // this value stays
+            to__________;
+        }
+        from++;
+    }
+    __________ = to;  // set to number of unique elements.
+}//end unique
+
+</pre>
+</li>
+
+
+<li>(6 points) In the following table fill in the blanks with the appropriate
+    missing numbers.
+    <table cellspacing="0" border="1" summary="">
+    <tr><th>&nbsp;&nbsp;&nbsp;&nbsp;Binary&nbsp;&nbsp;&nbsp;&nbsp;</th><th>Decimal</th><th>Hexadecimal</th></tr>
+    <tr><td>10001&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td>&nbsp;</td><td>22&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td>&nbsp;</td><td>&nbsp;</td><td>22&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+    </table>
+</li>
+
+
+<li>(10 points) What is printed by each of these statements. 
+Write floating point numbers with a decimal point (5.0 is 
+floating point; 5 is integer).
+
+<br /><br />__________ cout &lt;&lt; 4 / 3;
+<br /><br />__________ cout &lt;&lt; 4 % 3;
+<br /><br />__________ cout &lt;&lt; 4 % 10;
+<br /><br />__________ cout &lt;&lt; 4.0 / 2.0;
+<br /><br />__________ int x=1, y=2; cout &lt;&lt; ((x!=y)?((x&gt;y)?x:((y&gt;x)?3:4)):0);
+<br />
+<br /><br />__________ cout &lt;&lt; 5 | 9;
+<br /><br />__________ cout &lt;&lt; 5 &amp; 9;
+<br /><br />__________ cout &lt;&lt; 5 ^ 9;
+<br /><br />__________ int n = 5 &gt;&gt; 2; cout &lt;&lt; n;
+<br /><br />__________ int n = 5 &lt;&lt; 2; cout &lt;&lt; n;
+<pre>
+
+ 
+   
+ 
+ 
+ 
+ 
+ 
+ 
+
+</pre>
+</li>
+
+<li>(20 points) Assume the following:
+<br /><br />
+<pre>
+    int   i = 2;
+    int*  ip = &amp;i;
+    int   ia[100] = {3, 1, 4, 5, 2, 6, 0};
+    char  c = 'z';
+    char  ca[] = "baklava";
+    char* cp = ca;
+</pre>
+<br /><br />
+
+<table border="1" cellspacing="0" cellpadding="4">
+<tr><th>Part I - Types</th><th>Part II - Values</th></tr>
+<tr><td valign="top" width="40%">
+Give the <b><i>types</i></b> of the following expressions.  
+Regard an array as being of <code>type*</code> type,
+eg, <code>ia</code> is type <code>int*</code>.
+There are no illegal expressions.
+Choose from one of the following possibilies:
+<pre>
+    int
+    int*
+    char
+    char*
+</pre>
+<ol>
+<li> ________ <code>i</code></li>
+<li> ________ <code>&i</code></li>
+<li> ________ <code>ia</code></li>
+<li> ________ <code>ia[23]</code></li>
+<li> ________ <code>&amp;ia[23]</code></li>
+<li> ________ <code>*&amp;ia[23]</code></li>
+<li> ________ <code>*(ia+2)</code></li>
+<li> ________ <code>"abc"</code></li>
+<li> ________ <code>*cp</code></li>
+<li> ________ <code>cp + 4</code></li>
+</ol>
+
+</td><td valign="top">
+
+What is printed by the following statements?  Assume that
+each question is independent of other questions.
+<ol>
+<li> _______ <code>cout &lt;&lt; *cp;</code></li>
+<li> _______ <code>cout &lt;&lt; *(cp+1);</code></li>
+<li> _______ <code>cout &lt;&lt; cp[2];</code></li>
+<li> _______ <code>cout &lt;&lt; ia[ia[4]];</code></li>
+<li> _______ <code>cout &lt;&lt; *ia;</code></li>
+<li> _______ <code>cout &lt;&lt; (&amp;ia[5]-&amp;ia[4]);</code></li>
+<li> _______ <code>cout &lt;&lt; cp[ia['c'-'a']];</code></li>
+<li> _______ <code>cout &lt;&lt; ca;</code></li>
+<li> _______ <code>cp++; cout &lt;&lt; cp[4];</code></li>
+<li> _______ <code>ip=ia+4; cout &lt;&lt; ip[1];</code></li>
+</ol>
+</td></tr></table>
+</li>
+
+</ol>
+
+
+<script type="text/JavaScript">footer("2001");</script>
+</body>
+</html>
+

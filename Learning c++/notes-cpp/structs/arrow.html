@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>C++: -> Operator</title>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: -&gt; Operator</h1>
+
+The arrow operator, -&gt; (that's a minus sign followed immediately by a greater than), 
+dereferences a pointer to select a field.
+It is common to dynamically allocate structs, so this operator is
+commonly used.
+For example, 
+<pre class="example">
+struct Point {
+    int x;
+    int y;
+};
+
+Point* p;      // declare pointer to a Point struct
+
+p = new Point; // dynamically allocate a Point
+p-&gt;x = 12;  // set the field values.
+p-&gt;y = 34;</pre>
+
+<h2>The -&gt; operator is convenient, but not necessary</h2>
+There usual pointer dereference operator (*) and field selection operator (.)
+can be used to reference fields.  The last two lines of the above example
+could be written as
+<pre class="example">
+(*p).x = 12;  // set the field values.
+(*p).y = 34;</pre>
+Note that the parentheses are needed to control the order of operator evaluation.
+Arrow is more commonly used than the *. combination because it's more readable.
+
+
+
+   
+<script type="text/JavaScript">footer("2001");</script>
+</body>
+
+</html>

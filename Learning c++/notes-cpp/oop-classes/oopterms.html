@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: OOP Terminology</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: OOP Terminology</h1>
+
+
+Along with each programming revolution comes a new set of terminology.
+There are some new OOP concepts, but many have a simple analog
+in pre-OOP practice.
+<table border="1" cellspacing="0" cellpadding="4">
+<tr><th valign="top">OOP Term  </th><th>Definition</th></tr>
+<tr><td valign="top">method    </td><td>Same as <i>function</i>, but the typical OO notation is used
+                                for the call, ie, f(x,y) is written x.f(y) where x is an object
+                                of class that contains this f method.</td></tr>
+<tr><td valign="top">send a message</td><td>Call a function (method)</td></tr>
+<tr><td valign="top">instantiate</td><td>Allocate a class/struct object (ie, instance) with <code>new</code></td></tr>
+<tr><td valign="top">class     </td><td>A struct with both data and functions</td></tr>
+<tr><td valign="top">object    </td><td>Memory allocated to a class/struct.  Often allocated with <i>new</i>.</td></tr>
+<tr><td valign="top">member    </td><td>A field or function is a member of a class if it's defined in that class</td></tr>
+<tr><td valign="top">constructor</td><td>Function-like code that initializes new objects (structs) when they
+                                         instantiated (allocated with new).</td></tr>
+<tr><td valign="top">destructor</td><td>Function-like code that is called when an object is <i>deleted</i>
+                                        to free any resources (eg, memory) that is has pointers to.</td></tr>
+<tr><td valign="top">inheritance</td><td>Defining a class (child) in terms of another class (parent).
+                                         All of the public members of the public class are available in the child class.</td></tr>
+<tr><td valign="top">polymorphism</td><td>Defining functions with the same name, but different parameters.</td></tr>
+<tr><td valign="top">overload  </td><td>A function is overloaded if there is more than one definition.  See polymorphism.</td></tr>
+<tr><td valign="top">override  </td><td>Redefine a function from a parent class in a child class.</td></tr>
+<tr><td valign="top">subclass  </td><td>Same as child, derived, or inherited class.</td></tr>
+<tr><td valign="top">superclass</td><td>Same as parent or base class.</td></tr>
+<tr><td valign="top">attribute </td><td>Same as data member or member field.</td></tr>
+</table>
+
+   
+<script type="text/JavaScript">footer("2000");</script>
+</body>
+
+</html>

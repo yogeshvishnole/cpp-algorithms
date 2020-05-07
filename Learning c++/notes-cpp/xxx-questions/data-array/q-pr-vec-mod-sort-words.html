@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css" />
+    <title>Modify and Sort Words</title>
+</head>
+
+<body>
+<h1>Modify and Sort Words</h1>
+
+<p>Read a sequence of words, eliminate all vowels ("aeiou", lower case only)
+if the resulting word would have at least two characters, otherwise don't eliminate
+any vowels.  Sort and print the words.
+</p>
+
+<p>The modification of each word should be made by calling a void function, compressWord,
+where the word is the single parameter.  
+<i>This function must be defined in a separate file</i>.
+</p>
+
+<h2>Example</h2>
+<dl>
+<dt>Input</dt>
+   <dd>
+   <pre>
+    This is the test data for a 
+    first run.</pre>
+   </dd>
+   
+<dt>Output</dt>
+   <dd>
+   <pre>
+    Ths
+    a
+    dt
+    fr
+    frst
+    is
+    rn.
+    th
+    tst</pre>
+    </dd>
+</dl>
+
+<h2>Suggestions</h2>
+<ul>
+<li><i>vector</i>.  There is no bound on the number of words, so use an appropriate
+    data structure.  I recommend <code>vector</code>.  
+    I you're not familiar with it, you can find a short description starting on p 102 of the
+    textbook.
+    </li>
+    
+<li><i>string</i>.  Another STL class that will be useful is <i>string</i>.
+    There is a little information in the textbook about it.  Some additional
+    features you could use are (assuming <code>string s = "abcdef";</code>).
+    <ul>
+    <li>You can use the subscription operator to access individual characters.
+        <code>s[4]</code> is 'e'.</li>
+    <li>You can delete substrings using <i>erase</i>.  
+        For example, after <code>s.erase(4, 1)</code>, the value in s is "abcdf".
+        </li>
+    </ul>
+    You can find additional string notes at
+    <a href="http://www.msoe.edu/eecs/ce/courseinfo/stl/string.htm">ANSI String Class</a>.
+    </li>
+    
+<li><i>cin, cout</i>.  Use the standard IO streams for the input and output.
+    <i>cin</i> works nicely with strings to read "words", strings of non-whitespace 
+    characters.  Don't worry about real text problems like case and 
+    the fact that punctuation will be included in the words.
+    </li>
+    
+<li><i>sort</i>.  You don't have to write your own sort; in fact it's a
+    bad idea to do so (bugs, inefficiency).  Use the STL <i>sort</i>
+    function.  For example.
+    <pre>
+    vector&lt;string&gt; words;
+    . . .
+    sort(words.begin(), words.end());</pre>
+    </li>
+    
+<li><i>Iterative programming</i>.  Use iterative programming.  Start with a 
+    very small program (main that does nothing), test it, add a feature, test
+    it, and continue making small additions and testing.  This style is 
+    usually effective in making your programming go faster with fewer bugs.
+    </li>
+    
+</ul>
+
+
+</body>
+
+</html>

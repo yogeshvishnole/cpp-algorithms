@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Exceptions</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Exceptions</h1>
+
+<h2>Exceptions and the <code>throw</code> and <code>try..catch</code> statements</h2>
+Exceptions allow passing information about some exception condition (usually an error)
+by means of the <code>throw</code> statement to the <code>catch</code> clause 
+that encloses it or any of the calls on the call stack.
+
+The beauty of this solution is that calls look identical, 
+and the error processing code is in the function that wants to catch it.
+
+
+
+<h2><code>throw</code> something</h2>
+The <code>throw</code> statement can <i>throw</i> a value of any type, but if your
+exceptional condition fits into one of the standard exceptions,
+use it.  As a rule, use one of the <code>logic_error</code> exceptions
+if the error is a result of a programming logic error, eg, the programmer
+should have checked the bounds before referencing an element in a container.
+Use one of the <code>runtime_errors</code> if the error is the result
+of input that the programmer can not easily check for, eg, input values
+that result in ranges being exceeded, too much data, etc.
+
+<h2>Standard exceptions</h2>
+The C++ library defines a number of common exceptions.  Use
+<pre class="example">
+#include &lt;stdexcept&gt;
+using namespace std;  // Or prefix names with std::</pre>
+
+to get the following classes defined.
+These are arranged in a class hierarchy shown by the indentation below.
+
+<ul>
+<li><code>exception</code>
+    <ul>
+    <li class="compact"><code>logic_error</code>
+        <ul>
+        <li class="compact"><code>domain_error</code></li>
+        <li class="compact"><code>invalid_argument</code></li>
+        <li class="compact"><code>length_error</code></li>
+        <li class="compact"><code>out_of_range</code></li>
+        </ul>
+    </li>
+    <li class="compact"><code>runtime_error</code>
+        <ul>
+        <li class="compact"><code>range_error</code></li>
+        <li class="compact"><code>overflow_error</code></li>
+        <li class="compact"><code>underflow_error</code></li>
+        </ul>
+    </li>
+    </ul>
+</li>
+</ul>
+
+<h2>Standard exception constructor</h2>
+<p>To create an exception and throw it, call the constructor with a c-string parameter.</p>
+<pre class="example">
+throw out_of_range("Subscript less than zero");</pre>
+
+
+<h2>Catching a standard exception</h2>
+<p>You can catch an exception of a specific type, or <i>any of its subclasses</i>,
+by specifying
+the class name as the type of the parameter in the <code>catch</code> clause.
+Call the <code>what</code> method to get the error string from a standard
+exception.</p>
+<pre class="example">
+vector&lt;int&gt; v;   // using standard vector class
+. . .
+try {
+    . . .
+    x = v.at(-2); // this throws out_of_range exception.
+    . . .
+} catch (out_of_range e) {
+    cerr &lt;&lt; e.what() &lt;&lt; endl;  // print error
+    exit(1);  // stop program
+}
+</pre>
+
+<h2>Other pre-defined exceptions</h2>
+<p>Altho C++ popularized exceptions, they aren't used extensively within
+the STL or other libraries because exceptions were not available in all
+implementations for a long time.  You can pursue these, but I don't think
+I'll write notes on them.
+</p>
+<ul>
+<li class="compact">Memory allocation errors.</li>
+<li class="compact">I/O errors.</li>
+</ul>
+
+<script type="text/JavaScript">footer("2001-4");</script>
+</body>
+
+</html>

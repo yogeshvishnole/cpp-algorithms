@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <link rel="stylesheet" type="text/css" href="summaries.css" />
+    <title>C++ Notes: Summary: Header Files</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Summary: Header Files</h1>
+
+
+<h2>Common Header Files</h2>
+Most programs will use <code>iostream</code>, BUT there are many others
+that are also commonly used.  The older C header file names are prefixed with
+the letter 'c'. Here are some of the most common.
+<table border="0" summary="header files">
+
+<tr valign="top"><td colspan="2"><b><i>Input / Output</i></b></td></tr>
+<tr valign="top"><td>#include &lt;iostream&gt;</td><td>Stream I/O.  cout and cin, istream and ostream, and endl,
+                    fixed, and showpoint manipulators.</td></tr>
+<tr valign="top"><td>#include <a href="../io/omanipulators.html">&lt;iomanip&gt;</a></td><td>More I/O manipulaters: eg, setw(w) and setprecision(p).</td></tr>
+<tr valign="top"><td>#include &lt;fstream&gt;</td><td>File I/O. ifstream and ofstream.</td></tr>
+<tr valign="top"><td>#include <a href="../strings/stringstream.html">&lt;sstream&gt;</a></td><td>I/O to and from strings.  istringstream and ostringstream.</td></tr>
+
+<tr valign="top"><td colspan="2"><b><i>C functions</i></b></td></tr>
+<tr valign="top"><td>#include &lt;cassert&gt;</td><td>assert macro.</td></tr>
+<tr valign="top"><td>#include <a href="../strings/header-cstring.html">&lt;cstring&gt;</a></td><td>C-string (array of chars) functions (<code>strcpy()</code>, ...).</td></tr>
+<tr valign="top"><td>#include <a href="../strings/header-cctype.html">&lt;cctype&gt;</a></td><td>char functions.</td></tr>
+<tr valign="top"><td>#include &lt;cstdlib&gt;</td><td>abs(), exit(), ...</td></tr>
+<tr valign="top"><td valign="top">#include &lt;climits&gt;</td><td>CHAR_BIT (bits per char), CHAR_MIN, CHAR_MAX, SHRT_MIN, SHRT_MAX, 
+                                         INT_MIN, INT_MAX, LONG_MIN, LONG_MAX, ...
+                                         C++ defines a <code>numeric_limits</code> template.</td></tr>
+<tr valign="top"><td>#include &lt;cfloat&gt;</td><td>FLT_MIN, FLT_MAX, FLT_DIG,
+                                         DBL_MIN, DBL_MAX, DBL_DIG, ...
+                                         C++ defines a <code>numeric_limits</code> template.</td></tr>
+
+<tr valign="top"><td colspan="2"><b><i>STL (Standard Template Library)</i></b></td></tr>
+<tr valign="top"><td>#include <a href="../strings/header-string.html">&lt;string&gt;</a></td><td>String type and functions.</td></tr>
+<tr valign="top"><td>#include <a href="../stl-containers/vector/header-vector.html">&lt;vector&gt;</a></td><td>Fast insertion/deletion at back, random access.
+                                        Implementation: dynamic array allocation/reallocation.</td></tr>
+<tr valign="top"><td>#include &lt;list&gt;</td><td>Fast insertion/deletion everywhere.  No direct access.
+                                      Implementation: doubly linked list.</td></tr>
+<tr valign="top"><td>#include &lt;deque&gt;</td><td>Double-ended queue with fast insertion/deletion at front
+                                       and back, direct access (one-level indirection).
+                                       Implementation: multiple dynamically allocated blocks.</td></tr>
+<tr valign="top"><td>#include &lt;stack&gt;</td><td><code>stack</code> - LIFO access, based on <code>deque</code>.</td></tr>
+<tr valign="top"><td>#include &lt;queue&gt;</td><td><code>queue</code> (FIFO, based on <code>deque</code>) and 
+                                       <code>priority_queue</code> 
+                                       (retrieval of highest priority element first, based on <code>vector</code>).
+                                       </td></tr>
+<tr valign="top"><td>#include &lt;map&gt;</td><td><code>map</code> and <code>mulitmap</code> classes.
+                                     Fast lookup based on key yields single/multiple entries.  
+                                     Implementation: balanced binary tree.</td></tr>
+<tr valign="top"><td>#include &lt;set&gt;</td><td><code>set</code> and <code>multiset</code> containing single/multiple values.  
+                                     Fast lookup.
+                                     Implementation: balanced binary tree.</td></tr>
+<tr valign="top"><td nowrap="1">#include &lt;algorithm&gt;</td><td>Many algorithms for working with containers.</td></tr>
+</table>
+
+<hr />
+<script type="text/JavaScript">footer("1998-2002");</script>
+</body>
+</html>
+

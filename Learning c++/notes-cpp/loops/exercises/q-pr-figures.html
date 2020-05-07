@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com/fred)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++: Programming Problem - Figures</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++</a>: Programming Problem - Figures</h1>
+
+Here are some classic programming problems that require the use of nested loops.
+A frequent textbook problem is to draw figures using characters.
+If you already know how to define functions, you might find it useful to
+write convenience functions to help you.
+
+<p>You're welcome to change the appearance of these, or
+ produce something a little different.  The point of
+ this is to give you practice with loops and functions,
+ so show what you can do.
+ </p>
+
+<ol>
+<li class="question"><b>Print a rectangle</b>.  Read a height and width and
+print a rectangle with that height and width.  This example output
+has height 3 and width 7.
+  <pre>
+          
+          *******
+          *******
+          *******</pre>
+  
+  <p>Sample solution.</p>
+  <div class="fragment"><pre>
+int width, height;
+    
+while (cin &gt;&gt; width &gt;&gt; height) {
+    for (int row=0; row&lt;height; row++) {
+        for (int col=0; col&lt;width; col++) {
+            cout &lt;&lt; "*";
+        }
+        cout &lt;&lt; endl;  // end the line of stars.
+    }
+}
+</pre></div>
+</li>
+
+<li class="question">
+<b>Print a triangle</b>.  Read a number and print a triangle of
+that size.  This example is of size 6.
+  <pre>
+  
+          *
+          **
+          ***
+          ****
+          *****
+          ******</pre>
+  
+Here is a solution.
+<pre class="fragment">
+int size;
+
+while (cin &gt;&gt; size) {
+    for (int row=1; row&lt;=size; row++) {
+        for (int col=0; col&lt;row; col++) {
+            cout &lt;&lt; "*";
+        }
+        cout &lt;&lt; endl;  // end the line.
+    }
+}
+</pre>
+</li>
+
+<li class="question">
+<b>Print a triangle</b>.  Read a number and print a triangle of
+that size.  This is a little different than the problem above
+because you'll have to print some spaces at the beginning 
+of each line.  This example is of size 6.
+  <pre>
+  
+               *
+              **
+             ***
+            ****
+           *****
+          ******</pre>
+  
+  
+</li>
+<li class="question"><b>Print a rectangle outline</b>.  Read a height and width and print a rectangle
+that looks like the one below.  This example has a height of 5 and width of 7.
+You might choose one of two approaches to this problem.
+<ol>
+<li>Break it down into three problems: a line of stars; lines consisting of
+    a star, blanks, and a star; and again a line of stars.
+    </li>
+<li>At each position write either a star or blank.  Use an <code>if</code> 
+    statement to test for first or last row of first or last column, in
+    which case a star is printed, otherwise print a blank.
+    </li>
+</ol>
+  <pre>
+          
+          *******
+          *     *
+          *     *
+          *     *
+          *******</pre>
+</li>
+ 
+
+
+<li class="question">
+<p><b>Print a pyramid</b>. Read (in a loop of course) a number, n,
+and print a pyramid that has that size.
+The example below shows what would be printed for n=4.
+</p>
+        <pre>
+        
+            *
+           * *
+          * * *
+         * * * *</pre>
+ </li>
+ 
+<li class="question"><b>Print a parallelogram</b>. Again read n in a loop.  For each value of n
+  produce output that makes a parallelogram like the 
+  following for n=6.  You might find it easier to solve this to breaking
+  the problem into two simpler problems: eg, thinking of this as an upper triangle
+  and a lower triangle.
+  <pre>
+  
+          *
+          **
+          ***
+          ****
+          *****
+          ******
+           *****
+            ****
+             ***
+              **
+               *</pre>
+ 
+ </li>
+ 
+</ol>
+
+<script type="text/JavaScript">footer("2003");</script>
+</body>
+</html>
+

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com/fred/)"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <link rel="stylesheet" type="text/css" href="../notes.css" />
+    <title>C++ Notes: C-strings: &lt;cstring&gt;</title>
+</head>
+
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Common &lt;cstring&gt; functions</h1>
+
+<h2>Common &lt;cstring&gt; functions</h2>
+
+<p>Here are a number of useful functions work with character arrays (C-strings).  
+The types of the parameters are <i>cs</i>=<code>char[]</code> or <code>char*</code>,
+<i>c</i>=<code>char/int</code>. 
+Where <code>true</code> appears, zero is false and non-zero is true.
+</p>
+<table cellspacing="0" cellpadding="2" border="1" summary="cstring functions">
+<tr><th>Type</th><th>Method</th><th>Description</th></tr>
+<tr><td colspan="3"><code>#include &lt;cstring&gt;</code> (or older <code>&lt;string.h&gt;</code>)</td></tr>
+<tr><td valign="top" class="code">int</td><td valign="top"><b>strlen</b>(const <i>cs</i>)</td>
+                                              <td>Returns the length of the c-string <i>cs</i>.</td></tr>
+                                              
+<tr><td valign="top">char*</td><td valign="top"><b>strcpy</b>(<i>cs1</i>,&nbsp;const <i>cs2</i>)</td>
+                                               <td>Copies <i>cs2</i> to <i>cs1</i>.
+                                               Returns the first parameter (usually ignored).</td></tr>
+                                               
+<tr><td valign="top" nowrap="nowrap">char*</td><td valign="top"><b>strcat</b>(<i>cs1</i>,&nbsp; const <i>cs2</i>)</td>
+                                               <td>Concatenates <i>cs2</i> on the end of <i>cs1</i>.
+                                               Returns the first parameter (usually ignored).</td></tr>
+                                               
+<tr><td valign="top">int</td><td valign="top"><nobr><b>strcmp</b>(const <i>cs1</i>,&nbsp;const <i>cs2</i>)</nobr></td>
+                               <td>Returns one of three kinds of values:
+                               negative if <i>cs1</i> &lt; <i>cs2</i>,
+                               zero if <i>cs1</i> == <i>cs2</i>, or
+                               positive if <i>cs1</i> &gt; <i>cs2</i>.
+                               </td></tr>
+<tr><td valign="top"><nobr>char*</nobr></td><td valign="top"><b>strchr</b>(const <i>cs</i>,&nbsp;<i>c</i>)</td>
+                                               <td>Returns a pointer to the first occurrence of
+                                               <i>c</i> in <i>cs</i> or NULL if it isn't in the string.</td></tr>
+                                               
+<tr><td valign="top"><nobr>char*</nobr></td><td valign="top"><b>strstr</b>(const <i>cs1</i>,&nbsp;const <i>cs2</i>)</td>
+                                               <td>Returns a pointer to the first occurrence of
+                                               <i>cs2</i> in <i>cs1</i> or NULL if it isn't in the string.</td></tr>
+                                               
+</table>
+
+
+<script type="text/JavaScript">footer("1996-2003");</script>
+</body>
+</html>
+

@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Templates</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Templates</h1>
+
+<h2>The Problem: To define containers for any class</h2>
+It is relatively easy to define a class, like vector, that will work
+with one specific type.  to use the class with
+another type, you must replace all type names in the
+original file with the new type, an error-prone process.  C++ provides a way to write
+a generic definition that works with any type -- <i>templates</i>.
+Use templates only to define classes that you want to work with many data types.
+
+<h2>Standard Template Library</h2>
+Common containers (data structures) and algorithms have already been written and
+are available in what is usually called the <i>Standard Template Library</i> (STL).
+This library includes definitions for vector, set, multiset, map, multimap, 
+queue, stack, and more.
+
+
+<h2>Templates can be used with classes or functions</h2>
+Precede the class or function with
+<pre>
+   template &lt;class <i>sometype</i>&gt;
+</pre>
+
+<h2>The header file (.h) includes all method definitions</h2>
+Because the compiler needs to know which for types to compile the implementation
+of a template, it is necessary to include the implementations of all methods
+in the .h file.  <b>There will be no separate .cpp file</b> for the template methods,
+constructors, and destructors, unlike the typical C++ pattern which requires the
+separation.
+
+<br /><br />There are two styles for doing this:
+<ol>
+<li>Putting the implementation directly in the class definition.
+    Advantage: The header information doesn't have to be repeated twice.
+    It's the way Java defines all classes.  Disadvantage: It's harder
+    to read a short summary of the class.  
+    <a href="template-ex1.html">Template Example 1</a> uses this style.
+    </li>
+<li>Making a class definition with only prototypes and immediately following it
+    with the definitions.  Advantage: the class definition is short
+    and easily readable.  Disadvantage: the header information is
+    in two places.
+    </li>
+</ol>
+
+<h2>Related Pages</h2>
+<ul>
+<li><a href="template-ex1.html">Template Example 1</a></li>
+<li><a href="template-ex2.html">Template Example 2</a></li>
+</ul>
+
+   
+<script type="text/JavaScript">footer("2001");</script>
+</body>
+
+</html>

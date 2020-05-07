@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)" />
+    <link rel="stylesheet" type="text/css" href="../notes.css" />
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Loop Examples</title>
+<meta name="generator" content="Namo WebEditor v5.0(Trial)">
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Loop Examples</h1>
+Here are some typical uses of loops.
+
+<h2>Input loops using <code>while</code></h2>
+These three examples, in increasing complexity, show how loops
+are often used for input.
+<div class="example">
+   <pre>
+   // Read into a variable
+   while (cin &gt;&gt; x) {
+      //process x;
+   }
+   </pre>
+   <pre>
+   // Read into an array without checking
+   while (cin &gt;&gt; a[n]) {
+      n++;
+   }
+   </pre>
+   <pre>
+   // Read into an array with checking
+   const int MAXSIZE = 1000;
+   int a[MAXSIZE];
+   int n = 0;
+   . . . 
+   while (cin &gt;&gt; x) {
+      if (n &gt;= MAXSIZE) {
+         cerr &lt;&lt; &quot;Too many elements for array a&quot;;
+         exit(1);
+      }
+      a[n] = x;
+      n++;
+   }</pre>
+</div>
+   
+<h2>Prompt until legal value entered using <code>do while</code></h2>
+<div class="example">
+   <pre>
+   do {
+      cout &lt;&lt; &quot;Enter a number in range 1-100: &quot;;
+      cin &gt;&gt; n;
+   } while (n &lt; 1 || n &gt; 100);</pre>
+</div>
+
+<script type="text/JavaScript">footer("2000");</script>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <style type="text/css">
+    .ans {display: none;}
+    </style>
+    <title>Function Exercises 2</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++</a>: Function Exercises 2</h1>
+
+<p>Name: _________________________________</p>
+
+<p>OPEN BOOK.  Each question is worth one point.</p>
+
+<h2>Assume these function definitions</h2>
+For the following questions, assume that the proper includes
+and function prototype declarations have been made before these function definitions.
+<table border="0" cellspacing="8">
+<tr valign="top"><td>
+<pre>
+
+   //----------------------- exchange
+   void exchange(int&amp; a, int&amp; b) {
+       int temp = a;
+       a = b;
+       b = temp;
+   }
+
+   //----------------------- compareTo
+   int compareTo(int a, int b) {
+       cout &lt;&lt; "compareTo" &lt;&lt; endl;
+       if (a &lt; b) {
+           return -1;
+       } else if (a &gt; b) {
+           return 1;
+       } else {
+           return 0;
+       }
+   }
+</pre></td>
+<td>&nbsp;&nbsp;</td>
+<td>
+<pre>
+   //-------------------- biggest
+   int biggest(int a, int b, int c, int d) {
+       cout &lt;&lt; "biggest4" &lt;&lt; endl;
+       return biggest(a, b, biggest(c, d));
+   }
+   
+   //-------------------- biggest
+   int biggest(int a, int b, int c) {
+       cout &lt;&lt; "biggest3" &lt;&lt; endl;
+       return biggest(a, biggest(b, c));
+   }
+   
+   //--------------------- biggest
+   int biggest(int a, int b) {
+       cout &lt;&lt; "biggest2" &lt;&lt; endl;
+       if (compareTo(a, b) &gt; 0) {
+           return a;
+       } else {
+           return b;
+       }
+   }
+</pre>
+</td></tr></table>
+
+<h2>Part 1 - What's the output</h2>
+What does the following call print?  Note that each function prints a line
+when it is entered entered.  Can you determine
+the order of the calls?  It may help you to rename the functions
+eg, the <code>biggest</code> that takes 4 parameters could be renamed
+<code>biggest4</code> like the comment in it.
+<pre>
+    biggest(1, 2, 3, 4);</pre>
+    <br /><br /><br /><br /><br /><br /><br />
+    
+    
+    
+<h2>Part 2 - What is the value after execution</h2>
+
+What is final value of n in each of these fragments? 
+<ol>
+<li class="question">_____________ <code>n = biggest(2, 1);</code>
+                  <span class="ans">Answer: 2 [maximum of the values]</span></li>
+<li class="question">_____________ <code>n = biggest(biggest(5,2), -6, 8);</code>
+                  <span class="ans">Answer: 
+                  The function calls are made from the inside out.  C++ doesn't specify whether parameters 
+                  are evaluated from left to right or right to left, but we'll assume it's left to right.
+                  So <code>biggest(5,2)</code> is called and returns the value 5, making the problem
+                  <code>biggest(5, biggest(-6,8)</code>.  Then the other inner call is made with a result of
+                  8, making the problem equivalent to <code>biggest(5,8)</code>, which results in 8.</span>
+                  </li>
+<li class="question">_____________ <code>n = 5; n = biggest(3, n);</code>
+                  <span class="ans">Answer: </span></li>
+<li class="question">_____________ <code>int m = 7; n = 3; exchange(n, m); exchange(m, n);</code>
+                  <span class="ans">Answer: </span></li>
+                  
+<li class="question">_____________ <code>n = 7; biggest(n, 8, 99);</code>
+                  <span class="ans">Answer: </span></li>
+</ol>
+
+<h2>Part 2 - Why are these function calls illegal?</h2>
+Possible errors.
+<ol>
+<li class="mc">Wrong number of parameters.</li>
+<li class="mc">Wrong paramter type(s).</li>
+<li class="mc">Cannot assign to reference parameter.  Actual reference parameter not an l-value.</li>
+<li class="mc">Void function called where a value is required.</li>
+</ol>
+Answer each of these questions with one of the alternatives above.
+<ol>
+<li class="question">_____________ <code>n = biggest(56);</code>
+                     <span class="ans">Answer: </span></li>
+<li class="question">_____________ <code>n = 14; exchange(n, 15);</code>
+                     <span class="ans">Answer: </span></li>
+<li class="question">_____________ <code>cout &lt;&lt; exchange(n, n);</code>
+                     <span class="ans">Answer: 3 is not an l-value.  Ie, you can't assign to 3.</span></li>
+<li class="question">_____________ <code>exchange(n, biggest(14, 15));</code>
+                     <span class="ans">Answer: x+1 and y+1 are not l-values.  Ie, they can't be assigned to.</span></li>
+</ol>
+
+
+<script type="text/JavaScript">footer("2000-3");</script>
+</body>
+</html>
+

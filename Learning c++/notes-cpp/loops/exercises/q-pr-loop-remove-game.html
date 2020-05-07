@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com/fred)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++: Programming Problem - Game to remove tokens</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++</a>: Programming Problem - Game to remove tokens</h1>
+
+
+<h2>Description of game</h2>
+There two-person game starts by placing
+about 20 tokens (coins, cards, stones, ...) on the table.
+The players take turns removing either one, two, or three tokens on
+each turn.  The loser is the player who is forced to take the
+last token.
+
+<h2>Program</h2>
+Write a program to play this game against a human.
+
+<p>You should use incremental programming techniques, which
+means that you should start with a very small <i>working</i>
+program, and make improvements to it <i>in small steps</i>
+that you test each time.  For example,
+</p>
+<ol>
+<li>First write a program that simply prints out instructions.</li>
+<li>Then modifiy it to print a starting
+    number (eg, 20) with a loop reading numbers from the human opponent.
+    </li>
+<li>Next add checking to see if they entered a legal number (1-3).</li>
+<li>Next subtract their entry from the total number of tokens 
+    and terminate the loop when the number of
+    tokens is zero.</li>
+<li>Calculate a response to the user's input so your program plays against them.</li>
+</ol>
+
+<p>Maybe these aren't exactly the steps that you want to use, but this style
+of incremental development is very, very successful.  Also it should always
+leave you with a running, but possibly incomplete, program - the version before
+the last increment.
+</p>
+
+<h2>Improvements</h2>
+<ol>
+<li>Randomize the initial value.</li>
+<li>Figure out how to play optimally, and make random moves when that isn't possible.</li>
+<li>Let the user choose to go first or second.</li>
+<li>Etc.</li>
+</ol>
+
+<h2>References</h2>
+<a href="../../misc/random.html">Random Numbers</a>.
+
+
+<script type="text/JavaScript">footer("2003");</script>
+</body>
+
+</html>

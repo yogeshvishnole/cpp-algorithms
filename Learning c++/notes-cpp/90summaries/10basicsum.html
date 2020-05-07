@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="summaries.css" />
+<title>C++ Notes: Summary - Basic Elements</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Summary - Basic Elements</h1>
+
+   
+<table> <!-- table for columns -->
+<tr><td colspan="3" class="rowheader">Basics</td></tr>
+
+<tr><td valign="top"> <!-- col 1 -->
+
+<h2>Comments</h2> <!--====================== Comments -->
+
+<strong><code>//</code></strong> This comment terminates at end of line.
+<br /><strong><code>/*</code></strong> Comment (possibly many lines)
+    terminates at <strong><code>*/</code></strong>
+
+
+
+
+<h2>Reserved Words</h2>
+<code>
+asm auto <b>bool</b> <b>break</b> 
+<b>case</b> catch
+<b>char</b> <b>class</b> <b>const</b> const_cast <b>continue</b>
+<b>default</b> delete <b>do</b> <b>double</b> dynamic_cast
+<b>else</b>  <b>enum</b> explicit export extern 
+<b>false</b> <b>float</b> <b>for</b> friend goto
+<b>if</b> inline <b>int</b> <b>long</b> mutable
+<b>namespace</b> <b>new</b>
+operator private protected public
+register reinterpret_cast <b>return</b>
+<b>short</b> <b>signed</b> sizeof static static_cast
+<b>struct</b> <b>switch</b> template this throw
+<b>true</b> try typedef typeid typename union
+<b>unsigned</b> <b>using</b> virtual <b>void</b> volatile
+wchar_t <b>while</b>
+</code>
+
+<h2>Operators and Puctuation</h2>
+() {} [] + - * / % ++ -- 
+&lt; &lt;= == != &gt;= &gt;
+&amp;&amp; || !
+&lt;&lt; &gt;&gt;
+?: ; , .
+= += -= ...
+<br />
+&amp; | ^ ~
+::
+-&gt;
+-&gt;* .*
+
+</td><td>&nbsp;&nbsp;&nbsp;</td><td valign="top"> <!-- start next col -->
+
+<h2>Identifiers</h2>
+
+<ul>
+<li>Start identifiers with an alphabetic character (a-z or A-Z),
+    and continue with alphabetic, numeric (0-9), or '_' (underscore) characters.</li>
+<li>Second words in a name should start with an uppercase letter.</li>
+<li>Do not use keywords (see below).</li>
+<li>Constants should be all uppercase
+    (X_AXIS, Math.PI, ...).</li>
+</ul>
+
+</td></tr>
+<tr><td colspan="3" class="rowheader">Simple and String Types</td></tr>
+
+<tr><td valign="top"> <!-- col 1 -->
+
+<h2>Integer Types</h2> <!--====================== Integer Types -->
+The integer types: char, short, int, long, and bool are binary integers.
+All except bool are signed (char is usually signed), but can be declared unsigned.  
+Below are some typical characteristics
+of the basic types.  The standard allows compilers
+to have different implementations.
+
+  <table border="1" cellspacing="0">
+  <tr><td>Type </td><td>Bytes</td><td>Range (signed)            </td><td>Range (unsigned)</td><td>Literals   </td></tr>
+  <tr><td>bool </td><td>1</td><td>0..1                          </td><td>&nbsp;          </td><td>false, true</td></tr>
+  <tr><td>char </td><td>1</td><td>-128..+127                    </td><td>0..255          </td><td>'a'        </td></tr>
+  <tr><td>short</td><td>2</td><td>-32,768..+32,767              </td><td>0..65,535       </td><td>none       </td></tr>
+  <tr><td>int  </td><td>4</td><td>-2,147,483,648..+2,147,483,647</td><td>0..4,294,967,295</td><td>23, 0xAF   </td></tr>
+  <tr><td>long </td><td>4</td><td>-2,147,483,648..+2,147,483,647</td><td>0..4,294,967,295</td><td>23L, 0xAFL </td></tr>
+  </table>
+  Operators: arithmetic, comparison, bitwise, assignment.
+
+
+<h2>Floating-point Types</h2> <!--====================== Floating-point Types -->
+The floating-point types, float and double, are usually stored
+    in IEE-754 format. Calculations may produce NaN (Not a Number);
+    or positive or negative infinity.
+
+  <table border="1" cellspacing="0">
+  <tr><td>Type  </td><td>Bytes</td><td>Range             </td><td>Accuracy    </td><td>Literals      </td></tr>
+  <tr><td>float </td><td>4    </td><td>-3.4E38..+3.4E38  </td><td>6-7 digits  </td><td>3.14F 6.02e23F</td></tr>
+  <tr><td>double</td><td>8    </td><td>-1.7E308..+1.7E308</td><td>14-15 digits</td><td>3.14 6.02e23  </td></tr>
+  <tr><td>long double</td><td>12</td><td>??-??</td><td>?? digits</td><td>&nbsp;</td></tr>
+  </table>
+  Operators: arithmetic, comparison, assignment.
+  
+</td><td>&nbsp;&nbsp;&nbsp;</td><td valign="top">   <!-- start rightmost column -->
+
+
+
+<h2>Characters</h2> <!--====================== char type -->
+Characters are stored in one byte (<code>char</code>) or two bytes (<code>wchar_t</code>).
+    <code>char</code> is an integer type.
+<br />Literals
+      <ul>
+      <li>'A' // one character in single quotes.</li>
+      <li>Double quotes (&quot;&quot;) are used to enclose <i>strings</i> which
+          may have zero or more characters, eg, &quot;Hello&quot;.</li>
+      <li>Hexadecimal '0xnn' where x is a hexadecimal digit.  <i>Eg</i> '0x41'</li>
+      <li>Octal '\nnn' where n is an octal digit.</li>
+      <li><i>Escape</i> combinations:
+              '\n' newline, '\\' backslash, '\'' single quote,
+              '\&quot;' double quote, '\r' carriage return, '\t' tab,
+              '\b' backspace, '\f' form feed.</li>
+      </ul>
+      
+<h2>C-strings</h2>
+C-strings are arrays of chars with a terminating zero ('\0').
+Enclose C-string literals in double quotes.  C-strings are type 
+<code>char[]</code> or equivalently <code>char *</code>.
+<pre>   char* message = "Time to go home";</pre>
+<pre>   char message[] = "Time to go home";</pre>
+Assignment and concatenation operators are overloaded to allow use with <code>string</code> variables.
+<h2>string type</h2>
+This object type requires the <code>&lt;string&gt;</code> header.
+<pre>
+   string s;
+   s = s + " more";</pre>
+</td></tr>
+<tr><td colspan="3" class="rowheader"><span class="subhead">Declarations</span></td></tr>
+<tr><td valign="top">
+
+
+
+<h2>Simple variable declarations</h2>
+Write the type, a variable name, an optional initial value, and a comment.
+It's possible to write a comma-separated list of variable names after the
+type or to omit the comment, but it's not a good style.
+<pre>
+   int  t;               // temp in Celsius
+   char separator = ','; // name separator
+   unsigned short h;     // height in pixels
+</pre>
+
+</td><td>&nbsp;&nbsp;&nbsp;</td><td valign="top" width="50%">   <!-- start rightmost column -->
+
+<h2>Constant declarations</h2>
+<p>Use the keyword <code>const</code> in front of a declaration which has an initial value.
+Constant names should be in uppercase characters.  If the name has multiple
+words, they should be separated by underscore (&quot;_&quot;).</p>
+<pre>
+   const int MAX_SIZE = 20; // Max number of keys.
+</pre>
+
+
+<h2>Enumeration Types</h2> <!-- ============================== Enum -->
+A sequence of integer constants can be defined with <b>enum</b>.
+<pre>
+enum Direction (NORTH, EAST, SOUTH, WEST);
+// NORTH is 0, EAST is 1, ...
+Direction myWay;</pre>
+
+
+
+
+</td></tr></table> <!-- end of columns -->
+
+<div class="footer">
+Copyleft 2004 <a href="http://www.leepoint.net/fred/">Fred Swartz</a>
+<a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>
+</div>
+
+</body>
+</html>
+

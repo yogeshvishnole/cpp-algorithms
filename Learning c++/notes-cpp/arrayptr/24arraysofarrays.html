@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <title>C++ Notes: Arrays of Arrays</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Arrays of Arrays</h1>
+
+<p>The most common use of arrays of arrays in C/C++ is arrays of C-strings.</p>
+
+  
+<h2>Array of C-strings</h2>
+
+<p>An array of C-strings is an array of arrays.  Here is an example.
+</p>
+<pre class="example">
+char* days[] = {"Mon", "Tue", "Wed", "Thu", "Fri"};
+</pre>
+
+<p>In the above <code>days</code> array each element is a <i>pointer</i> to
+a string, and they don't have to be the same size.  For example,
+</p>
+<pre class="example">
+char * greetings[] = {"Hello", "Goodbye", "See you later"};
+</pre>
+   
+   
+   
+<h2>Parameters to main</h2>
+
+<p>When the <code>main</code> function is called, it is passed the name of the 
+program that is being run and all the tokens (words) on the remainder
+of the line that was used to run the program.  These are passed to the
+main as an array of C-strings and the number of elements in the array.
+Here is a main program that prints these parameters.
+</p>
+<pre class="file">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main(int argc, char* argv[]) {
+    for (int i=0; i&lt;argc; i++) {
+        cout &lt;&lt; argv[i] &lt;&lt; endl;
+    }
+    return 0;
+}
+</pre>
+
+
+<h2>Array of pointers or pointer to pointer</h2>
+<p>Because arrays and pointers are so interchangeable, you can write the
+header of main like this also:
+</p>
+<pre class="example">
+int main(int argc, char* argv[]) { ...
+</pre>
+   
+<div class="footer">Copyleft 2004 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+
+</html>

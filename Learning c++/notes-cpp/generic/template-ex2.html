@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Example - CheckedArray Alternate Style</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>:Example - CheckedArray Alternate Style</h1>
+
+<h2>CheckedArray Example 2</h2>
+This shows another way to organize the header file for template
+classes.  In <a href="template-ex1.html">Example - CheckedArray Template Class</a>
+the constructor/method definitions were in the class.  This style
+puts the method definitions after the class.  Note that each
+method definition must then be preceded with both a template
+statement and the class qualifier.
+<pre class="file">//--- file generic/CheckedArray.h
+#ifndef CHECKEDARRAY_H
+#define CHECKEDARRAY_H
+
+#include &lt;stdexcept&gt;
+
+/////////////////////////////////// class CheckedArray&lt;T&gt;
+<b>template&lt;class T&gt;</b>
+class CheckedArray {
+private:
+    int size;  // maximum size
+    T* a;      // pointer to new space
+public:
+    CheckedArray&lt;T&gt;(int max);
+    T&amp; CheckedArray&lt;T&gt;::operator[](int index);
+};//end class CheckedArray&lt;T&gt;
+
+       
+//================================= constructor
+<b>template&lt;class T&gt;</b>
+CheckedArray&lt;T&gt;::CheckedArray&lt;T&gt;(int max) {
+    size = max;
+    a = new T[size];
+}//end constructor
+
+//================================= operator[]
+<b>template&lt;class T&gt;</b>
+T&amp; CheckedArray&lt;T&gt;::operator[](int index) {
+    if (index &lt; 0 || index &gt;= size)
+        throw out_of_range("CheckedArray");
+
+    return a[index];
+}//end operator[]
+#endif
+</pre>
+
+The calling program is the same as in <a href="template-ex1.html">Template Example 1</a>.
+
+   
+<script type="text/JavaScript">footer("2001");</script>
+</body>
+
+</html>

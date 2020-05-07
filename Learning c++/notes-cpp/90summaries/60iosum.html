@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <link rel="stylesheet" type="text/css" href="summaries.css" />
+    <title>C++ Notes: Summary: Input / Output</title>
+</head>
+
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Summary of Input / Output</h1>
+
+<table border="0"><tr valign="top"><td>  <!-- first column -->
+
+<h2>Include files</h2>
+There are several standard C include files that are commonly used with 
+I/O.
+<pre>
+   #include &lt;iostream&gt;  // Defines cin, cout, istream, ostream, ...
+   #include &lt;iomanip&gt;   // I/O manipulators (endl, setw, ...)
+   #include &lt;fstream&gt;   // File I/O - ifstream and ofstream.
+   #include &lt;sstream&gt;   // String streams - istringstream and ostringstream.
+   using namespace std;
+</pre>
+
+</td><td>   <!-- second column -->
+
+<h2>Predefined I/O Streams</h2>
+<table border="0" summary="">
+<tr><td><code>cin</code></td><td>Input stream</td></tr>
+<tr><td><code>cout</code></td><td>Output stream</td></tr>
+<tr><td><code>cerr</code></td><td>Error message stream</td></tr>
+<tr><td><code>clog</code></td><td>Buffered error message stream</td></tr>
+</table>
+
+</td></tr></table>  <!-- end of two col display -->
+
+<table border="0"><tr valign="top"><td>   <!-- start first column -->
+
+<h1><code>cin</code> - Stream Input</h1>
+<code>cin</code> is associated by default to console input.
+
+<h2>Reading numbers in a loop</h2>
+A typical loop to read numbers would look like this.
+<pre class="fragment">
+int n;
+int sum = 0;
+while (<span class="hylyt">cin &gt;&gt; n</span>) // reads number into n
+    sum = sum + n);
+}
+</pre>
+Not only does reading from <code>cin</code> do input, it also
+effectively returns true unless there was an error or EOF.
+
+<h2>EOF</h2>
+A common way to read until an EOF is with a while loop.  
+The value of the input expression will be true if the 
+reads succeeds, and false if it fails.  Two possible
+reasons for failure would be (1) EOF - End of File, 
+and (2) Bad input (eg, non-numeric characters in a number).
+An EOF can be made on the keyboard with control-Z on a PC or 
+control-D on a Unix/Macintosh system. 
+Sometimes this must be followed by a carriage return.
+
+
+<h2>Reading characters from an input stream</h2>
+Normally, <code>cin</code> skips whitespace (blanks, tabs, newlines, etc) when reading.
+Ignoring whitespace works well for numbers, but it doesn't work if you
+want all characters including whitespace.  
+The <code>get</code> method can be used to read single characters, including whitespace.
+There are several forms of <code>get</code>, but the easiest to use is
+<pre class="fragment">
+char c;
+while (<span class="hylyt">cin.get(c)</span>) {
+    . . . // process the character in c
+}</pre>
+
+<h2>Reading entire lines as strings</h2>
+  
+Here is a typical pattern for reading one line at a time.
+<code>getline</code> reads a line <i>without a terminating newline character</i>
+into so.
+Here a <code>string</code> is used to hold the line.
+<pre class="fragment">
+string s;
+while (<span class="hylyt">getline(cin, s)</span>) {
+    . . .  // process s
+}</pre>
+
+
+<h1><code>cout</code> - Stream Output</h1>
+Stream output to the ostream variable <b>cout</b> uses the &lt;&lt; (insertion) operator.
+<pre class="fragment">
+cout &lt;&lt; "Hello World" &lt;&lt; endl;
+</pre>
+
+</td></tr></table>  <!-- end of two columns -->
+
+
+
+<h1>Text File Input</h1>
+<ul>
+<li><b>Text file input</b>: See <a href="../io/readtextfile.html">Reading Text Files</a></li>
+<li><b>I/O maniupulators</b>: See summary of <a href="../io/omanipulators.html">I/O Manipulators</a></li>
+</ul>
+
+
+
+<script type="text/JavaScript">footer("1996-2003");</script>
+</body>
+</html>
+

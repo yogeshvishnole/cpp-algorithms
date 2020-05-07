@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Function return Statement</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Function <code>return</code> Statement</h1>
+
+
+
+<h2>Return statement</h2>
+The <b>return</b> statement stops execution and returns to the calling function.
+When a return statement is executed,
+the function is terminated immediately at that point, regardless of whether
+it's in the middle of a loop, etc.
+
+
+<h2>Return optional in void functions</h2>
+A void function doesn't have to have a return statement -- when the end is 
+reached, it automatically returns.  However, a void function may optionally 
+contain one or more return 
+statements.
+
+<pre class="fragment">
+void printChars(char c, int count) {
+    for (int i=0; i&lt;count; i++) {
+       cout &lt;&lt; c;
+    }//end for
+   
+    return;  // Optional because it's a void function
+}//end printChars
+</pre>
+
+
+<h2>Return required in non-void functions</h2>
+If a function returns a value, it must have a return statement
+that specifies the value to return.  It's possible to have
+more than one return, but the (human) complexity of a function
+generally increases with more return statements.  It's generally
+considered better style to have one return at the end, 
+unless that increases the complexity.
+<p>
+The max function below requires one or more return statements because it returns
+an int value. 
+</p>
+<pre class="fragment">
+// Multiple return statements often increase complexity.
+int max(int a, int b) {
+    if (a > b) {
+        return a;
+    } else {
+        return b;
+    }
+}//end max
+</pre>
+
+Here is a version of the max function that uses only one return statement 
+by saving the result in a local variable.  Some authors insist on only
+one return statement at the end of a function.
+Readable code is much more important than following such a fixed rule.
+The use of a single return probably improves the clarity 
+of the max function slightly.
+<pre class="fragment">
+// Single return at end often improves readability.
+int max(int a, int b) {
+    int maxval;
+    if (a > b) {
+        maxval = a;
+    } else {
+        maxval = b;
+    }
+    return maxval;
+}//end max
+</pre>
+
+<h2>Related pages</h2>
+<ul>
+<li><a href="funcconcept.html">Functions</a></li>
+<li><a href="params.html">Function Parameters</a></li>
+</ul>
+
+ 
+</body>
+</html>

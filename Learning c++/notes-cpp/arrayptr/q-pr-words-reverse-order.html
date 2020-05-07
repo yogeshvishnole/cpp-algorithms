@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <title>C++ Notes: Programming Problem - Words in Reverse Order</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Programming Problem - Words in Reverse Order</h1>
+
+<h2>The problem</h2>
+<p>Write a program to do the following.</p>
+<ol>
+<li>Read "words" from <code>cin</code>.</li>
+<li>Save them in an array.</li>
+<li>Call a function, that you write, to reverse the order of the elements in the array.
+    It would be easier to iterate in reverse over the array, but writing the 
+    function is part of this exercise.</li>
+<li>Write out the words in the array so the order is the opposite of the input order.</li>
+</ol>
+
+<h3>Use the <i>string</i> type</h3>
+<p>Use an array of strings (the library <code>string</code> type) to store the words.
+You can read "words" (non-blank characters) from the input like this.
+</p>
+<pre class="fragment">
+// Fragment to read "words" and write them one per line.
+string x;
+while (cin &gt;&gt; x) {
+    cout &lt;&lt; x &lt;&lt; endl;
+}</pre>
+<p>You can adapt the above code to read into an array of strings.</p>
+
+<h3>The reverseArrayElements function</h3>
+<p>Write a function to reverse the elements of a string array. 
+The prototype for the function should be:
+</p>
+<pre class="fragment">
+void reverseArrayElements(string data[], int begin, int end);</pre>
+<p>where <i><code>begin</code></i> is the index of the first element in the range to be reversed,
+and <i><code>end</code></i> is the index <i>after</i> the last element in the range.
+Using an index to the last element beyond the range is common C++ practice.</p>
+
+<p>One way to do this is to start with two indexes, one to the leftmost element (begin)
+and one to the rightmost element (end-1), swap the two values at these positions, increment the left
+index and decrement the right index.  
+Continue this process as long as the left index is less than the right index.
+</p>
+
+<h3>Sample input/output</h3>
+<p>For the following input:</p>
+<pre class="fragment">
+This is a test.</pre>
+<p>The output would be:</p>
+<pre class="fragment">
+test.
+a
+is
+This</pre>
+
+
+
+
+
+<h3>Happy trails programming</h3>
+<p>You may ignore problems, eg, too much input.</p>
+
+<div style="display: none">
+<h2>A Solution</h2>
+
+
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+ 22 
+ 23 
+ 24 
+ 25 
+ 26 
+ 27 
+ 28 
+ 29 
+ 30 
+ 31 
+ 32 
+ 33 
+ 34 
+ 35 
+ 36 
+ 37 
+ 38 
+ 39 
+ 40 
+ 41 
+ 42 
+ 43 
+ 44 
+ 45 
+ 46 
+ 47 
+ 48 
+ 49 
+ 50 
+ 51 
+ 52 
+ 53 
+ 54 
+ 55 
+ 56 
+ 57 
+ 58 
+ 59 
+ 60 
+ 61 
+</pre></td><td valign='top'>
+<div class="file"><pre>
+// arrayptr/reverse-word-order.cpp
+// Fred Swartz - 2004-10-25
+
+#include &lt;string&gt;
+#include &lt;iostream&gt;
+#include &lt;cstdlib&gt;    // for exit()
+using namespace std;
+
+//===================================================== prototype
+void reverseArrayElements(string data[], int begin, int end);
+
+//===================================================== constants
+const int MAX_SIZE = 1000;
+
+//========================================================== main
+int main() {
+    //... Local variables
+    string words[MAX_SIZE];  // Place to save all words
+    int    n;                // Number of words
+    
+    //... Read words into an array,
+    n = 0;
+    while (cin &gt;&gt; words[n]) {
+        n++;
+        if (n &gt;= MAX_SIZE) {
+            cerr &lt;&lt; "reverse-word-order: Too much data" &lt;&lt; endl;
+            exit(1);   // Terminate with code indicating errror.
+        }
+    }
+    
+    //... Reverse order of the array elements.
+    reverseArrayElements(words, 0, n);
+    
+    //... Print the array
+    for (int i=0; i&lt;n; i++) {
+        cout &lt;&lt; words[i] &lt;&lt; endl;
+    }
+    
+    system("PAUSE"); // NON-PORTABLE to keep Dev-C++ window open.
+    return 0;
+}
+
+//============================================== reverseArrayElements
+// Reverse the order of elements in an array of strings.
+//   data - array of strings.
+//   begin - index of first element in range to be reversed.
+//   end   - index of first element beyond end of range.
+void reverseArrayElements(string data[], int begin, int end) {
+    int left  = begin;
+    int right = end-1;
+    
+    while (left &lt; right) {
+        string temp;
+        temp        = data[left]; 
+        data[left]  = data[right]; 
+        data[right] = temp;
+        
+        left++;
+        right--;
+    }
+}
+</pre></div>
+</td></tr></table>
+
+</div>
+
+<div class="footer">Copyleft 2004 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+
+</html>

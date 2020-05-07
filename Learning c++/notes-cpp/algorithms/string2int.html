@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Example: C-String to Int</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Example: C-String to Int</h1>
+
+<h2>Converting C-Strings to Integer</h2>
+<p>If you want to convert a C-string (zero-terminated array of chars) of digits,
+you can call one of the library functions to do this (good idea), or
+write something like the following (good exercise).
+</p>
+
+<h2>Character codes for digits</h2>
+<p>Every character is represented by a pattern of bits.  These patterns can be
+thought of as integers.  If your system uses ASCII (or any of the
+newer standards), the integer value of the code for '0' is 48,
+'1' is 49, etc.  This knowledge is commonly used when converting character digits
+to their equivalent values.
+</p>
+
+<h2>Example function to convert C-strings to int</h2>
+<p>One of the problems to solve immediately is what to do with errors.
+Let's make this a bool function that returns true if we can convert the string
+(eg, no illegal characters), and false otherwise.  We'll pass the value back in
+a reference parameter.
+</p>
+
+
+<h2>The code</h2>
+                        
+<pre class="file">
+//============================================== string2int
+bool string2int(char* digit, int&amp; result) {
+   result = 0;
+
+   //--- Convert each digit char and add into result.
+   while (*digit &gt;= '0' &amp;&amp; *digit &lt;='9') {
+      result = (result * 10) + (*digit - '0');
+      digit++;
+   }
+
+   //--- Check that there were no non-digits at end.
+   if (*digit != 0) {
+      return false;
+   }
+
+   return true;
+}
+</pre>
+
+<h3>How compact should your code be?</h3>
+<p>A shorter, but perhaps less readable, version can replace the last
+three statements to return the correct bool value.
+Recent compilers should produce equivalently efficient code,
+so the most important thing is to choose the most readable 
+version.  In general try to resist making programs shorter without
+improving their clarity.  The following is plausible, and may be 
+more readable.</p>
+<pre class="example">
+   return *digit == 0;   // true if at end of string.</pre>
+   
+<p>A more extreme shortening is definitely NOT more readable.</p>
+<div class="file"><pre>
+bool s2i(char*d,int&amp;r){for(r=0;*d&gt;='0'&amp;&amp;*d&lt;='9';r=r*10+*(d++)-'0');return*d==0;}
+</pre></div>
+
+
+
+<h2>Exercises</h2>
+<ol>
+<li>Extend this to take an initial '-' sign for negative numbers.
+    Hint: One way to do this is to check for it at the beginning and
+    set a number to either -1 or 1.  Then at the end multiply by this
+    number.
+    </li>
+    
+<li>Convert this to convert doubles (<tt>string2double(...)</tt>).  After the integer portion check
+    for a '.'.  Then loop over all the remaining digits, multiplying
+    the first by 0.1, the second by 0.01, the third by 0.001, etc. and
+    adding them to the result.
+    </li>
+    
+<li>Make sure there is at least one digit.
+    </li>
+    
+<li>Add a range check.  Perhaps the simplest way to do this is to convert it 
+    into a double, then check the range of the double.</li>
+    
+</ol>
+
+<p><b>Solution</b>: See <a href="string2int-ans.html">Solution: C-string to double</a>
+for a solution to some of these exercises.</p>
+
+<script type="text/JavaScript">footer("2005");</script>
+
+</body>
+</html>
+

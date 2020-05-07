@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>Class Quiz - 1</title>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+</head>
+<body>
+<h1>Class Quiz - 1</h1>
+
+Name __________________________________
+
+
+
+
+<ol type="1">
+<li>(25 points)
+Write the corresponding .cpp file that implements this class declaration.
+<pre class="example">
+// Person.h
+#ifndef PERSON_H
+#define PERSON_H
+
+#include &lt;string&gt;
+using namespace std;
+
+class Person {
+private:
+    string _name;  // pointer to name
+    int    _id;    // ID
+public:
+    Person(char* n, int i);  // constructor
+    Person(string n, int i);  // constructor
+    Person(const Person&amp; p); // copy constructor
+    ~Person();               // destructor
+    char* getName() const;
+    int   getID()   const;
+    bool operator==(const Person p) const;
+};
+#endif // PERSON_H
+</pre>
+<ul>
+<li>Constructor: The constructor is passed a pointer to a character
+    string.  You must allocate new memory and copy the name to that
+    new copy.  Assume that it is always passed a pointer to a valid
+    name.  This will involve calling <code>strcpy</code>.
+    </li>
+    
+<li>A copy contructor is needed to make a <i>deep copy</i>, 
+    ie, a copy of the name field has to be made.
+    </li>
+    
+    
+<li>A destructor is needed to deallocate the memory that was allocated
+    for the name.
+    </li>
+    
+<li>The == operator definition will have to call <code>strcmp</code>.
+    </li>
+</ul>
+</li>
+
+<li>(3 points)
+
+Here is a sample main program
+<pre class="example">
+// main.cpp
+#include &lt;iostream&gt;
+using namespace std;
+
+#include "Person.h"
+
+void main() {
+    Person mickey("Mickey Mouse", 111111);
+    Person minnie("Minnie Mouse", 111112);
+
+    if (mickey == minnie) {
+        cout &lt;&lt; "Same" &lt;&lt; endl;
+    }else{
+        cout &lt;&lt; "Different" &lt;&lt; endl;
+    }
+
+    mickey = minnie;
+
+    if (mickey == minnie) {
+        cout &lt;&lt; "Same" &lt;&lt; endl;
+    }else{
+        cout &lt;&lt; "Different" &lt;&lt; endl;
+    }
+
+    char xxx; cin &gt;&gt; xxx; // keep console window open
+}//end main
+</pre>
+
+<ol type="a">
+<li>_______ How many times is the constructor called?</li>
+<li>_______ How many times is the copy constructor called?</li>
+<li>_______ How many times is the destructor called?</li>
+</ol>
+</li>
+
+</ol>
+
+
+  
+<script type="text/JavaScript">footer("2001");</script>
+</body>
+
+</html>

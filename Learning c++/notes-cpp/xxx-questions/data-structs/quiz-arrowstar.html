@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <title>C++: Reference/Dereference Questions 1</title>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: Reference/Dereference Questions 1</h1>
+
+<p>Name __________________________________</p>
+
+<p>
+Given the following declarations, indicate which of the following are syntactically legal
+(Y) or illegal (N)?
+</p>
+<pre class="fragment">
+   struct Thing {
+      double mass;
+      double velocity;
+   };
+   
+   Thing  m;
+   Thing  n;
+   Thing* r;
+   Thing* s;
+</pre>
+
+<p>Put "Y" a cell to indicate that the 
+expression on the top could syntactically be assigned to the item on the
+left.  Leave the illegal cells empty.
+</p>
+
+<br />
+
+<table border="1" cellspacing="0">
+<tr><td align="right">&nbsp;</td><td>new Thing</td><td>&nbsp;&nbsp;n&nbsp;&nbsp;</td><td>&nbsp;&amp;n&nbsp;</td><td>&nbsp;*n&nbsp;</td><td>&nbsp;&nbsp;s&nbsp;&nbsp;</td><td>&nbsp;&amp;s&nbsp;</td><td>&nbsp;*s&nbsp;</td></tr>
+<tr><td align="right">m =</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td align="right">*m =</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td align="right">r =</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td align="right">*r =</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td align="right">r[0] =</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+<br /><br />Put "Y" next to syntactically correct items, and "N" next to erroneous statements.
+<table border="0"><tr><td>
+<ol>
+<li>______ m.mass = 1.2;</li>
+<li>______ *(m.mass) = 1.2;</li>
+<li>______ (*m).mass = 1.2;</li>
+<li>______ m-&gt;mass = 1.2;</li>
+<li>______ *(m-&gt;mass) = 1.2;</li>
+<li>______ (*m)-&gt;mass = 1.2;<br /><br /></li>
+</ol>
+
+</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
+<ol start="7">
+<li>______ r.mass = 1.2;</li>
+<li>______ *(r.mass) = 1.2;</li>
+<li>______ (*r).mass = 1.2;</li>
+<li>______ r-&gt;mass = 1.2;</li>
+<li>______ *(r-&gt;mass) = 1.2;</li>
+<li>______ (*r)-&gt;mass = 1.2;<br /><br /></li>
+</ol>
+</td></tr></table>
+
+<ol start="13">
+<li>______ m = new Thing;</li>
+<li>______ r = new Thing;</li>
+<li>______ s = new Thing[200];</li>
+<li>______ delete m;</li>
+<li>______ delete s;</li>
+<li>______ delete [] m;</li>
+<li>______ delete [] s;</li>
+    
+</ol>
+
+
+<div class="footer">Copyleft 2004 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+</html>
+

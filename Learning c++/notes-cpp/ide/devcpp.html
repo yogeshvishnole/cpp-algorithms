@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <title>C++ Notes: IDEs - Dev-C++</title>
+</head>
+<body>
+
+<h1><a href="../index.html">C++ Notes</a>: IDEs - Dev-C++</h1>
+
+<p>Dev-C++ is a reasonably good, simple, free C++ development environment for C++.
+It provides a GUI interface to gcc (GNU Compiler Collection).
+I use it rather than the Microsoft's Visual Studio or Borland's C++ Builder
+because of its simplicity.  For small programs it's a good choice. 
+For larger and more complex programs, the commercial products offer more.
+</p>
+
+<h2>Where to get it</h2>
+<p><a href="http://www.bloodshed.net">www.bloodshed.net</a> has links for 
+downloading.  By default it installs itself in <code>C:\Dev-Cpp</code>.
+You should uninstall the previous version before installing the new version.
+</p>
+
+
+<h2>Options</h2>
+<p>If they aren't already set, you consider setting these options [applies to Dev-C++ 4.9.8.0 - 4.9.1.0].</p>
+   <dl>
+   <dt>Tools &gt; Editor options</dt>
+       <dd>A number of editor options that are worth setting if they aren't already turned on.
+       Some are set on by default (Auto Indent, Insert Mode, 
+       Find Text at Cursor, Scrollbars as needed,
+       Use Syntax highlighting).
+       Be sure that your tab size is set to 4 (or less).
+       Turn on the <code>Highlight matching braces/parentheses</code> option.
+       When this is turned on, selecting a brace will show the matching brace,
+       saving a lot of time when trying understand exactly what's wrong
+       with your braces.
+       In the editor options <code>Display</code> tab, select the
+       <code>Line Numbers</code> option so that numbers will show
+       on your source code.
+       </dd>
+   <dt>Tools &gt; Compiler Options &gt; Settings [tab] &gt; Code Generation [list item]</dt>
+       <dd>Set <i>Enable exception handling</i> to Yes.
+       If you use asserts, it may be necessary to set this option even to get
+       your program to compile.</dd>
+   <dt>Tools &gt; Compiler Options &gt; Directories [tab] &gt; C++ Includes [tab]</dt>
+       <dd>Some installations don't have all the C++ Libraries included.
+           For version 4.9.1.1 I show the following, altho I'm not really sure
+           what the implications of all of them are.
+   <pre>
+   C:\Dev-Cpp\include\c++
+   C:\Dev-Cpp\include\c++\mingw32
+   C:\Dev-Cpp\include\c++\backward
+   C:\Dev-Cpp\include\
+   C:\Dev-Cpp\include\c++\3.3.1</pre>
+          If one is missing, the button to the right of the textfield can
+          be used to browse for new directories.
+          </dd>
+   </dl>
+
+
+<h2>Projects are useful for managing multiple source files</h2>
+<p>A <i>project</i> (contained in a .dev file) is how Dev-C++ (and other IDEs) keep track
+of <i>multiple source files</i>.  If you have only one source file, there
+is no need to create a project.
+</p>
+<ul>
+<li>Create a new project with <code>File &gt; New... &gt; Project</code> menu item
+    and select <code>Console</code> as the type of project from the <code>Basic</code> tab
+    and C++ as the type of source code.  
+    Don't use a project name that conflicts with a source file name.
+    </li>
+<li>The panel on the left shows the project files.</li>
+<li>Use the <code>File &gt; New... &gt; Source File</code> menu item to create new
+    source files in the project (.cpp, .h, etc).</li>
+<li>To delete a source file from the project, right click it in the project panel 
+    and select Delete.</li>
+</ul> 
+
+
+<h2>Console window closes when program terminates</h2>
+<p>This isn't really a bug; it's probably
+    what should happen normally, but it would be nice to have an option to keep it open as 
+    some IDEs do.  Here are some ways of handing this.</p>
+<ol>
+<li><b><code>system("PAUSE")</code></b>.
+   Put the following statement before the <code>return 0</code> in main.
+   <pre class="example">
+   system("PAUSE");</pre>
+   This will cause the window to remain open until you hit any key.
+   </li>
+   
+<li><b>Extra final read</b>.  Put an extra read immediately before the return.
+    Just ignore the input and return, but this stops the window from disappearing
+    until there is input.</li>
+    
+<li><b>Console window</b>.  Open a command/console/DOS window, cd to the 
+    appropriate directory, and run the program "by hand" by typing
+    the name of the .exe file.
+    </li>
+<li><b>Breakpoint</b>. Set a breakpoint on the return statement at the end of main.
+    To use the debugger:
+       <ul>
+       <li>Put the cursor on the return statement.</li>
+       <li>Click Debug instead of Run.</li> 
+       <li>Choose Run to Cursor from the box that appeared at the bottom
+           of the window.  This runs your program until it gets to the statement
+           with the cursor on it (the return statement), 
+           leaving the console window open.  Note that the console window
+           may be positioned under the source window so you will have to 
+           bring it to the top.
+           </li>
+       <li>Click Continue in the bottom box to terminate the program.
+           Sometimes you may have to click Stop Execution in that
+           bottom box to get the debugger to let go.</li>
+       </ul>
+       </li>
+</ol>
+    
+
+<div class="footer">Copyleft 2004 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+
+</html>
+

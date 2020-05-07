@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com/fred/)"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <link rel="stylesheet" type="text/css" href="../notes.css" />
+  <title>C++ Notes: C-strings</title>
+</head>
+
+<body>
+<h1><a href="../index.html">C++ Notes</a>: C-Strings</h1>
+
+
+<h2>Strings</h2>
+There are two ways to represent character strings in C++.
+<ol>
+<li><b>Arrays of characters</b>, terminated by a "zero" value, are commonly used.
+    These are referred to as &quot;c-strings&quot; to distinguish them from the
+    <code>string</code> type that was introduced in the C++ Standard Template Library.</li>
+<li>The <b><code>string</code> class</b> is a relatively late addition to C++ that 
+    represents strings as objects.  This class is generally easier to use than
+    c-strings, but you usually can not avoid some use of c-strings.
+    </li>
+</ol>
+
+
+<h2>Characters</h2>
+Individual characters (type <code>char</code>) are stored in single bytes.
+A character literal is surrounded by single quotes (eg, 'a', ')', ...).
+Double quotes are used to represent a c-string literal.  Eg, &quot;a&quot; is a
+c-string consisting of one character followed by a zero.
+Some characters need to be preceded by
+a special <i>escape character</i> (the backslash), because they have some
+meaning to the compiler.
+For example, '\'' is a single quote, '\\' is a single backslash,  
+'\n' is the <i>newline</i> character, and there are others.
+
+
+<h2>Arrays of Characters terminated with &quot;zero&quot;</h2>
+C-strings are stored as characters in an array.  Following 
+the characters there is a character with
+code zero.  You can write this as either 0 or '\0'.  The
+name for this ASCII character is NUL, but that should not 
+be confused with the special pointer value NULL (which should
+not be used for this purpose).
+
+
+<h2>Quoted Strings</h2>
+A double-quoted string of characters is a common way to write an array of 
+characters.  The string <code>"Hello"</code> represents and array of
+<b>six</b> (not 5) characters.  The last character is the terminating
+zero code.  Example,
+<pre class="fragment">
+char greeting[] = &quot;Hello&quot;;</pre>
+is the same as
+<pre class="fragment">
+char greeting[6] = {'H', 'e', 'l', 'l', 'o', '\0'};</pre>
+   
+   
+<h2>Using a quoted string as an array</h2>
+A quoted string really represents an array, so it can even be subscripted.  For example,
+<pre class="fragment">
+for (int i=0; i&lt;5; i++) {
+    cout &lt;&lt; &quot;Hello&quot;[i];
+}</pre>
+
+
+<h2>Include files</h2>
+If you are using the c-string  and character functions, you must have
+<br/>
+<table summary=""><tr><td>
+<pre class="fragment">
+#include &lt;cstring&gt;
+#include &lt;cctype&gt;</pre>
+</td>
+<td>or for old compilers</td>
+<td>
+<pre class="fragment">
+#include &lt;string.h&gt;
+#include &lt;ctype.h&gt;</pre>
+</td></tr></table>
+
+
+<script type="text/JavaScript">footer("1996");</script>
+</body>
+</html>
+

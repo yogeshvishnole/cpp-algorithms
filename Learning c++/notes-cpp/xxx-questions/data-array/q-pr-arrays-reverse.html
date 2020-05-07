@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com/fred/)"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../notes.css" />
+    <title>C++: Arrays: Programming Problem: Reverse</title>
+</head>
+
+<body>
+<h1><a href="../../index.html">C++</a>: Arrays: Programming Problem: Reverse Input</h1>
+Name __________________________________
+
+<p>(5 points) Read in a sequence of floating-point numbers terminated by an end-of-file 
+and print them out in reverse.  Assume there will not be more than 100,000 numbers.
+Do not use any functions for this problem.  Hint: Read the numbers into an 
+array and them print them.
+</p>
+<div class="ans">Answer:
+<div class="example"><pre>
+// arrays/reverse-input.cpp - Reverses order of numbers in input.
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    //--- declare array and number of elements in it.
+    float a[100000];
+    int n;
+   
+    //--- read numbers into an array
+    n = 0;
+    while (cin &gt;&gt; a[n]) {
+        n++;
+    }
+   
+    //--- print array in reverse order
+    for (int i=n-1; i&gt;=0; i--) {
+        cout &lt;&lt; a[i] &lt;&lt; endl;
+    }
+   
+    return 0;
+}//end main
+</pre></div>
+
+</div>
+   
+   
+<!-- <script type="text/JavaScript">footer("2000");</script>   -->
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Arrays - Inherent Problems</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Arrays - Problems and Solutions</h1>
+
+<h2>Inherent Problems</h2>
+Arrays can be difficult to use reliably for several reasons.
+
+<h3>Unknown maximum size of an array</h3>
+Because arrays are implemented as a pointer to the first element of the 
+allocated storage, the length, or maximum allocated size, is not generally
+available.  It's necessary to pass this maximum size to functions which 
+need to add elements to an array.  [Note: Vectors solve this problem.]
+
+<h3>Lack of current number of elements</h3>
+The number of elements currently in an array is another quantity
+that the programmer must keep track of.  [Note: Vectors solve this problem.]
+
+<h3>Fixed size</h3>
+The programmer has to decide how much memory to allocate for an 
+array, but sometimes there may be large variations in the requirements.
+For example, I was just writing a program to process daily mutual
+fund values.  The data is downloaded from a service that provides
+this data, but I don't know how much data there will be for any fund.  It can 
+vary from a few entries for new funds to many years of data.  How big 
+should I declare the arrays?  If I make all arrays large enuf for
+the largest possible number of data points (50 years?), then memory 
+usage will be very wasteful and the program might not even fit into memory on some 
+machines.  If I make the arrays smaller, there might not be suffcient
+space for all data.  [Note: Vectors solve this problem.]
+
+<h3>Lack of subscript checking</h3>
+C++ doesn't check subscription to see that the subscript is in a 
+legal range.  This lack of checking means that errors are often
+undetected for a long time.  This is also the source of the most
+common hacker exploitation of programs, known as the 
+<i>buffer overflow</i> exploit.  [Note: Vectors can solve this problem.  Also, Java and C# provide bounds checking.]
+
+<h3>Buffer Overflow</h3>
+<p>
+Imagine that in the previous
+example, which involved reading numbers into an array,
+the input consisted of more than 1000 (the size of the array)
+numbers.  What happens?  The numbers are read into memory 
+locations after the end of the array.  What is the consequence
+of this?  Hmmmm, that's what hacker knowledge is all about.
+[Note: Vectors solve this problem.]
+</p>
+
+
+<h2>Solutions</h2>
+
+<h3>Dynamic allocation - Solution to fixed size restriction</h3>
+Arrays can be dynamically allocated, which is a nice solution 
+for some problems.  But you have to be comfortable with
+<i>pointers</i> before using dynamic allocation
+(<a href="../newdelete/50dynamalloc.html">Dynamic Allocation of Arrays</a>).
+[Note: This is how vectors are implemented.]
+
+<h3>Vectors - Solution to buffer overflow, fixed size, unknown maximum and current size, ...</h3>
+Object-oriented programming libraries, such as the STL (Standard Template Library)
+which comes with modern versions of C++, provide data structures
+which are nice replacements for arrays.  The simplest alternative
+is <a href="../stl-containers/vector/vector.html"><code><b>vector</b></code></a>, which is 
+essentially a kind of expandable array.  
+
+<script type="text/JavaScript">footer("2002-3");</script>
+</body>
+
+</html>

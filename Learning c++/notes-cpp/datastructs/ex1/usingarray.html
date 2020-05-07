@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>C++: Containers: Example 1 Using Array</title>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../../notes.js"></script>
+</head>
+<body>
+<h1><a href="../../index.html">C++</a>: Containers: Example 1 Using Array</h1>
+One of three contrasting examples of solving the problem with increasingly
+powerful tools: 
+<a href="usingarray.html">using arrays</a>, then 
+<a href="usingvector.html">vectors</a>, then 
+<a href="usingstack.html">stacks</a>.
+<pre class="example">
+// Read words and print them in reverse order.
+//   Variation 1: Fixed array sizes, use new to copy word.
+// Fred Swartz 2001-11-08, 2001-12-04
+
+#include &lt;iostream&gt;  // for cin, cout
+#include &lt;cstring&gt;   // for strlen, strcpy
+using namespace std;
+
+int main() {
+
+    char *allwords[1000]; // array of POINTERS to char strings
+    char word[500];       // input buffer for longest possible word.
+    int n = 0;            // count of number of words.
+
+    // read words/tokens from input stream
+    while (cin &gt;&gt; word) {
+        allwords[n] = new char[strlen(word)+1]; // allocate space
+        strcpy(allwords[n], word);      // copy word to new space
+        n++;
+    }
+
+    cout &lt;&lt; "Number of words = " &lt;&lt; n &lt;&lt; endl;
+
+    // write out all the words in reverse order.
+    //    The dynamically allocated space is freed after the word
+    //    is printed, and the pointer is set to NULL.  This isn't
+    //    necessary here because the program immediately terminates,
+    //    but it's a good, safe practice.
+    for (int i=n-1; i&gt;=0; i--) {
+        cout &lt;&lt; allwords[i] &lt;&lt; endl; // print the word
+        delete [] allwords[i];       // free space
+        allwords[i] = NULL;          // remove pointer
+    }
+    return 0;
+}//end main</pre>
+
+The big problem with this program is that is is subject to <i>buffer overflow</i>
+bugs -- words larger than 499 characters or more than 1000 words will
+simply overflow the arrays until something so serious happens that the 
+program can't continue running.  Let's hope it didn't overwrite one of you
+open output file buffers, for example.
+
+   
+<script type="text/JavaScript">footer("2001");</script>
+</body>
+
+</html>

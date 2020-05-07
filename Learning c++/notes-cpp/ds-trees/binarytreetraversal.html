@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Binary Tree Traversal</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Binary Tree Traversal</h1>
+
+
+<h2>Typical binary tree node</h2>
+Assume these definition for the following examples.
+<pre class="example">
+struct tree_node {
+    tree_node *left;   // left subtree has smaller elements
+    tree_node *right;  // right subtree has larger elements
+    int data;
+};</pre>
+
+
+
+<h2>Traversing a binary tree</h2>
+Traversing (visiting all the nodes) a tree starting at <i>node</i> is often done in one of three orders
+<ul>
+<li><i>Preorder</i> - node, left subtree, right subtree.</li>
+<li><i>Inorder</i> - left subtree, node, right subtree.  This could be used to print a binary
+                     search tree in sorted order.</li>
+<li><i>Postorder</i> - left subtree, right subtree, node.  This could be used to print an
+                     expression tree in reverse polish notation (postfix).</li>
+</ul>
+
+<h2>Recursive code to print a binary search tree</h2>
+By far the easiest way to print (or otherwise process) a binary tree is
+with a recursive function.  This is one of the first uses of recursion 
+that makes an algorithm much easier to code.
+<pre class="example">
+void print_inorder(tree_node *p) {
+    if (p != NULL) {
+        print_inorder(p-&gt;left);  // print left subtree
+        cout &lt;&lt; p-&gt;data &lt;&lt; endl; // print this node
+        print_inorder(p-&gt;right); // print right subtree
+    }
+}</pre>
+
+<h2>Exercises</h2>
+<ol>
+<li>Rewrite this for preorder and postorder traversals.</li>
+<li>To save the cost of a call, this could test each pointer
+    for non-NULL before making the call to process that subtree.
+    Make this small improvement.
+    </li>
+
+<li>The example above prints each element of the tree.   Rewrite the function to 
+    add (ie, <code>push_back</code>) data elements onto a global <code>vector&lt;int&gt; v</code>.  The 
+    resulting vector will have all elements in sorted order as a
+    consequence of the inorder traversal.
+    </li>
+</ol>
+
+<script type="text/JavaScript">footer("2001");</script>
+</body>
+
+</html>

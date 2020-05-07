@@ -1,0 +1,296 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www/leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: FLTK Example - Body Mass Index</title>
+</head>
+
+<body>
+
+<h1><a href="../index.html">C++ Notes</a>: FLTK Example - Body Mass Index</h1>
+<p>Here's a sample FLTK example.  Building the GUI takes place in <code>main</code>.
+The <code>cb_compute</code> function is a <i>callback</i> function which is 
+called when the user clicks on the button.  It's quite easy to get and set
+input and output field values, but the amount of conversion  and error checking 
+using string streams and exceptions obscures
+this simplicity a bit.
+</p>
+<h3>Source file for the GUI interface</h3>
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+ 22 
+ 23 
+ 24 
+ 25 
+ 26 
+ 27 
+ 28 
+ 29 
+ 30 
+ 31 
+ 32 
+ 33 
+ 34 
+ 35 
+ 36 
+ 37 
+ 38 
+ 39 
+ 40 
+ 41 
+ 42 
+ 43 
+ 44 
+ 45 
+ 46 
+ 47 
+ 48 
+ 49 
+ 50 
+ 51 
+ 52 
+ 53 
+ 54 
+ 55 
+ 56 
+ 57 
+ 58 
+ 59 
+ 60 
+ 61 
+ 62 
+ 63 
+ 64 
+ 65 
+ 66 
+ 67 
+ 68 
+ 69 
+ 70 
+ 71 
+ 72 
+ 73 
+ 74 
+ 75 
+ 76 
+ 77 
+ 78 
+ 79 
+ 80 
+ 81 
+ 82 
+ 83 
+ 84 
+ 85 
+ 86 
+ 87 
+ 88 
+ 89 
+ 90 
+ 91 
+ 92 
+ 93 
+ 94 
+ 95 
+ 96 
+ 97 
+ 98 
+ 99 
+</pre></td><td valign='top'>
+<div class="file"><pre>
+// fltk-bmi-exceptions/bmi.cpp - Compute Body Mass Index w/(h*h)
+// This is written in "procedural style" instead of OO,
+
+// 2004-02-12 - Fred Swartz
+
+//===================================================== includes
+#include &lt;FL/Fl.H&gt;
+#include &lt;FL/Fl_Window.H&gt;
+#include &lt;FL/Fl_Button.H&gt;
+#include &lt;FL/Fl_Input.H&gt;
+#include &lt;FL/Fl_Output.H&gt;
+#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+#include &lt;sstream&gt;
+#include &lt;stdexcept&gt;
+#include "bmi.h"            // computeBMI
+using namespace std;
+
+//===================================================== prototypes
+void cb_compute( Fl_Widget* widget, void* data);
+
+//===================================================== globals
+// These widgets are declared global so that main can
+// create them and put them in the window, and so that
+// the callback function can also reference them.  
+Fl_Input*  input_height;
+Fl_Input*  input_weight;
+Fl_Output* output_bmi;
+
+//===================================================== main
+int main() {
+    Fl_Button* button_compute;
+    
+    //-- Create window and add widgets to it.
+    Fl_Window* win= new Fl_Window(300,200, "Body Mass Index Calculator");
+    win-&gt;begin();       
+        input_height  = new Fl_Input( 120,  10, 140, 30, "Height in inches");
+        input_weight  = new Fl_Input( 120,  60, 140, 30, "Weight in pounds");
+        button_compute= new Fl_Button(100, 110, 120, 30, "Compute BMI");
+        output_bmi    = new Fl_Output(120, 160, 140, 30, "Body Mass Index");
+    win-&gt;end();
+    
+    //-- Connect button widget to its callback function
+    button_compute-&gt;callback( (Fl_Callback*) cb_compute );
+    
+    win-&gt;show();      // Make the window visible
+    
+    return Fl::run(); // Turn control over to FLTK
+}
+
+//====================================================== cb_compute
+   // This callback function for the button converts the
+   // input fields to floats, converts those values to
+   // metric and calls the function to compute BMI.
+void cb_compute( Fl_Widget* widget , void* data) {
+    //-- Convert input field values, compute BMI, display
+    static const float METERS_PER_INCH = 0.0254;
+    static const float KILOGRAMS_PER_POUNDS = 0.454;
+    
+    //-- Convert the values from the input fields from
+    //   const char* to floats using string streams.
+    float heightInches;
+    istringstream inchStream(<span class="hilite">input_height-&gt;value()</span>);
+    if (!(inchStream &gt;&gt; heightInches)) {
+        <span class="hilite">output_bmi-&gt;value("Bad Height");</span>
+        return;
+    }
+    //-- This checks for extra values by trying to read a character
+    char c;
+    if (inchStream &gt;&gt; c) {
+        <span class="hilite">output_bmi-&gt;value("Bad Height format");</span>
+        return;
+    }
+    
+    //-- This checks for extra values in input by skipping whitespace (ws)
+    //   and then seeing if we're not at EOF, which we should be.
+    float weightPounds;
+    istringstream poundStream(<span class="hilite">input_weight-&gt;value()</span>);
+    if (!(poundStream &gt;&gt; weightPounds &gt;&gt; ws) || !(poundStream.eof())) {
+        <span class="hilite">output_bmi-&gt;value("Bad Weight");</span>
+        return;
+    }
+    
+    try {
+        //-- Compute the Body Mass index.
+        float heightM  = METERS_PER_INCH * heightInches;
+        float weightKg = KILOGRAMS_PER_POUNDS * weightPounds;
+        float bmi = computeBMI(heightM, weightKg);
+        
+        //-- Convert bmi to char and set output field.
+        ostringstream bmiStream;
+        bmiStream &lt;&lt; fixed &lt;&lt; setprecision(1) &lt;&lt; bmi;
+        <span class="hilite">output_bmi-&gt;value(bmiStream.str().c_str());</span>
+        
+    } catch (out_of_range oorex) {
+        // computeBMI can throw an out_of_range exception.
+        <span class="hilite">output_bmi-&gt;value(oorex.what());</span>
+    }
+}
+</pre></div>
+</td></tr></table>
+
+
+
+<h3>The BMI logic header file</h3>
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+</pre></td><td valign='top'>
+<div class="file"><pre>
+// fltk-1/bmi.h -- Body Mass Index
+#ifndef BMI_H
+#define BMI_H
+float computeBMI(float heightInMeters, float weightInKg);
+#endif
+</pre></div>
+</td></tr></table>
+
+<h3>The BMI logic source</h3>
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+</pre></td><td valign='top'>
+<div class="file"><pre>
+// fltk-1/bmi-logic.cpp - Logic which computes Body Mass Index.
+// 2004-02-10 - Fred Swartz
+// Throws out_of_range if parameters aren't "reasonable".
+
+// The following function is the entire "logic" of the problem.
+// It could just as easily be called from a command line interface.
+
+#include &lt;stdexcept&gt;
+#include "bmi.h"
+
+//====================================================== computeBMI
+float computeBMI(float heightInMeters, float weightInKg) {
+    if (heightInMeters &lt; 1.0 || heightInMeters &gt; 3.0) {
+        throw std::out_of_range("Height out of range");
+    } else if (weightInKg &lt; 20.0 || weightInKg &gt; 200) {
+        throw std::out_of_range("Weight out of range");
+    }
+    return weightInKg / (heightInMeters*heightInMeters);
+}
+</pre></div>
+</td></tr></table>
+
+
+
+<script type="text/JavaScript">footer(2004);</script>
+</body>
+</html>
+

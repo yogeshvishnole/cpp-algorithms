@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com/fred/)"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../notes.css" />
+  <title>C++ Notes: Examples: Roman Numerals</title>
+</head>
+
+<body>
+<h1><a href="../../index.html">C++ Notes</a>: Examples: Roman Numerals</h1>
+
+<pre class="example">
+  1 // roman.cpp - from Data Abstractions and Structures using C++
+  2 #include &lt;iostream&gt;
+  3 #include &lt;stdlib.h&gt;
+  4 using namespace std;
+  5 
+  6 //=== prototypes
+  7 void PrintValue(int, char, int);
+  8 void Convert(const char str[], int&amp; decVal,  bool&amp; strValid);
+  9 int  DecEquiv(const char str[]);
+ 10 
+ 11 //===================================================================== main
+ 12 int main(int argc, char *argv[]) {
+ 13     char str1[31];
+ 14     char str2[31];
+ 15     char op;
+ 16     int dec1;
+ 17     int dec2;
+ 18     
+ 19     bool str1Valid;
+ 20     bool str2Valid;
+ 21     bool opValid;
+ 22     
+ 23     cout &lt;&lt; "Enter Roman numeral expression: ";
+ 24     while (cin &gt;&gt; str1 &gt;&gt; op &gt;&gt; str2) {
+ 25         Convert(str1, dec1, str1Valid);
+ 26         Convert(str2, dec2, str2Valid);
+ 27         opValid = op=='+' || op=='-' || op=='*' || op=='/';
+ 28         if (str1Valid &amp;&amp; str2Valid &amp;&amp; opValid) {
+ 29             PrintValue(dec1, op, dec2);
+ 30         } else {
+ 31             cout &lt;&lt; "Bad data" &lt;&lt; endl;
+ 32         }
+ 33         cout &lt;&lt; "Enter Roman numeral expression: ";
+ 34     }
+ 35   
+ 36     system("PAUSE");	
+ 37     return 0;
+ 38 }//end main
+ 39 
+ 40 //=============================================================== PrintValue
+ 41 void PrintValue(int dec1, char op, int dec2) {
+ 42     cout &lt;&lt; "Decimal value: ";
+ 43     switch (op) {
+ 44         case '+': cout &lt;&lt; dec1 + dec2; break;
+ 45         case '-': cout &lt;&lt; dec1 - dec2; break;
+ 46         case '*': cout &lt;&lt; dec1 * dec2; break;
+ 47         case '/': cout &lt;&lt; float(dec1) / float(dec2); break;
+ 48     }
+ 49     cout &lt;&lt; "\n\n";
+ 50 //end PrintValue
+ 51 }
+ 52 
+ 53 
+ 54 //================================================================== Convert
+ 55 void Convert(const char str[], int&amp; decVal,  bool&amp; strValid) {
+ 56     decVal = DecEquiv(str);
+ 57     strValid = (decVal &gt; 0);
+ 58 }//end Convert
+ 59 
+ 60 
+ 61 //================================================================= DecEquiv
+ 62 int DecEquiv(const char str[]) {
+ 63     bool dataValid = true;
+ 64     int  intSum = 0;
+ 65     int  i = 0;
+ 66     
+ 67     while (dataValid &amp;&amp; str[i] != '\0') {
+ 68         switch (str[i]) {
+ 69             case 'M': intSum += 1000; break;
+ 70             case 'D': intSum += 500;  break;
+ 71             case 'C': intSum += 100;  break;
+ 72             case 'L': intSum += 50;   break;
+ 73             case 'X': intSum += 10;   break;
+ 74             case 'V': intSum += 5;    break;
+ 75             case 'I': intSum += 1;    break;
+ 76             default : dataValid = false;
+ 77         }
+ 78         i++;
+ 79     }
+ 80     return (dataValid ? intSum : 0);
+ 81 }//end decEquiv</pre>
+   
+
+
+<script type="text/JavaScript">footer("2002");</script>
+</body>
+</html>
+

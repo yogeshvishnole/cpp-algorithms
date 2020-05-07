@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Algorithms: More Bubble Sorts</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++ Notes</a>: Algorithms: More Bubble Sorts</h1>
+
+Here are some additional variations on bubble sort.
+   
+
+<h2>Bubble Sort -- stop when no exchanges</h2>
+
+   This version of bubble sort continues making passes over 
+   the array as long as there were any exchanges.  
+   If the array is already sorted, this sort will stop after only
+   one pass.
+   <pre class="example">
+ void bubbleSort2(int x[], int n) {
+    bool exchanges;
+    do {
+       exchanges = false;  // assume no exchanges
+       for (int i=0; i&lt;n-1; i++) {
+          if (x[i] &gt; x[i+1]) {
+             int temp = x[i]; x[i] = x[i+1]; x[i+1] = temp;
+             exchanges = true;  // after exchange, must look again
+          }
+       }
+    } while (exchanges);
+ }</pre>
+   
+   Disadvantage: This algorithm doesn't shorten the
+   range each time by 1 as it could.  See below.
+  
+  
+<h2>Bubble Sort -- stop when no exchanges, shorter range each time</h2>
+
+   This version of bubble sort combines ideas from the previous versions.
+   It stops when there are no more exchanges, and it also sorts a smaller
+   range each time.
+   <pre class="example">
+void bubbleSort3(int x[], int n) {
+  bool exchanges;
+  do {
+    n--;               // make loop smaller each time.
+    exchanges = false; // assume this is last pass over array
+    for (int i=0; i&lt;n; i++) {
+      if (x[i] &gt; x[i+1]) {
+        int temp = x[i];  x[i] = x[i+1];  x[i+1] = temp;
+        exchanges = true;  // after an exchange, must look again 
+      }
+    }
+  } while (exchanges);
+}</pre>
+   
+   Disadvantage: After the first pass it may not be necessary to examine the
+   entire range of the array -- only from where the lowest exchange occurred
+   to where the highest exchange occurred.  The parts above and below must
+   already be sorted.  See below.
+   
+
+<h2>Bubble Sort -- Sort only necessary range</h2>
+
+Here's a version of bubble sort that, on each pass, looks only at the
+region of array where more exchanges might be necessary.
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+ 22 
+ 23 
+ 24 
+ 25 
+ 26 
+ 27 
+ 28 
+ 29 
+ 30 
+ 31 
+ 32 
+ 33 
+ 34 
+ 35 
+ 36 
+ 37 
+ 38 
+</pre></td><td valign='top'>
+<div class="example"><pre>
+//========================================================= bubbleSortRange
+// After a pass in bubble sort, it's only necessary to sort from just 
+// below the first exchange (small values may move lower)
+// to just before the last exchange (largest values won't move higher). 
+// Everything that wasn't exchanged must be in the correct order. 
+// After each pass, the upper and lower bounds for the next pass are
+// set from the positions of the first and last exchanges on prev pass.
+
+void bubbleSortRange(int x[], int n) {
+    int lowerBound = 0;    // First position to compare.
+    int upperBound = n;    // First position NOT to compare.
+  
+    //--- Continue making passes while there is a potential exchange.
+    while (lowerBound &lt;= upperBound) {
+        int firstExchange = n;  // assume impossibly high index for low end.
+        int lastExchange  = -1; // assume impossibly low index for high end.
+        
+        //--- Make a pass over the appropriate range.
+        for (int i=lowerBound; i&lt;upperBound; i++) {
+            if (x[i] &gt; x[i+1]) {
+                //--- exchange elements
+                int temp = x[i];  x[i] = x[i+1];  x[i+1] = temp;
+                //--- Remember first and last exchange indexes.
+                if (i&lt;firstExchange) { // true only for first exchange.
+                    firstExchange = i;
+                }
+                lastExchange = i;
+            }
+        }
+        
+        //--- Prepare limits for next pass.
+        lowerBound = firstExchange-1;
+        if (lowerBound &lt; 0) {
+            lowerBound = 0;
+        }
+        upperBound = lastExchange;
+    }
+}//end bubbleSortRange
+</pre></div>
+The text from the above example can be selected, copied, and pasted into an editor.
+</td></tr></table>
+
+
+   
+   Disadvantage: Notice that the largest unsorted element will always be moved all the
+   way to its correct position in the array, but small elements are shifted down
+   by only one place on each pass.  
+   <!-- Thanks to Iyer Arun Shankar for pointing out an error  -->
+
+   
+<h2>Other bubble sorts</h2>
+Note that in all these sorts the part that is sorted grows at only one end
+of the array.  The ability to quit early is not symmetrical.  The extreme
+values move all the way to the end in one direction, but only one place in
+the other direction.  The algorithm can be improved by alternately "bubbling" in
+opposite directions.
+   
+<script type="text/JavaScript">footer("1999-2003");</script>
+
+</body>
+</html>
+

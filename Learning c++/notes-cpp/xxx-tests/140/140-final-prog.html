@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>CMIS 140: Final Exam - Programming Part</title>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+</head>
+<body>
+<h1>CMIS 140: Final Exam - Programming</h1>
+Name __________________________________
+
+<br /><br />There are five programming problems, and for each of them you 
+have the choice of one of two problems.  Three of the programs are identical
+to what you have done before.  You may use arrays for all of these problems
+and do not have to use pointers.  This is a <b>closed book</b> exam.
+<ol>
+<li>(5 points) Write one of:
+    <ol type="a">
+    <li>Write a <code>myStrlen</code> function which is the same as the library 
+    <code>strlen</code> function - it returns the length of the string.  
+    Assume the prototype is
+    <pre>    int myStrlen(char a[]);</pre>
+    </li>
+    <li>Write a function which shortens a string to n characters.  If the string is 
+    shorter than n, the function should not change the string.
+    Assume the prototype is
+    <pre>    int truncate(char a[], int n);</pre>
+    </li>
+    </ol>
+</li>
+
+<li>(10 points) Write one of:
+    <ol type="a">
+    <li>Write the <code>myStrcat</code> function which is the same as the 
+    library <code>strcat</code> function (concatenates b on the end of a).  
+    Assume the prototype is
+    <pre>    void myStrcat(char a[], char b[]);</pre>
+    </li>
+    
+    <li>Write a function to add extra blanks to the <i>right</i> end of a string to 
+    make it at least length <i>width</i>.  If the string is already <i>width</i> characters or longer,
+    do not change the string.  
+    Assume the prototype is
+    <pre>    void padRight(char a[], int width);</pre>
+    </li>
+    </ol>
+</li>
+
+<li>(10 points) Write one of:
+    <ol type="a">
+    <li>Write a function to remove all leading blanks from the <i>left</i> end of a string.
+    Assume the prototype is
+    <pre>    void trimLeft(char a[]);</pre>
+    </li>
+    
+    <li>Write a function to add extra blanks to the <i>left</i> end of a string to 
+    make it at least length <i>width</i>.  If the string is already <i>width</i> characters or longer,
+    do not change the string.  
+    Assume the prototype is
+    <pre>    void padLeft(char a[], int width);</pre>
+    </li>
+    </ol>
+</li>
+
+<li>(10 points) Write one of:
+    <ol type="a">
+    <li>A main program that reads a number n, and prints a triangle made of stars (*)
+        which has a height and width of n that looks like this for n=5:
+        <pre>
+            *
+           **
+          ***
+         ****
+        *****
+        </pre>
+    </li>
+    
+    <li>A main program that reads a number n, and prints a hollow square made of stars (*)
+        which has a height and width of n that looks like this for n=5:
+        <pre>
+        *****
+        *   *
+        *   *
+        *   *
+        *****
+        </pre>
+    </li>
+    </ol>
+</li>
+
+<li>(15 points) Write one of:
+    <ol type="a">
+    <li>Write a main program to read (in a loop) names into two variables: firstName and lastName.
+        Write out the names as <i>last, first</i>.  Before you print them, you
+        must capitalize the first character, and make the other characters lowercase.
+        You may use the library functions
+        such as <code>toupper</code> and <code>tolower</code> which work on
+        single characters.
+        <br />Example input and output:
+        <br />Input: <code>Mickey Mouse</code> Output: <code>Mouse, Mickey</code> Note: switch with ", " between.
+        <br />Input: <code>mickey mouse</code> Output: <code>Mouse, Mickey</code> Note: capitalize first character.
+        <br />Input: <code>mIcKeY MoUse</code> Output: <code>Mouse, Mickey</code> Note: make remaining characters lowercase.
+    </li>
+    <li>Write a main program that reads many words one-by-one in a loop.  Print the 
+        alphabetically last
+        word (according the strpcmp).  You will find the library functions
+        <code>strcmp</code> and <code>strcpy</code> useful.
+        This is basically the same algorithm as used for finding the
+        maximum of a series of integers, but there are a number of changes needed for strings.
+        You may assume that the smallest possible value for a string is "" (the
+        empty string with no characters in it).
+    </li>
+    </ol>
+</li>
+</ol>
+
+   
+<script type="text/JavaScript">footer("2001");</script>
+</body>
+
+</html>

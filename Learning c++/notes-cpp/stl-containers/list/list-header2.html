@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+  <title>C++: STL: list class</title>
+</head>
+
+<body>
+<h1><a href="../index.html">C++</a>: <a href="../index.html#STL">STL</a>: &lt;list&gt; class</h1>
+The <code>list</code> template class is based on a doubly-linked list, and 
+has all the functions of <code>vector</code> 
+except <code>capacity</code>, <code>reserve</code>, <code>at</code>, and <code>operator[]</code>.
+
+<br /><br />
+Assume that <code>T</code> is some type (eg, int).
+Assume the following declarations:
+<pre>
+   T e;
+   list&lt;T&gt; v, lst2;
+   list&lt;T&gt;::iterator iter, iter2, beg, end;
+   int i, , n, size;</pre>
+
+<h2>Common constructors, functions, operators, etc</h2>
+<table cellspacing="0" cellpadding="0" border="0" summary="string functions">
+<tr><th>Result</th><th>Method</th><th>Description</th></tr>
+
+<tr valign="top"><td colspan="3" class="rowheader"><i>Constructors and destructors</i></td></tr>
+<tr valign="top"><td align="right"><code>&nbsp;</code></td><td><code>list&lt;T&gt; lst;</code></td><td>Creates an empty list for elements of type T.</td></tr>
+<tr valign="top"><td align="right"><code>&nbsp;</code></td><td nowrap="nowrap"><code>list&lt;T&gt; lst(n, e);</code></td><td>Creates list of n copies of e.</td></tr>
+<tr valign="top"><td align="right"><code>&nbsp;</code></td><td nowrap="nowrap"><code>list&lt;T&gt; lst(beg, end);</code></td><td>Creates list with copies from range beg..end.</td></tr>
+<tr valign="top"><td align="right"><code>&nbsp;</code></td><td><code>lst.~list&lt;T&gt;();</code></td><td>Destroys all elems and frees memory.</td></tr>
+
+<tr valign="top"><td colspan="3" class="rowheader"><i>Entire list</i></td></tr>
+<tr valign="top"><td align="right"><code>i =&nbsp;</code></td><td><code>lst.<b>size</b>(); </code></td><td>Number of elements.</td></tr>
+<tr valign="top"><td align="right"><code>b =&nbsp;</code></td><td><code>lst.<b>empty</b>();  </code></td><td>True if empty.  Same as <code>lst.size()==0</code></td></tr>
+<tr valign="top"><td align="right"><code>lst =&nbsp;</code></td><td><code>lst2;</code></td><td>Assigns <i>lst2</i> to <i>lst</i>.</td></tr>
+<tr valign="top"><td align="right"><code>&nbsp;</code></td><td><code>lst.<b>clear</b>();</code></td><td>Removes all elements.</td></tr>
+<tr valign="top"><td align="right"><code>&nbsp;</code></td><td><code>lst.<b>assign</b>(n, e);</code></td><td>Replaces existing elements with n copies of e.</td></tr>
+<tr valign="top"><td align="right"><code>&nbsp;</code></td><td><code>lst.<b>sort</b>();</code></td><td>Sorts list (stable) with &lt;.</td></tr>
+<tr valign="top"><td align="right"><code>&nbsp;</code></td><td><code>lst.<b>unique</b>();</code></td><td>Assumes <code>lst</code> is sorted.  Removes subsequent consecutive equal values.</td></tr>
+<tr valign="top"><td align="right"><code>&nbsp;</code></td><td><code>lst.<b>reverse</b>();</code></td><td>Reverses <code>lst</code>.</td></tr>
+<tr valign="top"><td align="right"><code>&nbsp;</code></td><td><code>lst.<b>merge</b>(lst2);</code></td><td>Assumes <code>lst</code> and <code>lst2</code> are sorted.
+                                                                                           Merges <code>lst2</code> into <code>lst</code> to remain sorted.</td></tr>
+
+<tr valign="top"><td colspan="3" class="rowheader"><i>Front and back - no random access</i></td></tr>
+<tr valign="top"><td align="right"><code>e =&nbsp;</code></td><td><code>lst.<b>front</b>();</code></td><td>First element.</td></tr>
+<tr valign="top"><td align="right"><code>e =&nbsp;</code></td><td><code>lst.<b>back</b>();</code></td><td>Last element.</td></tr>
+<tr valign="top"><td align="right"><code>&nbsp;</code></td><td><code>lst.<b>push_front</b>(e);</code></td><td>Adds <code>e</code> to front of lst</code>.</td></tr>
+<tr valign="top"><td align="right"><code>&nbsp;</code></td><td><code>lst.<b>pop_front</b>();</code></td><td>Removes first element of <code>lst</code>.</td></tr>
+<tr valign="top"><td align="right"><code>&nbsp;</code></td><td><code>lst.<b>push_back</b>(e);</code></td><td>Adds <code>e</code> to end of <code>lst</code>.</td></tr>
+<tr valign="top"><td align="right"><code>&nbsp;</code></td><td><code>lst.<b>pop_back</b>();</code></td><td>Removes last element of <code>lst</code>.</td></tr>
+
+<tr valign="top"><td colspan="3" class="rowheader"><i>Iteration based</i></td></tr>
+
+<tr valign="top"><td align="right" nowrap="nowrap"><code>iter2 =&nbsp;</code></td><td><code>lst.<b>assign</b>(beg, end);</code></td><td>Sets list to copies from range beg..end.</td></tr>
+<tr valign="top"><td align="right"><code>iter2 =&nbsp;</code></td><td><code>lst.<b>insert</b>(iter, e);</code></td><td>Inserts copy of e at iter position, returns its position.</td></tr>
+<tr valign="top"><td align="right"><code>&nbsp;</code></td><td><code>lst.<b>insert</b>(iter, n, e);</code></td><td>Inserts n copies of e starting at iter position.</td></tr>
+<tr valign="top"><td align="right"><code>&nbsp;</code></td><td><code>lst.<b>insert</b>(iter, beg, end);</code></td><td>Inserts copies in range beg..end, starting at iter.</td></tr>
+<tr valign="top"><td align="right"><code>iter2 =&nbsp;</code></td><td><code>lst.<b>erase</b>(iter);</code></td><td>Removes element at iter, returns position of next.</td></tr>
+<tr valign="top"><td align="right"><code>iter2 =&nbsp;</code></td><td><code>lst.<b>erase</b>(beg, end);</code></td><td>Removes beg...end, returns position of next.</td></tr>
+<tr valign="top"><td align="right"><code>&nbsp;</code></td><td><code>lst.<b>splice</b>(iter, lst2);</code></td><td>Inserts copies of lst2 elements before iter.</td></tr>
+<tr valign="top"><td align="right"><code>&nbsp;</code></td><td><code>lst.<b>splice</b>(iter, lst2, beg);</code></td><td>Inserts before iter copies from lst2, beginning at beg.</td></tr>
+<tr valign="top"><td align="right"><code>&nbsp;</code></td><td><code>lst.<b>splice</b>(iter, lst2, beg, end);</code></td><td>Inserts before iter copies from beg...end of lst2.</td></tr>
+
+<tr valign="top"><td colspan="3" class="rowheader"><i>Iterators</i></td></tr>
+<tr valign="top"><td align="right"><code>beg =&nbsp;</code></td><td><code>lst.<b>begin</b>();</code></td><td>Returns iterator to first element.</td></tr>
+<tr valign="top"><td align="right"><code>end =&nbsp;</code></td><td><code>lst.<b>end</b>();</code></td><td>Returns iterator to <i>after</i> last element.</td></tr>
+<tr valign="top"><td align="right"><code>beg =&nbsp;</code></td><td><code>lst.<b>rbegin</b>();</code></td><td>Returns iterator to first (in reverse order) element.</td></tr>
+<tr valign="top"><td align="right"><code>end =&nbsp;</code></td><td><code>lst.<b>rend</b>();</code></td><td>Returns iterator to <i>after</i> last (in reverse order) element.</td></tr>
+
+<tr valign="top"><td colspan="3" class="rowheader"><i>Value based</i></td></tr>
+<tr valign="top"><td align="right"><code>&nbsp;</code></td><td><code>lst.<b>remove</b>(e);</code></td><td>Removes all elements from <code>lst</code> with value <code>e</code>.</td></tr>
+</table>
+
+<h2>Iterators</h2>
+Lists support bidirectional iterators, but not random-access iterators as vectors do.
+
+<script type="text/JavaScript">footer("2002");</script>
+</body>
+</html>
+

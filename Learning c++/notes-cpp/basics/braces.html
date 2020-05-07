@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com/fred)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Braces</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Braces {}</h1>
+<h2>History</h2>
+The first popular use of braces to indicate scope was the
+Algol programming language from about 1960.  
+Many newer languages have chosen better alternatives
+to this particularly awkward and error-prone notation.
+For example, Visual Basic uses keywords to indicate the 
+end of statement scope and Python uses indentation,  
+but the C/C++/Java/C# family continues to use braces.
+
+<h2>One-statement body</h2>
+For <code>if</code>, <code>while</code>, and <code>for</code> statements
+the rule is that <i>the body consists of one statement</i>.
+If you want more than one statement in the body, you can
+enclose the statements in curly braces.  Remember that excess
+<i>white space</i>, blanks, tabs, and newlines, don't 
+change the interpretation of a program's syntax.
+For example,
+<pre>
+    if (x==1) n++;</pre>
+is the same as
+<pre>
+    if (x==1)
+        x++;</pre>
+is the same as
+<pre>
+    if (x==1) {
+        x++;
+    }</pre>
+as are many other variations.  The braces are <i>necessary</i> when
+there is more than one statement in the body.
+<pre>
+    if (x==1) {
+        n++;
+        p++;
+    }</pre>
+This will increment both <code>n</code> and <code>p</code> if <code>x</code> is one.
+In contrast,
+<pre>
+    if (x==1)
+        n++;
+        p++;</pre>
+will increment only <code>n</code> if <code>x</code> is one, then <i>always</i>
+increment <code>p</code>, despite the misleading indentation.
+    
+<h2>What is "one" statement?</h2>
+In addition to the obvious single statements, eg an assignment statement,
+an <code>if</code>, <code>while</code>, or other statement that may contain
+a body is one statement.  
+<pre>
+    while (cin &gt;&gt; x)
+        if (x==1)
+            n++;
+        else
+            n--;</pre>
+The <i><code>if</code></i> statement counts as only one statement, even tho
+it contains other statements.
+        
+<h2>Rule: Always indent</h2>
+Regardless of the use of braces, always indent statements that are 
+in the body of another statement.
+
+<h2>Common rule: Always use braces</h2>
+Altho the language doesn't require it, some programming style standards
+require the use of the braces, even if there is only one statement in the
+body of another statement.  Why?  (1) Because it improves the uniformity and 
+therefore readability, and (2) because inserting an additional statement in
+the body where there is only one statement is less error-prone because it's 
+easy to forget to add braces when the indentation gives such a strong (but possibly misleading)
+guide to the structure.
+  
+
+
+<script type="text/JavaScript">footer("2003");</script>
+</body>
+
+</html>

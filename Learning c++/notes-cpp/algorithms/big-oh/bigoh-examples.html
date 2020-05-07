@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Algorithms: Big-Oh Notation</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++ Notes</a>: Algorithms: Big-Oh Examples</h1>
+
+<p>Here are some big-oh values for typical algorithms. </p>
+
+
+<h2>Searching</h2>
+<p>Here is a table of typical cases.
+</p>
+<table border="1" cellspacing="0" cellpadding="4">
+<tr><th>Type of Search</th><th>Big-Oh</th><th>Comments</th></tr>
+<tr valign="top"><td>Linear search array/vector </td><td>O(N)            </td><td>&nbsp;</td></tr>
+<tr valign="top"><td>Binary search sorted array/vector </td><td>O(log N)        </td><td>Requires sorted data.</td></tr>
+<tr valign="top"><td>Search balanced tree</td><td>O(log N)      </td><td>&nbsp;</td></tr>
+<tr valign="top"><td>Search linked list  </td><td>O(N)          </td><td>&nbsp;</td></tr>
+<tr valign="top"><td>Search hash table   </td><td>O(1)          </td><td>&nbsp;</td></tr>
+</table>
+
+<h2>Other Typical Operations</h2>
+    
+<table border="1" cellspacing="0" cellpadding="4" summary="">
+<tr><th>Algorithm</th><th>array<br />vector</th><th>list</th></tr> 
+<tr><td>access front    </td><td>O(1)</td>    <td>O(1)</td></tr>
+<tr><td>access back     </td><td>O(1)</td>    <td>O(1)</td></tr>
+<tr><td>access middle   </td><td>O(1)</td>    <td>O(N)</td></tr>
+<tr><td>insert at front </td><td>O(N)</td>    <td>O(1)</td></tr>
+<tr><td>insert at back  </td><td>O(1)</td>    <td>O(1)</td></tr>
+<tr><td>insert in middle</td><td>O(N)</td>    <td>O(1)</td></tr>
+</table>
+
+
+<h2>Sorting arrays/vectors</h2>
+<p>Some sorting algorithms show variability in their Big-Oh performance.
+   It is therefore interesting to look at their best, worst, and average
+   performance.
+For this description "average" means uniformly distributed
+values.  The distribution of real values for any given
+application may be important in selecting a particular
+algorithm.
+</p>
+   
+<table border="1" cellspacing="0" cellpadding="4" summary="example O(N) values">
+<tr><th>Type of Sort</th><th><i>Best</i></th><th><i>Worst</i></th><th><i>Average</i></th><th><i>Comments</i></th></tr>
+<tr valign="top"><td>BubbleSort   </td><td>O(N)            </td><td>O(N<sup>2</sup>)</td><td>O(N<sup>2</sup>)</td>
+                           <td>Not a good sort, except with ideal data.</td></tr>
+<tr valign="top"><td>Selection sort</td><td>O(N<sup>2</sup>)</td><td>O(N<sup>2</sup>)</td><td>O(N<sup>2</sup>)</td><td>&nbsp;</td></tr>
+<tr valign="top"><td>QuickSort     </td><td>O(N log N)      </td><td>O(N<sup>2</sup>)</td><td>O(N log N)      </td>
+                           <td>Good, but worst case is O(N<sup>2</sup>)</td></tr>
+<tr valign="top"><td>HeapSort     </td><td>O(N log N)      </td><td>O(N log N)      </td><td>O(N log N)      </td>
+                           <td>Typically slower than QuickSort, but worst case is much better.</td></tr>
+</table>
+
+
+<blockquote>
+<p><b>Example</b>.  I had to sort a large array of
+numbers.  The values were almost always already in order, and 
+even when they weren't in order there was typically only one 
+number that was out of order.  Only rarely were the values
+completely disorganized.  I used a bubble sort because it was
+O(N) for my "average" data.  This was many years ago when CPUs were
+1000 times slower.  Today I would simply use the library sort for
+the amount of data I had because a difference in execution time 
+would probably be unnoticed.  However, there are always
+data sets which are so large that a choice of algorithms really
+matters.
+</p>
+</blockquote>
+
+
+
+<h2>What's missing here</h2>
+Lots!
+<ul>
+<li>This should name the appropriate library structures and functions.</li>
+<li>This should address <i>reasons</i> for the particular performance.</li>
+<li>Altho some of these algorithms have the same big-oh characteristics, 
+    they may differ by a factor of three (or more) in practical implementations.
+    This should be addressed.  Remember that big-oh notation ignores any constant
+    overhead or proportionality.  This can be substantial and can't be
+    ignored in practical implementations.</li>
+<li>Discuss tradeoffs between memory and time.</li>
+<li>Other considerations, such as the effect on cache and virtual memory (locality of reference, modifications),
+    maintainability, serializability, portability, external storage,
+    ... should be discussed.
+    </li>
+</ul>
+<p>Well, I'll fill things in here as I have time, but don't hold your breath.
+</p>
+
+
+<script type="text/JavaScript">footer("2003");</script>
+
+</body>
+</html>
+

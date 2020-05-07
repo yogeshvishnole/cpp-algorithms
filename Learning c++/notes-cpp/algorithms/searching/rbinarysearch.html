@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: Algorithms: Recursive Binary Search</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++ Notes</a>: Algorithms: Recursive Binary Search</h1>
+
+<h2>Recursive Binary Search</h2>
+Iterative algorithms, ie those with a loop, can usually be easily rewritten 
+to use recursive function calls instead of loops.  
+This is almost always a bad idea because the iterative version
+is usually simpler, faster, and uses less memory.  
+
+<p>Some problems, eg traversing a tree, are better solved recursively
+because the recursive solution is so clear (see <a href="../../ds-trees/binarytreetraversal.html">Binary Tree Traversal</a>).
+Binary search is really is better in the non-recursive form, but it is one of the 
+more plausible algorithms to use as an illustration of recursion.
+</p>
+
+<p>This recursive version checks to see if we're at the key (in which case it can return),
+otherwise it calls itself so solve a smaller problem, ie, 
+either the upper or lower half of the array.
+</p>
+
+<h2>Example</h2>
+<pre class="example">
+int rBinarySearch(int sortedArray[], int first, int last, int key) {
+   // function:
+   //   Searches sortedArray[first]..sortedArray[last] for key.  
+   // returns: index of the matching element if it finds key, 
+   //         otherwise  -(index where it could be inserted)-1.
+   // parameters:
+   //   sortedArray in  array of sorted (ascending) values.
+   //   first, last in  lower and upper subscript bounds
+   //   key         in  value to search for.
+   // returns:
+   //   index of key, or -insertion_position -1 
+   //                 if key is not in the array.
+   
+   if (first &lt;= last) {
+       int mid = (first + last) / 2;  // compute mid point.
+       if (key == sortedArray[mid]) 
+           return mid;   // found it.
+       else if (key &lt; sortedArray[mid]) 
+           // Call ourself for the lower part of the array
+           return rBinarySearch(sortedArray, first, mid-1, key);
+       else
+           // Call ourself for the upper part of the array
+           return rBinarySearch(sortedArray, mid+1, last, key);
+   }
+   return -(first + 1);    // failed to find key
+}</pre>
+
+<h2>Related Pages</h2>
+
+<a href="binarysearch.html">Binary Search</a>
+
+   
+<script type="text/JavaScript">footer("1999, 2003");</script>
+
+</body>
+</html>
+

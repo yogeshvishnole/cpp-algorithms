@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+  <title>C++ Notes: String Streams</title>
+</head>
+
+<body>
+<h1><a href="../index.html">C++ Notes</a>: String Streams</h1>
+<p>Like files, strings are a sequence of characters.  C++ provides a way
+to associate an I/O stream with a string.  Here are some common
+uses for string streams.
+</p>
+<ol>
+<li><b>Localizing errors in input</b>. It is common to process one line at a time.  The
+    standard input streams proceed to the next line if there are 
+    insufficient values on one line.  Also, an error in the input
+    may make error recovery difficult.  The solution is to read
+    the input one line at a time into a string.
+    Then "read" that string using a string stream.
+    </li>
+
+<li><b>Reading one of two types</b>.  Suppose you don't know what type
+    the next input element is - it's either an int or a name.  Solution:
+    read it into a string, then try reading from the string as an int.
+    If that fails assume it's a name.
+    <p>Use this to read to a sentinal value.
+    For example, let's say you are reading integers until a 
+    certain value.  But what value can you use to stop the input?
+    Why not use "STOP" or some other string.  Well, you can't 
+    do this easily while reading ints from <code>cin</code>, but you can
+    read from <code>cin</code> into a string, compare that
+    string to "STOP", and if it doesn't match, "read" from the string with a string stream
+    as an integer.
+    </p>
+    </li>
+    
+<li><b>Converting internal values to their external representations</b>. Sometimes you want a character representation
+    of data in memory.  The best facilities for formatting data (eg, numbers)
+    are the output stream facilities.  You can create an output
+    stream that goes into a string to make use of the stream fomatting.
+    </li>
+</ol>
+
+
+<h2>String stream input - <code>istringstream</code></h2>
+<p>String streams support all the normal iostream capabilities.
+There are only two additional things you need.
+</p>
+<ol>
+<li>Input string streams must be declared <b><code>istringstream</code></b>.</li>
+<li>The string value to read is set with <b><code>str()</code></b>.</li>
+</ol>
+Here is a simple example.
+<pre class="fragment">#include &lt;iostream&gt;
+#include &lt;sstream&gt;
+using namespace std;
+. . .
+int a, b;
+string s = "34 22";
+istringstream ins; // Declare an input string stream.
+. . .
+ins.str(s);        // Specify string to read.
+ins &gt;&gt; a &gt;&gt; b;     // Reads the integers from the string.
+</pre>
+
+
+
+<h2>String stream output - <code>ostringstream</code></h2>
+<p>Simlarly, there are only a couple of things you need to know to use
+output string streams.
+</p>
+<ol>
+<li>Output string streams must be declared <b><code>ostringstream</code></b>.</li>
+<li>The string value is obtained from the stream with <b><code>str()</code></b>.</li>
+</ol>
+Here is a simple example that puts the character value of the square root of 2 into a string.
+<pre class="fragment">
+#include &lt;iostream&gt;
+#include &lt;sstream&gt;
+using namespace std;
+. . .
+ostringstream outs;  // Declare an output string stream.
+. . .
+outs &lt;&lt; sqrt(2.0);   // Convert value into a string.
+s = outs.str();      // Get the created string from the output stream.
+</pre>
+
+
+<script type="text/JavaScript">footer("2001-4");</script>
+</body>
+</html>
+

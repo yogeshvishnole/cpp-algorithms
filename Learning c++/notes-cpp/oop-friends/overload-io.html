@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>C++: OOP: Overloading &lt;&lt; and &gt;&gt;</title>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: <a href="../index.html#OOP">OOP</a>: Overloading &lt;&lt; and &gt;&gt;</h1>
+
+Perhaps the most common use of friend functions is
+overloading  &lt;&lt; for I/O. 
+This example overloads &lt;&lt; (ie, defines a <code>operator&lt;&lt;</code> function)
+so that <code>Point</code> objects
+can use <code>cout</code> and &lt;&lt;.
+
+<pre class="example">
+// example usage
+Point p;
+. . .
+cout &lt;&lt; p; // not legal without &lt;&lt; friend function.</pre>
+
+<h2>Declare before <code>public</code> and <code>private</code> in header file</h2>
+Declare friend functions outside the <code>public</code> and <code>private</code>
+    sections of the header file.  Often they are placed first as in the
+    example below.
+    
+<pre class="example">
+//=== Point.h file =============================
+class Point {
+    friend ostream&amp; operator&lt;&lt;(ostream&amp; output, const Point&amp; p);
+    public:
+        . . .
+    private:
+        . . .</pre>
+
+        
+<h2>Definition</h2>
+The definition of the <code>operator&lt;&lt;</code> function can be in any file.  
+It is not a member
+function, so it is defined with two explicit operands.  The <code>operator&lt;&lt;</code> function
+must return the value of the left operand (the <code>ostream</code>) so that multiple <code>&lt;&lt;</code>
+operators may be used in the same statement.
+Note that <code>operator&lt;&lt;</code> for your type can be defined in terms of
+<code>&lt;&lt;</code> on other types, specifically the types of the data 
+members of your class (eg, ints x and y in the Point class).
+<pre class="example">
+//=== Point.cpp file ===========================
+. . .
+ostream&amp; operator&lt;&lt;(ostream&amp; output, const Point&amp; p) {
+    output &lt;&lt; "(" &lt;&lt;  p.x &lt;&lt; ", " &lt;&lt; p.y &lt;&lt;")";
+    return output;  // for multiple &lt;&lt; operators.
+}</pre>
+
+<h2>Notational practice</h2>
+The following are identical.
+First using traditional operator notation.
+<pre class="example">
+Point p, q;
+cout &lt;&lt; p &lt;&lt; q;</pre>
+This can be written with parentheses to show the order of evaluation.
+This makes it clearer that the first operation has a result that
+is used by the second output operation.
+<pre class="example">
+((cout &lt;&lt; p) &lt;&lt; q);</pre>
+An equivalent way is to write this using function for <code>&lt;&lt;</code> is
+<pre class="example">
+operator&lt;&lt;(operator&lt;&lt;(cout, p), q);</pre>
+
+<h2>Friend functions are not always needed</h2>
+If there is no need to reference <i>private</i> data members, <code>operator&lt;&lt;</code>
+doesn't need to be a <code>friend</code> function; it can be
+a function that isn't associated with the class in any way.
+
+<h2>Defining &gt;&gt; for input</h2>
+<code>&gt;&gt;</code> can be defined in a similar way.
+
+   
+<script type="text/JavaScript">footer("2001");</script>
+</body>
+
+</html>

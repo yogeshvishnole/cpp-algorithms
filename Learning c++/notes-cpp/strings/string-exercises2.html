@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+<title>C++: C-Strings - Programming Exercises 2</title>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: C-Strings - Programming Exercises 2</h1>
+<h2>Assumptions</h2>
+<ul>
+<li class="question">No I/O (<code>cin</code> or <code>cout</code>) should be
+    in these functions (other than temporary I/O for debugging purposes).
+    As a general design principle, I/O should be restricted to a few functions
+    which are specifically used for this purpose.  There is no need
+    for I/O in these functions.
+    </li>
+<li class="question">There is no need for temporary arrays.
+    The space in the arrays passed as parameters is sufficient.
+    </li>
+<li class="question">These functions can be written in either array-style or pointer-style.
+    </li>
+</ul>
+
+
+<h2>Programming Exercises</h2>
+
+<ol>
+<li class="question">Write a function to remove all trailing blanks from the <i>right</i> end of a string.
+    Assume the prototype is
+    <pre>    void trimRight(char a[]);</pre>
+</li>
+
+<li class="question">Write a function to remove all leading blanks from the <i>left</i> end of a string.
+    Assume the prototype is
+    <pre>    void trimLeft(char a[]);</pre>
+</li>
+
+<li class="question">Write a function to add extra blanks to the <i>right</i> end of a string to 
+    make it at least length n.  If the string is already n characters or longer,
+    do not change the string.  
+    Assume the prototype is
+    <pre>    void padRight(char a[], int n);</pre>
+</li>
+
+<li class="question">Write a function to add extra blanks to the <i>left</i> end of a string to 
+    make it at least length n.  If the string is already n characters or longer,
+    do not change the string.  
+    Assume the prototype is
+    <pre>    void padLeft(char a[], int n);</pre>
+</li>
+
+<li class="question">Write a function to center a string by adding blanks to the front and back.  
+    If the string is already n characters or longer,
+    do not change the string.  If an odd number of blanks have to be added,
+    put the extra blank on the right.  You can use the functions in the
+    previous problems (padRight and padLeft) to solve this problem.
+    Assume the prototype is
+    <pre>    void center(char a[], int n);</pre>
+</li>
+
+<li class="question">Write a function which returns true if the string parameter
+    is a <i>palindrome</i>.  A palindrome is any "word" which is the same
+    forward and backward, eg, "radar", "noon", "20011002", ...  The function should return
+    false if the argument is not a palindrome.  
+    Assume the prototype is
+    <pre>    bool isPalindrome(char a[]);</pre>
+</li>
+
+<li class="question">Write a function which shortens a string to n characters.  If the string is 
+    already shorter than n, the function should not change the string.
+    Assume the prototype is
+    <pre>    void truncate(char a[], int n);</pre>
+</li>
+
+<li class="question">Write a function which capitalizes the first letter in every word.
+    Assume the first letter is any letter at the beginning or preceded
+    by a blank.  All other letters should be turned into lowercase.
+    You can use the library toupper and tolower functions.
+    Assume the prototype is
+    <pre>    void capitalizeWords(char a[]);</pre>
+</li>
+
+
+<li class="question">Write a function, <code>capitalize</code>, which
+    changes the first letter of the argument string
+    to uppercase.  You can use the library <code>toupper</code>
+    function which works on one char.  Note that the 
+    <code>toupper</code> function returns a value without
+    changing its parameter.
+    Assume the prototype is
+<pre>    void capitalize(char a[]);</pre>
+</li>
+
+<li class="question">Write a function, <code>isAlpha</code>, which
+    returns true if all characters in the parameter
+    are alphabetic (ie, if there are no non-alphabetic characters), 
+    and false otherwise.  You can use the library <code>isalpha</code>
+    function to test the individual characters.  If there are no
+    characters in the argument, this function should succeed.
+    Assume the prototype is
+<pre>    bool isAlpha(char a[]);</pre>
+</li>
+
+<li class="question">Write a function, <code>reverse</code>, which
+    reverses the characters in the argument.
+    Assume the prototype is
+<pre>    void reverse(char a[]);</pre>
+</li>
+
+<li class="question">Write a function, <code>count</code>, which
+    counts the occurrences in the first argument, a,
+    of the single character which is the second argument, c.
+    Assume the prototype is
+<pre>    int count(char a[], char c);</pre>
+For example,
+<pre>    i = count("abracadabra", 'a');</pre> would return 5.
+</li>
+
+<li class="question">Write a function, <code>count</code>, which
+    counts the occurrences in the first argument, a,
+    of the characters in the second argument, b.
+    Assume the prototype is
+<pre>    int count(char a[], char b[]);</pre>
+For example,
+<pre>    i = count("abracadabra", "bax");</pre> would return 7.
+</li>
+
+<li class="question">Write a function, <code>deleteChar</code>, which
+    deletes any occurrence in the first argument, a,
+    of the single character which is the second argument, c.
+    Assume the prototype is
+<pre>void deleteChar(char a[], char c);</pre>
+</li>
+
+
+</ol>
+
+
+</body>
+</html>
+

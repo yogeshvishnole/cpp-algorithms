@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+    <title>C++ Notes: Preprocessor: #ifdef and #ifndef</title>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)" />
+    <link rel="stylesheet" type="text/css" href="../notes.css" />
+    <script type="text/JavaScript" src="../notes.js"></script>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Preprocessor: <code>#ifdef</code> and <code>#ifndef</code></h1>
+<p>The <code>#ifdef</code> (if defined) and <code>#ifndef</code> (if not defined) 
+preprocessor commands are used to
+test if a preprocessor variable has been &quot;defined&quot;.  There are 
+two common uses for this, with slightly different patterns.
+</p>
+
+<h2>Prevent multiple definitions in header files</h2>
+<p>When there definitions in a header file that can not be made twice,
+the code below should be used.
+A header file may be included twice other
+include files include it, or an included file includes it and the 
+source file includes it again.
+</p>
+
+<p>To prevent bad effects from a double include, it is common to surround the
+body in the include file with the following (where <code>MYHEADER_H</code> is replaced by a name
+that is appropriate for your program).</p>
+
+<pre class="file">
+#ifndef MYHEADER_H
+#define MYHEADER_H
+. . .	// This will be seen by the compiler only once 
+#endif /* MYHEADER_H */
+</pre>
+
+<h2>Turning debugging code off and on</h2>
+Debugging code is necessary in programs, however, it is not usually appropriate
+to leave it in the delivered code.  The preprocessor #ifdef commmand can surround
+the debugging code.  If DEBUG is defined as below (probably in an include file)
+all debugging statement surrounded by the #ifdef DEBUG statement will be active.
+However, if it isn't defined, none of the statements will make it thru the 
+preprocessor.
+
+<pre class="example">
+#define DEBUG
+. . .
+#ifdef DEBUG
+  . . . // debugging output
+#endif
+</pre>
+
+
+   
+<script type="text/JavaScript">footer("2001-4");</script>
+</body>
+
+</html>

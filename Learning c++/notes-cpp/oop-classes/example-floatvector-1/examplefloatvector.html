@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www/leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <title>C++ Notes: Classes: Example: floatVector - Version 1</title>
+</head>
+
+<body>
+
+<h1><a href="../../index.html">C++ Notes</a>: <a href="../../index.html#OOP">OOP</a>: Classes: Example: floatVector - Version 1</h1>
+
+<h2>Fixed array sizes and Vectors</h2>
+<p>The fixed size of arrays is often a difficult programming constraint and 
+ frequently the source of bugs.  The STL (Standard Template Library) 
+ <i><code>vector</code></i> class is a dynamically expandable array.
+ The <code>floatVector</code> example here
+ shows how <code>vector</code> is implemented, but without the 
+ distraction of templates and iterators of the STL <code>vector</code> class.
+ The code is divided into three files, one for testing, one containing the header
+ file, and one which has the implementation of the methods.
+ This first version is a very small subset of the features of the actual <code>vector</code> class.
+</p>
+<ul>
+<li class="compact"><a href="main.html">floatVectorTest.cpp</a> - test program</li>
+<li class="compact"><a href="float_vector_h.html">floatVector.h</a> - header</li>
+<li class="compact"><a href="float_vector_cpp.html">floatVector.cpp</a> - implementation</li>
+</ul>
+
+<h2>Enhancements</h2>
+<p>Many improvements can be made to this class.</p>
+<ol>
+<li><b>Additional functions.</b>  Add the following functions that are
+    defined in the <i>vector</i> class, but not yet in <i>floatVector</i>:
+<pre class="file">
+bool   empty() const;          //True if no elements, size()==0.
+float&amp; front() const;          //Returns reference to first element
+void   pop_back();             //Remove last element.</pre>
+    They should all do the same thing as the corresponding 
+    <a href="../../stl-containers/vector/header-vector.html">STL: vector&lt;T&gt; template class</a> functions.
+    Modify the test program to test them.
+    </li>
+     
+<li><b>Exceptions.</b>  The <code>at</code> function in the <code>vector</code> class throws   
+    the <code>out_of_range</code> exception if the subscript is 
+    out of range.  Change <code>at</code> to do that, but also
+    do the same for subscription and throw an exception in the 
+    constructor if the size isn't greater than zero.
+    See <a href="../../exceptions/exceptions.html">Exceptions</a>.
+    </li>
+    
+<li><b>Operator overloading</b> - Write the subscription operator and equality
+    comparison operators.  Subscription should do the same thing as the <code>at()</code>
+    function.  The equality operator (<code>==</code>) should first compare the sizes.
+    If the sizes are unequal, return false.  If the sizes are equal, it's necessary
+    to loop thru the data.  If any corresponding elements are unequal, return 
+    false.
+<pre class="file">
+float&amp; operator[](int position) const; 
+bool   operator==(const floatVector&amp; v2) const;</pre>
+</li>
+     
+<li><b>Assignment, copy constructor, destructor.</b>  
+    Because this class dynamically allocates memory, it's necessary to
+    define assignment (operator=), a copy constructor, and a destructor.
+    See <a href="../../oop-overloading/overloadassign.html">Overloading assignment</a>,
+    <a href="../../oop-condestructors/copyconstructors.html">Copy constructor</a>, and
+    <a href="../../oop-condestructors/destructors.html">Destructors</a>.
+<pre class="file">
+floatVector&amp; operator=(const floatVector&amp; fv);
+floatVector(const floatVector&amp; fv); // Copy constructor.
+~floatVector();                     // Destructor.</pre>
+    </li>
+    
+<li><b>Friend function.</b>  Define the output operator &lt;&lt; by overloading 
+    <code>operator&lt;&lt;</code> as a friend
+    function.  
+    See <a href="../../oop-friends/overload-io.html">Overloading &lt;&lt; and &gt;&gt;</a>
+    <br/><br/>Output format: vector output should produce a left brace, a list of 
+    values separated by comma followed by space, and terminated by a right brace.
+    This is like the notation for array initialization.  For example
+    <pre>
+    {1.1, 7.3345, 3.14}</pre>
+<pre class="file">
+friend ostream&amp; operator&lt;&lt;(ostream&amp; os, const floatVector&amp; fv);</pre>
+    <ul>
+    <li><a href="p5test.html">floatVectorTest.cpp - Problem 5 cumulative test program</a></li>
+    <li><a href="p5header.html">floatVector.h - Problem 5 cumulative header file</a></li>
+    </ul>
+    </li>
+    
+<li><b>Template class.</b>  Make this into a general template class that will work with any type.
+    Call it <code>xvector</code> to distinguish it from the standard <code>vector</code> class.
+    Use the test program <a href="p6xvectorTest_cpp.html">Test Program for xvector</a>.
+    </li>
+</ol>
+
+<h2>Header file and test program for first five problems</h2>
+<p>You may find the following useful for testing solutions to the first 4 problems too,
+but you will have to comment out the tests and prototypes that you haven't yet implemented..</p>
+<ul>
+<li><a href="p5test.html">floatVectorTest.cpp - Problem 5 cumulative test program</a></li>
+<li><a href="p5header.html">floatVector.h - Problem 5 cumulative header file</a></li>
+</ul>
+
+
+<div class="footer">Copyleft 2004 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+</html>
+

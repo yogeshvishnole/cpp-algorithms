@@ -1,0 +1,292 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css" />
+  <title>C++ Notes: Examples: Compress words</title>
+</head>
+
+<body>
+<h1><a href="../../index.html">C++ Notes</a>: Examples: Compress words</h1>
+ 
+<h2>Problem</h2>
+<p>Read a sequence of words, eliminate all vowels ("aeiou", lower case only).
+If the resulting word has two or fewer characters, don't eliminate
+any vowels.  Sort and print the words.
+</p>
+
+<p>The modification of each word should be made by calling a void function, compressWord,
+where the word is the single parameter.  
+<i>This function must be defined in a separate file</i>.
+</p>
+
+<h3>Example</h3>
+<dl>
+<dt>Input</dt>
+   <dd>
+   <pre>
+    This is the test data for a 
+    first run.</pre>
+   </dd>
+   
+<dt>Output</dt>
+   <dd>
+   <pre>
+    Ths
+    a
+    dt
+    fr
+    frst
+    is
+    rn.
+    th
+    tst</pre>
+    </dd>
+</dl>
+
+<h3>Suggestions</h3>
+<ul>
+<li><i>vector</i>.  There is no bound on the number of words, so use an appropriate
+    data structure.  I recommend <code>vector</code>.  
+    I you're not familiar with it, you can find a short description starting on p 102 of the
+    textbook.
+    </li>
+    
+<li><i>string</i>.  Another STL class that will be useful is <i>string</i>.
+    There is a little information in the textbook about it.  Some additional
+    features you could use are (assuming <code>string s = "abcdef";</code>).
+    <ul>
+    <li>You can use the subscription operator to access individual characters.
+        <code>s[4]</code> is 'e'.</li>
+    <li>You can delete substrings using <i>erase</i>.  
+        For example, after <code>s.erase(4, 1)</code>, the value in s is "abcdf".
+        </li>
+    </ul>
+    You can find additional string notes at
+    <a href="http://www.msoe.edu/eecs/ce/courseinfo/stl/string.htm">ANSI String Class</a>.
+    </li>
+    
+<li><i>cin, cout</i>.  Use the standard IO streams for the input and output.
+    <i>cin</i> works nicely with strings to read "words", strings of non-whitespace 
+    characters.  Don't worry about real text problems like case and 
+    the fact that punctuation will be included in the words.
+    </li>
+    
+<li><i>sort</i>.  You don't have to write your own sort; in fact it's a
+    bad idea to do so (bugs, inefficiency).  Use the STL <i>sort</i>
+    function.  For example.
+    <pre>
+    vector&lt;string&gt; words;
+    . . .
+    sort(words.begin(), words.end());</pre>
+    </li>
+    
+<li><i>Iterative programming</i>.  Use iterative programming.  Start with a 
+    very small program (main that does nothing), test it, add a feature, test
+    it, and continue making small additions and testing.  This style is 
+    usually effective in making your programming go faster with fewer bugs.
+    </li>
+    
+</ul>
+ 
+<h2>A solution</h2>
+<p>There are many possible ways to solve this problem.  Here is one.</p>
+
+<h3>The header file - <code>compress.h</code></h3>
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+</pre></td><td valign='top'>
+<div class="file"><pre>
+// readModSortWrite/compress.h
+// Fred Swartz - 2004-11-20
+
+void compress(string&amp; w);
+</pre></div>
+</td></tr></table>
+
+
+<h3>The main program - <code>readModSortWrite.cpp</code></h3>
+
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+ 22 
+ 23 
+ 24 
+ 25 
+ 26 
+ 27 
+ 28 
+ 29 
+ 30 
+ 31 
+ 32 
+ 33 
+ 34 
+ 35 
+ 36 
+ 37 
+ 38 
+</pre></td><td valign='top'>
+<div class="file"><pre>
+// stl-vector-mod-sort/readModSortWrite.cpp -- Read, compress, sort words.
+// Fred Swartz - 2004-11-07
+
+// This program is intended as an exercise in using 
+//     vector, string, multiple source files, sort.
+// It reads words, removes vowels (see rules in compress.cpp),
+//     sorts, and prints them.
+
+#include &lt;iostream&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+#include "compress.h"
+
+//========================================================== main
+int main() {
+    string word;           // Used to save input word.
+    vector&lt;string&gt; words;  // Save words here.
+    
+    //... Read, compress, and save words until EOF
+    while (cin &gt;&gt; word) {
+        compress(word);
+        words.push_back(word);
+    }
+    
+    //... Use STL sort to put them in alphabetical order.
+    sort(words.begin(), words.end());
+    
+    //... Print the compressed, sorted words.
+    for (int i=0; i&lt;words.size(); i++) {
+        cout &lt;&lt; words[i] &lt;&lt; endl;
+    }
+    
+    system("PAUSE");  // Keep Dev-C++ window open	
+    return 0;
+}   
+</pre></div>
+</td></tr></table>
+
+
+<h3>The compress function - <code>compress.cpp</code></h3>
+<table border='0' summary=''><tr><td valign='top'><pre class='example2'>
+  1 
+  2 
+  3 
+  4 
+  5 
+  6 
+  7 
+  8 
+  9 
+ 10 
+ 11 
+ 12 
+ 13 
+ 14 
+ 15 
+ 16 
+ 17 
+ 18 
+ 19 
+ 20 
+ 21 
+ 22 
+ 23 
+ 24 
+ 25 
+ 26 
+ 27 
+ 28 
+ 29 
+ 30 
+ 31 
+ 32 
+ 33 
+ 34 
+ 35 
+ 36 
+ 37 
+ 38 
+ 39 
+ 40 
+</pre></td><td valign='top'>
+<div class="file"><pre>
+// readModSortWrite/compress.cpp - Read words, compress, sort, print.
+// Fred Swartz - 2004-11-20
+
+//  The compress() function removes vowels from its parameter.
+//  1. If result would be shorter than two chars, it is unchanged.
+//  2. Only lowercase characters are removed.
+
+#include &lt;string&gt;
+using namespace std;
+
+#include "compress.h"
+
+const char VOWELS[] = "aeiou";
+const int VMAX = 5;
+
+//========================================================= compress
+void compress(string&amp; w) {
+    string temp = w;    // Save the original parameter.
+    
+    //... Don't change words that are already short.
+    if (w.size() &lt;= 2) {
+        return;  // No need to even look if it's this short.
+    }    
+    
+    //... Iterate character-by-character over each string.
+    for (int i=w.size()-1; i &gt;= 0; i--) {
+        //... Iterate over each of the vowel characters.
+        for (int v=0; v&lt;VMAX; v++) {
+            if (w[i] == VOWELS[v]) {  // When it's a vowel
+                w.erase(i, 1);        // Remove it.
+                break;                // Try next word character.
+            }
+        }
+    } 
+    
+    //... If the result has fewer than two characters, use original.
+    if (w.size() &lt; 2) {
+        w = temp;
+    } 
+}     
+</pre></div>
+</td></tr></table>
+
+
+
+
+<div class="footer">Copyleft 2004 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+</html>
+

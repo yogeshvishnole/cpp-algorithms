@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++ Notes: STL: Example - Vector - reverse input</title>
+</head>
+<body>
+<h1><a href="../../index.html">C++ Notes</a>: STL: Example - Vector - reverse input</h1>
+
+
+Vectors (from the Standard Template Library) are an expandable array.  
+Here is the "reverse input" example 
+(see <a href="../../arrayptr/buffer-overflow.html">Buffer Overflow</a>) written with a vector.
+<div class="example"><pre>
+// vectors/vector-reverse-input.cpp - Reverses order of input.
+// Fred Swartz - 2003-09-30
+#include &lt;iostream&gt;
+#include &lt;vector&gt;                         // (1)
+using namespace std;
+
+int main() {
+    //--- Declare a vector.
+    vector&lt;int&gt; v;                        // (2)
+   
+    //--- Read numbers into it.
+    int temp;
+    while (cin &gt;&gt; temp) {
+        v.push_back(temp);                // (3)
+    }
+   
+    //--- Get elements in reverse order.
+    for (int i=v.size()-1; i&gt;=0; i--) {   // (4)
+        cout &lt;&lt; v[i] &lt;&lt; endl;             // (5)
+    }
+   
+    return 0;
+}//end main
+</pre></div>
+Notes:
+<ol>
+<li>The <code>&lt;vector&gt;</code> header must be included.</li>
+<li>Declare the vector, enclosing the element type between &lt; and &gt;.</li>
+<li>A vector has initial size zero.  Add elements to the 
+    end by calling <code>push_back()</code> with the value as a parameter.  
+    The memory associated with a vector expands as needed.
+    </li>
+<li>The current maximum size is obtained by calling <code>size()</code>.</li>
+<li>Subscription is used to access an element.</li>
+</ol>
+
+<script type="text/JavaScript">footer("2003");</script>
+</body>
+
+</html>

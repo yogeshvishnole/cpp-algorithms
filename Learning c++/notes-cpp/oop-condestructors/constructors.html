@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>C++: Constructors</title>
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../../notes.js"></script>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: Constructors</h1>
+
+When an object of a class is created, C++ calls the <i>constructor</i> 
+for that class.  If no constructor is defined, C++ invokes a <i>default constructor</i>,
+which allocates memory for the object, but <i>doesn't initialize it</i>.
+
+<h2>Why you should define a constructor</h2>
+Uninitialized member fields have <i>garbage</i> in them.
+This creates
+the possibility of a serious bug (eg, an uninitialized pointer, illegal values,
+inconsistent values, ...).
+
+<h2>Declaring a constructor</h2>
+
+A constructor is similar to a function, but with the following differences.
+<ul>
+<li>No return type.</li>
+<li>No return statement.</li>
+</ul>
+
+Example [extracts from three different files].
+
+<pre class="file">
+//=== point/point.h =================================================
+#ifndef POINT_H
+#define POINT_H
+class Point {
+    public:
+        Point();  // parameterless default constructor
+        Point(int new_x, int new_y); //  constructor with parameters
+        int getX();
+        int getY();
+    private:
+        int x;
+        int y;
+};
+#endif</pre>
+Here is part of the implementation file.
+<pre class="file">
+//=== point/point.cpp ==============================================
+. . .
+Point::Point() {  // default constructor
+    x = 0;
+    y = 0;
+}
+
+Point::Point(int new_x, int new_y) {  // constructor
+    x = new_x;
+    y = new_y;
+}
+. . .</pre>
+And here is part of a file that uses the Point class.
+<pre class="file">
+//=== point/main.cpp ==============================================
+   . . .
+   Point p;              // calls our default constructor
+   Point q(10,20);       // calls constructor with parameters
+   Point* r = new Point();  // calls default constructor
+   Point s = p;          // our default constructor not called.
+   . . .</pre>
+
+   
+<script type="text/JavaScript">footer("2001-3");</script>
+</body>
+
+</html>

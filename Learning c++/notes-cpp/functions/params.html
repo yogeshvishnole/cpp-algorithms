@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+  <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+  <title>C++ Notes: Function Parameters</title>
+</head>
+
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Function Parameters</h1>
+
+
+<h2>Formal Parameters</h2>
+<b>Formal parameters</b> are written in the function prototype
+and function header of the definition.  Formal parameters
+are local variables which
+are assigned values from the arguments when the function is called.
+
+
+<h2>Actual Parameters or Arguments</h2>
+When a function is <i>called</i>, the values (expressions) 
+that are passed in the call are called the <i>arguments</i> 
+or <i>actual parameters</i> (both terms mean the same thing).
+At the time of the call each actual parameter is assigned to the
+corresponding formal parameter in the function definition.
+
+<br /><br />For value parameters (the default), the value of the
+actual parameter is assigned to the formal parameter variable.
+For reference parameters, the <i>memory address</i> of the 
+actual parameter is assigned to the formal parameter.
+
+
+<h2>Value Parameters</h2>
+By default, argument values
+are simply copied to the formal parameter variables at the
+time of the call.  This type of parameter passing is called
+<i>pass-by-value</i>.  It is the only kind of parameter passing
+in Java and C.  C++ also has <i>pass-by-reference</i> (see below).
+
+
+<h2>Reference Parameters</h2>
+A <i>reference parameter</i> is indicated by following the formal parameter name 
+in the function prototype/header by an ampersand (&amp;).  The compiler will
+then pass the <i>memory address</i> of the actual parameter, not the value.
+A formal reference parameter may be used as a normal variable, without
+explicit dereference - the compiler will generate the correct code for using
+an address.
+Reference parameters are useful in two cases:
+<ul>
+<li>To <i>change</i> the value of actual parameter variables.</li>
+<li>To more efficiently pass large structures.</li>
+</ul>
+See <a href="refparams.html">Reference Parameters</a>.
+
+
+<h2>Additional topics</h2>
+This summary doesn't cover some features: eg, variable parameter lists,
+default parameter values, ....
+
+
+<script type="text/JavaScript">footer("2000-1");</script>
+</body>
+</html>

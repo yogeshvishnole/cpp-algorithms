@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Operator Overloading</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Operator Overloading</h1>
+
+<h2>Why overload operators</h2>
+<p><b>Clarity</b>. It's common to define a meaning for an existing operator
+for objects of a new class.  Operators are defined as either
+member functions or friend functions.
+<i>Don't use operator overloading</i> just because it can be done
+and is a clever trick.
+The purpose of operator overloading is to make programs clearer
+by using conventional meanings for 
+<code>==</code>, <code>[]</code>, <code>+</code>, etc.</p>
+
+<p>For example, overloading the <code>[]</code> operator for a data structure
+allows <code>x = v[25]</code> in place of a function call.
+This is purely a conveniece to the user of a class.
+Operator overloading isn't strictly necessary unless other classes or functions
+expect operators to be defined (as is sometimes the case). 
+</p>
+
+<p>Whether it improves program readability or causes confusion
+depends on how well you use it.  In any case, C++ programmers are
+expected to be able to use it -- it's the C++ way.
+</p>
+
+
+<h2>Example -  Defining + for Point</h2>
+Using the Point class, adding (does this make sense?) can be defined like this:
+<pre class="example">
+//=== Point.h file =============================
+    Point operator+(Point p) const;</pre>
+    
+<pre class="example">
+//=== Point.cpp file ===========================
+Point Point::operator+(Point p) const {
+      return Point(x+p.x,  y+p.y);
+}</pre>
+
+<pre class="example">
+//=== myprogram.cpp ============================
+Point a(10, 20);
+Point b(1, 2);
+Point c = a + b;
+</pre>
+
+
+<h2>Define a function which begins with the "operator" keyword</h2>
+
+<p>Define a function with the keyword "operator" preceding the operator.  There
+can be whitespace between <code>operator</code> and the operator,
+but usually they are written together.
+</p>
+
+<h2>Restrictions</h2>
+Most operators can be redefined, there are restrictions.
+<ul>
+<li class="compact">It's not possible to change an operator's precedence.</li>
+<li class="compact">It's not possible to create new operators, eg <code>**</code> which is
+    used in some languages for exponentiation.</li>
+<li class="compact">You may not redefine <code>::</code>, <code>sizeof</code>, <code>?:</code>, or <code>.</code> (dot).</li>
+<li class="compact">Overloading <code>+</code> doesn't overload <code>+=</code>, and similarly for the
+    other extended assignment operators.</li>
+<li class="compact"><code>=</code>, <code>[]</code>, and <code>-&gt;</code> must be member functions if they are overloaded.</li>
+<li class="compact"><code>++</code> and <code>--</code> need special treatment because they are prefix and postfix
+    operators.</li>
+<li class="compact">There are special issues with overloading
+    assignment (=) (see <a href="overloadassign.html">Overloading Assignment</a>).
+    Assignment should always be overloaded if an object dynamically 
+    allocates memory.
+    </li>
+</ul>
+
+
+   
+<script type="text/JavaScript">footer("2001-4");</script>
+</body>
+
+</html>

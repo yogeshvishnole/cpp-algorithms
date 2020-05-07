@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com/fred)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Random Numbers</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Random Numbers</h1>
+
+<h2>Random positive integers - rand()</h2>
+The <code>rand</code> function returns a "random" positive integer
+from 0 to a large value (at least 32,767) every time it is called.  
+To scale the value into 
+the range you want, use the mod (%) operator and addition.
+For example to generate a random number in the range 1 to 10
+and assign it to r:
+<pre class="fragment">
+#include &lt;ctime&gt;    // For time()
+#include &lt;cstdlib&gt;  // For srand() and rand()
+    . . .
+    srand(time(0));  // Initialize random number generator.
+    . . .
+    r = (rand() % 10) + 1;</pre>
+   
+   
+<h2>Pseudo-random numbers and seeds - srand(...)</h2>
+
+
+<p>The sequence of numbers returned by <code>rand()</code> are called random 
+because they satisfy statistical tests for randomness, 
+eg, uniform distribution, coorelation between sequential
+numbers is zero, no apparent patterns).  But of course
+they really can't be truly random (whatever that means) because computers are deterministic. 
+Therefore they are more properly called <i>pseudorandom</i> numbers.
+</p>
+
+<p>
+For a given <i>seed</i> (starting value), the sequence of numbers that <code>rand()</code> 
+returns will always be the same.  
+Because the starting point for the
+pseudorandom sequence can easily be varied (see below) and because the
+sequence is very long (perhaps billions before the sequence repeats),
+these pseudorandom numbers are as good as random.
+</p>
+
+
+<p>Having the same sequence generated each time
+can be useful for debugging, but it isn't very useful when you're 
+actually using the program.
+To generate a different random sequence, it's necessary to set the
+<i>seed</i> that starts the sequence.  The <code>srand()</code> function 
+takes a positive integer parameter which tells where to start the sequence.
+</p>
+
+<pre class="fragment">
+srand(2345);</pre>
+
+The above call sets the initial seed to 2345.
+However, this still isn't very useful.  If you want to have what appears
+to be a truly random sequence each time you run the program, you need to
+start with a different seed each time.
+
+
+<h2>Using the time as a seed - <code>srand(time(0))</code></h2>
+The standard way to start with a different initial value, the <i>seed</i>, 
+is to use the current time as a seed.  Use the <code>time()</code> function 
+as follows:
+<pre class="fragment">
+srand(time(0));  // Initialize random number generator.</pre>
+at the beginning of the program to initialize the random seed.
+<code>time(0)</code> returns the integer number of seconds
+from the system clock.  This will almost always be a different value.
+
+
+<h2>Include files</h2>
+Use the following include files.
+<pre class="fragment">
+#include &lt;ctime&gt;    // For time()
+#include &lt;cstdlib&gt;  // For srand() and rand()</pre>
+   
+<script type="text/JavaScript">footer("2000-3");</script>
+</body>
+
+</html>

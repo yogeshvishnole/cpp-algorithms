@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com/fred/)"/>
+    <link rel="stylesheet" type="text/css" title="noanswers" href="../../notes.css"/>
+    <title>C++: Programming - Extending floatVector</title>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: Programming - Extending <code>floatVector</code></h1>
+
+<p>Name __________________________________</p>
+
+<ol>
+
+<li><b>Overload +=</b> operator.. 
+<pre class="fragment">
+floatVector v1;
+floatVector v2;
+. . .
+v1 += v2;</pre>
+    <p>This copies the values of the second list (v2) onto the
+    end of the first list (v1).
+    The second list (v2) remains unchanged.
+    </p>
+    </li>
+    
+
+    
+<li><b>Constructor</b>.  Write a constructor that takes one float as a parameter.  
+      This would create a floatVector with one initial element.
+      <pre class="fragment">
+floatVector v3(3.14159);</pre>
+</li>
+    
+
+<li><b>Write <i>operator&lt;</i></b>  to compare two floatVectors
+      element by element.
+    <pre class="fragment">
+floatVector v1;
+floatVector v2;
+
+if (v1 &lt; v2) ...</pre>
+<p>This returns true if the corresponding elements of v1 are less than 
+   the elements of v2 (eg, v1[i] &lt; v2[i]).  
+   If v2.size() &lt;= v1.size(), then the comparison is true if
+   all elements of v1 are less than the corresponding elements in v2.
+   If v2.size() &gt; v1.size() then the comparison is false. 
+   </p>
+    </li>
+    
+
+ <li><b>Write add()</b>.  Vectors can be modified to make evaluation of postfix expressions
+     relatively easy by "pushing" values on the end of the vector (ie, use it as 
+     a stack), and defining functions that do the operations with the top elements.
+     To make "instruction chaining"  easy, these functions should
+     return a reference to the floatVector (in the same way
+     that operator= does).  For example, we could add these functions to floatVector.
+     The arithmetic functions "pop" the back two elements,
+     do the mathematical operation, then push the result on the
+     back again.
+<pre class="fragment">
+floatVector&amp; push(float x);
+floatVector&amp; add();
+floatVector&amp; sub();
+floatVector&amp; mul();
+floatVector&amp; div();</pre>
+    <p>To evaluate the postfix expression</p>
+    <pre>
+    1.2 3.4 + 2.2 -</pre>
+    <p>Using these functions the following calls could be written in a straightforward manner.</p>
+    <pre class="fragment">
+fv.push(1.2).push(3.4).add().push(2.2).sub();</pre>
+    
+    <p>Finally we get to the problem.  
+    Write a floatVector member funcion <i>add()</i> as described above.</p>
+    </li>
+</ol>
+
+
+
+  
+<script type="text/JavaScript">footer("2004");</script>
+</body>
+
+</html>

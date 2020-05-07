@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Reading Characters</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Reading Characters</h1>
+These notes are written using <code>cin</code> as an example, but
+they apply to all input streams.
+
+<h2>What about whitespace?</h2>
+The standard input stream (<code>cin</code>) does just what you want
+when reading integers, floating point etc.  It ignores all whitespace
+(blanks, tabs, etc) that appears in front of a number.
+But when you're reading characters, you will often want to read
+whitespace too.  For example, here's a little loop to count
+the number of characters in the input stream.
+<pre class="example">
+char c;
+int  count = 0;
+while (cin &gt;&gt; c) {  // DOESN'T READ WHITESPACE!!!!!
+    count++;
+}</pre>
+The fails to give an accurate count of characters because it ignores
+all the whitespace characters.  There are two solutions.
+<ul>
+<li>Use the <code>noskipws</code> I/O manipulator to cause a
+    further <code>cin</code> reads to not ignore whitespace
+    (or until the <code>skipws</code> manipulator is used).
+    Here's that same loop rewritten.
+<pre class="example">
+char c;
+<span class="hylyt">cin &gt;&gt; noskipws;</span>    // Stops all further whitespace skipping
+while (cin &gt;&gt; c) {  // Reads whitespace chars now.
+    count++;
+}</pre>
+    This isn't a bad solution, but choose
+    the next alternative to always read whitespace with no need to 
+    switch the mode of the <code>cin</code> stream.
+    </li>
+    
+<li>Use the <code>cin.get()</code> function.
+<pre class="example">
+char c;
+while (<span class="hylyt">cin.get(c)</span>) {  // Always reads whitespace chars.
+    count++;
+}</pre>
+</li>
+</ul>
+
+
+<h2>Skipping input</h2>
+When an error is encountered, it is often useful to skip all remaining
+characters on the line.  You can do that with:
+<pre class="fragment">
+cin.ignore(<i>n</i>, <i>c</i>);</pre>
+where <i>n</i> is the number of characters to skip, and <i>c</i> is the
+character to skip up to, whichever comes first.  For example, to skip to 
+the end of the line,
+<pre class="fragment">
+cin.ignore(1000, '\n');</pre>
+   
+   
+<script type="text/JavaScript">footer("2000-4");</script>
+</body>
+
+</html>

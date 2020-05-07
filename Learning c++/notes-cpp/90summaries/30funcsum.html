@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)" />
+    <link rel="stylesheet" type="text/css" href="summaries.css" />
+    <script type="text/JavaScript" src="../notes.js"></script>
+    <title>C++ Notes: Functions</title>
+</head>
+
+<body>
+<h1><a href="../index.html">C++ Notes</a>: Functions</h1>
+
+<dl>
+<dt>Fundamental code building block</dt>
+    <dd>Functions are the fundamental code building block of all programming
+        languages.  All executable statements must be in a function.
+        Functions provide a way to reuse code which is customized with parameters.
+        Along with classes they form the fundamental <i>conceptual</i>
+        building blocks.
+    </dd>
+    
+<dt>Local variables and parameters</dt>
+    <dd>
+    Local variables (<code>auto</code>) are declared in a function body.  
+    They are allocated memory on the call stack when the function is entered
+    are deallocated when the function returns.
+    They have no fixed initial
+    value so they must be given a value before use.
+    A <i>formal parameter</i> is a kind of local variable that gets its initial value
+    from the corresponding actual parameter.
+    </dd>
+    
+<dt>Returning values, reference parameters, globals, and side-effects</dt>
+    <dd>Functions change things.  There are four ways
+    they do this:
+    <ol>
+    <li><b>return statement</b>.  If a function produces one value, 
+        it should <code>return</code> it (not in a global or reference parameter).</li>
+    <li><b>Reference parameters</b>.  If a function produces more than one result,
+        the <code>return</code> statement can't easily be used.
+        The standard solution is to pass some or all of the values back thru
+        reference parameter(s).</li>
+    <li><b>Global variables</b>.  You can assign to values to global variables,
+        but avoid globals if at all possible, because
+        they are a frequent source of programming errors.</li>
+    <li><b>System side-effects</b>.  A function can change things in the system or 
+        user environment.  The most common example of this is
+        I/O.</li>
+    </ol>
+    Global variables and side-effects make functions very difficult
+    to reuse in other programs.
+    </dd>
+    
+<dt>Function prototypes at beginning of program</dt>
+    <dd>C/C++ require functions to be <i>declared</i> (not necessary <i>defined</i>)
+        before using them.  It is common to put function prototypes at the 
+        beginning of the code or in an include file.  The standard style for 
+        declaring classes uses this style.
+    </dd>
+    
+<dt>Parameter passing by value or reference</dt>
+    <dd>In the function call, what is done with <i>actual parameters</i> 
+    (also called <i>arguments</i>) depends on 
+    the nature of the corresponding <i>formal parameter</i>.
+    <ul>
+    <li><b><i>value</i> parameter</b>.
+        Value parameters are the default.
+        At the time of the call, the actual parameter is evaluated to a value,
+        and this value is assigned to the corresponding formal parameter.</li>
+    <li><b><i>reference</i> parameter</b>. 
+        The function header indicates a reference parameter by
+        following the parameter type by &amp;.  
+        At the time of the call, the <i>memory address</i>, not value,
+        of the actual parameter is assigned
+        to the formal parameter.  All references to the formal parameter 
+        are to the memory of the actual parameter.  Reference parameters
+        are used for two main purposes:
+        (1) to allow the function to change the value, and (2) to refer to large structures
+        that would be costly to pass as an actual parameter.
+        The corresponding actual parameter must be something that can be
+        assigned to (is an <i>l-value</i>).</li>
+    </ul>
+    In C before C++ there were no reference parameters.  This same effect was achieved by
+    explicitly passing an address and explicitly dereferencing the formal 
+    parameter in the function.
+    
+    </dd>
+    
+<dt>Converting actual parameters types to match formal parameter types</dt>
+    <dd>There is a somewhat complicated set of rules for this, but you can generally
+        assume it is done the same way as for assignment.  
+        It's a good style to write explicit casts so that readers of the program
+        realize what is happening, and it's no less efficient. 
+    </dd>
+    
+<dt>Style issues</dt>
+    <dd>
+    <ul>
+    <li>Make function and parameter names describe what they do/are.</li>
+    <li>Indent the code within the body of a function.</li>
+    <li>Use the parameter names in function prototypes.</li>
+    <li>Functions should generally not be longer than one printed page.</li> 
+    </ul>
+    </dd>
+    
+<dt>Other topics</dt>
+    <dd>Not covered:
+        recursion, exceptions, function addresses,
+        variable length parameter lists, inline, register, static,
+        overloading, overriding, template functions, ...
+    </dd>
+    
+<dt>Vocabulary</dt>
+    <dd>Be familiar with:
+    function, subroutine, procedure, subprogram,
+    prototype, function declaration, function definition,
+    function header,
+    void, call, return, 
+    parameter, actual parameter, argument, formal parameter, parameter list,
+    local variable, global variable, side-effects,
+    value parameter, reference parameter and use of &amp;,
+    passing by value, passing by reference,
+    stack, stack frame.
+    </dd>
+    
+</dl>
+    
+
+<script type="text/JavaScript">footer("2000-3");</script>
+</body>
+</html>
+

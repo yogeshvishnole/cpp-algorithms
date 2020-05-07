@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com)"/>
+    <link rel="stylesheet"           type="text/css" title="noanswers" href="../../notes.css"/>
+    <link rel="alternate stylesheet" type="text/css" title="answers"   href="../../notesanswer.css"/> 
+    <script type="text/JavaScript" src="../../notes.js"></script>
+    <title>C++: Types / Pointers - 1</title>
+</head>
+
+<body>
+<h1><a href="../../index.html">C++</a>: Types / Pointers - 1</h1>
+
+<p>Name ______________________</p>
+<p>Assume the following:</p><pre class="example">
+    int   i = 2;
+    int*  ip = &amp;i;
+    int   ia[100] = {3, 1, 4, 5, 2, 6, 0};
+    char  c = 'x';
+    char  ca[] = "abcdef";
+    char* cp = ca;
+</pre>
+<br /><br />
+
+<table border="1" cellspacing="0" cellpadding="4" summary="">
+<tr><th>Part I - Types</th><th>Part II - Values</th></tr>
+<tr><td valign="top" width="45%">
+Give the <b><i>types</i></b> of the following expressions.  
+Regard an array as being of <code>type*</code> type,
+eg, <code>ia</code> is type <code>int*</code>.
+There are no illegal expressions.
+Choose from one of the following possibilies:
+<pre>
+    int
+    int*
+    char
+    char*
+</pre>
+<table>
+<tr><td>  </td><th>Type</th><th>Expression</th></tr>
+<tr><td> 1</td><td><span class="answerspace">__________</span><span class="answer">int</span></td><td><code>i</code></td></tr>
+<tr><td> 2</td><td><span class="answerspace">__________</span><span class="answer">int</span></td><td><code>22</code></td></tr>
+<tr><td> 3</td><td><span class="answerspace">__________</span><span class="answer">int*</span></td><td><code>ia</code></td></tr>
+<tr><td> 4</td><td><span class="answerspace">__________</span><span class="answer">int</span></td><td><code>ia[23]</code></td></tr>
+<tr><td> 5</td><td><span class="answerspace">__________</span><span class="answer">char*</span></td><td><code>cp</code></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td> 6</td><td><span class="answerspace">__________</span><span class="answer">char</span></td><td><code>*cp</code></td></tr>
+<tr><td> 7</td><td><span class="answerspace">__________</span><span class="answer">char</span></td><td><code>cp[0]</code></td></tr>
+<tr><td> 8</td><td><span class="answerspace">__________</span><span class="answer">int</span></td><td><code>'a' - 'A'</code></td></tr>
+<tr><td> 9</td><td><span class="answerspace">__________</span><span class="answer">char*</span></td><td><code>cp + 4</code></td></tr>
+<tr><td>10</td><td><span class="answerspace">__________</span><span class="answer">int</span></td><td><code>ia[cp[3]]</code></td></tr>
+</table>
+
+</td><td valign="top">
+
+What is printed by the following statements?
+<table>
+<tr><td>  </td><th>Output</th><th>Statement(s)</th></tr>
+<tr><td>1</td><td><span class="answerspace">__________</span><span class="answer"><code>b</code></span></td><td><code>cout &lt;&lt; ca[1];</code></td></tr>
+<tr><td>2</td><td><span class="answerspace">__________</span><span class="answer"><code>a</code></span></td><td><code>cout &lt;&lt; *cp;</code></td></tr>
+<tr><td>3</td><td><span class="answerspace">__________</span><span class="answer"><code>b</code></span></td><td><code>cout &lt;&lt; *(cp+1);</code></td></tr>
+<tr><td>4</td><td><span class="answerspace">__________</span><span class="answer"><code>c</code></span></td><td><code>cout &lt;&lt; cp[2];</code></td></tr>
+<tr><td>5</td><td><span class="answerspace">__________</span><span class="answer"><code>5</code></span></td><td><code>cout &lt;&lt; ia[3];</code></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>6</td><td><span class="answerspace">__________</span><span class="answer"><code>4</code></span></td><td><code>cout &lt;&lt; ia[ia[4]];</code></td></tr>
+<tr><td>7</td><td><span class="answerspace">__________</span><span class="answer"><code>3</code></span></td><td><code>cout &lt;&lt; *ia;</code></td></tr>
+<tr><td>8</td><td><span class="answerspace">__________</span><span class="answer"><code>b</code></span></td><td><code>cout &lt;&lt; cp[ia['b'-'a']];</code></td></tr>
+<tr><td>9</td><td><span class="answerspace">__________</span><span class="answer"><code>abcdef</code></span></td><td><code>cout &lt;&lt; cp;</code></td></tr>
+<tr><td>10</td><td><span class="answerspace">__________</span><span class="answer"><code>f</code></span></td><td><code>cp++; cout &lt;&lt; cp[4];</code></td></tr>
+</table>
+</td></tr></table>
+<p>
+<a href="#" onclick="setActiveStyleSheet('answers'  ); return false;">Show Answers</a> -
+<a href="#" onclick="setActiveStyleSheet('noanswers'); return false;">Hide Answers</a>
+</p>
+
+<div class="footer">Copyleft 2004 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+</html>
+

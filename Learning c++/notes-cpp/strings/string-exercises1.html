@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta name="author" content="Fred Swartz (www.fredosaurus.com/fred)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <script type="text/JavaScript" src="../notes.js"></script>
+<title>C++: C-Strings - Programming Exercises 1</title>
+</head>
+<body>
+<h1><a href="../index.html">C++</a>: C-Strings - Programming Exercises 1</h1>
+
+<h2>Programming problems</h2>
+
+<ol>
+
+<li class="question">Write a <code>myStrlen</code> function which is the same as the library <code>strlen</code> function.  
+Assume the prototype is
+<pre>
+    int myStrlen(char a[]);
+    int myStrlen(char* a);</pre>
+</li>
+
+<li class="question">Write the <code>myStrcpy</code> function which is the same as the library <code>strlen</code> function.  
+Assume the prototype is
+<pre>
+    void myStrcpy(char a[], char b[]);
+    void myStrcpy(char* a, char* b);</pre>
+</li>
+
+<li class="question">Write the <code>myStrcat</code> function which is the same as the library <code>strlen</code> function.  
+Assume the prototype is
+<pre>
+    void myStrcat(char a[], char b[]);
+    void myStrcat(char* a, char* b);</pre>
+</li>
+
+<li class="question">Write the <code>myStrcmp</code> function which is the same as the library <code>strlen</code> function.  
+Assume the prototype is
+<pre>
+    int myStrcmp(char a[], char b[]);  // array version
+    int myStrcmp(char* a, char* b);    // pointer version</pre>
+For example,
+<pre>
+         i = myStrcmp("abc", "after");  // result is a negative value</pre>
+There is a slight twist to this problem.  The standard allows each compiler
+to decide if the <code>char</code> type is signed or not, so the range of 
+of a <code>char</code> is either -128..127 (signed) or 0..255 (unsigned).
+To do the comparison properly, the comparison should be done on the
+unsigned characters, which requires casting to that type.
+</li>
+
+
+</ol>
+
+<h2>Guidelines for problems</h2>
+<ul>
+<li class="question">No I/O (<code>cin</code> or <code>cout</code>) should be
+    in these functions (other than temporary I/O for debugging purposes).
+    As a general design principle, I/O should be restricted to a few functions
+    which are specifically used for this purpose.  There is no need
+    for I/O in these functions.
+    </li>
+<li class="question">No function need to allocate space for temporary arrays.
+    The arrays which are passed as parameters are sufficient.
+    </li>
+<li class="question">These functions can be written in either array-style or pointer-style.
+    </li>
+</ul>
+
+
+</body>
+</html>
+

@@ -1,0 +1,366 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../notes.css"/>
+<title>CMIS 240 - Data structures in C++ - Notes</title>
+</head>
+
+<body>
+<h1>CMIS 240 - Data structures in C++ - Notes</h1>
+<p>Most recent entries are first (LIFO).</p>
+
+<h2>Tuesday, December 14</h2>
+<dl>
+<dt>xvector</dt>
+    <dd>
+    <dt>Test file for xvector</dt>
+        <dd>I've taken the basic floatVector test file and rewritten it to
+            test xvector&lt;float&gt; and xvector&lt;string&gt;.
+            <a href="../oop-classes/example-floatvector-1/p6xvectorTest_cpp.html">Test Program for xvector</a>.
+            </dd>
+    <dt>operator&lt;&lt; for xvector</dt>
+        <dd>You can declare it like below.  It should have a different template
+            class name because it isn't part of the xvector class.
+            <pre>
+    template&lt;class T2&gt; friend ostream&amp; operator&lt;&lt;(ostream&amp; os, const xvector&lt;T2&gt;&amp fv);</pre>
+         </dd>
+         
+    <dt>Destructor automatically called for each element in delete [] ...</dt>
+        <dd>I gave some wrong info in class.  You do NOT have to explicitly
+            call the constructor for each element of the array when it
+            is deleted.  C++ does this automatically.
+            Explicit deallocation of each element is necessary in C, not C++
+            (at least not in this case).
+            </dd>
+    </dl>
+    </dd>
+</dl>
+
+<h2>Thursday, December 9</h2>
+<dl>
+<dt>Topics</dt>
+    <dd>
+    <ul>
+    <li>Discussion of Chad's char** problem.</li>
+    <li>Discussion of listread function.</li>
+    <li>Discussion of Big-Oh values</li>
+    <li>Discussion of projects due next week.  If you don't already have a project,
+        Three relatively easy projects where proposed:
+        <ul>
+        <li>3-Valued logic class (true, false, unknown)</li>
+        <li>Create a class, xstring, which is a clone of STL string.  
+            This can fairly easily be done by modifying floatVector to use 
+            characters instead of floats.  You should also add
+            two functions: substr() and the plus operator to concatentate
+            strings.  You can use the sample implementation given in the link below.
+            </li>
+        <li>Turn floatVector into a template class, xvector, that takes any
+            types, not just floats -- xvector&lt;int&gt; for example.
+            See <a href="../generic/templates.html">Templates</a> in my
+            notes which has a few guidelines and points to two simple
+            examples which illustrate the use of templates.  The textbook
+            also has a section on templates.
+            </li>
+        </ul>
+        </li>
+    <li>Discussion of the Final</li>
+    </ul>
+    </dd>
+<dt>Handouts</dt>
+    <dd>None</dd>
+    
+<dt>The floatVector project</dt>
+    <dd>
+    <a href="../oop-classes/example-floatvector-1/p5float_vector_cpp.html">A sample implementation of floatVector</a>
+    </dd>
+    
+</dl>
+
+<h2>Tuesday, December 7</h2>
+
+
+<h2>Friday, December 3</h2>
+<dl>
+<dt>Topics</dt>
+    <dd>
+    <ul>
+    <li>A discussion of floatVector issues.</li>
+    <li>Discussion of constructors (default no-parameter, copy constructor
+        and other constructors) vs assignment.  Destructors.</li>
+    <li>Linked lists -- worked thru a number of linked list examples.</li>
+    <li>The final linked list example was 
+        <a href="../ds-lists/q-pr-splice.html">Combining two circular, doubly linked lists</a>.  
+        You'll find a link to the answer on that page too.
+        </li>
+    </ul>
+    </dd>
+</dl>
+
+<h2>Thursday, December 2</h2>
+<dl>
+    <dt>Topics</dt>
+        <dd>
+        <ul>
+        <li>floatVector</li>
+        <li>Doubly-linked lists.</li>
+        <li>Big-Oh notation.</li>
+        <li>STL lists</li>
+        </ul>
+        </dd>
+    <dt>Handouts</dt>
+        <dd>
+        <ul>
+        <li><a href="../oop-classes/example-floatvector-1/examplefloatvector.html">Classes: Example: floatVector - Version 1</a></li>
+        <li><a href="../stl-containers/list/list-header.html">STL: list class</a></li>
+        <li><a href="../algorithms/searching/linearsearch.html">Algorithms: Linear Search</a> - Should have handed this out.</li>
+        <li><a href="../algorithms/searching/binarysearch.html">Algorithms: Binary Search</a></li>
+        <li><a href="../algorithms/searching/rbinarysearch.html">Algorithms: Recursive Binary Search</a> - Not yet discussed.</li>
+        <li>There were also two sorting pages that we didn't cover, but I'll add them later.</li>
+        </ul>
+        </dd>
+        
+</dl>
+
+<h2>Tuesday, November 31</h2>
+    <dl>
+    <dt>floatVector</dt>
+        <dd><p><b>Issues</b>. There were a number of problems in the submitted programs for 
+           floatVector.  My specification was the source of a couple of
+           issues, but more important was the lack of rigorous
+           testing.  I hadn't provided a good model for testing, 
+           so I don't want to grade down on this basis.  
+           So we're going to go one more round with this problem with two additions: 
+           improved specifications and
+           a test program.  This shouldn't be much work because most of the 
+           programs are basically done.
+           <b>See <a href="../oop-classes/example-floatvector-1/examplefloatvector.html">Example: floatVector - Version 1</a></b>
+           for the improvements.  See the end of that page for the test program.
+           </p>
+        <p><b>Specifications</b>.  <code>front()</code> and <code>back()</code>
+           should have returned a float&amp; instead of a float so that they
+           can be used on the left-hand-side of an assignment.
+           The definition of the output format of &lt;&lt; is now specifed.
+           See above link.
+           </p>
+        <p><b>Supplied test program</b>.  See the above link for a test program.
+           (and the problem header file).  Run this test program on your code.
+           </p>
+        </dd>
+    <dt>Handouts</dt>
+        <dd>
+        <ul>
+        <li><a href="../ds-lists/list-ex1a.html">Linked Lists - Example Using Nodes</a></li>
+        <li><a href="../algorithms/big-oh/bigoh.html">Algorithms: Big-Oh Notation</a></li>
+        <li><a href="../algorithms/big-oh/bigoh-examples.html">Algorithms: Big-Oh Examples</a></li>
+        </ul>
+        </li>
+        </dd>
+       
+    </dl>
+
+    
+<h2>Earlier</h2>
+<ol>
+<li>Thursday, November 26 -- Happy Thanksgiving</li>
+
+<li>Tuesday, November 24
+    <ul>
+    <li>Homework
+        <ul>
+        <li>Continue extending <i>floatVector</i>.  The problem of extending 
+            floatVector has been assigned in three stages.
+            <ol>
+            <li>Write the member functions: back, clear, empty, front, and pop_back.
+                They should do the same thing as in the corresponding STL vector class.
+                This should be completed.</li>
+            <li>Add <code>operator[]</code>, and throw <code>out_of_range</code> 
+                when inappropriate values are used in <i>floatVector</i>, for
+                example, when an index is out of the legal range, <i>reserve</i> is 
+                given a value less than one, etc.
+                </li>
+            <li>Add a <i>copy constructor</i>.</li>
+            <li>Write tests for all of these.  Specifically, be sure that your
+                assignment operator and copy constructor are executed correctly.
+                First, you might want to make sure they are being called by 
+                writing to <i>cout</i>.  You should have <i>asserts</i> in the 
+                test program to be sure that, not only is the data the same in 
+                both <i>floatVectors</i> after assignment, but that the 
+                data areas are in fact different.
+                </li>
+            </ol>
+            </li>
+        </ul>
+        </li>
+    <li>Handouts
+        <ul>
+        <li><a href="http://www.fredosaurus.com/notes-cpp/oop-condestructors/constructors.html">Constructors</a></li>
+        <li><a href="http://www.fredosaurus.com/notes-cpp/oop-condestructors/copyconstructors.html">Copy Constructors</a></li>
+        <li><a href="http://www.fredosaurus.com/notes-cpp/oop-overloading/operoverloading.html">Operator Overloading</a></li>
+        <li><a href="http://www.fredosaurus.com/notes-cpp/oop-overloading/operoverloading.html">Overloading Assignment</a></li>
+        <li><a href="http://www.fredosaurus.com/notes-cpp/oop-condestructors/friendfunctions.html">Friend Functions</a></li>
+        <li><a href="http://www.fredosaurus.com/notes-cpp/oop-friends/overload-io.html">Overloading &lt;&lt; and &gt;&gt;</a></li>
+        </ul>
+        </li>
+    </ul>
+    </li>
+    
+<li>Some missing days here, including the midterm.</li>
+<li>Thursday, November 12
+    <ul>
+    <li>Topics
+        <ul>
+        <li>Private member variables</li>
+        <li>Constructors</li>
+        <li>Destructors</li>
+        <li>Member functions</li>
+        </ul>
+    <li>Handout - There was only one handout, floatVector.h, but the links
+                  below show 
+        <ul>
+        <li><a href="../oop-classes/example-floatvector-1/examplefloatvector.html">Example: floatVector - Version 1</a> This page
+            has links to the three floatVector soure files (.h, .cpp, and test program).
+            </a>
+            </li>
+        </ul>
+        </li>
+    <li>Homework
+        <br/><b>Additional functions.</b>  Add the following functions that are
+        defined in the <i>vector</i> class, but not yet in <i>floatVector</i>:
+        <code>back</code>, <code>clear</code>, <code>empty</code>,
+        <code>front</code>, and <code>pop_back</code>.
+        They should all do the same thing as the corresponding STL <code>vector</code>
+        functions (see the previous STL handout).
+        Modify the test program to test them.
+        
+        <p>The intention is that you use the source code I gave you and simply make
+        some modificiations.</p>
+        
+        <p><b>Due</b>: Next Tuesday (listings of all three source files).</p>
+        </li>
+    </li>
+
+<li>Tuesday, November 10
+    </li>
+    
+<li>Thursday, November 5
+    <ul>
+    <li>Topics
+        <ul>
+        <li>Review pointers</li>
+        <li>Dynamic memory allocation on the heap.</li>
+        <li>Expanding an array by using pointer, allocating larger area, copying, deleting original.</li>
+        <li>Pointers and function parameters.</li>
+        <li>Reference parameters.</li>
+        </ul>
+        </li>
+        
+    <li>Handouts
+        <ul>
+        <li>STL Handouts
+            <ol>
+            <li><a href="../stl-containers/vector/header-vector.html">STL: vector&lt;T&gt; template class</a></li>
+            <li><a href="../stl-containers/vector/vector-read-reverse.html">STL: Example - Vector - reverse input</a></li>
+            <li><a href="../strings/header-string.html">&lt;string&gt; class</a></li>
+            </ol>
+            </li>
+            
+        <li>Pointer Handouts
+            <ol start="5">
+            <li><a href="../strings/header-cstring.html">Common &lt;cstring&gt; functions</a></li>
+            <li><a href="../arrayptr/swap-ref-ptr-stl-tpl.html">swap - references, pointers, STL, templates</a>
+                <br/><a href="../pointer-ref/50nullpointer.html">The NULL Pointer</a> [6 seems to have been used twice]</li>
+            <li><a href="../newdelete/50dynamalloc.html">Dynamic Allocation of Arrays</a></li>
+            <li><a href="../newdelete/55dynexample.html">Example: Expanding an Array</a></li>
+            <li><a href="../newdelete/alloc-cstring.html">Dynamic Allocation of C-Strings</a></li>
+            <li><a href="../newdelete/dynissues.html">Dynamic Alloc. Issues</a></li>
+            </ol>
+            </li>
+            
+        </ul>
+        </li>
+        
+    <li>Review exercise in class for pointer quiz next Thursday.
+        <a href="q-fi-ptrtypes-1.html">Types / Pointers - 1</a>
+        </li>
+    <li>Homework - Due next Thursday
+        <br />Rewrite the homework problem you turned in today to make
+        the string array expandable by allocating a new array, copying the
+        elements, and deallocating the old array.
+        </li>
+    </ul>
+    </li>
+
+<li>Tuesday, November 2
+    <br/>The election wiped out my thoughts after class.  Handouts for today
+    appear in Thursday entry.
+    </li>
+    
+<li>Thursday, October 28
+    <ul>
+    <li>Array Handouts
+        <ol>
+        <li><a href="../arrayptr/10arrays.html">Arrays</a></li>
+        <li><a href="../arrayptr/array-diagrams.html">Array Memory Diagrams</a></li>
+        <li><a href="../arrayptr/array-initialization.html">Array Initialization</a></li>
+        <li><a href="../arrayptr/17array-parameters.html">Passing Array Parameters</a></li>
+        <li><a href="../arrayptr/21inherent-problems.html">Arrays - Problems and Solutions</a></li>
+        <li><a href="../strings/cstrings.html">C-Strings</a></li>
+        </ol>
+        </li>
+        
+    <li>Pointer Handouts
+        <ol>
+        <li><a href="../pointer-ref/10pointers.html">Pointers</a></li>
+        <li><a href="../arrayptr/26arraysaspointers.html">Arrays as Pointers</a></li>
+        <li><a href="../arrayptr/arraysaspointers2.html">Arrays as Pointers - Weird But True</a></li>
+        <li><a href="../arrayptr/28strcpy.html">Pointers and Subscripts</a></li>
+        </ol>
+        </li>
+    </ul>
+    </li>
+    
+        <li>Entering EOF from the console
+            <dl>
+            <dt>Dev-C++</dt>
+                <dd>Type: Enter Control-z Enter</dd>
+            <dt>MS Visual C++</dt>
+                <dd>Type: Enter Control-z Enter Enter
+                    <br />David said there is a patch he applied so that only
+                    one Enter is required after the Control-z.  I wouldn't bother.</dd>
+            </dl>
+            </li>
+    
+<li>Tuesday, October 26
+    <ul>
+    <li>Topics
+        <ul>
+        <li>Class overview</li>
+        <li>Review of C++</li>
+    <li>Slides
+        <ul>
+        <li><a href="slides-cmis240-courseoverview.html">CMIS 240 Course Overview</a></li>
+        </ul>
+        </li>
+    <li>Handouts
+        <ul>
+        <li><a href="http://www.ed.umuc.edu/syllabi/20042/ramstein/cmis240.fswartz.htm">Syllabus</a></li>
+        <li><a href="../90summaries/10basicsum.html">C++ Summary: Basics</a></li>
+        <li><a href="../expressions/exprsum.html">C++ Summary: Expressions</a></li>
+        <li><a href="../90summaries/25statementsum.html">C++ Summary: Control Flow</a></li>
+        <li><a href="../90summaries/50progstruct.html">C++ Summary: Program Structure</a></li>
+        <li><a href="../90summaries/summary-headers.html">C++ Summary: Header Files</a></li>
+        </ul>
+        </li>
+    <li>Homework - Initial program
+        <ul>
+        <li><a href="../arrayptr/q-pr-words-reverse-order.html">Programming Problem - Words in Reverse Order</a></li>
+        <li>Due: Next Thursday.  We will be reviewing the C++ necessary to write this program, 
+            so don't worry if it doesn't seem easy initially.</li>
+        </ul>
+        </li>
+    </ul>
+    </li>
+</ul>
+</body>
+</html>

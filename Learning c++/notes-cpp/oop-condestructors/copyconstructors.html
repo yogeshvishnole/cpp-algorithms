@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Fred Swartz (www.leepoint.net/fred/)"/>
+    <link rel="stylesheet" type="text/css" href="../notes.css"/>
+    <title>C++ Notes: Copy Constructors</title>
+</head>
+<body>
+<h1><a href="../index.html">C++ Notes</a>: OOP: Copy Constructors</h1>
+
+<h2>When copies of objects are made</h2>
+
+<p>A <i>copy constructor</i> is called whenever a new variable is created from an object.  
+This happens in the following cases (but not in assignment).
+</p>
+
+<ul>
+<li>A variable is declared which is <i>initialized from another object</i>, eg,
+<pre class="fragment">
+Person q("Mickey"); // constructor is used to build q.
+Person r(p);        // copy constructor is used to build r.
+Person p = q;       // copy constructor is used to initialize in declaration.
+p = q;              // Assignment operator, no constructor or copy constructor.</pre>
+</li>
+
+<li>A value parameter is initialized from its corresponding argument.
+<pre class="fragment">f(p);               // copy constructor initializes formal value parameter.</pre></li>
+<li>An object is returned by a function.</li>
+</ul>
+
+<p>C++ calls a <i>copy constructor</i> to make
+a copy of an object in each of the above cases.  
+If there is no copy constructor defined for the class, C++ uses the default
+copy constructor which copies each field, ie, makes a <i>shallow copy</i>.
+</p>
+
+
+<h2>Don't write a copy constructor if shallow copies are ok</h2>
+
+<p>If the object has no pointers to dynamically allocated memory,
+a shallow copy is probably sufficient.  Therefore the default
+copy constructor, default assignment operator, and default
+destructor are ok and you don't need to write your own.
+</p>
+
+
+<h2>If you need a copy constructor, you also need a destructor and <code>operator=</code></h2>
+
+<p>If you need a copy constructor, it's because you need something like a
+deep copy, or some other management of resources.  Thus is is almost
+certain that you will need a destructor and override the assignment operator.
+</p>
+
+
+<h2>Copy constructor syntax</h2>
+<p>The copy constructor takes a reference to a <code>const</code> parameter.  
+It is <code>const</code> to guarantee that the copy constructor
+doesn't change it, and it is a reference because a value parameter
+would require making a copy, which would invoke the copy constructor, 
+which would make a copy of its parameter, which would invoke the copy constructor, which ...
+</p>
+
+<p>Here is an example of a copy constructor for the Point class,
+which doesn't really need one because the default copy constructor's action
+of copying fields would work fine, but it shows how it works.
+</p>
+<pre class="fragment">
+//=== file Point.h =============================================
+class Point {
+    public:
+        . . .
+        Point(const Point&amp; p);   // copy constructor
+        . . .
+//=== file Point.cpp ==========================================
+. . .
+<span class="hilite">Point::Point(const Point&amp; p) {
+    x = p.x;
+    y = p.y;
+}</span>
+    . . .
+//=== file my_program.cpp ====================================
+. . .
+Point p;            // calls default constructor
+Point s = p;        // calls copy constructor.
+p = s;              // assignment, not copy constructor.
+</pre>
+
+
+<h2>Difference between copy constructor and assignment</h2>
+
+<p>A copy constructor is used to initialize a <i>newly declared</i> variable from
+an existing variable.  This makes a deep copy like assignment, 
+but it is somewhat simpler:
+</p>
+
+<ol>
+<li class="compact">There is no need to test to see if it is being initialized from itself.</li>
+<li class="compact">There is no need to clean up (eg, delete) an existing value (there is none).</li>
+<li class="compact">A reference to itself is not returned.</li>
+</ol>
+
+
+<h2>Unaddressed issue</h2>
+
+<p>[Question: When is the base (parent) class copy constructor called?
+Is it like Java and the parent constructor is called at the
+beginning of each constructor?  Does it have to be explicit?]
+</p>
+   
+   
+<div class="footer">Copyleft 2004 <a href="http://www.leepoint.net/fred/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+
+</body>
+
+</html>
